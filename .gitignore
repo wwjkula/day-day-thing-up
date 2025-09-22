@@ -1,0 +1,30 @@
+﻿# Node/Monorepo
+node_modules/
+.pnpm-store/
+dist/
+.build/
+.temp/
+temp/
+.cache/
+.vite/
+coverage/
+*.log
+*.local
+*.tmp
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Editor
+.vscode/
+.idea/
+.DS_Store
+
+# Cloudflare/Workers
+.wrangler
+
+# Others
+*.DS_Store
+Thumbs.db

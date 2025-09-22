@@ -1,0 +1,396 @@
+下面是一份从**第一性原理**出发、以“实用主义”为导向，为央企内部“日事日清/周度汇总 + 分级可见”场景定制的**Web 系统开发方案**。目标是**极低填报成本**、**自动化汇总**、**严格的上下级可见权限**、**一键导出打包**，以最小可行产品（MVP）落地，再按需演进。
+
+---
+
+## 0. 一页版结论（给领导看的摘要）
+
+- **要解决的本质问题**：把“人肉收集 + 表格拼装”的重复劳动，转为“个人自填 + 系统自动汇总”，并确保“上级可见、同级不可见”的**最小安全闭环**。  
+- **最小可行能力（MVP）**：  
+  1) 员工用 20 字以内标题快速填报“工作项”；  
+  2) 系统按周自动生成个人/部门汇总；  
+  3) 领导能按组织层级查看下属数据与缺报名单；  
+  4) 一键导出：部门级压缩包（含分人/分日 Excel）。  
+- **权限硬边界**：基于**管理关系**与**组织树**的分域访问；同级严格不可见；支持**代理/临时负责人**且留痕。  
+- **架构**：单体应用优先（Spring Boot + Vue3 + MySQL/PostgreSQL），RBAC+层级域控制，磁盘或 MinIO 存储附件，Nginx 反向代理。  
+- **为何这样设计**：  
+  - 以“**事实记录最小单元**= 工作项”替代“周报文本再加工”；  
+  - 以“**管理边**（谁管谁）+ 组织树闭包”实现**可证明**的可见性；  
+  - 保证**可追溯**（谁看过/谁导出过）与**低门槛填报**（20 字标题 + 可选补充）。  
+
+---
+
+## 1. 第一性原理分解
+
+### 1.1 目标与约束
+- **目标最小化**：最少输入（20 字标题 + 日期），最大输出（周度/部门自动汇总与打包）。
+- **安全边界**：信息仅在**管理链路上行**传播，**侧向不可扩散**（同级不可见、跨项目不可见）。
+- **成本意识**：  
+  - 使用**关系型数据库**承载层级与审计；  
+  - **单体应用**即可满足性能与可维护性，避免过度微服务化；  
+  - 兼容内网与合规要求（本地部署、可断网运行）。
+
+### 1.2 数据最小单元
+- **工作项（Work Item）** = 在某日期做过的一件事的**事实记录**，字段最小集合：  
+  - `title`（<=20 字）  
+  - `date`（业务日期）  
+  - `type`（完成/推进/临时/协同 等，便于统计）  
+  - `duration`（可选，分钟/小时）  
+  - `tags`（可选，关键词）  
+  - `detail`（可选，少量说明）  
+  - `attachments`（可选）
+- 以工作项为原子，周报/部门汇总均由系统聚合生成，避免重复手写。
+
+### 1.3 可见性的一般化定义
+- **谁可以看** = 满足**管理关系**或**授权关系**且在**时间有效期**内。  
+- **同级不可见** = 不存在任何从对方到我的管理/授权路径。  
+- **历史可见性**：两种策略（系统可配置）：  
+  1) **动态策略**：按查询当日管理关系决定可见性（常用）；  
+  2) **快照策略**：按工作项创建当时的管理关系决定（审计更严格，但维护更重）。  
+  MVP 采用**动态策略**；如有稽核诉求，再加“历史视图”。
+
+---
+
+## 2. 总体方案
+
+### 2.1 架构与技术栈（务实可落地）
+- **前端**：Vue 3 + TypeScript + Vite + Element Plus（企业内常见、成熟稳定）。  
+- **后端**：Spring Boot 3（Java 17+/21）、Spring Security、Spring Data。  
+- **数据库**：MySQL 8 或 PostgreSQL 15（推荐 PG，递归/闭包查询友好）。  
+- **缓存**：Redis（登录会话、热查询、闭包缓存）。  
+- **存储**：本地磁盘或 MinIO（对象存储，便于大附件与备份）。  
+- **部署**：Nginx 反代 + Docker（可选）/ 传统 Linux 服务；纯内网可运行。  
+- **集成**：企业 AD/LDAP 单点登录（可选），邮件/企业微信通知（可插拔）。
+
+### 2.2 模块划分
+1. **组织与人员模块**：组织树、人员、岗位、**管理边**（谁管谁，支持多头与时效）。  
+2. **权限模块**：RBAC + 域（Domain）+ 时间窗授权，支持代理人/临时负责人。  
+3. **工作项模块**：快速填报、编辑（时间窗内可补录/更正）、附件管理。  
+4. **汇总与导出模块**：周报、部门汇总、一键压缩包导出（多 Sheet 或多文件）。  
+5. **审计与留痕模块**：查看日志、导出日志、权限变更日志、不可抵赖性（弱签名）。  
+6. **告警与提醒模块**（非 MVP，后续）：缺报提醒、周日自动催报。
+
+---
+
+## 3. 数据与权限模型（可直接落库）
+
+### 3.1 核心表（简化字段示意，PG 语法为例）
+
+```sql
+-- 组织
+create table org_units (
+  id bigserial primary key,
+  name varchar(100) not null,
+  parent_id bigint references org_units(id),
+  type varchar(20) default 'department',
+  active boolean default true
+);
+
+-- 人员
+create table users (
+  id bigserial primary key,
+  employee_no varchar(50) unique,
+  name varchar(50) not null,
+  email varchar(120),
+  phone varchar(30),
+  job_title varchar(100),
+  grade varchar(50),
+  active boolean default true
+);
+
+-- 人员-组织隶属（含历史）
+create table user_org_memberships (
+  user_id bigint references users(id),
+  org_id bigint references org_units(id),
+  is_primary boolean default true,
+  start_date date not null,
+  end_date date,
+  primary key (user_id, org_id, start_date)
+);
+
+-- 管理关系边（谁管谁），支持多头与时效
+create table manager_edges (
+  manager_id bigint references users(id),
+  subordinate_id bigint references users(id),
+  start_date date not null,
+  end_date date,
+  priority int default 100, -- 用于“分管/直管”排序
+  primary key (manager_id, subordinate_id, start_date)
+);
+
+-- 角色与授权域
+create table roles (
+  id bigserial primary key,
+  code varchar(50) unique, -- 'employee','dept_head','org_admin','sys_admin'...
+  name varchar(100) not null
+);
+
+-- 按域授权（域=组织树节点/项目组），scope 控制层级
+create table role_grants (
+  id bigserial primary key,
+  grantee_user_id bigint references users(id),
+  role_id bigint references roles(id),
+  domain_org_id bigint references org_units(id),
+  scope varchar(20) not null, -- 'self'|'direct'|'subtree'
+  start_date date not null,
+  end_date date
+);
+
+-- 工作项（事实记录）
+create table work_items (
+  id bigserial primary key,
+  creator_id bigint references users(id),
+  org_id bigint references org_units(id), -- 归属组织（随人主组织或手工指定）
+  work_date date not null,
+  title varchar(40) not null check (char_length(title) <= 20), -- 中文 20 字内
+  type varchar(20) default 'done', -- done/progress/temp/assist
+  duration_minutes int, -- 可选
+  tags varchar(200), -- 逗号分隔或 JSONB
+  detail text, -- 可选补充
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+
+-- 附件
+create table attachments (
+  id bigserial primary key,
+  work_item_id bigint references work_items(id),
+  file_name varchar(255),
+  mime varchar(100),
+  size_bytes bigint,
+  sha256 char(64),
+  stored_url varchar(500),
+  created_at timestamptz default now()
+);
+
+-- 审计
+create table audit_logs (
+  id bigserial primary key,
+  actor_user_id bigint references users(id),
+  action varchar(50), -- view/create/update/export/grant/...
+  object_type varchar(50), -- work_item/org/user/...
+  object_id bigint,
+  detail jsonb,
+  created_at timestamptz default now()
+);
+```
+
+> **组织树查询**建议使用**闭包表**或 PostgreSQL 递归 CTE。闭包表（`org_closure(ancestor, descendant, depth)`）能显著简化“子树可见”判定与汇总性能。
+
+### 3.2 可见性判定（形式化定义）
+**问题**：给定用户 U，是否能查看工作项 W？  
+**判定条件（任一满足即通过）**：
+1. `W.creator_id == U.id`（本人可见）。  
+2. 存在**管理路径** `U -> ... -> W.creator` 在查询时点有效（动态策略）。  
+3. 存在**授权** `role_grants` 赋予 U 在 `domain_org` 上**direct/subtree** 读权限，且 `W.creator` 隶属该域（含子组织）。  
+4. U 具备 `org_admin/sys_admin` 等更高权限。
+
+**伪代码**：
+```java
+boolean canRead(User U, WorkItem W, LocalDate asOf){
+  if (W.creatorId == U.id) return true;
+  if (existsEffectiveManagerPath(U.id, W.creatorId, asOf)) return true;
+  if (existsRoleGrantCovering(U.id, W.creatorOrgId, W.creatorId, asOf)) return true;
+  return hasAdmin(U);
+}
+```
+
+> **同级不可见**：由于不存在从同级到同级的管理路径，且无授权，则判定为不可见。  
+> **代理/临时负责人**：通过 `role_grants(scope='direct'|'subtree', start_date, end_date)` 赋权，期满自动失效；所有授权变更写 `audit_logs`。
+
+---
+
+## 4. 关键业务流程（以“低摩擦”为首要）
+
+### 4.1 员工填报（≤ 10 秒）
+- 打开页面/移动端：输入 **标题（≤20 字）** → 选日期（默认今天） → 选类型（完成/推进/临时/协同） → 可选时长/标签/说明/附件 → 提交。  
+- **表单交互**：  
+  - 字数计数器、超限即禁用提交；  
+  - 记忆最近使用的标签与类型；  
+  - 支持“复制昨日条目”快速修改。  
+
+### 4.2 周度自动汇总（每周日 20:00 触发，可手动）
+- 个人周报：按周分组、按日分栏、每条展示“标题 +（可选）时长”，自动统计总时长与类型占比；允许个人**增补一句话总括**（独立字段，留痕）。  
+- 部门汇总：按组织树，从叶到根聚合；生成**缺报名单**（某天/整周无记录者）。  
+- **一键导出**：  
+  - `部门_YYYYWW.zip`  
+    - `个人_张三_YYYYWW.xlsx`  
+    - `汇总_部门A_YYYYWW.xlsx`（含个人 Sheet 与统计 Sheet）
+
+### 4.3 领导查看
+- “我的下属”页签：按组织/人员树展开，默认显示本周，支持日期区间切换与关键字筛选（仅在有权限的数据域内搜索）。  
+- “统计看板”页签：  
+  - 人均条目、类型分布、缺报人数、Top N 关键词；  
+  - **所有指标仅聚合可见域内数据**，确保不越权。  
+- **追溯与问责**：点击任一条目可见详情；查看行为写审计日志。
+
+---
+
+## 5. 汇总与导出实现要点
+
+### 5.1 周计算与口径
+- 周定义：以 **周一为周首**，周度汇总在**周日**触发（按 `Asia/Shanghai` 时区）。  
+- 聚合 SQL（示意）：
+```sql
+select creator_id, date_trunc('week', work_date) as week_start,
+       count(*) as item_count,
+       sum(duration_minutes) as total_minutes
+from work_items
+where work_date between :start and :end
+  and visible_to(:viewer_id) -- 伪函数：由权限层拦截或预计算域过滤
+group by creator_id, week_start;
+```
+
+### 5.2 性能与索引
+- 索引：`work_items(creator_id, work_date)`、`work_items(org_id, work_date)`、`manager_edges(subordinate_id)`、`role_grants(grantee_user_id, domain_org_id)`。  
+- 建议将“组织闭包表”和“有效管理对（manager_closure）”**物化视图**化，并在组织/人员变更时增量刷新。
+
+### 5.3 导出
+- Excel 生成：Java 侧使用 Apache POI（或 EasyExcel），注意**流式写**防止大内存占用。  
+- 命名规范：`{组织名}_{YYYYWW}.xlsx`/`zip`，导出人、导出时间写入页脚与 `audit_logs`。  
+- 字段列：日期、标题（<=20字）、类型、时长（分钟/小时）、标签、附件数量；统计 Sheet：条目数、总时长、类型分布饼图。
+
+---
+
+## 6. 安全与合规
+
+- **访问控制**：后端二次校验（不可只靠前端）；所有查询按**数据域预过滤**。  
+- **最小权限**：默认仅本人可见；任何上行可见都需有管理路径或授权。  
+- **审计**：查看/导出/授权变更全部入库；支持导出审计报表。  
+- **数据留存**：工作项内容可设保存年限（如 3-5 年），到期自动归档；归档后仅管理员可查。  
+- **加密**：传输 TLS；数据库与附件库可选**静态加密**；附件存 `sha256` 校验防篡改。  
+- **删除策略**：工作项**默认不可硬删**，仅允许管理员“作废”并留痕；个人可在短时间窗内编辑纠错。
+
+---
+
+## 7. API 设计（选摘）
+
+- `POST /api/work-items` 创建工作项  
+  ```json
+  {
+    "workDate": "2025-09-13",
+    "title": "设备巡检已完成",
+    "type": "done",
+    "durationMinutes": 60,
+    "tags": ["巡检","一线"]
+  }
+  ```
+- `GET /api/work-items?from=2025-09-08&to=2025-09-14&scope=subordinates`（列出“我及下属”可见范围内的工作项）  
+- `GET /api/reports/weekly?week=2025W37&domainOrgId=123` 输出部门周报 JSON  
+- `POST /api/exports/weekly-zip` 生成并返回 ZIP 下载链接  
+- 所有读写均由后端根据登录态与权限中间件校验 **canRead/canExport**。
+
+---
+
+## 8. 前端交互草图（用词描述）
+
+- **首页（员工）**：顶部“快速填报”卡片（单行输入 + 类型/日期/提交），下方“本周我的记录”按日分组卡片流。  
+- **周报页（员工）**：自动生成 + “一句话总括”输入框；导出本人周报。  
+- **下属页（领导）**：左侧组织/人员树；右侧列表（可展开到人/到日），支持关键字过滤与导出。  
+- **统计页（领导）**：卡片显示“条目数/缺报数/类型占比/Top 标签”，图表仅作辅助。  
+- **权限页（管理员）**：搜索用户→授予域与范围（direct/subtree）→设定时间窗→预览其可见人员列表→确认→入审计。
+
+---
+
+## 9. 变更与人事关系的处理
+
+- **管理边为一等公民**：不强依赖组织树。因为央企常见“分管/条线/项目制”，需显式建模 `manager_edges`，允许一个人被多人管理。  
+- **时效性**：所有隶属与授权均带 `start_date/end_date`，确保**历史追溯**与**未来生效**。  
+- **历史可见性策略**：默认动态；若审计需要，可提供“按创建时快照”查询开关。  
+
+---
+
+## 10. 非功能指标与容量估算（方法与口径）
+
+- **复杂度口径**：  
+  - 写入：按人均 5 条/天、1000 人 = 5000 条/天；  
+  - 读：领导综合查询通常在 1–3 万条级别（近一周或一月）。  
+- **数据库**：以 `work_items` 1000 万条为量级，配合合适索引与分区（按月/按组织）可轻松支撑；  
+- **响应目标**：  
+  - 员工“快速填报”提交 < 300ms（内网）；  
+  - 领导页面分页查询 < 1s；  
+  - 部门周报导出（千人级）采用异步生成+下载（同一会话内完成），并记录审计日志。
+
+> 注：这里给出的是**容量口径与性能目标**，用于工程设计与验收基线，而非外部承诺的交付时间。
+
+---
+
+## 11. 测试与验收（挑重点）
+
+- **权限矩阵用例**：  
+  - 本人可见/同级不可见/直属领导可见/跨部门不可见/代理有效期内可见/期满自动失效；  
+  - 多头管理：A、B 同时管 C，A 与 B 均可见 C 的记录；  
+  - 管理关系变更后，领导可见范围**随变动**生效（动态策略）。  
+- **数据正确性**：  
+  - 20 字限制强校验；  
+  - 周度统计与原子工作项核对一致（抽样比对）。  
+- **导出一致性**：  
+  - 任意导出结果可从数据库用相同过滤条件重算并一致。  
+- **审计**：  
+  - 随机抽查“谁在何时查看/导出过哪些人的数据”与日志吻合。  
+
+---
+
+## 12. 风险与对策
+
+| 风险 | 影响 | 对策 |
+|---|---|---|
+| 管理关系建模不全 | 可见性异常 | 以人事主数据为准，允许**手工补登**管理边并留痕；提供可视化“我的下属”预览。 |
+| 用户不愿填报 | 数据缺失 | 入口极简、支持复制昨日、移动端适配；缺报提醒（后续）；把导出报表“只认系统导出”变为制度。 |
+| 口径不统一 | 统计失真 | 统一“类型/标签/时长”字典；系统层面强制 20 字标题与周定义。 |
+| 越权导出 | 泄露 | 后端严校验 + 审计 + 导出水印（导出人/时间/范围）。 |
+| 人事频繁变更 | 可见范围波动 | 动态策略 + 历史查询开关；授权有效期与到期提醒。 |
+
+---
+
+## 13. 迭代路线（从 MVP 到增强）
+
+1. **MVP**：组织/人员/管理边、快速填报、周度/部门汇总、导出打包、审计留痕、基本 RBAC。  
+2. **增强**：  
+   - 缺报提醒、到期授权提醒；  
+   - 标签与关键词统计、看板；  
+   - Excel 批量导入历史记录；  
+   - 项目组域（跨部门临时域）；  
+   - AD/LDAP 单点登录与企业微信通知。  
+3. **治理**：历史可见性快照、归档与脱敏导出、只读影子库用于 BI。
+
+---
+
+## 14. 可直接用的工程清单（落地所需“砖块”）
+
+- **后端包**：`core-domain`（组织/权限/工作项）、`app-api`（REST）、`infra`（数据库/存储/缓存）、`exporter`（Excel/Zip）、`audit`（日志）  
+- **前端包**：`/pages/me`（我的记录/周报）、`/pages/subordinates`（下属视图）、`/pages/stats`（看板）、`/pages/admin`（组织与授权）  
+- **定时任务**：`weeklyAggregate@Sun20:00`、`exportCleanup@02:00`（清理过期导出文件）  
+- **数据库对象**：`org_closure`（闭包表）、`manager_closure`（物化视图）、核心索引、审计触发器  
+- **安全拦截器**：`AuthorizationFilter → CanRead/CanExport`、`AuditAspect`  
+- **配置项**：周定义、历史可见策略、编辑时间窗、导出水印开关、附件大小上限
+
+---
+
+## 15. 示例：权限检查与查询（伪代码）
+
+```java
+// 查询“我及下属”本周的工作项（后端保证域过滤）
+@GetMapping("/work-items")
+public Page<WorkItemDTO> list(
+  @RequestParam LocalDate from, @RequestParam LocalDate to, 
+  @RequestParam(defaultValue="self") String scope, Principal me) {
+
+  Set<Long> visibleUserIds = visibilityService.resolveVisibleUsers(me, scope, asOf=LocalDate.now());
+  return workItemRepo.findByCreatorInAndDateBetween(visibleUserIds, from, to, PageRequest.of(0, 50));
+}
+```
+
+`visibilityService.resolveVisibleUsers` 内部逻辑：
+1) `self` → `{me}`  
+2) `subordinates` → `{me} ∪ manager_closure[manager=me].subordinates`  
+3) 叠加 `role_grants` 产生的域（direct/subtree）覆盖的用户集合  
+4) 去重后返回
+
+---
+
+### 收尾
+
+这套方案把问题还原为三件事：**建模事实（工作项）**、**建模权力（管理边与授权）**、**把计算交给机器（周度聚合与导出）**。  
+从第一性原理看，它既满足“最小投入产出比”，又能以清晰的数学关系解释“谁可以看什么”，并给出可审计、可扩展的工程落地路径。
+
+如果你愿意，我可以基于本方案直接输出：**数据库初始化脚本、后端实体与仓储接口、关键 API 的接口定义与示例响应、前端页面路由与组件骨架**，方便你/团队即刻开工。

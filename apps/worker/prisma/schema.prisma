@@ -1,0 +1,159 @@
+// Prisma schema aligned with design doc §3.1
+// Runtime: Cloudflare Workers via Neon HTTP driver + @prisma/adapter-neon
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model OrgUnit {
+  id       BigInt   @id @default(autoincrement()) @map("id")
+  name     String   @db.VarChar(100)
+  parentId BigInt?  @map("parent_id")
+  type     String   @default("department") @db.VarChar(20)
+  active   Boolean  @default(true)
+
+  parent   OrgUnit? @relation("OrgParent", fields: [parentId], references: [id])
+  children OrgUnit[] @relation("OrgParent")
+  users       UserOrgMembership[]
+  workItems   WorkItem[]
+  roleGrants  RoleGrant[] @relation("OrgUnitRoleGrants")
+
+  @@map("org_units")
+}
+
+model User {
+  id         BigInt  @id @default(autoincrement())
+  employeeNo String? @unique @map("employee_no") @db.VarChar(50)
+  name       String  @db.VarChar(50)
+  email      String? @db.VarChar(120)
+  phone      String? @db.VarChar(30)
+  jobTitle   String? @map("job_title") @db.VarChar(100)
+  grade      String? @db.VarChar(50)
+  active     Boolean @default(true)
+
+  memberships UserOrgMembership[]
+  manages     ManagerEdge[] @relation("ManagerToSubordinate")
+  subordinates ManagerEdge[] @relation("SubordinateToManager")
+  roleGrants  RoleGrant[]
+  createdWorkItems WorkItem[] @relation("Creator")
+  auditLogs   AuditLog[] @relation("Actor")
+
+  @@map("users")
+}
+
+model UserOrgMembership {
+  userId    BigInt
+  orgId     BigInt
+  isPrimary Boolean  @default(true) @map("is_primary")
+  startDate DateTime @db.Date @map("start_date")
+  endDate   DateTime? @db.Date @map("end_date")
+
+  user User @relation(fields: [userId], references: [id])
+  org  OrgUnit @relation(fields: [orgId], references: [id])
+
+  @@id([userId, orgId, startDate])
+  @@map("user_org_memberships")
+}
+
+model ManagerEdge {
+  managerId     BigInt @map("manager_id")
+  subordinateId BigInt @map("subordinate_id")
+  startDate     DateTime @db.Date @map("start_date")
+  endDate       DateTime? @db.Date @map("end_date")
+  priority      Int    @default(100)
+
+  manager     User @relation("ManagerToSubordinate", fields: [managerId], references: [id])
+  subordinate User @relation("SubordinateToManager", fields: [subordinateId], references: [id])
+
+  @@id([managerId, subordinateId, startDate])
+  @@map("manager_edges")
+}
+
+model Role {
+  id   BigInt @id @default(autoincrement())
+  code String @unique @db.VarChar(50)
+  name String @db.VarChar(100)
+
+  grants RoleGrant[]
+
+  @@map("roles")
+}
+
+enum Scope {
+  self
+  direct
+  subtree
+}
+
+model RoleGrant {
+  id            BigInt  @id @default(autoincrement())
+  granteeUserId BigInt  @map("grantee_user_id")
+  roleId        BigInt  @map("role_id")
+  domainOrgId   BigInt  @map("domain_org_id")
+  scope         Scope
+  startDate     DateTime @db.Date @map("start_date")
+  endDate       DateTime? @db.Date @map("end_date")
+
+  grantee User   @relation(fields: [granteeUserId], references: [id])
+  role    Role   @relation(fields: [roleId], references: [id])
+  domain  OrgUnit @relation(name: "OrgUnitRoleGrants", fields: [domainOrgId], references: [id])
+
+  @@map("role_grants")
+}
+
+model WorkItem {
+  id        BigInt   @id @default(autoincrement())
+  creatorId BigInt   @map("creator_id")
+  orgId     BigInt   @map("org_id")
+  workDate  DateTime @db.Date @map("work_date")
+  title     String   @db.VarChar(40)
+  type      String   @default("done") @db.VarChar(20)
+  durationMinutes Int? @map("duration_minutes")
+  tags      String?  @db.VarChar(200)
+  detail    String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  creator User    @relation("Creator", fields: [creatorId], references: [id])
+  org     OrgUnit @relation(fields: [orgId], references: [id])
+  attachments Attachment[]
+
+  @@map("work_items")
+}
+
+model Attachment {
+  id          BigInt  @id @default(autoincrement())
+  workItemId  BigInt  @map("work_item_id")
+  fileName    String? @map("file_name") @db.VarChar(255)
+  mime        String? @db.VarChar(100)
+  sizeBytes   BigInt? @map("size_bytes")
+  sha256      String? @db.Char(64)
+  storedUrl   String? @map("stored_url") @db.VarChar(500)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  workItem WorkItem @relation(fields: [workItemId], references: [id])
+
+  @@map("attachments")
+}
+
+model AuditLog {
+  id          BigInt  @id @default(autoincrement())
+  actorUserId BigInt  @map("actor_user_id")
+  action      String  @db.VarChar(50)
+  objectType  String? @map("object_type") @db.VarChar(50)
+  objectId    BigInt? @map("object_id")
+  detail      Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  actor User @relation("Actor", fields: [actorUserId], references: [id])
+
+  @@map("audit_logs")
+}
+
+/// NOTE: org_closure & manager_closure 可在后续迁移中以原生 SQL 创建（闭包表/物化视图）。
+
