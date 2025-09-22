@@ -35,7 +35,7 @@ app.options('*', (c) => {
   const origin = c.req.header('origin') || '*'
   return new Response(null, { status: 204, headers: {
     'Access-Control-Allow-Origin': origin,
-    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+    'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
     'Access-Control-Allow-Headers': 'Authorization, Content-Type',
     'Vary': 'Origin',
   } })
@@ -44,7 +44,7 @@ app.use('*', async (c, next) => {
   await next()
   const origin = c.req.header('origin') || '*'
   c.header('Access-Control-Allow-Origin', origin)
-  c.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+  c.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS')
   c.header('Access-Control-Allow-Headers', 'Authorization, Content-Type')
   c.header('Vary', 'Origin')
 
