@@ -11,8 +11,4 @@
   "r2_buckets": [
     { "binding": "R2_EXPORTS", "bucket_name": "day-day-thing-up-15976" }
   ],
-  "queues": {
-    "producers": [ { "binding": "EXPORT_QUEUE", "queue": "queue_exports" } ],
-    "consumers": [ { "queue": "queue_exports" } ]
-  }
 }
