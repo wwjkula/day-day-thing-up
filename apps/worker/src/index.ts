@@ -8,7 +8,7 @@ import { neon } from '@neondatabase/serverless'
 import { PrismaNeonHTTP } from '@prisma/adapter-neon'
 import { verifyJWT_HS256, signJWT_HS256, type JWTPayload } from './auth'
 import { resolveVisibleUsers, makeClosureDrivers } from './visibility'
-import { canRead, canExport, audit } from './middlewares/permissions'
+import { canRead, canExport, audit, requireAdmin } from './middlewares/permissions'
 
 import { registerAdminRoutes } from './admin'
 
@@ -71,14 +71,29 @@ app.post('/api/auth/login', async (c) => {
   }
   if (!user) return c.json({ ok: false, error: 'invalid credentials' }, 401)
 
+  // compute admin flag
+  const today = new Date()
+  const adminGrant = await prisma.roleGrant.findFirst({
+    where: {
+      granteeUserId: user.id,
+      role: { code: 'sys_admin' },
+      startDate: { lte: today },
+      OR: [ { endDate: null }, { endDate: { gte: today } } ],
+    }, select: { id: true }
+  })
+  const isAdmin = !!adminGrant
+
   const now = Math.floor(Date.now() / 1000)
-  const token = await signJWT_HS256({ sub: Number(user.id), name: user.name, email: user.email ?? undefined, iat: now, exp: now + 24 * 3600 }, c.env.JWT_SECRET)
+  const token = await signJWT_HS256({ sub: Number(user.id), name: user.name, email: user.email ?? undefined, isAdmin, iat: now, exp: now + 24 * 3600 }, c.env.JWT_SECRET)
 
   // best-effort audit
   try { await prisma.auditLog.create({ data: { actorUserId: BigInt(user.id), action: 'login', objectType: 'user' } }) } catch {}
 
-  return c.json({ ok: true, token, user: { id: Number(user.id), name: user.name, email: user.email ?? null, employeeNo: user.employeeNo ?? null } })
+  return c.json({ ok: true, token, user: { id: Number(user.id), name: user.name, email: user.email ?? null, employeeNo: user.employeeNo ?? null, isAdmin } })
 })
+
+// Admin guard for all admin routes
+app.use('/api/admin/*', auth, requireAdmin)
 
 // Register admin CRUD routes
 registerAdminRoutes(app as any)

@@ -50,7 +50,7 @@ onMounted(() => { refreshMe() })
         <el-tab-pane label="周报" name="weekly">
           <WeeklyReport />
         </el-tab-pane>
-        <el-tab-pane label="管理" name="admin">
+        <el-tab-pane v-if="user?.isAdmin" label="管理" name="admin">
           <AdminPanel />
         </el-tab-pane>
       </el-tabs>

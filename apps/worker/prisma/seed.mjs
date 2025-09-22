@@ -22,10 +22,16 @@ async function main() {
   }
 
   // Roles
+  const sysAdminRole   = await prisma.role.create({ data: { code: 'sys_admin', name: '系统管理员' } })
   const leadershipRole = await prisma.role.create({ data: { code: 'leadership', name: '领导' } })
   const directorRole   = await prisma.role.create({ data: { code: 'director', name: '主任' } })
   const deputyRole     = await prisma.role.create({ data: { code: 'deputy_director', name: '副主任' } })
   const employeeRole   = await prisma.role.create({ data: { code: 'employee', name: '员工' } })
+
+  // Admin user
+  const admin = await prisma.user.create({ data: { name: '系统管理员', email: 'admin@example.com', employeeNo: 'ADMIN001', jobTitle: '系统管理员' } })
+  await prisma.userOrgMembership.create({ data: { userId: admin.id, orgId: leadership.id, isPrimary: true, startDate: today } })
+  await prisma.roleGrant.create({ data: { granteeUserId: admin.id, roleId: sysAdminRole.id, domainOrgId: root.id, scope: 'subtree', startDate: today } })
 
   // Leadership users
   const leader1 = await prisma.user.create({ data: { name: '张总', email: 'leader1@example.com', employeeNo: 'L001', jobTitle: '总经理' } })

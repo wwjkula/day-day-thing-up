@@ -125,3 +125,26 @@ export async function audit(prisma: any, data: { actorUserId: bigint; action: st
   }
 }
 
+// --- Admin guard ---
+export async function requireAdmin(c: any, next: any) {
+  const user = c.get('user')
+  const sub = user?.sub ?? user?.userId ?? user?.id
+  if (sub == null) return c.json({ error: 'Unauthorized' }, 401)
+
+  // Fast-path: JWT may carry isAdmin=true
+  if (user?.isAdmin === true) return next()
+
+  const prisma = getPrisma(c.env as any)
+  const today = new Date()
+  const grant = await prisma.roleGrant.findFirst({
+    where: {
+      granteeUserId: BigInt(sub),
+      role: { code: 'sys_admin' },
+      startDate: { lte: today },
+      OR: [ { endDate: null }, { endDate: { gte: today } } ],
+    },
+    select: { id: true },
+  })
+  if (!grant) return c.json({ error: 'Forbidden' }, 403)
+  await next()
+}
