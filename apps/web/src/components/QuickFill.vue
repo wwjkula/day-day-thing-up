@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { CreateWorkItemRequest } from '@drrq/shared/index'
 import { validateWorkItemTitle, validateWorkItemType, validateDateString } from '@drrq/shared/index'
+import { withBase, authHeader } from '../api'
 
 const form = ref<CreateWorkItemRequest>({
   title: '',
@@ -23,9 +24,9 @@ async function submit() {
 
   submitting.value = true
   try {
-    const res = await fetch('/api/work-items', {
+    const res = await fetch(withBase('/api/work-items'), {
       method: 'POST',
-      headers: { 'content-type': 'application/json', ...(window.__AUTH__ ? { Authorization: `Bearer ${window.__AUTH__}` } : {}) },
+      headers: { 'content-type': 'application/json', ...authHeader() },
       body: JSON.stringify(form.value),
     })
     if (!res.ok) {
@@ -44,9 +45,10 @@ async function submit() {
 
 async function devGetToken() {
   try {
-    const res = await fetch('/dev/token?sub=1')
+    const res = await fetch(withBase('/dev/token?sub=1'))
     const j = await res.json()
     ;(window as any).__AUTH__ = j.token
+    try { localStorage.setItem('AUTH', j.token) } catch {}
     ElMessage.success('已获取开发Token')
   } catch {
     ElMessage.error('获取Token失败')

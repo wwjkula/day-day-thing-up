@@ -7,7 +7,7 @@ declare global {
 // 在生产（Pages）上通过 VITE_API_BASE 指向后端 Worker 域名；
 // 本地开发不设置则走相对路径并由 Vite 代理到本地 Worker。
 const API_BASE = (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_API_BASE) || ''
-const withBase = (p: string) => (API_BASE ? `${API_BASE}${p}` : p)
+export const withBase = (p: string) => (API_BASE ? `${API_BASE}${p}` : p)
 
 export function authHeader(): Record<string, string> {
   return window.__AUTH__ ? { Authorization: `Bearer ${window.__AUTH__}` } : {}

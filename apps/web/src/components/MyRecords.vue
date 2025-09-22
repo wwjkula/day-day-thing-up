@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import type { ListWorkItemsResponse, WorkItemResponse } from '@drrq/shared/index'
+import { withBase, authHeader } from '../api'
 
 const items = ref<WorkItemResponse[]>([])
 const loading = ref(false)
@@ -16,8 +17,8 @@ async function load() {
   loading.value = true
   try {
     const params = new URLSearchParams({ from: range.value.from, to: range.value.to, scope: 'self' })
-    const res = await fetch(`/api/work-items?${params}`, {
-      headers: { ...(window.__AUTH__ ? { Authorization: `Bearer ${window.__AUTH__}` } : {}) }
+    const res = await fetch(withBase(`/api/work-items?${params}`), {
+      headers: { ...authHeader() }
     })
     const j: ListWorkItemsResponse = await res.json()
     items.value = j.items
