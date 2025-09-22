@@ -28,6 +28,26 @@ function getPrisma(env: Bindings) {
 
 const app = new Hono<{ Bindings: Bindings; Variables: { user?: JWTPayload; scope?: 'self'|'direct'|'subtree'; range?: { start: Date; end: Date }; visibleUserIds?: bigint[] } }>()
 
+// --- CORS for cross-origin frontend (Pages) ---
+app.options('*', (c) => {
+  const origin = c.req.header('origin') || '*'
+  return new Response(null, { status: 204, headers: {
+    'Access-Control-Allow-Origin': origin,
+    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+    'Access-Control-Allow-Headers': 'Authorization, Content-Type',
+    'Vary': 'Origin',
+  } })
+})
+app.use('*', async (c, next) => {
+  await next()
+  const origin = c.req.header('origin') || '*'
+  c.header('Access-Control-Allow-Origin', origin)
+  c.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+  c.header('Access-Control-Allow-Headers', 'Authorization, Content-Type')
+  c.header('Vary', 'Origin')
+})
+
+
 app.get('/', (c) => c.text('Hello Hono!'))
 
 app.get('/health', async (c) => {
