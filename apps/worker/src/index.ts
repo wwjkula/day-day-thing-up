@@ -29,6 +29,19 @@ function getPrisma(env: Bindings) {
   return globalThis.__PRISMA__ as PrismaClient
 }
 
+
+async function getVisibilityOptions(prisma: PrismaClient, env: Bindings): Promise<{ drivers: ReturnType<typeof makeClosureDrivers> } | undefined> {
+  const use = String(env.VISIBILITY_USE_CLOSURE || '').toLowerCase() === 'true'
+  if (!use) return undefined
+  try {
+    await prisma.$queryRaw`select 1 from org_closure limit 1`
+    return { drivers: makeClosureDrivers(prisma) }
+  } catch {
+    return undefined
+  }
+}
+
+
 const app = new Hono<{ Bindings: Bindings; Variables: { user?: JWTPayload; scope?: 'self'|'direct'|'subtree'; range?: { start: Date; end: Date }; visibleUserIds?: bigint[] } }>()
 
 
@@ -229,8 +242,7 @@ app.get('/subordinates', auth, async (c) => {
   if (subId == null) return c.json({ error: 'No subject in token' }, 400)
   const viewerId = BigInt(subId)
 
-  const useClosure = String(c.env.VISIBILITY_USE_CLOSURE || '').toLowerCase() === 'true'
-  const options = useClosure ? { drivers: makeClosureDrivers(prisma) } : undefined
+  const options = await getVisibilityOptions(prisma, c.env)
   const ids = await resolveVisibleUsers(prisma, viewerId, 'direct', now, options)
   const filtered = ids.filter((id) => id !== viewerId)
   if (filtered.length === 0) return c.json({ items: [] })
@@ -352,8 +364,7 @@ app.get('/api/work-items', auth, canRead, async (c) => {
   const limit = Math.min(Math.max(Number(q.limit ?? 100), 1), 500)
   const offset = Math.max(Number(q.offset ?? 0), 0)
 
-  const useClosure = String(c.env.VISIBILITY_USE_CLOSURE || '').toLowerCase() === 'true'
-  const options = useClosure ? { drivers: makeClosureDrivers(prisma) } : undefined
+  const options = await getVisibilityOptions(prisma, c.env)
   const visibleIds = await resolveVisibleUsers(prisma, viewerId, scope as any, new Date(), options)
   if (visibleIds.length === 0) return c.json({ items: [], total: 0 })
 
@@ -443,8 +454,7 @@ app.get('/api/reports/weekly', auth, canRead, async (c) => {
   const start = range.start
   const end = range.end
 
-  const useClosure = String(c.env.VISIBILITY_USE_CLOSURE || '').toLowerCase() === 'true'
-  const options = useClosure ? { drivers: makeClosureDrivers(prisma) } : undefined
+  const options = await getVisibilityOptions(prisma, c.env)
   const visibleIds = await resolveVisibleUsers(prisma, viewerId, scope as any, new Date(), options)
   if (visibleIds.length === 0) return c.json({ ok: true, range: { start: start!.toISOString().slice(0,10), end: end!.toISOString().slice(0,10) }, data: [] })
 
@@ -646,8 +656,7 @@ async function processExportJob(job: ExportJob, env: Bindings): Promise<void> {
   try {
     const prisma = getPrisma(env as any)
     // resolve visible users for viewer within scope
-    const useClosure = String((env as any).VISIBILITY_USE_CLOSURE || '').toLowerCase() === 'true'
-    const options = useClosure ? { drivers: makeClosureDrivers(prisma) } : undefined
+    const options = await getVisibilityOptions(prisma, env as any)
     const viewerId = BigInt(job.viewerId ?? 0)
     const visibleIds = await resolveVisibleUsers(prisma, viewerId, job.scope as any, new Date(), options)
 
