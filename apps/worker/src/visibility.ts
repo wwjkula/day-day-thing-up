@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient, Scope } from '@prisma/client'
+import { Prisma, PrismaClient } from '@prisma/client'
 
 function isEffectiveRange(asOf: Date) {
   return Prisma.sql`start_date <= ${asOf} AND (end_date IS NULL OR end_date >= ${asOf})`
@@ -107,14 +107,15 @@ export async function resolveVisibleUsers(
 
   let coveredOrgIds: bigint[] = []
   for (const g of grants) {
-    if (g.scope === Scope.self) {
+    const s = String((g as any).scope)
+    if (s === 'self') {
       coveredOrgIds.push(g.domainOrgId)
-    } else if (g.scope === Scope.direct) {
+    } else if (s === 'direct') {
       const children = drv?.getOrgDirectChildren
         ? await drv.getOrgDirectChildren(g.domainOrgId)
         : await getOrgDirectChildren(prisma, g.domainOrgId)
       coveredOrgIds.push(g.domainOrgId, ...children)
-    } else if (g.scope === Scope.subtree) {
+    } else if (s === 'subtree') {
       const subtree = drv?.getOrgSubtree
         ? await drv.getOrgSubtree(g.domainOrgId)
         : await getOrgSubtree(prisma, g.domainOrgId)

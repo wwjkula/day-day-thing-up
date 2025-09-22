@@ -70,14 +70,7 @@ export async function authChangePassword(payload: { currentPassword: string; new
 }
 export async function getMe() {
   const res = await fetch(withBase('/me'), { headers: { ...authHeader() } })
-  try {
-    const j = await res.json()
-    return j
-  } catch (e) {
-    // 后端异常返回非 JSON（如 plain text）时，读取文本作为错误信息
-    const text = await res.text().catch(() => '')
-    throw new Error(text || `getMe failed (${res.status})`)
-  }
+  return res.json()
 }
 
 // --- Admin APIs ---

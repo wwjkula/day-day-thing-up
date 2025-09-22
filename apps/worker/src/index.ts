@@ -31,6 +31,14 @@ function getPrisma(env: Bindings) {
 
 const app = new Hono<{ Bindings: Bindings; Variables: { user?: JWTPayload; scope?: 'self'|'direct'|'subtree'; range?: { start: Date; end: Date }; visibleUserIds?: bigint[] } }>()
 
+
+// Global JSON error/notFound handlers to avoid HTML/plaintext responses
+app.onError((err, c) => {
+  try { console.error(err) } catch {}
+  return c.json({ ok: false, error: (err as any)?.message || 'Internal Server Error' }, 500)
+})
+app.notFound((c) => c.json({ ok: false, error: 'Not Found' }, 404))
+
 // --- CORS for cross-origin frontend (Pages) ---
 app.options('*', (c) => {
   const origin = c.req.header('origin') || '*'
@@ -50,12 +58,6 @@ app.use('*', async (c, next) => {
   c.header('Vary', 'Origin')
 
 })
-// Uniform JSON error handler to avoid plain-text "Internal Server Error"
-app.onError((err, c) => {
-  try { console.error('Unhandled error:', err) } catch {}
-  return c.json({ ok: false, error: 'Internal Server Error' }, 500)
-})
-
 
 // Auth: login by employeeNo/email + optional password (backward compatible if no password set)
 app.post('/api/auth/login', async (c) => {
@@ -70,9 +72,9 @@ app.post('/api/auth/login', async (c) => {
   let user: any = null
   try {
     if (employeeNo) {
-      user = await prisma.user.findUnique({ where: { employeeNo }, select: { id: true, name: true, email: true, employeeNo: true } })
+      user = await prisma.user.findUnique({ where: { employeeNo }, select: { id: true, name: true, email: true, employeeNo: true, passwordHash: true, passwordChangedAt: true } })
     } else if (email) {
-      user = await prisma.user.findFirst({ where: { email }, select: { id: true, name: true, email: true, employeeNo: true } })
+      user = await prisma.user.findFirst({ where: { email }, select: { id: true, name: true, email: true, employeeNo: true, passwordHash: true, passwordChangedAt: true } })
     }
   } catch (e: any) {
     return c.json({ ok: false, error: 'lookup failed' }, 500)
@@ -90,29 +92,9 @@ app.post('/api/auth/login', async (c) => {
     return c.json({ ok: false, code: 'RATE_LIMITED', error: 'too many failed logins, try later' }, 429)
   }
 
-  // Backward-compatible password flow with safe fallback when password columns are missing
-  let hash: string | null = null
-  if (password && password.length > 0) {
-    try {
-      const u2 = await prisma.user.findUnique({ where: { id: user.id }, select: { passwordHash: true } })
-      hash = u2?.passwordHash ?? null
-    } catch {
-      // Column may not exist on this DB yet; allow legacy login to avoid breaking userspace
-      try { await prisma.auditLog.create({ data: { actorUserId: BigInt(user.id), action: 'login_no_hash_fallback', objectType: 'user' } }) } catch {}
-      hash = null
-    }
-  } else {
-    // No password provided; if hash exists, we will enforce later; otherwise legacy login
-    try {
-      const u2 = await prisma.user.findUnique({ where: { id: user.id }, select: { passwordHash: true } })
-      hash = u2?.passwordHash ?? null
-    } catch {
-      hash = null
-    }
-  }
-
-  if (hash) {
-    const ok = await verifyPassword(password || '', hash)
+  // If passwordHash exists, require correct password; otherwise allow legacy no-password login
+  if (user.passwordHash) {
+    const ok = await verifyPassword(password || '', user.passwordHash)
     if (!ok) {
       try { await prisma.auditLog.create({ data: { actorUserId: BigInt(user.id), action: 'login_failed', objectType: 'user' } }) } catch {}
       return c.json({ ok: false, error: 'invalid credentials' }, 401)
