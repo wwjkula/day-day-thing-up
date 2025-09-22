@@ -50,6 +50,12 @@ app.use('*', async (c, next) => {
   c.header('Vary', 'Origin')
 
 })
+// Uniform JSON error handler to avoid plain-text "Internal Server Error"
+app.onError((err, c) => {
+  try { console.error('Unhandled error:', err) } catch {}
+  return c.json({ ok: false, error: 'Internal Server Error' }, 500)
+})
+
 
 // Auth: login by employeeNo/email + optional password (backward compatible if no password set)
 app.post('/api/auth/login', async (c) => {
