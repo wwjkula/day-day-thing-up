@@ -98,9 +98,9 @@ onMounted(() => load())
         </el-form-item>
         <el-form-item label="类型">
           <el-select v-model="form.type">
+            <el-option value="root" label="项目部(根)" />
+            <el-option value="leadership" label="领导层" />
             <el-option value="department" label="部门" />
-            <el-option value="team" label="团队" />
-            <el-option value="project" label="项目" />
           </el-select>
         </el-form-item>
         <el-form-item label="启用"><el-switch v-model="form.active" /></el-form-item>
