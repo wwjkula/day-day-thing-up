@@ -133,8 +133,7 @@ export async function resolveVisibleUsers(
   return Array.from(result)
 }
 
-//    
-//   org_closure  Driver 
+
 export function makeClosureDrivers(prisma: PrismaClient): Drivers {
   return {
     getOrgDirectChildren: async (orgId: bigint) => {

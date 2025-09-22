@@ -479,7 +479,7 @@ app.get('/api/reports/weekly', auth, canRead, async (c) => {
            sum(case when type = 'temp' then 1 else 0 end) as temp_count,
            sum(case when type = 'assist' then 1 else 0 end) as assist_count
     from work_items
-    where creator_id in (${sqlBigintList(visibleIds)})
+    where creator_id in ${sqlBigintList(visibleIds)}
       and work_date between ${start!} and ${end!}
     group by creator_id, work_date
     order by creator_id asc, work_date asc
@@ -686,7 +686,7 @@ async function processExportJob(job: ExportJob, env: Bindings): Promise<void> {
              sum(case when type = 'temp' then 1 else 0 end) as temp_count,
              sum(case when type = 'assist' then 1 else 0 end) as assist_count
       from work_items
-      where creator_id in (${sqlBigintList(visibleIds)})
+      where creator_id in ${sqlBigintList(visibleIds)}
         and work_date between ${start} and ${end}
       group by creator_id, work_date
       order by creator_id asc, work_date asc
