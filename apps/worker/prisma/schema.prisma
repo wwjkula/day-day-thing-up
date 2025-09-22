@@ -35,6 +35,10 @@ model User {
   jobTitle   String? @map("job_title") @db.VarChar(100)
   grade      String? @db.VarChar(50)
   active     Boolean @default(true)
+  // 密码哈希（可为空以兼容旧的无密码登录）
+  passwordHash String? @map("password_hash") @db.VarChar(100)
+  // 最近修改密码时间（用于可选的 JWT 失效策略）
+  passwordChangedAt DateTime? @map("password_changed_at")
 
   memberships UserOrgMembership[]
   manages     ManagerEdge[] @relation("ManagerToSubordinate")

@@ -11,6 +11,7 @@ import { resolveVisibleUsers, makeClosureDrivers } from './visibility'
 import { canRead, canExport, audit, requireAdmin } from './middlewares/permissions'
 
 import { registerAdminRoutes } from './admin'
+import { hashPassword, verifyPassword } from './password'
 
 type Bindings = { DATABASE_URL: string; JWT_SECRET: string; VISIBILITY_USE_CLOSURE?: string; QUEUE_DRIVER?: string; R2_EXPORTS: any; EXPORT_QUEUE?: any }
 
@@ -50,26 +51,47 @@ app.use('*', async (c, next) => {
 
 })
 
-// Auth: simplified login by employeeNo or email (no password for MVP)
+// Auth: login by employeeNo/email + optional password (backward compatible if no password set)
 app.post('/api/auth/login', async (c) => {
-  const prisma = getPrisma(c.env)
+  const prisma: any = getPrisma(c.env)
   let body: any
   try { body = await c.req.json() } catch { return c.json({ ok: false, error: 'Invalid JSON' }, 400) }
   const employeeNo = (body.employeeNo ?? body.employee_no ?? '').toString().trim()
   const email = (body.email ?? '').toString().trim()
+  const password = body.password != null ? String(body.password) : undefined
   if (!employeeNo && !email) return c.json({ ok: false, error: 'employeeNo or email required' }, 400)
 
   let user: any = null
   try {
     if (employeeNo) {
-      user = await prisma.user.findUnique({ where: { employeeNo }, select: { id: true, name: true, email: true, employeeNo: true } })
+      user = await prisma.user.findUnique({ where: { employeeNo }, select: { id: true, name: true, email: true, employeeNo: true, passwordHash: true, passwordChangedAt: true } })
     } else if (email) {
-      user = await prisma.user.findFirst({ where: { email }, select: { id: true, name: true, email: true, employeeNo: true } })
+      user = await prisma.user.findFirst({ where: { email }, select: { id: true, name: true, email: true, employeeNo: true, passwordHash: true, passwordChangedAt: true } })
     }
   } catch (e: any) {
     return c.json({ ok: false, error: 'lookup failed' }, 500)
   }
   if (!user) return c.json({ ok: false, error: 'invalid credentials' }, 401)
+
+  // Optional: rate-limit excessive failed logins in last 5 minutes
+  async function tooManyFailed(): Promise<boolean> {
+    const since = new Date(Date.now() - 5 * 60 * 1000)
+    const cnt = await prisma.auditLog.count({ where: { actorUserId: BigInt(user.id), action: { in: ['login_failed'] }, createdAt: { gte: since } } })
+    return cnt >= 5
+  }
+  if (await tooManyFailed()) {
+    try { await prisma.auditLog.create({ data: { actorUserId: BigInt(user.id), action: 'login_denied_rate_limit', objectType: 'user' } }) } catch {}
+    return c.json({ ok: false, code: 'RATE_LIMITED', error: 'too many failed logins, try later' }, 429)
+  }
+
+  // If passwordHash exists, require correct password; otherwise allow legacy no-password login
+  if (user.passwordHash) {
+    const ok = await verifyPassword(password || '', user.passwordHash)
+    if (!ok) {
+      try { await prisma.auditLog.create({ data: { actorUserId: BigInt(user.id), action: 'login_failed', objectType: 'user' } }) } catch {}
+      return c.json({ ok: false, error: 'invalid credentials' }, 401)
+    }
+  }
 
   // compute admin flag
   const today = new Date()
@@ -90,6 +112,42 @@ app.post('/api/auth/login', async (c) => {
   try { await prisma.auditLog.create({ data: { actorUserId: BigInt(user.id), action: 'login', objectType: 'user' } }) } catch {}
 
   return c.json({ ok: true, token, user: { id: Number(user.id), name: user.name, email: user.email ?? null, employeeNo: user.employeeNo ?? null, isAdmin } })
+})
+
+// Change password (requires current password). Enforce min length 6.
+app.post('/api/auth/change-password', auth, async (c) => {
+  const prisma: any = getPrisma(c.env)
+  let body: any
+  try { body = await c.req.json() } catch { return c.json({ ok: false, error: 'Invalid JSON' }, 400) }
+  const currentPassword = typeof body.currentPassword === 'string' ? body.currentPassword : ''
+  const newPassword = typeof body.newPassword === 'string' ? body.newPassword : ''
+  if (newPassword.length < 6) return c.json({ ok: false, error: 'password too short' }, 400)
+
+  const userPayload = c.get('user') as JWTPayload
+  const sub = (userPayload as any)?.sub ?? (userPayload as any)?.userId ?? (userPayload as any)?.id
+  if (sub == null) return c.json({ ok: false, error: 'No subject in token' }, 400)
+  const userId = BigInt(sub)
+
+  const user = await prisma.user.findUnique({ where: { id: userId }, select: { id: true, passwordHash: true } })
+  if (!user) return c.json({ ok: false, error: 'not found' }, 404)
+
+  if (user.passwordHash) {
+    const ok = await verifyPassword(currentPassword, user.passwordHash)
+    if (!ok) {
+      try { await prisma.auditLog.create({ data: { actorUserId: userId, action: 'change_password_failed', objectType: 'user' } }) } catch {}
+      return c.json({ ok: false, error: 'current password incorrect' }, 401)
+    }
+  } else {
+    // No existing password: require empty currentPassword to avoid accidental overwrites
+    if (currentPassword && currentPassword.length > 0) return c.json({ ok: false, error: 'current password incorrect' }, 401)
+  }
+
+  const newHash = await hashPassword(newPassword)
+  await prisma.user.update({ where: { id: userId }, data: { passwordHash: newHash, passwordChangedAt: new Date() } })
+  try { await prisma.auditLog.create({ data: { actorUserId: userId, action: 'change_password', objectType: 'user' } }) } catch {}
+
+  // Optionally force re-login by hint (server remains stateless); client may choose to logout.
+  return c.json({ ok: true })
 })
 
 // Admin guard for all admin routes
@@ -129,6 +187,23 @@ async function auth(c: any, next: any) {
   if (!token) return c.json({ error: 'Unauthorized' }, 401)
   const payload = await verifyJWT_HS256(token, c.env.JWT_SECRET)
   if (!payload) return c.json({ error: 'Unauthorized' }, 401)
+
+  // Optional: enforce token invalidation after password change
+  try {
+    if (String((c.env as any).JWT_ENFORCE_PW_CHANGE || '').toLowerCase() === 'true') {
+      const sub = (payload as any)?.sub ?? (payload as any)?.userId ?? (payload as any)?.id
+      if (sub != null) {
+        const prisma: any = getPrisma(c.env)
+        const u = await prisma.user.findUnique({ where: { id: BigInt(sub) }, select: { passwordChangedAt: true } })
+        const changedAt = u?.passwordChangedAt ? Math.floor(new Date(u.passwordChangedAt).getTime() / 1000) : 0
+        const iat = Number((payload as any).iat || 0)
+        if (changedAt && iat && iat < changedAt) {
+          return c.json({ error: 'Token invalid due to password change' }, 401)
+        }
+      }
+    }
+  } catch {}
+
   c.set('user', payload)
   await next()
 }

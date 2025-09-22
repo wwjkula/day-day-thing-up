@@ -5,11 +5,13 @@ import MyRecords from './components/MyRecords.vue'
 import WeeklyReport from './components/WeeklyReport.vue'
 import AdminPanel from './components/admin/AdminPanel.vue'
 import Login from './components/Login.vue'
+import ChangePassword from './components/ChangePassword.vue'
 import { getMe } from './api'
 
 const activeTab = ref<'quick'|'mine'|'weekly'|'admin'>('quick')
 const user = ref<any | null>(null)
 const loading = ref(false)
+const cpVisible = ref(false)
 
 async function refreshMe() {
   if (!window.__AUTH__) { user.value = null; return }
@@ -37,6 +39,7 @@ onMounted(() => { refreshMe() })
         <div class="title">日事日清 · MVP</div>
         <div class="user">
           <span style="margin-right:8px">{{ user?.name || '未命名' }}</span>
+          <el-button size="small" @click="cpVisible=true">修改密码</el-button>
           <el-button size="small" @click="logout">退出</el-button>
         </div>
       </div>
@@ -51,11 +54,14 @@ onMounted(() => { refreshMe() })
           <WeeklyReport />
         </el-tab-pane>
         <el-tab-pane v-if="user?.isAdmin" label="管理" name="admin">
+
           <AdminPanel />
         </el-tab-pane>
       </el-tabs>
     </div>
   </div>
+      <ChangePassword v-model:visible="cpVisible" />
+
 </template>
 
 <style scoped>

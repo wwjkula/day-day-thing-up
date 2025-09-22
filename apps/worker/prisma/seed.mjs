@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
@@ -85,6 +86,10 @@ async function main() {
       { creatorId: userIdsByDept[0].staff[1], orgId: depts[0].id, workDate: today, title: '资料归档', type: 'done' },
     ]
   })
+  // Set initial password for all users (only where not set)
+  const initialHash = await bcrypt.hash('123456', 10)
+  await prisma.user.updateMany({ where: { passwordHash: null }, data: { passwordHash: initialHash } })
+
 
   console.log('Seeded org/users:', {
     root: Number(root.id), leadership: Number(leadership.id),

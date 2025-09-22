@@ -59,8 +59,13 @@ export async function downloadExport(jobId: string): Promise<void> {
 
 
 // --- Auth APIs ---
-export async function authLogin(payload: { employeeNo?: string; email?: string }) {
+export async function authLogin(payload: { employeeNo?: string; email?: string; password?: string }) {
   const res = await fetch(withBase('/api/auth/login'), { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) })
+  return res.json()
+}
+
+export async function authChangePassword(payload: { currentPassword: string; newPassword: string }) {
+  const res = await fetch(withBase('/api/auth/change-password'), { method: 'POST', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) })
   return res.json()
 }
 export async function getMe() {

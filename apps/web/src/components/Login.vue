@@ -4,7 +4,7 @@ import { ElMessage } from 'element-plus'
 import { authLogin } from '../api'
 
 const loading = ref(false)
-const form = ref<{ employeeNo: string }>({ employeeNo: '' })
+const form = ref<{ employeeNo: string; password: string }>({ employeeNo: '', password: '' })
 
 const emit = defineEmits<{ (e: 'logged-in', user: any): void }>()
 
@@ -15,7 +15,7 @@ async function onSubmit() {
   }
   loading.value = true
   try {
-    const r = await authLogin({ employeeNo: form.value.employeeNo.trim() })
+    const r = await authLogin({ employeeNo: form.value.employeeNo.trim(), password: form.value.password })
     if (!r?.ok) throw new Error(r?.error || '登录失败')
     const token = r.token as string
     // persist token
@@ -39,11 +39,14 @@ async function onSubmit() {
         <el-form-item label="工号">
           <el-input v-model="form.employeeNo" placeholder="请输入工号，如 D0101" @keyup.enter.native="onSubmit" />
         </el-form-item>
+        <el-form-item label="密码">
+          <el-input v-model="form.password" type="password" show-password placeholder="如未设置密码可留空" @keyup.enter.native="onSubmit" />
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" :loading="loading" @click="onSubmit">登录</el-button>
         </el-form-item>
       </el-form>
-      <div class="hint">MVP：仅工号登录。后续可扩展邮箱/密码。</div>
+      <div class="hint">如该账号尚未设置密码，可直接留空密码登录；建议登录后尽快在右上角“修改密码”。</div>
     </div>
   </div>
 </template>
