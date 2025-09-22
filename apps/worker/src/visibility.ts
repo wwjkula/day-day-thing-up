@@ -93,41 +93,43 @@ export async function resolveVisibleUsers(
     for (const id of ids) result.add(id)
   }
 
-  // Role grants based domain visibility (self/direct/subtree on org tree)
-  const grants = options?.grants ?? (drv?.getGrants
-    ? await drv.getGrants()
-    : await prisma.roleGrant.findMany({
-        where: {
-          granteeUserId: viewerId,
-          startDate: { lte: asOf },
-          OR: [{ endDate: null }, { endDate: { gte: asOf } }],
-        },
-        select: { domainOrgId: true, scope: true },
-      }))
+  // Role grants based domain visibility (only for non-self scopes)
+  if (scope !== 'self') {
+    const grants = options?.grants ?? (drv?.getGrants
+      ? await drv.getGrants()
+      : await prisma.roleGrant.findMany({
+          where: {
+            granteeUserId: viewerId,
+            startDate: { lte: asOf },
+            OR: [{ endDate: null }, { endDate: { gte: asOf } }],
+          },
+          select: { domainOrgId: true, scope: true },
+        }))
 
-  let coveredOrgIds: bigint[] = []
-  for (const g of grants) {
-    const s = String((g as any).scope)
-    if (s === 'self') {
-      coveredOrgIds.push(g.domainOrgId)
-    } else if (s === 'direct') {
-      const children = drv?.getOrgDirectChildren
-        ? await drv.getOrgDirectChildren(g.domainOrgId)
-        : await getOrgDirectChildren(prisma, g.domainOrgId)
-      coveredOrgIds.push(g.domainOrgId, ...children)
-    } else if (s === 'subtree') {
-      const subtree = drv?.getOrgSubtree
-        ? await drv.getOrgSubtree(g.domainOrgId)
-        : await getOrgSubtree(prisma, g.domainOrgId)
-      coveredOrgIds.push(...subtree)
+    let coveredOrgIds: bigint[] = []
+    for (const g of grants) {
+      const s = String((g as any).scope)
+      if (s === 'self') {
+        coveredOrgIds.push(g.domainOrgId)
+      } else if (s === 'direct') {
+        const children = drv?.getOrgDirectChildren
+          ? await drv.getOrgDirectChildren(g.domainOrgId)
+          : await getOrgDirectChildren(prisma, g.domainOrgId)
+        coveredOrgIds.push(g.domainOrgId, ...children)
+      } else if (s === 'subtree') {
+        const subtree = drv?.getOrgSubtree
+          ? await drv.getOrgSubtree(g.domainOrgId)
+          : await getOrgSubtree(prisma, g.domainOrgId)
+        coveredOrgIds.push(...subtree)
+      }
     }
-  }
-  if (coveredOrgIds.length > 0) {
-    coveredOrgIds = Array.from(new Set(coveredOrgIds))
-    const usersFromDomains = drv?.getUsersByOrgs
-      ? await drv.getUsersByOrgs(coveredOrgIds, asOf)
-      : await getUsersByOrgs(prisma, coveredOrgIds, asOf)
-    for (const id of usersFromDomains) result.add(id)
+    if (coveredOrgIds.length > 0) {
+      coveredOrgIds = Array.from(new Set(coveredOrgIds))
+      const usersFromDomains = drv?.getUsersByOrgs
+        ? await drv.getUsersByOrgs(coveredOrgIds, asOf)
+        : await getUsersByOrgs(prisma, coveredOrgIds, asOf)
+      for (const id of usersFromDomains) result.add(id)
+    }
   }
 
   return Array.from(result)
