@@ -3,14 +3,11 @@
   "name": "worker",
   "main": "src/index.ts",
   "compatibility_date": "2025-09-21",
+  // 机密请使用 `wrangler secret put` 配置到 Cloudflare，而不是写在仓库里
   "vars": {
-    // 本地开发用：请勿提交生产密钥；线上应使用 `wrangler secret put ...`
-    "DATABASE_URL": "postgresql://neondb_owner:npg_MZ4OSUBsloY8@ep-odd-rain-a1qf1ak8-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
-    "JWT_SECRET": "dev-secret-change-me",
     "VISIBILITY_USE_CLOSURE": "true",
     "QUEUE_DRIVER": "inline"
-  }
-,
+  },
   "r2_buckets": [
     { "binding": "R2_EXPORTS", "bucket_name": "day-day-thing-up-15976" }
   ],
@@ -18,5 +15,4 @@
     "producers": [ { "binding": "EXPORT_QUEUE", "queue": "queue_exports" } ],
     "consumers": [ { "queue": "queue_exports" } ]
   }
-
 }
