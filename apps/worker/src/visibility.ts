@@ -59,13 +59,13 @@ async function getOrgSubtree(prisma: PrismaClient, orgId: bigint): Promise<bigin
 
 async function getUsersByOrgs(prisma: PrismaClient, orgIds: bigint[], asOf: Date): Promise<bigint[]> {
   if (orgIds.length === 0) return []
-  const rows = await prisma.$queryRaw<{ user_id: bigint }[]>`
-    select distinct uom.user_id
-    from user_org_memberships uom
-    where uom.org_id in (${Prisma.join(orgIds.map(id => Prisma.sql`${id}::bigint`))})
+  const rows = await prisma.$queryRaw<{ id: bigint }[]>`
+    select distinct uom."userId" as id
+    from "user_org_memberships" uom
+    where uom."orgId" in (${Prisma.join(orgIds.map(id => Prisma.sql`${id}::bigint`))})
       and ${isEffectiveRange(asOf)}
   `
-  return rows.map(r => r.user_id)
+  return rows.map(r => r.id)
 }
 
 export async function resolveVisibleUsers(
