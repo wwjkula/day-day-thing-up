@@ -17,7 +17,7 @@ async function getDirectSubordinates(prisma: PrismaClient, managerId: bigint, as
   const rows = await prisma.$queryRaw<{ id: bigint }[]>`
     select subordinate_id as id
     from manager_edges
-    where manager_id = ${managerId}
+    where manager_id = ${Prisma.sql`${managerId}::bigint`}
       and ${isEffectiveRange(asOf)}
   `
   return rows.map(r => r.id)
@@ -26,7 +26,7 @@ async function getDirectSubordinates(prisma: PrismaClient, managerId: bigint, as
 async function getAllSubordinates(prisma: PrismaClient, managerId: bigint, asOf: Date): Promise<bigint[]> {
   const rows = await prisma.$queryRaw<{ id: bigint }[]>`
     with recursive sub(id) as (
-      select ${managerId} -- anchor
+      select ${Prisma.sql`${managerId}::bigint`} -- anchor
       union all
       select me.subordinate_id from manager_edges me
       join sub on me.manager_id = sub.id
@@ -39,7 +39,7 @@ async function getAllSubordinates(prisma: PrismaClient, managerId: bigint, asOf:
 
 async function getOrgDirectChildren(prisma: PrismaClient, orgId: bigint): Promise<bigint[]> {
   const rows = await prisma.$queryRaw<{ id: bigint }[]>`
-    select id from org_units where parent_id = ${orgId}
+    select id from org_units where parent_id = ${Prisma.sql`${orgId}::bigint`}
   `
   return rows.map(r => r.id)
 }
@@ -47,7 +47,7 @@ async function getOrgDirectChildren(prisma: PrismaClient, orgId: bigint): Promis
 async function getOrgSubtree(prisma: PrismaClient, orgId: bigint): Promise<bigint[]> {
   const rows = await prisma.$queryRaw<{ id: bigint }[]>`
     with recursive orgs(id) as (
-      select ${orgId}
+      select ${Prisma.sql`${orgId}::bigint`}
       union all
       select ou.id from org_units ou
       join orgs on ou.parent_id = orgs.id

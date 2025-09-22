@@ -305,7 +305,7 @@ app.post('/api/work-items', auth, async (c) => {
   const today = new Date()
   const rows = await prisma.$queryRaw<{ org_id: bigint }[]>`
     select "orgId" as org_id from "user_org_memberships"
-    where "userId" = ${viewerId}
+    where "userId" = ${Prisma.sql`${viewerId}::bigint`}
       and is_primary = true
       and start_date <= ${today} and (end_date is null or end_date >= ${today})
     order by start_date desc
