@@ -10,6 +10,8 @@ import { verifyJWT_HS256, signJWT_HS256, type JWTPayload } from './auth'
 import { resolveVisibleUsers, makeClosureDrivers } from './visibility'
 import { canRead, canExport, audit } from './middlewares/permissions'
 
+import { registerAdminRoutes } from './admin'
+
 type Bindings = { DATABASE_URL: string; JWT_SECRET: string; VISIBILITY_USE_CLOSURE?: string; QUEUE_DRIVER?: string; R2_EXPORTS: any; EXPORT_QUEUE?: any }
 
 declare global {
@@ -45,7 +47,11 @@ app.use('*', async (c, next) => {
   c.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
   c.header('Access-Control-Allow-Headers', 'Authorization, Content-Type')
   c.header('Vary', 'Origin')
+
 })
+
+// Register admin CRUD routes
+registerAdminRoutes(app as any)
 
 
 app.get('/', (c) => c.text('Hello Hono!'))

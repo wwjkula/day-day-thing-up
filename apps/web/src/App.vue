@@ -3,8 +3,9 @@ import { ref } from 'vue'
 import QuickFill from './components/QuickFill.vue'
 import MyRecords from './components/MyRecords.vue'
 import WeeklyReport from './components/WeeklyReport.vue'
+import AdminPanel from './components/admin/AdminPanel.vue'
 
-const activeTab = ref<'quick'|'mine'|'weekly'>('quick')
+const activeTab = ref<'quick'|'mine'|'weekly'|'admin'>('quick')
 </script>
 
 <template>
@@ -19,6 +20,9 @@ const activeTab = ref<'quick'|'mine'|'weekly'>('quick')
       </el-tab-pane>
       <el-tab-pane label="周报" name="weekly">
         <WeeklyReport />
+      </el-tab-pane>
+      <el-tab-pane label="管理" name="admin">
+        <AdminPanel />
       </el-tab-pane>
     </el-tabs>
   </div>

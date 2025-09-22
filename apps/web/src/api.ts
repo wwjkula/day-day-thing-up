@@ -56,3 +56,67 @@ export async function downloadExport(jobId: string): Promise<void> {
   setTimeout(() => URL.revokeObjectURL(objectUrl), 1000)
 }
 
+
+
+// --- Admin APIs ---
+export async function adminListOrgs() {
+  const res = await fetch(withBase('/api/admin/orgs'), { headers: { ...authHeader() } });
+  return res.json();
+}
+export async function adminGetOrgTree() {
+  const res = await fetch(withBase('/api/admin/orgs/tree'), { headers: { ...authHeader() } });
+  return res.json();
+}
+export async function adminCreateOrg(payload: { name: string; parentId?: number|null; type?: string; active?: boolean }) {
+  const res = await fetch(withBase('/api/admin/orgs'), { method: 'POST', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) });
+  return res.json();
+}
+export async function adminUpdateOrg(id: number, payload: any) {
+  const res = await fetch(withBase(`/api/admin/orgs/${id}`), { method: 'PUT', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) });
+  return res.json();
+}
+
+export async function adminListUsers(params: { q?: string; limit?: number; offset?: number } = {}) {
+  const qs = new URLSearchParams(params as any)
+  const res = await fetch(withBase(`/api/admin/users?${qs}`), { headers: { ...authHeader() } })
+  return res.json();
+}
+export async function adminCreateUser(payload: any) {
+  const res = await fetch(withBase('/api/admin/users'), { method: 'POST', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) });
+  return res.json();
+}
+export async function adminUpdateUser(id: number, payload: any) {
+  const res = await fetch(withBase(`/api/admin/users/${id}`), { method: 'PUT', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) });
+  return res.json();
+}
+export async function adminSetPrimaryOrg(userId: number, orgId: number) {
+  const res = await fetch(withBase(`/api/admin/users/${userId}/primary-org`), { method: 'PATCH', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify({ orgId }) })
+  return res.json();
+}
+
+export async function adminListManagerEdges(params: { managerId?: number; subordinateId?: number } = {}) {
+  const qs = new URLSearchParams(params as any)
+  const res = await fetch(withBase(`/api/admin/manager-edges?${qs}`), { headers: { ...authHeader() } })
+  return res.json();
+}
+export async function adminCreateManagerEdge(payload: any) {
+  const res = await fetch(withBase('/api/admin/manager-edges'), { method: 'POST', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) })
+  return res.json();
+}
+export async function adminDeleteManagerEdge(payload: { managerId: number; subordinateId: number; startDate: string }) {
+  const res = await fetch(withBase('/api/admin/manager-edges'), { method: 'DELETE', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) })
+  return res.json();
+}
+
+export async function adminListRoleGrants() {
+  const res = await fetch(withBase('/api/admin/role-grants'), { headers: { ...authHeader() } })
+  return res.json();
+}
+export async function adminCreateRoleGrant(payload: any) {
+  const res = await fetch(withBase('/api/admin/role-grants'), { method: 'POST', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) })
+  return res.json();
+}
+export async function adminDeleteRoleGrant(id: number) {
+  const res = await fetch(withBase(`/api/admin/role-grants/${id}`), { method: 'DELETE', headers: { ...authHeader() } })
+  return res.json();
+}
