@@ -50,6 +50,36 @@ app.use('*', async (c, next) => {
 
 })
 
+// Auth: simplified login by employeeNo or email (no password for MVP)
+app.post('/api/auth/login', async (c) => {
+  const prisma = getPrisma(c.env)
+  let body: any
+  try { body = await c.req.json() } catch { return c.json({ ok: false, error: 'Invalid JSON' }, 400) }
+  const employeeNo = (body.employeeNo ?? body.employee_no ?? '').toString().trim()
+  const email = (body.email ?? '').toString().trim()
+  if (!employeeNo && !email) return c.json({ ok: false, error: 'employeeNo or email required' }, 400)
+
+  let user: any = null
+  try {
+    if (employeeNo) {
+      user = await prisma.user.findUnique({ where: { employeeNo }, select: { id: true, name: true, email: true, employeeNo: true } })
+    } else if (email) {
+      user = await prisma.user.findFirst({ where: { email }, select: { id: true, name: true, email: true, employeeNo: true } })
+    }
+  } catch (e: any) {
+    return c.json({ ok: false, error: 'lookup failed' }, 500)
+  }
+  if (!user) return c.json({ ok: false, error: 'invalid credentials' }, 401)
+
+  const now = Math.floor(Date.now() / 1000)
+  const token = await signJWT_HS256({ sub: Number(user.id), name: user.name, email: user.email ?? undefined, iat: now, exp: now + 24 * 3600 }, c.env.JWT_SECRET)
+
+  // best-effort audit
+  try { await prisma.auditLog.create({ data: { actorUserId: BigInt(user.id), action: 'login', objectType: 'user' } }) } catch {}
+
+  return c.json({ ok: true, token, user: { id: Number(user.id), name: user.name, email: user.email ?? null, employeeNo: user.employeeNo ?? null } })
+})
+
 // Register admin CRUD routes
 registerAdminRoutes(app as any)
 

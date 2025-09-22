@@ -58,6 +58,16 @@ export async function downloadExport(jobId: string): Promise<void> {
 
 
 
+// --- Auth APIs ---
+export async function authLogin(payload: { employeeNo?: string; email?: string }) {
+  const res = await fetch(withBase('/api/auth/login'), { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) })
+  return res.json()
+}
+export async function getMe() {
+  const res = await fetch(withBase('/me'), { headers: { ...authHeader() } })
+  return res.json()
+}
+
 // --- Admin APIs ---
 export async function adminListOrgs() {
   const res = await fetch(withBase('/api/admin/orgs'), { headers: { ...authHeader() } });
