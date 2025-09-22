@@ -58,18 +58,18 @@ async function save() {
       if (primaryOrg.value != null) {
         await fetch(withBase(`/api/admin/users/${j.id}/primary-org`), { method: 'PATCH', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify({ orgId: primaryOrg.value }) })
       }
-      ElMessage.success('\u5df2\u65b0\u5efa')
+      ElMessage.success('已新建')
     } else {
       await fetch(withBase(`/api/admin/users/${editing.value.id}`), { method: 'PUT', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(form.value) })
       if (primaryOrg.value != null) {
         await fetch(withBase(`/api/admin/users/${editing.value.id}/primary-org`), { method: 'PATCH', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify({ orgId: primaryOrg.value }) })
       }
-      ElMessage.success('\u5df2\u4fdd\u5b58')
+      ElMessage.success('已保存')
     }
     formVisible.value = false
     await loadUsers()
   } catch (e:any) {
-    ElMessage.error(e?.message || '\u4fdd\u5b58\u5931\u8d25')
+    ElMessage.error(e?.message || '保存失败')
   }
 }
 
@@ -79,23 +79,23 @@ onMounted(() => { loadUsers(); loadOrgs() })
 <template>
   <div>
     <div class="toolbar">
-      <el-input v-model="q" placeholder="\u59d3\u540d/\u90ae\u7bb1/\u5de5\u53f7" style="width:240px" @keyup.enter="() => { pager.offset=0; loadUsers() }" />
-      <el-button :loading="loading" @click="() => { pager.offset=0; loadUsers() }">\u67e5\u8be2</el-button>
-      <el-button type="primary" @click="openCreate">\u65b0\u589e\u4eba\u5458</el-button>
+      <el-input v-model="q" placeholder="姓名/邮箱/工号" style="width:240px" @keyup.enter="() => { pager.offset=0; loadUsers() }" />
+      <el-button :loading="loading" @click="() => { pager.offset=0; loadUsers() }">查询</el-button>
+      <el-button type="primary" @click="openCreate">新增人员</el-button>
     </div>
     <el-table :data="users" v-loading="loading" style="width:100%">
       <el-table-column prop="id" label="ID" width="80" />
-      <el-table-column prop="name" label="\u59d3\u540d" />
-      <el-table-column prop="employeeNo" label="\u5de5\u53f7" width="140" />
-      <el-table-column prop="email" label="\u90ae\u7bb1" />
-      <el-table-column prop="jobTitle" label="\u804c\u52a1" width="140" />
-      <el-table-column prop="grade" label="\u804c\u7ea7" width="120" />
-      <el-table-column prop="active" label="\u542f\u7528" width="100">
+      <el-table-column prop="name" label="姓名" />
+      <el-table-column prop="employeeNo" label="工号" width="140" />
+      <el-table-column prop="email" label="邮箱" />
+      <el-table-column prop="jobTitle" label="职务" width="140" />
+      <el-table-column prop="grade" label="职级" width="120" />
+      <el-table-column prop="active" label="启用" width="100">
         <template #default="{ row }"><el-tag :type="row.active ? 'success':'info'">{{ row.active ? 'Y':'N' }}</el-tag></template>
       </el-table-column>
-      <el-table-column label="\u64cd\u4f5c" width="140">
+      <el-table-column label="操作" width="140">
         <template #default="{ row }">
-          <el-button size="small" @click="openEdit(row)">\u7f16\u8f91</el-button>
+          <el-button size="small" @click="openEdit(row)">编辑</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -103,23 +103,23 @@ onMounted(() => { loadUsers(); loadOrgs() })
       <el-pagination background layout="prev, pager, next" :page-size="pager.limit" :total="total" @current-change="(p:number)=>{ pager.offset=(p-1)*pager.limit; loadUsers() }" />
     </div>
 
-    <el-dialog v-model="formVisible" :title="editing ? '\u7f16\u8f91\u4eba\u5458' : '\u65b0\u589e\u4eba\u5458'" width="600px">
+    <el-dialog v-model="formVisible" :title="editing ? '编辑人员' : '新增人员'" width="600px">
       <el-form label-width="120px">
-        <el-form-item label="\u59d3\u540d"><el-input v-model="form.name" /></el-form-item>
-        <el-form-item label="\u5de5\u53f7"><el-input v-model="form.employeeNo" /></el-form-item>
-        <el-form-item label="\u90ae\u7bb1"><el-input v-model="form.email" /></el-form-item>
-        <el-form-item label="\u804c\u52a1"><el-input v-model="form.jobTitle" /></el-form-item>
-        <el-form-item label="\u804c\u7ea7"><el-input v-model="form.grade" /></el-form-item>
-        <el-form-item label="\u542f\u7528"><el-switch v-model="form.active" /></el-form-item>
-        <el-form-item label="\u4e3b\u5c5e\u7ec4\u7ec7">
-          <el-select v-model="primaryOrg" clearable filterable placeholder="\u4e0d\u8c03\u6574">
+        <el-form-item label="姓名"><el-input v-model="form.name" /></el-form-item>
+        <el-form-item label="工号"><el-input v-model="form.employeeNo" /></el-form-item>
+        <el-form-item label="邮箱"><el-input v-model="form.email" /></el-form-item>
+        <el-form-item label="职务"><el-input v-model="form.jobTitle" /></el-form-item>
+        <el-form-item label="职级"><el-input v-model="form.grade" /></el-form-item>
+        <el-form-item label="启用"><el-switch v-model="form.active" /></el-form-item>
+        <el-form-item label="主属组织">
+          <el-select v-model="primaryOrg" clearable filterable placeholder="不调整">
             <el-option v-for="o in orgs" :key="o.id" :label="`${o.id}-${o.name}`" :value="o.id" />
           </el-select>
         </el-form-item>
       </el-form>
       <template #footer>
-        <el-button @click="formVisible=false">\u53d6\u6d88</el-button>
-        <el-button type="primary" @click="save">\u4fdd\u5b58</el-button>
+        <el-button @click="formVisible=false">取消</el-button>
+        <el-button type="primary" @click="save">保存</el-button>
       </template>
     </el-dialog>
   </div>
