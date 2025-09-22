@@ -10,7 +10,7 @@ type Drivers = {
   getOrgDirectChildren?: (orgId: bigint) => Promise<bigint[]>
   getOrgSubtree?: (orgId: bigint) => Promise<bigint[]>
   getUsersByOrgs?: (orgIds: bigint[], asOf: Date) => Promise<bigint[]>
-  getGrants?: () => Promise<{ domainOrgId: bigint; scope: Scope }[]>
+  getGrants?: () => Promise<{ domainOrgId: bigint; scope: 'self' | 'direct' | 'subtree' }[]>
 }
 
 async function getDirectSubordinates(prisma: PrismaClient, managerId: bigint, asOf: Date): Promise<bigint[]> {
@@ -62,7 +62,7 @@ async function getUsersByOrgs(prisma: PrismaClient, orgIds: bigint[], asOf: Date
   const rows = await prisma.$queryRaw<{ user_id: bigint }[]>`
     select distinct uom.user_id
     from user_org_memberships uom
-    where uom.org_id in (${Prisma.join(orgIds)})
+    where uom.org_id in (${Prisma.join(orgIds.map(id => Prisma.sql`${id}::bigint`))})
       and ${isEffectiveRange(asOf)}
   `
   return rows.map(r => r.user_id)
@@ -73,7 +73,7 @@ export async function resolveVisibleUsers(
   viewerId: bigint,
   scope: 'self' | 'direct' | 'subtree',
   asOf: Date,
-  options?: { drivers?: Drivers; grants?: { domainOrgId: bigint; scope: Scope }[] }
+  options?: { drivers?: Drivers; grants?: { domainOrgId: bigint; scope: 'self' | 'direct' | 'subtree' }[] }
 ): Promise<bigint[]> {
   const result = new Set<bigint>()
   result.add(viewerId)

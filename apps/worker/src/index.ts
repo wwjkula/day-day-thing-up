@@ -41,6 +41,9 @@ async function getVisibilityOptions(prisma: PrismaClient, env: Bindings): Promis
   }
 }
 
+// Helper to ensure bigint array parameters are typed as bigint in SQL
+const sqlBigintList = (ids: bigint[]) => Prisma.sql`(${Prisma.join(ids.map(id => Prisma.sql`${id}::bigint`))})`
+
 
 const app = new Hono<{ Bindings: Bindings; Variables: { user?: JWTPayload; scope?: 'self'|'direct'|'subtree'; range?: { start: Date; end: Date }; visibleUserIds?: bigint[] } }>()
 
@@ -476,7 +479,7 @@ app.get('/api/reports/weekly', auth, canRead, async (c) => {
            sum(case when type = 'temp' then 1 else 0 end) as temp_count,
            sum(case when type = 'assist' then 1 else 0 end) as assist_count
     from work_items
-    where creator_id in (${Prisma.join(visibleIds)})
+    where creator_id in (${sqlBigintList(visibleIds)})
       and work_date between ${start!} and ${end!}
     group by creator_id, work_date
     order by creator_id asc, work_date asc
@@ -683,7 +686,7 @@ async function processExportJob(job: ExportJob, env: Bindings): Promise<void> {
              sum(case when type = 'temp' then 1 else 0 end) as temp_count,
              sum(case when type = 'assist' then 1 else 0 end) as assist_count
       from work_items
-      where creator_id in (${Prisma.join(visibleIds)})
+      where creator_id in (${sqlBigintList(visibleIds)})
         and work_date between ${start} and ${end}
       group by creator_id, work_date
       order by creator_id asc, work_date asc
