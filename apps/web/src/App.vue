@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import HomePage from './components/HomePage.vue'
 import QuickFill from './components/QuickFill.vue'
 import MyRecords from './components/MyRecords.vue'
 import WeeklyReport from './components/WeeklyReport.vue'
@@ -8,7 +9,7 @@ import Login from './components/Login.vue'
 import ChangePassword from './components/ChangePassword.vue'
 import { getMe } from './api'
 
-const activeTab = ref<'quick'|'mine'|'weekly'|'admin'>('quick')
+const activeTab = ref<'home'|'quick'|'mine'|'weekly'|'admin'>('home')
 const user = ref<any | null>(null)
 const loading = ref(false)
 const cpVisible = ref(false)
@@ -44,6 +45,10 @@ onMounted(() => { refreshMe() })
         </div>
       </div>
       <el-tabs v-model="activeTab" type="border-card">
+        <el-tab-pane label="首页" name="home">
+          <HomePage />
+        </el-tab-pane>
+
         <el-tab-pane label="快速填报" name="quick">
           <QuickFill />
         </el-tab-pane>
