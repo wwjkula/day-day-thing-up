@@ -45,6 +45,102 @@ async function getVisibilityOptions(prisma: PrismaClient, env: Bindings): Promis
 const sqlBigintList = (ids: bigint[]) => Prisma.sql`(${Prisma.join(ids.map(id => Prisma.sql`${id}::bigint`))})`
 
 
+const normalizeToUTCDate = (input: Date) => new Date(Date.UTC(input.getUTCFullYear(), input.getUTCMonth(), input.getUTCDate()))
+
+async function fetchMissingMap(
+  prisma: PrismaClient,
+  userIds: bigint[],
+  startDay: Date,
+  endDay: Date
+): Promise<Map<bigint, string[]>> {
+  if (userIds.length === 0) return new Map()
+  const idsList = sqlBigintList(userIds)
+  const values = Prisma.join(userIds.map(id => Prisma.sql`(${id}::bigint)`))
+  const rows = await prisma.$queryRaw<{ user_id: bigint; day: Date }[]>`
+    with visible(user_id) as (
+      select v.user_id from (values ${values}) as v(user_id)
+    ),
+    dates(day) as (
+      select generate_series(${startDay}, ${endDay}, interval '1 day')::date
+    ),
+    combos as (
+      select v.user_id, d.day
+      from visible v
+      cross join dates d
+    ),
+    present as (
+      select creator_id::bigint as user_id, work_date::date as day
+      from work_items
+      where creator_id in ${idsList}
+        and work_date between ${startDay} and ${endDay}
+      group by creator_id, work_date
+    )
+    select c.user_id, c.day
+    from combos c
+    left join present p on p.user_id = c.user_id and p.day = c.day
+    where p.user_id is null
+    order by c.user_id asc, c.day asc
+  `
+  const out = new Map<bigint, string[]>()
+  for (const row of rows) {
+    const uid = typeof row.user_id === 'bigint' ? row.user_id : BigInt(row.user_id as any)
+    const day = row.day instanceof Date ? row.day : new Date(row.day)
+    const list = out.get(uid) ?? []
+    list.push(day.toISOString().slice(0, 10))
+    out.set(uid, list)
+  }
+  return out
+}
+
+async function buildMissingReport(
+  prisma: PrismaClient,
+  env: Bindings,
+  viewerId: bigint,
+  scope: 'self' | 'direct' | 'subtree',
+  range: { start: Date; end: Date }
+): Promise<{
+  startDay: Date
+  endDay: Date
+  startStr: string
+  endStr: string
+  totalVisible: number
+  totalActiveVisible: number
+  activeUsers: { id: bigint; name: string; email: string | null; employeeNo: string | null }[]
+  missingMap: Map<bigint, string[]>
+}> {
+  const startDay = normalizeToUTCDate(range.start)
+  const endDay = normalizeToUTCDate(range.end)
+  const startStr = startDay.toISOString().slice(0, 10)
+  const endStr = endDay.toISOString().slice(0, 10)
+
+  const options = await getVisibilityOptions(prisma, env)
+  const visibleIds = await resolveVisibleUsers(prisma, viewerId, scope, new Date(), options)
+  if (visibleIds.length === 0) {
+    return { startDay, endDay, startStr, endStr, totalVisible: 0, totalActiveVisible: 0, activeUsers: [], missingMap: new Map() }
+  }
+
+  const users = await prisma.user.findMany({
+    where: { id: { in: visibleIds } },
+    select: { id: true, name: true, email: true, employeeNo: true, active: true },
+  })
+
+  const activeUsers = users.filter((u) => u.active).map((u) => ({ id: u.id, name: u.name, email: u.email ?? null, employeeNo: u.employeeNo ?? null }))
+  const activeIds = activeUsers.map((u) => u.id)
+  const missingMap = activeIds.length > 0 ? await fetchMissingMap(prisma, activeIds, startDay, endDay) : new Map<bigint, string[]>()
+
+  return {
+    startDay,
+    endDay,
+    startStr,
+    endStr,
+    totalVisible: users.length,
+    totalActiveVisible: activeUsers.length,
+    activeUsers,
+    missingMap,
+  }
+}
+
+
 const app = new Hono<{ Bindings: Bindings; Variables: { user?: JWTPayload; scope?: 'self'|'direct'|'subtree'; range?: { start: Date; end: Date }; visibleUserIds?: bigint[] } }>()
 
 
@@ -509,6 +605,132 @@ app.get('/api/reports/weekly', auth, canRead, async (c) => {
       }
     }))
   })
+})
+
+
+// Missing report API (GET /api/reports/missing-weekly)
+app.get('/api/reports/missing-weekly', auth, canRead, async (c) => {
+  const prisma = getPrisma(c.env)
+  const user = c.get('user') as JWTPayload
+  const sub = user?.sub ?? user?.userId ?? user?.id
+  if (sub == null) return c.json({ error: 'No subject in token' }, 400)
+  const viewerId = BigInt(sub)
+
+  const scope = (c.get('scope') as 'self' | 'direct' | 'subtree' | undefined) ?? 'self'
+  const range = c.get('range') as { start: Date; end: Date }
+
+  const report = await buildMissingReport(prisma, c.env, viewerId, scope, range)
+  const activeMap = new Map<string, { id: bigint; name: string; email: string | null; employeeNo: string | null }>(
+    report.activeUsers.map((u) => [u.id.toString(), u])
+  )
+
+  const data: Array<{ userId: number; name: string | null; email: string | null; employeeNo: string | null; missingDates: string[] }> = []
+  let missingDatesTotal = 0
+  for (const [uid, dates] of report.missingMap.entries()) {
+    const info = activeMap.get(uid.toString())
+    if (!info) continue
+    const list = [...dates]
+    missingDatesTotal += list.length
+    data.push({
+      userId: Number(uid),
+      name: info.name ?? null,
+      email: info.email ?? null,
+      employeeNo: info.employeeNo ?? null,
+      missingDates: list,
+    })
+  }
+  data.sort((a, b) => a.userId - b.userId)
+
+  await audit(prisma, {
+    actorUserId: viewerId,
+    action: 'report_missing_weekly',
+    objectType: 'work_item',
+    detail: {
+      scope,
+      start: report.startStr,
+      end: report.endStr,
+      userCount: data.length,
+      missingDatesTotal,
+      totalActiveVisible: report.totalActiveVisible,
+    },
+  })
+
+  return c.json({
+    ok: true,
+    range: { start: report.startStr, end: report.endStr },
+    stats: {
+      totalActiveVisible: report.totalActiveVisible,
+      missingUsers: data.length,
+      missingDates: missingDatesTotal,
+    },
+    data,
+  })
+})
+
+// Missing report reminder (POST /api/reports/missing-weekly/remind)
+app.post('/api/reports/missing-weekly/remind', auth, canRead, async (c) => {
+  const prisma = getPrisma(c.env)
+  const user = c.get('user') as JWTPayload
+  const sub = user?.sub ?? user?.userId ?? user?.id
+  if (sub == null) return c.json({ error: 'No subject in token' }, 400)
+  const viewerId = BigInt(sub)
+
+  const scope = (c.get('scope') as 'self' | 'direct' | 'subtree' | undefined) ?? 'self'
+  const range = c.get('range') as { start: Date; end: Date }
+
+  let body: any
+  try {
+    body = await c.req.json()
+  } catch {
+    body = {}
+  }
+
+  const requested = new Set<number>()
+  if (Array.isArray(body?.userIds)) {
+    for (const raw of body.userIds) {
+      const id = Number(raw)
+      if (Number.isFinite(id) && Number.isSafeInteger(id) && id > 0) {
+        requested.add(Math.trunc(id))
+      }
+    }
+  }
+  if (requested.size === 0) return c.json({ error: 'userIds required' }, 400)
+
+  const report = await buildMissingReport(prisma, c.env, viewerId, scope, range)
+  const activeSet = new Set(report.activeUsers.map((u) => u.id.toString()))
+
+  const targets: Array<{ userId: number; missingDates: string[] }> = []
+  const skipped: Array<{ userId: number; reason: 'not_visible' | 'no_missing' }> = []
+
+  for (const id of requested) {
+    const idStr = BigInt(id).toString()
+    if (!activeSet.has(idStr)) {
+      skipped.push({ userId: id, reason: 'not_visible' })
+      continue
+    }
+    const idBig = BigInt(id)
+    const dates = report.missingMap.get(idBig)
+    if (!dates || dates.length === 0) {
+      skipped.push({ userId: id, reason: 'no_missing' })
+      continue
+    }
+    targets.push({ userId: id, missingDates: [...dates] })
+  }
+
+  await audit(prisma, {
+    actorUserId: viewerId,
+    action: 'missing_notify',
+    objectType: 'work_item',
+    detail: {
+      scope,
+      start: report.startStr,
+      end: report.endStr,
+      targetUserIds: targets.map((t) => t.userId),
+      skipped,
+    },
+  })
+
+  return c.json({ ok: true, notified: targets.length, targets, skipped })
 })
 
 

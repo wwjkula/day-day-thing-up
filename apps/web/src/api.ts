@@ -1,3 +1,5 @@
+import type { MissingWeeklyResponse, MissingWeeklyRemindResponse } from '@drrq/shared/index'
+
 export type VisibilityScope = 'self' | 'direct' | 'subtree'
 
 declare global {
@@ -19,6 +21,14 @@ export async function getWeekly(params: { from: string; to: string; scope: Visib
   const j = await res.json()
   if (!res.ok || !j.ok) throw new Error(j.error || '加载周报失败')
   return j as { ok: true; range: { start: string; end: string }; data: any[] }
+}
+
+export async function getMissingWeekly(params: { from: string; to: string; scope: VisibilityScope }): Promise<MissingWeeklyResponse> {
+  const qs = new URLSearchParams(params as any)
+  const res = await fetch(withBase(`/api/reports/missing-weekly?${qs}`), { headers: { ...authHeader() } })
+  const j = await res.json()
+  if (!res.ok || !j.ok) throw new Error(j.error || '加载缺报信息失败')
+  return j as MissingWeeklyResponse
 }
 
 export async function postWeeklyExport(params: { from: string; to: string; scope: VisibilityScope }) {
@@ -54,6 +64,19 @@ export async function downloadExport(jobId: string): Promise<void> {
   a.download = `${jobId}.xlsx`
   document.body.appendChild(a); a.click(); a.remove()
   setTimeout(() => URL.revokeObjectURL(objectUrl), 1000)
+}
+
+export async function postMissingWeeklyRemind(params: { from: string; to: string; scope: VisibilityScope; userIds: number[] }): Promise<MissingWeeklyRemindResponse> {
+  const { userIds, ...rest } = params
+  const qs = new URLSearchParams(rest as any)
+  const res = await fetch(withBase(`/api/reports/missing-weekly/remind?${qs}`), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify({ userIds }),
+  })
+  const j = await res.json()
+  if (!res.ok || !j.ok) throw new Error(j.error || '发送提醒失败')
+  return j as MissingWeeklyRemindResponse
 }
 
 

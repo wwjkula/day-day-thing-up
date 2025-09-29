@@ -93,19 +93,19 @@ export async function resolveVisibleUsers(
     for (const id of ids) result.add(id)
   }
 
-  // Role grants based domain visibility (only for non-self scopes)
-  if (scope !== 'self') {
-    const grants = options?.grants ?? (drv?.getGrants
-      ? await drv.getGrants()
-      : await prisma.roleGrant.findMany({
-          where: {
-            granteeUserId: viewerId,
-            startDate: { lte: asOf },
-            OR: [{ endDate: null }, { endDate: { gte: asOf } }],
-          },
-          select: { domainOrgId: true, scope: true },
-        }))
+  // Role grants based domain visibility (applies even when scope=self to honor delegated access)
+  const grants = options?.grants ?? (drv?.getGrants
+    ? await drv.getGrants()
+    : await prisma.roleGrant.findMany({
+        where: {
+          granteeUserId: viewerId,
+          startDate: { lte: asOf },
+          OR: [{ endDate: null }, { endDate: { gte: asOf } }],
+        },
+        select: { domainOrgId: true, scope: true },
+      }))
 
+  if (grants.length > 0) {
     let coveredOrgIds: bigint[] = []
     for (const g of grants) {
       const s = String((g as any).scope)
@@ -157,4 +157,3 @@ export function makeClosureDrivers(prisma: PrismaClient): Drivers {
     },
   }
 }
-

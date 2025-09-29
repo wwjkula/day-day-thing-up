@@ -49,6 +49,35 @@ export interface WeeklyReportQuery {
   domainOrgId?: number;
 }
 
+// Missing weekly report
+export interface MissingWeeklyUser {
+  userId: number;
+  name: string | null;
+  email: string | null;
+  employeeNo: string | null;
+  missingDates: string[];
+}
+
+export interface MissingWeeklyStats {
+  totalActiveVisible: number;
+  missingUsers: number;
+  missingDates: number;
+}
+
+export interface MissingWeeklyResponse {
+  ok: true;
+  range: { start: string; end: string };
+  stats: MissingWeeklyStats;
+  data: MissingWeeklyUser[];
+}
+
+export interface MissingWeeklyRemindResponse {
+  ok: true;
+  notified: number;
+  targets: Array<{ userId: number; missingDates: string[] }>;
+  skipped: Array<{ userId: number; reason: 'not_visible' | 'no_missing' }>;
+}
+
 // Validation helpers (pure functions, no runtime deps)
 export function validateWorkItemTitle(title: string): { valid: boolean; error?: string } {
   if (!title || typeof title !== 'string') return { valid: false, error: 'title is required' };
@@ -79,4 +108,3 @@ export function validateVisibilityScope(scope: string): { valid: boolean; normal
   }
   return { valid: false, normalized: 'self', error: 'scope must be self|direct|subtree|subordinates' };
 }
-
