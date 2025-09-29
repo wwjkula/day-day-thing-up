@@ -179,7 +179,7 @@ onMounted(() => { loadWeek() })
 </template>
 
 <style scoped>
-.home { padding: 12px; border: 1px solid var(--el-border-color); border-radius: 8px; }
+.home { padding: 12px; border: 1px solid var(--el-border-color); border-radius: 8px; background: var(--el-bg-color); color: var(--el-text-color-primary); }
 .qf { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; }
 .bar { display: flex; gap: 8px; align-items: center; margin: 8px 0 12px; }
 .bar .spacer { flex: 1; }
@@ -192,4 +192,3 @@ onMounted(() => { loadWeek() })
 .card .m { color: #666; display:flex; align-items:center; gap:6px; }
 .card .ops { margin-top: 8px; text-align: right; }
 </style>
-
