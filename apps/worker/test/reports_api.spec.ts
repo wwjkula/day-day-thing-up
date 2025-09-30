@@ -21,6 +21,7 @@ function makePrismaMock() {
       return [
         {
           creator_id: 1n,
+          creator_name: 'Alice',
           work_date: new Date('2025-09-15T00:00:00Z'), // Monday
           item_count: 2n,
           total_minutes: 120n,
@@ -31,6 +32,7 @@ function makePrismaMock() {
         },
         {
           creator_id: 2n,
+          creator_name: 'Bob',
           work_date: new Date('2025-09-16T00:00:00Z'), // Tuesday
           item_count: 1n,
           total_minutes: 0n,
@@ -41,6 +43,19 @@ function makePrismaMock() {
         },
       ]
     }),
+    user: {
+      findMany: vi.fn(async () => [
+        { id: 1n, name: 'Alice' },
+        { id: 2n, name: 'Bob' },
+      ]),
+    },
+    workItem: {
+      findMany: vi.fn(async () => [
+        { id: 11n, creatorId: 1n, workDate: new Date('2025-09-15T00:00:00Z'), title: '完成A任务', type: 'done', durationMinutes: 60 },
+        { id: 12n, creatorId: 1n, workDate: new Date('2025-09-15T00:00:00Z'), title: '推进B项目', type: 'progress', durationMinutes: 60 },
+        { id: 21n, creatorId: 2n, workDate: new Date('2025-09-16T00:00:00Z'), title: '巡检', type: 'done', durationMinutes: null },
+      ]),
+    },
     auditLog: {
       create: vi.fn(async () => ({ id: 1n })),
     },
@@ -95,7 +110,9 @@ describe('Weekly Reports API', () => {
     expect(Array.isArray(json.data)).toBe(true)
     expect(json.data.length).toBeGreaterThan(0)
     expect(json.data[0]).toHaveProperty('creatorId')
+    expect(json.data[0]).toHaveProperty('creatorName')
     expect(json.data[0]).toHaveProperty('typeCounts')
+    expect(Array.isArray(json.details)).toBe(true)
+    expect(json.details[0].items.length).toBeGreaterThan(0)
   })
 })
-

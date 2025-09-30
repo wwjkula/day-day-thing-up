@@ -559,6 +559,7 @@ app.get('/api/reports/weekly', auth, canRead, async (c) => {
 
   const rows = await prisma.$queryRaw<{
     creator_id: bigint
+    creator_name: string | null
     work_date: Date
     item_count: bigint
     total_minutes: bigint
@@ -567,19 +568,55 @@ app.get('/api/reports/weekly', auth, canRead, async (c) => {
     temp_count: bigint
     assist_count: bigint
   }[]>`
-    select creator_id, work_date,
+    select wi.creator_id,
+           u.name as creator_name,
+           wi.work_date,
            count(*) as item_count,
-           coalesce(sum(duration_minutes), 0) as total_minutes,
-           sum(case when type = 'done' then 1 else 0 end) as done_count,
-           sum(case when type = 'progress' then 1 else 0 end) as progress_count,
-           sum(case when type = 'temp' then 1 else 0 end) as temp_count,
-           sum(case when type = 'assist' then 1 else 0 end) as assist_count
-    from work_items
-    where creator_id in ${sqlBigintList(visibleIds)}
-      and work_date between ${start!} and ${end!}
-    group by creator_id, work_date
-    order by creator_id asc, work_date asc
+           coalesce(sum(wi.duration_minutes), 0) as total_minutes,
+           sum(case when wi.type = 'done' then 1 else 0 end) as done_count,
+           sum(case when wi.type = 'progress' then 1 else 0 end) as progress_count,
+           sum(case when wi.type = 'temp' then 1 else 0 end) as temp_count,
+           sum(case when wi.type = 'assist' then 1 else 0 end) as assist_count
+    from work_items wi
+    left join users u on u.id = wi.creator_id
+    where wi.creator_id in ${sqlBigintList(visibleIds)}
+      and wi.work_date between ${start!} and ${end!}
+    group by wi.creator_id, u.name, wi.work_date
+    order by wi.creator_id asc, wi.work_date asc
   `
+
+  const users = await prisma.user.findMany({
+    where: { id: { in: visibleIds } },
+    select: { id: true, name: true },
+  })
+  const nameMap = new Map<number, string>(users.map(u => [Number(u.id), u.name]))
+
+  const details = visibleIds.length
+    ? await prisma.workItem.findMany({
+        where: { creatorId: { in: visibleIds }, workDate: { gte: start, lte: end } },
+        select: { id: true, creatorId: true, workDate: true, title: true, type: true, durationMinutes: true },
+        orderBy: [{ creatorId: 'asc' }, { workDate: 'asc' }, { id: 'asc' }],
+      })
+    : []
+
+  const groupedDetails = new Map<number, { creatorId: number; creatorName: string | null; items: Array<{ id: number; workDate: string; title: string; type: string; durationMinutes: number | null }> }>()
+  for (const item of details) {
+    const creatorIdNum = Number(item.creatorId)
+    const entry = groupedDetails.get(creatorIdNum) ?? {
+      creatorId: creatorIdNum,
+      creatorName: nameMap.get(creatorIdNum) ?? null,
+      items: [],
+    }
+    entry.items.push({
+      id: Number(item.id),
+      workDate: item.workDate.toISOString().slice(0, 10),
+      title: item.title,
+      type: item.type,
+      durationMinutes: item.durationMinutes ?? null,
+    })
+    groupedDetails.set(creatorIdNum, entry)
+  }
+  const detailList = Array.from(groupedDetails.values())
 
   // audit (best-effort)
   await audit(prisma, {
@@ -594,6 +631,7 @@ app.get('/api/reports/weekly', auth, canRead, async (c) => {
     range: { start: start!.toISOString().slice(0,10), end: end!.toISOString().slice(0,10) },
     data: rows.map(r => ({
       creatorId: Number(r.creator_id),
+      creatorName: r.creator_name ?? nameMap.get(Number(r.creator_id)) ?? null,
       workDate: r.work_date.toISOString().slice(0,10),
       itemCount: Number(r.item_count),
       totalMinutes: Number(r.total_minutes),
@@ -603,7 +641,8 @@ app.get('/api/reports/weekly', auth, canRead, async (c) => {
         temp: Number(r.temp_count),
         assist: Number(r.assist_count),
       }
-    }))
+    })),
+    details: detailList,
   })
 })
 

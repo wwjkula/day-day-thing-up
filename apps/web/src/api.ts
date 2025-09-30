@@ -20,7 +20,7 @@ export async function getWeekly(params: { from: string; to: string; scope: Visib
   const res = await fetch(withBase(`/api/reports/weekly?${qs}`), { headers: { ...authHeader() } })
   const j = await res.json()
   if (!res.ok || !j.ok) throw new Error(j.error || '加载周报失败')
-  return j as { ok: true; range: { start: string; end: string }; data: any[] }
+  return j as { ok: true; range: { start: string; end: string }; data: any[]; details?: any[] }
 }
 
 export async function getMissingWeekly(params: { from: string; to: string; scope: VisibilityScope }): Promise<MissingWeeklyResponse> {
