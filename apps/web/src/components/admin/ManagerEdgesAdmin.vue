@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { authHeader, withBase } from '../../api'
 
-type Edge = { managerId: number; subordinateId: number; startDate: string; endDate: string|null; priority: number }
+type Edge = { managerId: number; managerName?: string | null; subordinateId: number; subordinateName?: string | null; startDate: string; endDate: string|null; priority: number }
 
 const items = ref<Edge[]>([])
 const loading = ref(false)
@@ -49,8 +49,18 @@ onMounted(() => load())
       <el-button type="primary" @click="openCreate">新增管理边</el-button>
     </div>
     <el-table :data="items" v-loading="loading" style="width:100%">
-      <el-table-column prop="managerId" label="管理者" width="120" />
-      <el-table-column prop="subordinateId" label="下属" width="120" />
+      <el-table-column label="管理者" width="200">
+        <template #default="{ row }">
+          <span>{{ row.managerName || '未命名' }}</span>
+          <span class="id">（ID：{{ row.managerId }}）</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="下属" width="200">
+        <template #default="{ row }">
+          <span>{{ row.subordinateName || '未命名' }}</span>
+          <span class="id">（ID：{{ row.subordinateId }}）</span>
+        </template>
+      </el-table-column>
       <el-table-column prop="startDate" label="开始" width="140" />
       <el-table-column prop="endDate" label="结束" width="140" />
       <el-table-column prop="priority" label="优先级" width="100" />
@@ -79,5 +89,6 @@ onMounted(() => load())
 
 <style scoped>
 .toolbar { margin-bottom: 8px; text-align: right; }
+.id { color: var(--el-text-color-secondary); margin-left: 4px; }
 </style>
 

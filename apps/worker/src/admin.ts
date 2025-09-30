@@ -162,8 +162,30 @@ export function registerAdminRoutes(app: Hono<{ Bindings: Bindings; Variables: {
     const where: any = {}
     if (managerId) where.managerId = managerId
     if (subordinateId) where.subordinateId = subordinateId
-    const items = await prisma.managerEdge.findMany({ where, orderBy: [{ managerId: 'asc' }, { subordinateId: 'asc' }, { startDate: 'asc' }], select: { managerId: true, subordinateId: true, startDate: true, endDate: true, priority: true } })
-    return c.json({ items: items.map(e => ({ managerId: Number(e.managerId), subordinateId: Number(e.subordinateId), startDate: e.startDate.toISOString().slice(0,10), endDate: e.endDate ? e.endDate.toISOString().slice(0,10) : null, priority: e.priority })) })
+    const items = await prisma.managerEdge.findMany({
+      where,
+      orderBy: [{ managerId: 'asc' }, { subordinateId: 'asc' }, { startDate: 'asc' }],
+      select: {
+        managerId: true,
+        subordinateId: true,
+        startDate: true,
+        endDate: true,
+        priority: true,
+        manager: { select: { name: true } },
+        subordinate: { select: { name: true } },
+      },
+    })
+    return c.json({
+      items: items.map(e => ({
+        managerId: Number(e.managerId),
+        managerName: e.manager?.name ?? null,
+        subordinateId: Number(e.subordinateId),
+        subordinateName: e.subordinate?.name ?? null,
+        startDate: e.startDate.toISOString().slice(0, 10),
+        endDate: e.endDate ? e.endDate.toISOString().slice(0, 10) : null,
+        priority: e.priority,
+      })),
+    })
   })
 
   app.post('/api/admin/manager-edges', async (c) => {
