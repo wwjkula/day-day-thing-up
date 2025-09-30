@@ -117,6 +117,7 @@ onMounted(() => {
   padding: 12px;
   border: 1px solid var(--el-border-color);
   border-radius: 8px;
+  text-align: left;
 }
 
 .toolbar {
