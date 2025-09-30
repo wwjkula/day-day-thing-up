@@ -139,8 +139,9 @@ onMounted(() => {
           <el-alert type="success" title="最近一周均已填报" :closable="false" />
         </div>
         <ul v-else class="missing-list">
-          <li v-for="item in missingDates" :key="item.date">
-            {{ item.date }}（{{ item.weekday }}）
+          <li v-for="item in missingDates" :key="item.date" class="missing-item">
+            <el-tag type="warning" effect="plain">{{ item.date }}</el-tag>
+            <span class="weekday">{{ item.weekday }}</span>
           </li>
         </ul>
       </template>
@@ -165,8 +166,10 @@ onMounted(() => {
   padding: 12px;
   border: 1px dashed var(--el-border-color);
   border-radius: 8px;
-  background: #fafafa;
+  background: var(--el-fill-color-lighter);
+  color: var(--el-text-color-primary);
   min-height: 80px;
+  transition: background-color 0.2s ease;
 }
 
 .missing-title {
@@ -176,11 +179,27 @@ onMounted(() => {
 
 .missing-list {
   margin: 0;
-  padding-left: 18px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.missing-list li {
-  line-height: 24px;
+.missing-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--el-color-warning-light-9, rgba(253, 246, 236, 0.9));
+  color: var(--el-color-warning);
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.missing-item .weekday {
+  color: var(--el-text-color-secondary);
 }
 
 .missing-empty {
