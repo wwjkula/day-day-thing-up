@@ -1,6 +1,6 @@
-import type { MissingWeeklyResponse, MissingWeeklyRemindResponse } from '@drrq/shared/index'
-
 export type VisibilityScope = 'self' | 'direct' | 'subtree'
+
+import type { MissingWeeklyResponse, MissingWeeklyRemindResponse, ListWorkItemsResponse } from '@drrq/shared/index'
 
 declare global {
   interface Window { __AUTH__?: string }
@@ -77,6 +77,16 @@ export async function postMissingWeeklyRemind(params: { from: string; to: string
   const j = await res.json()
   if (!res.ok || !j.ok) throw new Error(j.error || '发送提醒失败')
   return j as MissingWeeklyRemindResponse
+}
+
+export async function listWorkItems(params: { from: string; to: string; scope: VisibilityScope }): Promise<ListWorkItemsResponse> {
+  const qs = new URLSearchParams({ ...params } as any)
+  const res = await fetch(withBase(`/api/work-items?${qs}`), { headers: { ...authHeader() } })
+  if (!res.ok) {
+    const j = await res.json().catch(() => ({}))
+    throw new Error((j as any).error || res.statusText)
+  }
+  return res.json()
 }
 
 

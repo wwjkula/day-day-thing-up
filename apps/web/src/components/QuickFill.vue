@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { CreateWorkItemRequest } from '@drrq/shared/index'
 import { validateWorkItemTitle, validateWorkItemType, validateDateString } from '@drrq/shared/index'
-import { withBase, authHeader, getMissingWeekly } from '../api'
+import { withBase, authHeader, listWorkItems } from '../api'
 
 const form = ref<CreateWorkItemRequest>({
   title: '',
@@ -43,13 +43,23 @@ async function loadMissing() {
   missingLoading.value = true
   try {
     const { from, to } = currentWeekRange()
-    const res = await getMissingWeekly({ from, to, scope: 'self' })
     const todayStr = toDateString(new Date())
-    const allDates = res.data.flatMap(item => item.missingDates ?? [])
-    const uniqueDates = Array.from(new Set(allDates))
-      .filter(date => date <= todayStr)
-      .sort()
-    missingDates.value = uniqueDates.map(date => ({ date, weekday: weekdayLabel(date) }))
+    const recordResponse = await listWorkItems({ from, to, scope: 'self' })
+    const recordedDates = new Set((recordResponse.items ?? []).map(item => item.workDate))
+
+    const start = new Date(`${from}T00:00:00`)
+    const end = new Date(`${to}T00:00:00`)
+    const results: Array<{ date: string; weekday: string }> = []
+
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+      const dateStr = toDateString(d)
+      if (dateStr > todayStr) continue
+      if (!recordedDates.has(dateStr)) {
+        results.push({ date: dateStr, weekday: weekdayLabel(dateStr) })
+      }
+    }
+
+    missingDates.value = results
   } catch (e: any) {
     missingDates.value = []
     ElMessage.error(e?.message || '加载缺报信息失败')
