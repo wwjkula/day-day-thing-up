@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
-import type { VisibilityScope, MissingWeeklyUser, MissingWeeklyStats } from '@drrq/shared/index'
-import { getWeekly, getMissingWeekly, postWeeklyExport, postMissingWeeklyRemind, getExportStatus, downloadExport } from '../api'
+import type { VisibilityScope } from '@drrq/shared/index'
+import { getWeekly, postWeeklyExport, getExportStatus, downloadExport } from '../api'
 
 type WeeklyRow = {
   creatorId: number
@@ -14,8 +14,6 @@ type WeeklyRow = {
 
 const loading = ref(false)
 const exporting = ref(false)
-const missingLoading = ref(false)
-const remindAllLoading = ref(false)
 
 function thisWeek(): { from: string; to: string } {
   const now = new Date()
@@ -29,9 +27,6 @@ const range = ref<{ from: string; to: string }>(thisWeek())
 const scope = ref<VisibilityScope>('self')
 
 const raw = ref<WeeklyRow[]>([])
-const missing = ref<MissingWeeklyUser[]>([])
-const missingStats = ref<MissingWeeklyStats | null>(null)
-const remindingIds = ref<Set<number>>(new Set())
 
 const byUser = computed(() => {
   const aggregate = new Map<number, { itemCount: number; totalMinutes: number; done: number; progress: number; temp: number; assist: number }>()
@@ -50,19 +45,6 @@ const byUser = computed(() => {
     .sort((a, b) => a.creatorId - b.creatorId)
 })
 
-function updateReminding(ids: number[], add: boolean) {
-  const next = new Set(remindingIds.value)
-  for (const id of ids) {
-    if (add) next.add(id)
-    else next.delete(id)
-  }
-  remindingIds.value = next
-}
-
-function isReminding(userId: number) {
-  return remindingIds.value.has(userId)
-}
-
 async function load() {
   loading.value = true
   try {
@@ -72,22 +54,6 @@ async function load() {
     ElMessage.error(e?.message || '加载失败')
   } finally {
     loading.value = false
-  }
-  await loadMissing(false)
-}
-
-async function loadMissing(showError = true) {
-  missingLoading.value = true
-  try {
-    const res = await getMissingWeekly({ from: range.value.from, to: range.value.to, scope: scope.value })
-    missing.value = res.data
-    missingStats.value = res.stats
-  } catch (e: any) {
-    missing.value = []
-    missingStats.value = null
-    if (showError) ElMessage.error(e?.message || '加载缺报信息失败')
-  } finally {
-    missingLoading.value = false
   }
 }
 
@@ -114,33 +80,9 @@ async function exportZip() {
   }
 }
 
-async function remindTargets(userIds: number[], mode: 'single' | 'batch') {
-  const ids = Array.from(new Set(userIds.filter((id) => Number.isFinite(id) && id > 0))).map((id) => Math.trunc(id))
-  if (!ids.length) return
-  if (mode === 'batch') remindAllLoading.value = true
-  updateReminding(ids, true)
-  try {
-    const res = await postMissingWeeklyRemind({ from: range.value.from, to: range.value.to, scope: scope.value, userIds: ids })
-    if (res.notified > 0) ElMessage.success(`已提醒 ${res.notified} 人`)
-    else ElMessage.info('暂无需要提醒的对象')
-    await loadMissing(false)
-  } catch (e: any) {
-    ElMessage.error(e?.message || '发送提醒失败')
-  } finally {
-    updateReminding(ids, false)
-    if (mode === 'batch') remindAllLoading.value = false
-  }
-}
-
-async function remindOne(userId: number) {
-  await remindTargets([userId], 'single')
-}
-
-async function remindAll() {
-  await remindTargets(missing.value.map((m) => m.userId), 'batch')
-}
-
-onMounted(() => { load() })
+onMounted(() => {
+  load()
+})
 </script>
 
 <template>
@@ -166,45 +108,21 @@ onMounted(() => { load() })
       <el-table-column prop="temp" label="临时" width="80" />
       <el-table-column prop="assist" label="协同" width="80" />
     </el-table>
-
-    <div class="missing-panel">
-      <div class="missing-toolbar">
-        <div class="missing-info">
-          缺报 {{ missingStats?.missingUsers ?? 0 }} / {{ missingStats?.totalActiveVisible ?? 0 }}
-          <span v-if="(missingStats?.missingDates ?? 0) > 0">，共 {{ missingStats?.missingDates ?? 0 }} 个日期</span>
-        </div>
-        <div class="missing-actions">
-          <el-button size="small" :loading="missingLoading" @click="loadMissing(true)">刷新缺报</el-button>
-          <el-button size="small" type="primary" :disabled="!missing.length" :loading="remindAllLoading" @click="remindAll">一键提醒</el-button>
-        </div>
-      </div>
-      <div v-if="!missingLoading && !missing.length" class="missing-empty">
-        <el-alert type="success" title="本周期所有可见人员均已填报" :closable="false" />
-      </div>
-      <el-table v-else :data="missing" v-loading="missingLoading" size="small" style="width:100%">
-        <el-table-column prop="userId" label="用户ID" width="100" />
-        <el-table-column prop="name" label="姓名" width="160" />
-        <el-table-column prop="employeeNo" label="工号" width="140" />
-        <el-table-column prop="email" label="邮箱" />
-        <el-table-column label="缺报日期" min-width="220">
-          <template #default="{ row }">{{ row.missingDates.join('、') }}</template>
-        </el-table-column>
-        <el-table-column label="操作" width="120">
-          <template #default="{ row }">
-            <el-button type="danger" size="small" :loading="isReminding(row.userId)" @click="remindOne(row.userId)">提醒</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-    </div>
   </div>
 </template>
 
 <style scoped>
-.weekly-report { margin-top: 16px; padding: 12px; border: 1px solid var(--el-border-color); border-radius: 8px; }
-.toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.missing-panel { margin-top: 16px; padding: 12px; border: 1px dashed var(--el-border-color); border-radius: 8px; background: #fafafa; }
-.missing-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
-.missing-info { font-weight: 600; color: #333; }
-.missing-actions { display: flex; gap: 8px; }
-.missing-empty { padding: 8px 0; }
+.weekly-report {
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px solid var(--el-border-color);
+  border-radius: 8px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
 </style>

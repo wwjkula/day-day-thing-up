@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { CreateWorkItemRequest } from '@drrq/shared/index'
 import { validateWorkItemTitle, validateWorkItemType, validateDateString } from '@drrq/shared/index'
-import { withBase, authHeader } from '../api'
+import { withBase, authHeader, getMissingWeekly } from '../api'
 
 const form = ref<CreateWorkItemRequest>({
   title: '',
@@ -12,15 +12,59 @@ const form = ref<CreateWorkItemRequest>({
 })
 
 const submitting = ref(false)
+const missingLoading = ref(false)
+const missingDates = ref<Array<{ date: string; weekday: string }>>([])
+
+function toDateString(date: Date): string {
+  const y = date.getFullYear()
+  const m = `${date.getMonth() + 1}`.padStart(2, '0')
+  const d = `${date.getDate()}`.padStart(2, '0')
+  return `${y}-${m}-${d}`
+}
+
+function currentWeekRange(): { from: string; to: string } {
+  const today = new Date()
+  const day = today.getDay() === 0 ? 7 : today.getDay()
+  const monday = new Date(today)
+  monday.setHours(0, 0, 0, 0)
+  monday.setDate(today.getDate() - (day - 1))
+  const sunday = new Date(monday)
+  sunday.setDate(monday.getDate() + 6)
+  return { from: toDateString(monday), to: toDateString(sunday) }
+}
+
+function weekdayLabel(dateStr: string): string {
+  const date = new Date(`${dateStr}T00:00:00`)
+  const labels = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+  return labels[date.getDay()] ?? ''
+}
+
+async function loadMissing() {
+  missingLoading.value = true
+  try {
+    const { from, to } = currentWeekRange()
+    const res = await getMissingWeekly({ from, to, scope: 'self' })
+    const todayStr = toDateString(new Date())
+    const allDates = res.data.flatMap(item => item.missingDates ?? [])
+    const uniqueDates = Array.from(new Set(allDates))
+      .filter(date => date <= todayStr)
+      .sort()
+    missingDates.value = uniqueDates.map(date => ({ date, weekday: weekdayLabel(date) }))
+  } catch (e: any) {
+    missingDates.value = []
+    ElMessage.error(e?.message || '加载缺报信息失败')
+  } finally {
+    missingLoading.value = false
+  }
+}
 
 async function submit() {
-  // client-side validation (mirror server)
-  const t = validateWorkItemTitle(form.value.title)
-  if (!t.valid) return ElMessage.error(t.error || '标题不合法')
-  const d = validateDateString(form.value.workDate)
-  if (!d.valid) return ElMessage.error(d.error || '日期不合法')
-  const ty = validateWorkItemType(form.value.type || 'done')
-  if (!ty.valid) return ElMessage.error(ty.error || '类型不合法')
+  const titleCheck = validateWorkItemTitle(form.value.title)
+  if (!titleCheck.valid) return ElMessage.error(titleCheck.error || '标题不合法')
+  const dateCheck = validateDateString(form.value.workDate)
+  if (!dateCheck.valid) return ElMessage.error(dateCheck.error || '日期不合法')
+  const typeCheck = validateWorkItemType(form.value.type || 'done')
+  if (!typeCheck.valid) return ElMessage.error(typeCheck.error || '类型不合法')
 
   submitting.value = true
   try {
@@ -34,8 +78,8 @@ async function submit() {
       throw new Error(j.error || res.statusText)
     }
     ElMessage.success('已提交')
-    // reset title only
     form.value.title = ''
+    await loadMissing()
   } catch (e: any) {
     ElMessage.error(e?.message || '提交失败')
   } finally {
@@ -48,22 +92,29 @@ async function devGetToken() {
     const res = await fetch(withBase('/dev/token?sub=1'))
     const j = await res.json()
     ;(window as any).__AUTH__ = j.token
-    try { localStorage.setItem('AUTH', j.token) } catch {}
-    ElMessage.success('已获取开发Token')
+    try {
+      localStorage.setItem('AUTH', j.token)
+    } catch {}
+    ElMessage.success('已获取开发 Token')
+    await loadMissing()
   } catch {
-    ElMessage.error('获取Token失败')
+    ElMessage.error('获取 Token 失败')
   }
 }
+
+onMounted(() => {
+  loadMissing()
+})
 </script>
 
 <template>
   <div class="quick-fill">
     <div class="toolbar">
-      <el-button size="small" @click="devGetToken">获取开发Token</el-button>
+      <el-button size="small" @click="devGetToken">获取开发 Token</el-button>
     </div>
     <el-form label-width="80px" @submit.prevent>
       <el-form-item label="标题">
-        <el-input v-model="form.title" maxlength="20" show-word-limit placeholder="≤20字" />
+        <el-input v-model="form.title" maxlength="20" show-word-limit placeholder="20 字以内" />
       </el-form-item>
       <el-form-item label="日期">
         <el-date-picker v-model="form.workDate" type="date" value-format="YYYY-MM-DD" />
@@ -80,11 +131,59 @@ async function devGetToken() {
         <el-button type="primary" :loading="submitting" @click="submit">提交</el-button>
       </el-form-item>
     </el-form>
+
+    <div class="missing-section" v-loading="missingLoading">
+      <div class="missing-title">缺报提醒</div>
+      <template v-if="!missingLoading">
+        <div v-if="missingDates.length === 0" class="missing-empty">
+          <el-alert type="success" title="最近一周均已填报" :closable="false" />
+        </div>
+        <ul v-else class="missing-list">
+          <li v-for="item in missingDates" :key="item.date">
+            {{ item.date }}（{{ item.weekday }}）
+          </li>
+        </ul>
+      </template>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.quick-fill { padding: 12px; border: 1px solid var(--el-border-color); border-radius: 8px; }
-.toolbar { text-align: right; margin-bottom: 8px; }
-</style>
+.quick-fill {
+  padding: 12px;
+  border: 1px solid var(--el-border-color);
+  border-radius: 8px;
+}
 
+.toolbar {
+  text-align: right;
+  margin-bottom: 8px;
+}
+
+.missing-section {
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px dashed var(--el-border-color);
+  border-radius: 8px;
+  background: #fafafa;
+  min-height: 80px;
+}
+
+.missing-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.missing-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.missing-list li {
+  line-height: 24px;
+}
+
+.missing-empty {
+  padding: 8px 0;
+}
+</style>
