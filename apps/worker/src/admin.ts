@@ -215,6 +215,13 @@ export function registerAdminRoutes(app: Hono<{ Bindings: Bindings; Variables: {
   })
 
   // --- ROLE GRANTS ---
+  app.get('/api/admin/roles', async (c) => {
+    if (!requireAuth(c)) return c.json({ error: 'Unauthorized' }, 401)
+    const prisma = getPrisma(c.env)
+    const items = await prisma.role.findMany({ orderBy: { id: 'asc' }, select: { id: true, code: true, name: true } })
+    return c.json({ items: items.map(r => ({ id: Number(r.id), code: r.code, name: r.name })) })
+  })
+
   app.get('/api/admin/role-grants', async (c) => {
     if (!requireAuth(c)) return c.json({ error: 'Unauthorized' }, 401)
     const prisma = getPrisma(c.env)

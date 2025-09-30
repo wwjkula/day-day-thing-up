@@ -168,3 +168,8 @@ export async function adminDeleteRoleGrant(id: number) {
   const res = await fetch(withBase(`/api/admin/role-grants/${id}`), { method: 'DELETE', headers: { ...authHeader() } })
   return res.json();
 }
+
+export async function adminListRoles() {
+  const res = await fetch(withBase('/api/admin/roles'), { headers: { ...authHeader() } })
+  return res.json()
+}
