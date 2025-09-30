@@ -94,7 +94,7 @@ onMounted(() => {
         <el-option label="子树" value="subtree" />
       </el-select>
       <el-date-picker v-model="range.from" type="date" value-format="YYYY-MM-DD" />
-      <span style="margin:0 8px">~</span>
+      <span class="range-separator">~</span>
       <el-date-picker v-model="range.to" type="date" value-format="YYYY-MM-DD" />
       <el-button :loading="loading" @click="load">刷新</el-button>
       <el-button type="primary" :loading="exporting" @click="exportZip">导出 Excel</el-button>
@@ -124,5 +124,9 @@ onMounted(() => {
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
+}
+
+.range-separator {
+  color: var(--el-text-color-secondary);
 }
 </style>

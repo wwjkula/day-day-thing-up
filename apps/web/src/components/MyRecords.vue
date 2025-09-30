@@ -34,7 +34,7 @@ onMounted(() => { load() })
   <div class="my-records">
     <div class="toolbar">
       <el-date-picker v-model="range.from" type="date" value-format="YYYY-MM-DD" />
-      <span style="margin:0 8px">~</span>
+      <span class="range-separator">~</span>
       <el-date-picker v-model="range.to" type="date" value-format="YYYY-MM-DD" />
       <el-button :loading="loading" @click="load">刷新</el-button>
     </div>
@@ -50,5 +50,5 @@ onMounted(() => { load() })
 <style scoped>
 .my-records { margin-top: 16px; padding: 12px; border: 1px solid var(--el-border-color); border-radius: 8px; }
 .toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.range-separator { color: var(--el-text-color-secondary); }
 </style>
-
