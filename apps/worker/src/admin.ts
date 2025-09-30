@@ -218,8 +218,34 @@ export function registerAdminRoutes(app: Hono<{ Bindings: Bindings; Variables: {
   app.get('/api/admin/role-grants', async (c) => {
     if (!requireAuth(c)) return c.json({ error: 'Unauthorized' }, 401)
     const prisma = getPrisma(c.env)
-    const items = await prisma.roleGrant.findMany({ orderBy: { id: 'asc' }, select: { id: true, granteeUserId: true, roleId: true, domainOrgId: true, scope: true, startDate: true, endDate: true, role: { select: { code: true, name: true } } } })
-    return c.json({ items: items.map(g => ({ id: Number(g.id), granteeUserId: Number(g.granteeUserId), roleId: Number(g.roleId), roleCode: g.role.code, roleName: g.role.name, domainOrgId: Number(g.domainOrgId), scope: g.scope, startDate: g.startDate.toISOString().slice(0,10), endDate: g.endDate ? g.endDate.toISOString().slice(0,10) : null })) })
+    const items = await prisma.roleGrant.findMany({
+      orderBy: { id: 'asc' },
+      select: {
+        id: true,
+        granteeUserId: true,
+        roleId: true,
+        domainOrgId: true,
+        scope: true,
+        startDate: true,
+        endDate: true,
+        role: { select: { code: true, name: true } },
+        grantee: { select: { name: true } },
+      },
+    })
+    return c.json({
+      items: items.map(g => ({
+        id: Number(g.id),
+        granteeUserId: Number(g.granteeUserId),
+        granteeName: g.grantee?.name ?? null,
+        roleId: Number(g.roleId),
+        roleCode: g.role.code,
+        roleName: g.role.name,
+        domainOrgId: Number(g.domainOrgId),
+        scope: g.scope,
+        startDate: g.startDate.toISOString().slice(0, 10),
+        endDate: g.endDate ? g.endDate.toISOString().slice(0, 10) : null,
+      })),
+    })
   })
 
   app.post('/api/admin/role-grants', async (c) => {

@@ -1,9 +1,9 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { authHeader, withBase } from '../../api'
 
-type Grant = { id: number; granteeUserId: number; roleId: number; roleCode: string; roleName: string; domainOrgId: number; scope: 'self'|'direct'|'subtree'; startDate: string; endDate: string|null }
+type Grant = { id: number; granteeUserId: number; granteeName?: string | null; roleId: number; roleCode: string; roleName: string; domainOrgId: number; scope: 'self'|'direct'|'subtree'; startDate: string; endDate: string|null }
 
 const items = ref<Grant[]>([])
 const loading = ref(false)
@@ -50,7 +50,12 @@ onMounted(() => load())
     </div>
     <el-table :data="items" v-loading="loading" style="width:100%">
       <el-table-column prop="id" label="ID" width="80" />
-      <el-table-column prop="granteeUserId" label="用户ID" width="120" />
+      <el-table-column label="用户" width="220">
+        <template #default="{ row }">
+          <span>{{ row.granteeName || '未命名' }}</span>
+          <span class="id">（ID：{{ row.granteeUserId }}）</span>
+        </template>
+      </el-table-column>
       <el-table-column prop="roleCode" label="角色" width="140" />
       <el-table-column prop="domainOrgId" label="域(组织ID)" width="140" />
       <el-table-column prop="scope" label="范围" width="120" />
@@ -58,7 +63,7 @@ onMounted(() => load())
       <el-table-column prop="endDate" label="结束" width="140" />
       <el-table-column label="操作" width="120">
         <template #default="{ row }">
-          <el-popconfirm title="确认删除?" @confirm="() => remove(row)"><template #reference><el-button type="danger" size="small">删除</el-button></template></el-popconfirm>
+        <el-popconfirm title="确认删除?" @confirm="() => remove(row)"><template #reference><el-button type="danger" size="small">删除</el-button></template></el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
@@ -88,5 +93,7 @@ onMounted(() => load())
 
 <style scoped>
 .toolbar { margin-bottom: 8px; text-align: right; }
+.id { color: var(--el-text-color-secondary); margin-left: 4px; }
 </style>
+
 
