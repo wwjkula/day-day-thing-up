@@ -9,9 +9,9 @@ async function makeAuthHeader(sub: number, secret: string) {
   return { Authorization: `Bearer ${token}` }
 }
 
-type Env = { DATABASE_URL: string; JWT_SECRET: string; VISIBILITY_USE_CLOSURE?: string }
+type Env = { DATABASE_URL: string; JWT_SECRET: string; VISIBILITY_USE_CLOSURE?: string; DATA_DRIVER?: string }
 
-const TEST_ENV: Env = { DATABASE_URL: 'postgres://test', JWT_SECRET: 'test-secret', VISIBILITY_USE_CLOSURE: 'false' }
+const TEST_ENV: Env = { DATABASE_URL: 'postgres://test', JWT_SECRET: 'test-secret', VISIBILITY_USE_CLOSURE: 'false', DATA_DRIVER: '1' }
 
 // Minimal Prisma mock shape used by weekly route
 function makePrismaMock() {
@@ -116,3 +116,4 @@ describe('Weekly Reports API', () => {
     expect(json.details[0].items.length).toBeGreaterThan(0)
   })
 })
+

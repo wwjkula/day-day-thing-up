@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { PrismaNeonHTTP } from '@prisma/adapter-neon'
+import { getDataDriverMode, getR2DataStore } from '../data/r2-store'
+import { ensureAuditLog } from '../data/r2-logic'
 
 export type Scope = 'self' | 'direct' | 'subtree'
 
@@ -57,7 +59,7 @@ export async function canRead(c: any, next: any) {
 
 // --- Export policy & rate limit ---
 
-type Bindings = { DATABASE_URL: string }
+type Bindings = { DATABASE_URL: string; DATA_DRIVER?: string; R2_DATA?: any }
 
 declare global {
   // eslint-disable-next-line no-var
@@ -85,23 +87,34 @@ async function isRateLimited(prisma: PrismaClient, actorUserId: bigint, maxPerMi
 }
 
 export async function canExport(c: any, next: any) {
-  // Parse scope & range first
   const scope = normalizeScope(c.req.query('scope'))
   const range = parseRangeFromQuery(Object.fromEntries(new URL(c.req.url).searchParams))
   if ('error' in range) return c.json({ error: range.error }, 400)
   c.set('scope', scope)
   c.set('range', range)
 
-  // Rate limiting by audit logs (best-effort)
   const user = c.get('user')
   const sub = user?.sub ?? user?.userId ?? user?.id
   if (sub == null) return c.json({ error: 'No subject in token' }, 400)
-  const viewerId = BigInt(sub)
+  const mode = getDataDriverMode(c.env as any)
+  const MAX_PER_MIN = 5
+
+  if (mode === 'r2') {
+    const store = getR2DataStore(c.env)
+    const viewerId = Number(sub)
+    const since = new Date(Date.now() - 60_000)
+    const count = await store.countAuditLogsSince(viewerId, since)
+    if (count >= MAX_PER_MIN) {
+      await ensureAuditLog(store, { actorUserId: viewerId, action: 'export_denied', objectType: 'work_item', detail: { reason: 'rate_limit', maxPerMin: MAX_PER_MIN } })
+      return c.json({ code: 'RATE_LIMITED', error: 'too many export requests' }, 429)
+    }
+    await next()
+    return
+  }
 
   const prisma = getPrisma(c.env as Bindings)
-  const MAX_PER_MIN = 5
+  const viewerId = BigInt(sub)
   if (await isRateLimited(prisma, viewerId, MAX_PER_MIN)) {
-    // audit denial (best-effort)
     await audit(prisma, { actorUserId: viewerId, action: 'export_denied', objectType: 'work_item', detail: { reason: 'rate_limit', maxPerMin: MAX_PER_MIN } })
     return c.json({ code: 'RATE_LIMITED', error: 'too many export requests' }, 429)
   }
@@ -131,8 +144,22 @@ export async function requireAdmin(c: any, next: any) {
   const sub = user?.sub ?? user?.userId ?? user?.id
   if (sub == null) return c.json({ error: 'Unauthorized' }, 401)
 
-  // Fast-path: JWT may carry isAdmin=true
   if (user?.isAdmin === true) return next()
+
+  const mode = getDataDriverMode(c.env as any)
+  if (mode === 'r2') {
+    const store = getR2DataStore(c.env)
+    const today = new Date()
+    const grants = await store.activeRoleGrantsForUser(Number(sub), today)
+    for (const grant of grants) {
+      const role = await store.findRoleById(grant.roleId)
+      if (role?.code === 'sys_admin') {
+        await next()
+        return
+      }
+    }
+    return c.json({ error: 'Forbidden' }, 403)
+  }
 
   const prisma = getPrisma(c.env as any)
   const today = new Date()
@@ -148,3 +175,12 @@ export async function requireAdmin(c: any, next: any) {
   if (!grant) return c.json({ error: 'Forbidden' }, 403)
   await next()
 }
+
+
+
+
+
+
+
+
+

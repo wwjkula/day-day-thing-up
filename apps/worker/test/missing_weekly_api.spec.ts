@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import app from '../src/index'
+import { createInMemoryR2 } from './utils/inMemoryR2'
 import { signJWT_HS256 } from '../src/auth'
 import * as visibility from '../src/visibility'
 
@@ -9,13 +10,15 @@ async function makeAuthHeader(sub: number, secret: string) {
   return { Authorization: `Bearer ${token}` }
 }
 
-type Env = { DATABASE_URL: string; JWT_SECRET: string; VISIBILITY_USE_CLOSURE?: string; R2_EXPORTS: any }
+type Env = { DATABASE_URL: string; JWT_SECRET: string; VISIBILITY_USE_CLOSURE?: string; DATA_DRIVER?: string; R2_EXPORTS: any; R2_DATA?: any }
 
 const TEST_ENV: Env = {
   DATABASE_URL: 'postgres://test',
   JWT_SECRET: 'test-secret',
   VISIBILITY_USE_CLOSURE: 'false',
-  R2_EXPORTS: { head: vi.fn(), get: vi.fn() },
+  DATA_DRIVER: '1',
+  R2_EXPORTS: createInMemoryR2(),
+  R2_DATA: createInMemoryR2(),
 }
 
 describe('Missing weekly API', () => {
@@ -99,3 +102,6 @@ describe('Missing weekly API', () => {
     }))
   })
 })
+
+
+

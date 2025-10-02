@@ -3,12 +3,14 @@
   "name": "worker",
   "main": "src/index.ts",
   "compatibility_date": "2025-09-21",
-  // æœºå¯†è¯·ä½¿ç”¨ `wrangler secret put` é…ç½®åˆ° Cloudflareï¼Œè€Œä¸æ˜¯å†™åœ¨ä»“åº“é‡Œ
+  // »úÃÜÇëÊ¹ÓÃ`wrangler secret put` ÅäÖÃµ½ Cloudflare£¬¶ø²»ÊÇĞ´ÔÚ²Ö¿âÀï
   "vars": {
     "VISIBILITY_USE_CLOSURE": "true",
-    "QUEUE_DRIVER": "inline"
+    "QUEUE_DRIVER": "inline",
+    "DATA_DRIVER": "2"
   },
   "r2_buckets": [
-    { "binding": "R2_EXPORTS", "bucket_name": "day-day-thing-up-15976" }
+    { "binding": "R2_EXPORTS", "bucket_name": "day-day-thing-up-15976" },
+    { "binding": "R2_DATA", "bucket_name": "day-day-thing-up-15976" }
   ],
 }

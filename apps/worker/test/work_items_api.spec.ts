@@ -9,9 +9,9 @@ async function makeAuthHeader(sub: number, secret: string) {
   return { Authorization: `Bearer ${token}` }
 }
 
-type Env = { DATABASE_URL: string; JWT_SECRET: string; VISIBILITY_USE_CLOSURE?: string }
+type Env = { DATABASE_URL: string; JWT_SECRET: string; VISIBILITY_USE_CLOSURE?: string; DATA_DRIVER?: string }
 
-const TEST_ENV: Env = { DATABASE_URL: 'postgres://test', JWT_SECRET: 'test-secret', VISIBILITY_USE_CLOSURE: 'false' }
+const TEST_ENV: Env = { DATABASE_URL: 'postgres://test', JWT_SECRET: 'test-secret', VISIBILITY_USE_CLOSURE: 'false', DATA_DRIVER: '1' }
 
 // Minimal Prisma mock shape used by routes
 function makePrismaMock() {
@@ -41,7 +41,7 @@ function makePrismaMock() {
             title: 'A',
             type: 'done',
             durationMinutes: 60,
-            tags: '巡检,一线',
+            tags: 'tag-a,tag-b',
             detail: null,
           },
           {
@@ -90,7 +90,7 @@ describe('Work Items API', () => {
     const { prisma } = makePrismaMock()
     ;(globalThis as any).__PRISMA__ = prisma
     const headers = await makeAuthHeader(1, TEST_ENV.JWT_SECRET)
-    const longTitle = '一二三四五六七八九十一二三四五六七八九十一' // 21 字
+    const longTitle = 'ABCDEFGHIJKLMNOPQRSTU' // 21 chars
     const res = await app.request('http://test/api/work-items', {
       method: 'POST',
       headers: { 'content-type': 'application/json', ...headers },
@@ -108,7 +108,7 @@ describe('Work Items API', () => {
     const res = await app.request('http://test/api/work-items', {
       method: 'POST',
       headers: { 'content-type': 'application/json', ...headers },
-      body: JSON.stringify({ workDate: '2025-09-15', title: '设备巡检已完成', type: 'done' }),
+      body: JSON.stringify({ workDate: '2025-09-15', title: 'task done', type: 'done' }),
     }, TEST_ENV)
     expect(res.status).toBe(201)
     const json = await res.json()
@@ -153,4 +153,10 @@ describe('Work Items API', () => {
     expect(json.items.length).toBeGreaterThan(0)
   })
 })
+
+
+
+
+
+
 

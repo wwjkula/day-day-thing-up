@@ -47,7 +47,8 @@ describe('permissions middleware', () => {
       DATABASE_URL: 'postgres://test',
       JWT_SECRET: 'test-secret',
       VISIBILITY_USE_CLOSURE: 'false',
-      R2_EXPORTS: { put: vi.fn(async () => {}) },
+      DATA_DRIVER: '1',
+      R2_EXPORTS: { put: vi.fn(async () => {}), get: vi.fn(async () => null) },
       EXPORT_QUEUE: { send: vi.fn(async () => {}) },
     }
     const prismaMock: any = { auditLog: { create: vi.fn(async () => ({ id: 1n })), count: vi.fn(async () => 0) } }
@@ -67,4 +68,9 @@ describe('permissions middleware', () => {
     expect(arg.data.detail.end).toMatch(/\d{4}-\d{2}-\d{2}/)
   })
 })
+
+
+
+
+
 

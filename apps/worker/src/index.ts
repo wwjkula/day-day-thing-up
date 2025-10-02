@@ -12,8 +12,10 @@ import { canRead, canExport, audit, requireAdmin } from './middlewares/permissio
 
 import { registerAdminRoutes } from './admin'
 import { hashPassword, verifyPassword } from './password'
+import { getDataDriverMode, getR2DataStore } from './data/r2-store'
+import { resolveVisibleUsersR2, getPrimaryOrgIdR2, buildMissingReportR2, buildWeeklyAggregateR2, listWorkItemsPaginatedR2, ensureAuditLog } from './data/r2-logic'
 
-type Bindings = { DATABASE_URL: string; JWT_SECRET: string; VISIBILITY_USE_CLOSURE?: string; QUEUE_DRIVER?: string; R2_EXPORTS: any; EXPORT_QUEUE?: any }
+type Bindings = { DATABASE_URL: string; JWT_SECRET: string; VISIBILITY_USE_CLOSURE?: string; QUEUE_DRIVER?: string; DATA_DRIVER?: string; R2_EXPORTS: any; R2_DATA?: any; EXPORT_QUEUE?: any }
 
 declare global {
   // Cloudflare Workers reuse Prisma across requests
@@ -173,6 +175,63 @@ app.use('*', async (c, next) => {
 
 // Auth: login by employeeNo/email + optional password (backward compatible if no password set)
 app.post('/api/auth/login', async (c) => {
+  const mode = getDataDriverMode(c.env as any)
+  if (mode === 'r2') {
+    const store = getR2DataStore(c.env)
+    let body: any
+    try { body = await c.req.json() } catch { return c.json({ ok: false, error: 'Invalid JSON' }, 400) }
+    const employeeNo = (body.employeeNo ?? body.employee_no ?? '').toString().trim()
+    const email = (body.email ?? '').toString().trim()
+    const password = body.password != null ? String(body.password) : undefined
+    if (!employeeNo && !email) return c.json({ ok: false, error: 'employeeNo or email required' }, 400)
+
+    let user = employeeNo ? await store.findUserByEmployeeNo(employeeNo) : null
+    if (!user && email) {
+      user = await store.findUserByEmail(email)
+    }
+    if (!user) return c.json({ ok: false, error: 'invalid credentials' }, 401)
+
+    const since = new Date(Date.now() - 5 * 60 * 1000)
+    const failCount = await store.countAuditLogsSince(user.id, since)
+    if (failCount >= 5) {
+      await ensureAuditLog(store, { actorUserId: user.id, action: 'login_denied_rate_limit', objectType: 'user' })
+      return c.json({ ok: false, code: 'RATE_LIMITED', error: 'too many failed logins, try later' }, 429)
+    }
+
+    if (user.passwordHash) {
+      const ok = await verifyPassword(password || '', user.passwordHash)
+      if (!ok) {
+        await ensureAuditLog(store, { actorUserId: user.id, action: 'login_failed', objectType: 'user' })
+        return c.json({ ok: false, error: 'invalid credentials' }, 401)
+      }
+    }
+
+    const today = new Date()
+    const grants = await store.activeRoleGrantsForUser(user.id, today)
+    let isAdmin = false
+    for (const grant of grants) {
+      const role = await store.findRoleById(grant.roleId)
+      if (role?.code === 'sys_admin') {
+        isAdmin = true
+        break
+      }
+    }
+
+    const nowSec = Math.floor(Date.now() / 1000)
+    const token = await signJWT_HS256(
+      { sub: Number(user.id), name: user.name, email: user.email ?? undefined, isAdmin, iat: nowSec, exp: nowSec + 24 * 3600 },
+      c.env.JWT_SECRET,
+    )
+
+    await ensureAuditLog(store, { actorUserId: user.id, action: 'login', objectType: 'user' })
+
+    return c.json({
+      ok: true,
+      token,
+      user: { id: Number(user.id), name: user.name, email: user.email ?? null, employeeNo: user.employeeNo ?? null, isAdmin },
+    })
+  }
+
   const prisma: any = getPrisma(c.env)
   let body: any
   try { body = await c.req.json() } catch { return c.json({ ok: false, error: 'Invalid JSON' }, 400) }
@@ -193,7 +252,6 @@ app.post('/api/auth/login', async (c) => {
   }
   if (!user) return c.json({ ok: false, error: 'invalid credentials' }, 401)
 
-  // Optional: rate-limit excessive failed logins in last 5 minutes
   async function tooManyFailed(): Promise<boolean> {
     const since = new Date(Date.now() - 5 * 60 * 1000)
     const cnt = await prisma.auditLog.count({ where: { actorUserId: BigInt(user.id), action: { in: ['login_failed'] }, createdAt: { gte: since } } })
@@ -204,7 +262,6 @@ app.post('/api/auth/login', async (c) => {
     return c.json({ ok: false, code: 'RATE_LIMITED', error: 'too many failed logins, try later' }, 429)
   }
 
-  // If passwordHash exists, require correct password; otherwise allow legacy no-password login
   if (user.passwordHash) {
     const ok = await verifyPassword(password || '', user.passwordHash)
     if (!ok) {
@@ -213,7 +270,6 @@ app.post('/api/auth/login', async (c) => {
     }
   }
 
-  // compute admin flag
   const today = new Date()
   const adminGrant = await prisma.roleGrant.findFirst({
     where: {
@@ -228,7 +284,6 @@ app.post('/api/auth/login', async (c) => {
   const now = Math.floor(Date.now() / 1000)
   const token = await signJWT_HS256({ sub: Number(user.id), name: user.name, email: user.email ?? undefined, isAdmin, iat: now, exp: now + 24 * 3600 }, c.env.JWT_SECRET)
 
-  // best-effort audit
   try { await prisma.auditLog.create({ data: { actorUserId: BigInt(user.id), action: 'login', objectType: 'user' } }) } catch {}
 
   return c.json({ ok: true, token, user: { id: Number(user.id), name: user.name, email: user.email ?? null, employeeNo: user.employeeNo ?? null, isAdmin } })
@@ -236,6 +291,39 @@ app.post('/api/auth/login', async (c) => {
 
 // Change password (requires current password). Enforce min length 6.
 app.post('/api/auth/change-password', auth, async (c) => {
+  const mode = getDataDriverMode(c.env as any)
+  if (mode === 'r2') {
+    const store = getR2DataStore(c.env)
+    let body: any
+    try { body = await c.req.json() } catch { return c.json({ ok: false, error: 'Invalid JSON' }, 400) }
+    const currentPassword = typeof body.currentPassword === 'string' ? body.currentPassword : ''
+    const newPassword = typeof body.newPassword === 'string' ? body.newPassword : ''
+    if (newPassword.length < 6) return c.json({ ok: false, error: 'password too short' }, 400)
+
+    const userPayload = c.get('user') as JWTPayload
+    const sub = (userPayload as any)?.sub ?? (userPayload as any)?.userId ?? (userPayload as any)?.id
+    if (sub == null) return c.json({ ok: false, error: 'No subject in token' }, 400)
+    const userId = Number(sub)
+
+    const user = await store.findUserById(userId)
+    if (!user) return c.json({ ok: false, error: 'not found' }, 404)
+
+    if (user.passwordHash) {
+      const ok = await verifyPassword(currentPassword, user.passwordHash)
+      if (!ok) {
+        await ensureAuditLog(store, { actorUserId: userId, action: 'change_password_failed', objectType: 'user' })
+        return c.json({ ok: false, error: 'current password incorrect' }, 401)
+      }
+    } else if (currentPassword && currentPassword.length > 0) {
+      return c.json({ ok: false, error: 'current password incorrect' }, 401)
+    }
+
+    const newHash = await hashPassword(newPassword)
+    await store.upsertUser({ id: userId, passwordHash: newHash, passwordChangedAt: new Date().toISOString() })
+    await ensureAuditLog(store, { actorUserId: userId, action: 'change_password', objectType: 'user' })
+    return c.json({ ok: true })
+  }
+
   const prisma: any = getPrisma(c.env)
   let body: any
   try { body = await c.req.json() } catch { return c.json({ ok: false, error: 'Invalid JSON' }, 400) }
@@ -258,7 +346,6 @@ app.post('/api/auth/change-password', auth, async (c) => {
       return c.json({ ok: false, error: 'current password incorrect' }, 401)
     }
   } else {
-    // No existing password: require empty currentPassword to avoid accidental overwrites
     if (currentPassword && currentPassword.length > 0) return c.json({ ok: false, error: 'current password incorrect' }, 401)
   }
 
@@ -266,7 +353,6 @@ app.post('/api/auth/change-password', auth, async (c) => {
   await prisma.user.update({ where: { id: userId }, data: { passwordHash: newHash, passwordChangedAt: new Date() } })
   try { await prisma.auditLog.create({ data: { actorUserId: userId, action: 'change_password', objectType: 'user' } }) } catch {}
 
-  // Optionally force re-login by hint (server remains stateless); client may choose to logout.
   return c.json({ ok: true })
 })
 
@@ -308,17 +394,27 @@ async function auth(c: any, next: any) {
   const payload = await verifyJWT_HS256(token, c.env.JWT_SECRET)
   if (!payload) return c.json({ error: 'Unauthorized' }, 401)
 
-  // Optional: enforce token invalidation after password change
   try {
     if (String((c.env as any).JWT_ENFORCE_PW_CHANGE || '').toLowerCase() === 'true') {
       const sub = (payload as any)?.sub ?? (payload as any)?.userId ?? (payload as any)?.id
       if (sub != null) {
-        const prisma: any = getPrisma(c.env)
-        const u = await prisma.user.findUnique({ where: { id: BigInt(sub) }, select: { passwordChangedAt: true } })
-        const changedAt = u?.passwordChangedAt ? Math.floor(new Date(u.passwordChangedAt).getTime() / 1000) : 0
-        const iat = Number((payload as any).iat || 0)
-        if (changedAt && iat && iat < changedAt) {
-          return c.json({ error: 'Token invalid due to password change' }, 401)
+        const mode = getDataDriverMode(c.env as any)
+        if (mode === 'r2') {
+          const store = getR2DataStore(c.env)
+          const user = await store.findUserById(Number(sub))
+          const changedAt = user?.passwordChangedAt ? Math.floor(new Date(user.passwordChangedAt).getTime() / 1000) : 0
+          const iat = Number((payload as any).iat || 0)
+          if (changedAt && iat && iat < changedAt) {
+            return c.json({ error: 'Token invalid due to password change' }, 401)
+          }
+        } else {
+          const prisma: any = getPrisma(c.env)
+          const u = await prisma.user.findUnique({ where: { id: BigInt(sub) }, select: { passwordChangedAt: true } })
+          const changedAt = u?.passwordChangedAt ? Math.floor(new Date(u.passwordChangedAt).getTime() / 1000) : 0
+          const iat = Number((payload as any).iat || 0)
+          if (changedAt && iat && iat < changedAt) {
+            return c.json({ error: 'Token invalid due to password change' }, 401)
+          }
         }
       }
     }
@@ -334,11 +430,29 @@ app.get('/me', auth, (c) => {
 })
 
 app.get('/subordinates', auth, async (c) => {
+  const mode = getDataDriverMode(c.env as any)
   const user = c.get('user') as JWTPayload
-  const prisma = getPrisma(c.env)
-  const now = new Date()
   const subId = user?.sub ?? user?.userId ?? user?.id
   if (subId == null) return c.json({ error: 'No subject in token' }, 400)
+
+  if (mode === 'r2') {
+    const store = getR2DataStore(c.env)
+    const now = new Date()
+    const { visibleUserIds } = await resolveVisibleUsersR2(store, Number(subId), 'direct', now)
+    const filtered = visibleUserIds.filter((id) => id !== Number(subId))
+    if (filtered.length === 0) return c.json({ items: [] })
+    const allUsers = await store.listAllUsers()
+    const map = new Map(allUsers.map((u) => [u.id, u]))
+    const items = filtered
+      .map((id) => map.get(id))
+      .filter((u): u is NonNullable<typeof u> => !!u)
+      .sort((a, b) => a.id - b.id)
+      .map((u) => ({ id: u.id, name: u.name, email: u.email }))
+    return c.json({ items })
+  }
+
+  const prisma = getPrisma(c.env)
+  const now = new Date()
   const viewerId = BigInt(subId)
 
   const options = await getVisibilityOptions(prisma, c.env)
@@ -359,13 +473,11 @@ app.get('/subordinates', auth, async (c) => {
 
 // Create Work Item (POST /api/work-items)
 app.post('/api/work-items', auth, async (c) => {
-  const prisma = getPrisma(c.env)
+  const mode = getDataDriverMode(c.env as any)
   const user = c.get('user') as JWTPayload
   const sub = user?.sub ?? user?.userId ?? user?.id
   if (sub == null) return c.json({ error: 'No subject in token' }, 400)
-  const viewerId = BigInt(sub)
 
-  // parse and validate body
   let body: any
   try {
     body = await c.req.json()
@@ -379,15 +491,12 @@ app.post('/api/work-items', auth, async (c) => {
   const tags = Array.isArray(body.tags) ? body.tags.map((t: any) => String(t)).slice(0, 20) : undefined
   const detail = body.detail != null ? String(body.detail) : undefined
 
-  // title <= 20 chars (counting JS code points)
   if (!title) return c.json({ error: 'title is required' }, 400)
   if ([...title].length > 20) return c.json({ error: 'title must be <= 20 characters' }, 400)
 
-  // type enum
   const allowedTypes = new Set(['done', 'progress', 'temp', 'assist'])
   if (!allowedTypes.has(type)) return c.json({ error: 'invalid type' }, 400)
 
-  // date strict YYYY-MM-DD
   const re = /^\d{4}-\d{2}-\d{2}$/
   if (!re.test(workDateStr)) return c.json({ error: 'workDate must be YYYY-MM-DD' }, 400)
   const workDate = new Date(workDateStr + 'T00:00:00Z')
@@ -397,7 +506,31 @@ app.post('/api/work-items', auth, async (c) => {
     if (!Number.isInteger(durationMinutes) || durationMinutes < 0) return c.json({ error: 'durationMinutes must be a non-negative integer' }, 400)
   }
 
-  // resolve creator's primary org as of today
+  if (mode === 'r2') {
+    const store = getR2DataStore(c.env)
+    const orgId = await getPrimaryOrgIdR2(store, Number(sub), new Date())
+    if (orgId == null) return c.json({ error: 'no primary org for user' }, 400)
+
+    try {
+      const created = await store.addWorkItem(Number(sub), {
+        orgId,
+        workDate: workDateStr,
+        title,
+        type: type as any,
+        durationMinutes: durationMinutes ?? null,
+        tags: tags ?? [],
+        detail: detail ?? null,
+      })
+      await ensureAuditLog(store, { actorUserId: Number(sub), action: 'create', objectType: 'work_item', objectId: created.id })
+      return c.json({ id: created.id }, 201)
+    } catch (e: any) {
+      return c.json({ error: 'failed to create', detail: e?.message ?? String(e) }, 500)
+    }
+  }
+
+  const prisma = getPrisma(c.env)
+  const viewerId = BigInt(sub)
+
   const today = new Date()
   const rows = await prisma.$queryRaw<{ org_id: bigint }[]>`
     select "orgId" as org_id from "user_org_memberships"
@@ -410,7 +543,6 @@ app.post('/api/work-items', auth, async (c) => {
   if (rows.length === 0) return c.json({ error: 'no primary org for user' }, 400)
   const orgId = rows[0].org_id
 
-  // write
   try {
     const created = await prisma.workItem.create({
       data: {
@@ -426,7 +558,6 @@ app.post('/api/work-items', auth, async (c) => {
       select: { id: true },
     })
 
-    // audit (best-effort)
     await prisma.auditLog.create({
       data: {
         actorUserId: viewerId,
@@ -446,11 +577,10 @@ export default app
 
 // List Work Items (GET /api/work-items)
 app.get('/api/work-items', auth, canRead, async (c) => {
-  const prisma = getPrisma(c.env)
+  const mode = getDataDriverMode(c.env as any)
   const user = c.get('user') as JWTPayload
   const sub = user?.sub ?? user?.userId ?? user?.id
   if (sub == null) return c.json({ error: 'No subject in token' }, 400)
-  const viewerId = BigInt(sub)
 
   const scope = (c.get('scope') as any) || 'self'
   const range = c.get('range') as { start: Date; end: Date }
@@ -462,6 +592,36 @@ app.get('/api/work-items', auth, canRead, async (c) => {
 
   const limit = Math.min(Math.max(Number(q.limit ?? 100), 1), 500)
   const offset = Math.max(Number(q.offset ?? 0), 0)
+
+  if (mode === 'r2') {
+    const store = getR2DataStore(c.env)
+    const { items, total } = await listWorkItemsPaginatedR2(store, Number(sub), scope, range, limit, offset)
+    await ensureAuditLog(store, {
+      actorUserId: Number(sub),
+      action: 'list',
+      objectType: 'work_item',
+      detail: { scope, from: fromStr, to: toStr, count: items.length },
+    })
+    return c.json({
+      items: items.map((it) => ({
+        id: it.id,
+        creatorId: it.creatorId,
+        orgId: it.orgId,
+        workDate: it.workDate,
+        title: it.title,
+        type: it.type,
+        durationMinutes: it.durationMinutes ?? undefined,
+        tags: Array.isArray(it.tags) ? it.tags : [],
+        detail: it.detail ?? undefined,
+      })),
+      total,
+      limit,
+      offset,
+    })
+  }
+
+  const prisma = getPrisma(c.env)
+  const viewerId = BigInt(sub)
 
   const options = await getVisibilityOptions(prisma, c.env)
   const visibleIds = await resolveVisibleUsers(prisma, viewerId, scope as any, new Date(), options)
@@ -488,7 +648,6 @@ app.get('/api/work-items', auth, canRead, async (c) => {
     skip: offset,
   })
 
-  // count total (best-effort; could be optimized later)
   const total = await prisma.workItem.count({
     where: {
       creatorId: { in: visibleIds },
@@ -496,7 +655,6 @@ app.get('/api/work-items', auth, canRead, async (c) => {
     }
   })
 
-  // audit (best-effort)
   await audit(prisma, {
     actorUserId: viewerId,
     action: 'list',
@@ -542,20 +700,57 @@ function parseISOWeek(week: string): { start: Date; end: Date } | null {
 }
 
 app.get('/api/reports/weekly', auth, canRead, async (c) => {
-  const prisma = getPrisma(c.env)
+  const mode = getDataDriverMode(c.env as any)
   const user = c.get('user') as JWTPayload
   const sub = user?.sub ?? user?.userId ?? user?.id
   if (sub == null) return c.json({ error: 'No subject in token' }, 400)
-  const viewerId = BigInt(sub)
 
   const scope = (c.get('scope') as any) || 'self'
   const range = c.get('range') as { start: Date; end: Date }
   const start = range.start
   const end = range.end
+  const rangeInfo = { start: start.toISOString().slice(0,10), end: end.toISOString().slice(0,10) }
+
+  if (mode === 'r2') {
+    const store = getR2DataStore(c.env)
+    const { rows, details } = await buildWeeklyAggregateR2(store, Number(sub), scope, range)
+    await ensureAuditLog(store, {
+      actorUserId: Number(sub),
+      action: 'report_weekly',
+      objectType: 'work_item',
+      detail: { scope, start: rangeInfo.start, end: rangeInfo.end, rows: rows.length },
+    })
+    return c.json({
+      ok: true,
+      range: rangeInfo,
+      data: rows.map((r) => ({
+        creatorId: r.creatorId,
+        creatorName: r.creatorName,
+        workDate: r.workDate,
+        itemCount: r.itemCount,
+        totalMinutes: r.totalMinutes,
+        typeCounts: r.typeCounts,
+      })),
+      details: details.map((d) => ({
+        creatorId: d.creatorId,
+        creatorName: d.creatorName,
+        items: d.items.map((item) => ({
+          id: item.id,
+          workDate: item.workDate,
+          title: item.title,
+          type: item.type,
+          durationMinutes: item.durationMinutes,
+        })),
+      })),
+    })
+  }
+
+  const prisma = getPrisma(c.env)
+  const viewerId = BigInt(sub)
 
   const options = await getVisibilityOptions(prisma, c.env)
   const visibleIds = await resolveVisibleUsers(prisma, viewerId, scope as any, new Date(), options)
-  if (visibleIds.length === 0) return c.json({ ok: true, range: { start: start!.toISOString().slice(0,10), end: end!.toISOString().slice(0,10) }, data: [] })
+  if (visibleIds.length === 0) return c.json({ ok: true, range: rangeInfo, data: [] })
 
   const rows = await prisma.$queryRaw<{
     creator_id: bigint
@@ -618,7 +813,6 @@ app.get('/api/reports/weekly', auth, canRead, async (c) => {
   }
   const detailList = Array.from(groupedDetails.values())
 
-  // audit (best-effort)
   await audit(prisma, {
     actorUserId: viewerId,
     action: 'report_weekly',
@@ -628,7 +822,7 @@ app.get('/api/reports/weekly', auth, canRead, async (c) => {
 
   return c.json({
     ok: true,
-    range: { start: start!.toISOString().slice(0,10), end: end!.toISOString().slice(0,10) },
+    range: rangeInfo,
     data: rows.map(r => ({
       creatorId: Number(r.creator_id),
       creatorName: r.creator_name ?? nameMap.get(Number(r.creator_id)) ?? null,
@@ -649,14 +843,63 @@ app.get('/api/reports/weekly', auth, canRead, async (c) => {
 
 // Missing report API (GET /api/reports/missing-weekly)
 app.get('/api/reports/missing-weekly', auth, canRead, async (c) => {
-  const prisma = getPrisma(c.env)
+  const mode = getDataDriverMode(c.env as any)
   const user = c.get('user') as JWTPayload
   const sub = user?.sub ?? user?.userId ?? user?.id
   if (sub == null) return c.json({ error: 'No subject in token' }, 400)
-  const viewerId = BigInt(sub)
 
   const scope = (c.get('scope') as 'self' | 'direct' | 'subtree' | undefined) ?? 'self'
   const range = c.get('range') as { start: Date; end: Date }
+
+  if (mode === 'r2') {
+    const store = getR2DataStore(c.env)
+    const report = await buildMissingReportR2(store, Number(sub), scope, range)
+    const activeMap = new Map<number, { id: number; name: string | null; email: string | null; employeeNo: string | null }>(
+      report.activeUsers.map((u) => [u.id, { id: Number(u.id), name: u.name ?? null, email: u.email ?? null, employeeNo: u.employeeNo ?? null }]),
+    )
+    const data: Array<{ userId: number; name: string | null; email: string | null; employeeNo: string | null; missingDates: string[] }> = []
+    let missingDatesTotal = 0
+    for (const [uid, dates] of report.missingMap.entries()) {
+      const info = activeMap.get(uid)
+      if (!info) continue
+      const list = [...dates]
+      missingDatesTotal += list.length
+      data.push({
+        userId: info.id,
+        name: info.name,
+        email: info.email,
+        employeeNo: info.employeeNo,
+        missingDates: list,
+      })
+    }
+    data.sort((a, b) => a.userId - b.userId)
+    await ensureAuditLog(store, {
+      actorUserId: Number(sub),
+      action: 'report_missing_weekly',
+      objectType: 'work_item',
+      detail: {
+        scope,
+        start: report.startStr,
+        end: report.endStr,
+        userCount: data.length,
+        missingDatesTotal,
+        totalActiveVisible: report.totalActiveVisible,
+      },
+    })
+    return c.json({
+      ok: true,
+      range: { start: report.startStr, end: report.endStr },
+      stats: {
+        totalActiveVisible: report.totalActiveVisible,
+        missingUsers: data.length,
+        missingDates: missingDatesTotal,
+      },
+      data,
+    })
+  }
+
+  const prisma = getPrisma(c.env)
+  const viewerId = BigInt(sub)
 
   const report = await buildMissingReport(prisma, c.env, viewerId, scope, range)
   const activeMap = new Map<string, { id: bigint; name: string; email: string | null; employeeNo: string | null }>(
@@ -708,11 +951,10 @@ app.get('/api/reports/missing-weekly', auth, canRead, async (c) => {
 
 // Missing report reminder (POST /api/reports/missing-weekly/remind)
 app.post('/api/reports/missing-weekly/remind', auth, canRead, async (c) => {
-  const prisma = getPrisma(c.env)
+  const mode = getDataDriverMode(c.env as any)
   const user = c.get('user') as JWTPayload
   const sub = user?.sub ?? user?.userId ?? user?.id
   if (sub == null) return c.json({ error: 'No subject in token' }, 400)
-  const viewerId = BigInt(sub)
 
   const scope = (c.get('scope') as 'self' | 'direct' | 'subtree' | undefined) ?? 'self'
   const range = c.get('range') as { start: Date; end: Date }
@@ -734,6 +976,45 @@ app.post('/api/reports/missing-weekly/remind', auth, canRead, async (c) => {
     }
   }
   if (requested.size === 0) return c.json({ error: 'userIds required' }, 400)
+
+  if (mode === 'r2') {
+    const store = getR2DataStore(c.env)
+    const report = await buildMissingReportR2(store, Number(sub), scope, range)
+    const activeSet = new Set(report.activeUsers.map((u) => Number(u.id)))
+    const targets: Array<{ userId: number; missingDates: string[] }> = []
+    const skipped: Array<{ userId: number; reason: 'not_visible' | 'no_missing' }> = []
+
+    for (const id of requested) {
+      if (!activeSet.has(id)) {
+        skipped.push({ userId: id, reason: 'not_visible' })
+        continue
+      }
+      const dates = report.missingMap.get(id)
+      if (!dates || dates.length === 0) {
+        skipped.push({ userId: id, reason: 'no_missing' })
+        continue
+      }
+      targets.push({ userId: id, missingDates: [...dates] })
+    }
+
+    await ensureAuditLog(store, {
+      actorUserId: Number(sub),
+      action: 'missing_notify',
+      objectType: 'work_item',
+      detail: {
+        scope,
+        start: report.startStr,
+        end: report.endStr,
+        targetUserIds: targets.map((t) => t.userId),
+        skipped,
+      },
+    })
+
+    return c.json({ ok: true, notified: targets.length, targets, skipped })
+  }
+
+  const prisma = getPrisma(c.env)
+  const viewerId = BigInt(sub)
 
   const report = await buildMissingReport(prisma, c.env, viewerId, scope, range)
   const activeSet = new Set(report.activeUsers.map((u) => u.id.toString()))
@@ -778,16 +1059,20 @@ app.post('/api/reports/weekly/export', auth, canExport, async (c) => {
   const user = c.get('user') as JWTPayload
   const sub = user?.sub ?? user?.userId ?? user?.id
   if (sub == null) return c.json({ error: 'No subject in token' }, 400)
-  const viewerId = BigInt(sub)
 
   const scope = (c.get('scope') as any) || 'self'
   const range = c.get('range') as { start: Date; end: Date }
-
   const jobId = (crypto as any).randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2)
   const objectKey = `weekly/${jobId}.xlsx`
+  const payload = {
+    jobId,
+    viewerId: Number(sub),
+    scope,
+    start: range.start.toISOString().slice(0,10),
+    end: range.end.toISOString().slice(0,10),
+    objectKey,
+  }
 
-  // enqueue or inline process export task (zero-cost inline driver)
-  const payload = { jobId, viewerId: Number(viewerId), scope, start: range.start.toISOString().slice(0,10), end: range.end.toISOString().slice(0,10), objectKey }
   const driver = String((c.env as any).QUEUE_DRIVER || '').toLowerCase()
   if (driver === 'inline' || !(c.env as any).EXPORT_QUEUE) {
     await processExportJob(payload as any, c.env)
@@ -795,10 +1080,20 @@ app.post('/api/reports/weekly/export', auth, canExport, async (c) => {
     await c.env.EXPORT_QUEUE.send(payload)
   }
 
-  // unified audit (best-effort)
   try {
-    const prisma = getPrisma(c.env)
-    await audit(prisma, { actorUserId: viewerId, action: 'export_request', objectType: 'work_item', detail: { scope, start: payload.start, end: payload.end, jobId } })
+    const mode = getDataDriverMode(c.env as any)
+    if (mode === 'r2') {
+      const store = getR2DataStore(c.env)
+      await ensureAuditLog(store, {
+        actorUserId: Number(sub),
+        action: 'export_request',
+        objectType: 'work_item',
+        detail: { scope, start: payload.start, end: payload.end, jobId },
+      })
+    } else {
+      const prisma = getPrisma(c.env)
+      await audit(prisma, { actorUserId: BigInt(sub), action: 'export_request', objectType: 'work_item', detail: { scope, start: payload.start, end: payload.end, jobId } })
+    }
   } catch {}
 
   return c.json({ ok: true, jobId })
@@ -1025,5 +1320,18 @@ export async function queue(batch: any, env: Bindings): Promise<void> {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
