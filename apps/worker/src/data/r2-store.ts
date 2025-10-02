@@ -48,6 +48,7 @@ function clone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value));
 }
 
+const WORK_ITEMS_PREFIX = 'data/work_items/user/';
 export class R2DataStore {
   private cache = new Map<string, { data: any; etag: string | null }>();
 
@@ -482,6 +483,30 @@ export class R2DataStore {
     });
   }
 
+  async listUserWorkItemKeys(): Promise<string[]> {
+    const keys: string[] = [];
+    let cursor: string | undefined = undefined;
+    do {
+      const response: any = await (this.bucket as any).list({ prefix: WORK_ITEMS_PREFIX, cursor });
+      for (const obj of response.objects ?? []) {
+        keys.push(obj.key);
+      }
+      cursor = response.truncated ? response.cursor : undefined;
+    } while (cursor);
+    return keys;
+  }
+
+  async deleteKey(key: string): Promise<void> {
+    await this.bucket.delete(key);
+    this.cache.delete(key);
+  }
+
+  async deleteUserWorkItemsFile(userId: number): Promise<void> {
+    const key = this.workItemsKey(userId);
+    await this.deleteKey(key);
+  }
+
+
   async filterWorkItemsByUsers(userIds: number[], start: Date, end: Date): Promise<WorkItemRecord[]> {
     const all: WorkItemRecord[] = [];
     for (const id of userIds) {
@@ -561,3 +586,5 @@ export function getR2DataStore(env: any): R2DataStore {
   }
   return new R2DataStore(bucket as R2Bucket);
 }
+
+

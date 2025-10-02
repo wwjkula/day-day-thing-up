@@ -4,6 +4,7 @@ import { PrismaNeonHTTP } from '@prisma/adapter-neon'
 import type { JWTPayload } from './auth'
 import { audit as auditHelper } from './middlewares/permissions'
 import { getDataDriverMode, getR2DataStore } from './data/r2-store'
+import { migrateNeonToR2 } from './migrate'
 import { ensureAuditLog, filterUsersWithKeyword, paginate } from './data/r2-logic'
 
 export type Bindings = { DATABASE_URL: string; JWT_SECRET: string; DATA_DRIVER?: string; R2_EXPORTS: any; R2_DATA?: any }
@@ -52,6 +53,29 @@ function actorBigInt(user: JWTPayload | null): bigint {
 }
 
 export function registerAdminRoutes(app: Hono<{ Bindings: Bindings; Variables: { user?: JWTPayload } }>) {
+  app.post('/api/admin/migrate/r2', async (c) => {
+    const auth = requireAuth(c); if (!auth) return c.json({ error: 'Unauthorized' }, 401)
+    let store: ReturnType<typeof getR2DataStore>
+    try {
+      store = getR2DataStore(c.env)
+    } catch (err: any) {
+      return c.json({ ok: false, error: err?.message || 'R2 存储未配置' }, 500)
+    }
+    try {
+      const prisma = getPrisma(c.env)
+      const summary = await migrateNeonToR2(prisma, store)
+      await ensureAuditLog(store, {
+        actorUserId: actorNumber(auth),
+        action: 'admin_migrate_neon_to_r2',
+        objectType: 'migration',
+        detail: summary,
+      })
+      return c.json({ ok: true, summary })
+    } catch (err: any) {
+      return c.json({ ok: false, error: err?.message || '数据迁移失败' }, 500)
+    }
+  })
+
   // --- ORG UNITS ---
   app.get('/api/admin/orgs', async (c) => {
     const auth = requireAuth(c); if (!auth) return c.json({ error: 'Unauthorized' }, 401)

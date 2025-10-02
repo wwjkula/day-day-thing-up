@@ -6,8 +6,7 @@ declare global {
   interface Window { __AUTH__?: string }
 }
 
-// 在生产（Pages）上通过 VITE_API_BASE 指向后端 Worker 域名；
-// 本地开发不设置则走相对路径并由 Vite 代理到本地 Worker。
+// 生产环境通过 VITE_API_BASE 指向 Worker 域名；本地未设置时走相对路径，由 Vite 代理到 Worker。
 const API_BASE = (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_API_BASE) || ''
 export const withBase = (p: string) => (API_BASE ? `${API_BASE}${p}` : p)
 
@@ -62,7 +61,9 @@ export async function downloadExport(jobId: string): Promise<void> {
   const a = document.createElement('a')
   a.href = objectUrl
   a.download = `${jobId}.xlsx`
-  document.body.appendChild(a); a.click(); a.remove()
+  document.body.appendChild(a)
+  a.click()
+  a.remove()
   setTimeout(() => URL.revokeObjectURL(objectUrl), 1000)
 }
 
@@ -89,18 +90,25 @@ export async function listWorkItems(params: { from: string; to: string; scope: V
   return res.json()
 }
 
-
-
 // --- Auth APIs ---
 export async function authLogin(payload: { employeeNo?: string; email?: string; password?: string }) {
-  const res = await fetch(withBase('/api/auth/login'), { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) })
+  const res = await fetch(withBase('/api/auth/login'), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
   return res.json()
 }
 
 export async function authChangePassword(payload: { currentPassword: string; newPassword: string }) {
-  const res = await fetch(withBase('/api/auth/change-password'), { method: 'POST', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) })
+  const res = await fetch(withBase('/api/auth/change-password'), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
   return res.json()
 }
+
 export async function getMe() {
   const res = await fetch(withBase('/me'), { headers: { ...authHeader() } })
   return res.json()
@@ -108,68 +116,115 @@ export async function getMe() {
 
 // --- Admin APIs ---
 export async function adminListOrgs() {
-  const res = await fetch(withBase('/api/admin/orgs'), { headers: { ...authHeader() } });
-  return res.json();
+  const res = await fetch(withBase('/api/admin/orgs'), { headers: { ...authHeader() } })
+  return res.json()
 }
+
 export async function adminGetOrgTree() {
-  const res = await fetch(withBase('/api/admin/orgs/tree'), { headers: { ...authHeader() } });
-  return res.json();
+  const res = await fetch(withBase('/api/admin/orgs/tree'), { headers: { ...authHeader() } })
+  return res.json()
 }
-export async function adminCreateOrg(payload: { name: string; parentId?: number|null; type?: string; active?: boolean }) {
-  const res = await fetch(withBase('/api/admin/orgs'), { method: 'POST', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) });
-  return res.json();
+
+export async function adminCreateOrg(payload: { name: string; parentId?: number | null; type?: string; active?: boolean }) {
+  const res = await fetch(withBase('/api/admin/orgs'), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
+  return res.json()
 }
+
 export async function adminUpdateOrg(id: number, payload: any) {
-  const res = await fetch(withBase(`/api/admin/orgs/${id}`), { method: 'PUT', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) });
-  return res.json();
+  const res = await fetch(withBase(`/api/admin/orgs/${id}`), {
+    method: 'PUT',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
+  return res.json()
 }
 
 export async function adminListUsers(params: { q?: string; limit?: number; offset?: number } = {}) {
   const qs = new URLSearchParams(params as any)
   const res = await fetch(withBase(`/api/admin/users?${qs}`), { headers: { ...authHeader() } })
-  return res.json();
+  return res.json()
 }
+
 export async function adminCreateUser(payload: any) {
-  const res = await fetch(withBase('/api/admin/users'), { method: 'POST', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) });
-  return res.json();
+  const res = await fetch(withBase('/api/admin/users'), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
+  return res.json()
 }
+
 export async function adminUpdateUser(id: number, payload: any) {
-  const res = await fetch(withBase(`/api/admin/users/${id}`), { method: 'PUT', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) });
-  return res.json();
+  const res = await fetch(withBase(`/api/admin/users/${id}`), {
+    method: 'PUT',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
+  return res.json()
 }
+
 export async function adminSetPrimaryOrg(userId: number, orgId: number) {
-  const res = await fetch(withBase(`/api/admin/users/${userId}/primary-org`), { method: 'PATCH', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify({ orgId }) })
-  return res.json();
+  const res = await fetch(withBase(`/api/admin/users/${userId}/primary-org`), {
+    method: 'PATCH',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify({ orgId }),
+  })
+  return res.json()
 }
 
 export async function adminListManagerEdges(params: { managerId?: number; subordinateId?: number } = {}) {
   const qs = new URLSearchParams(params as any)
   const res = await fetch(withBase(`/api/admin/manager-edges?${qs}`), { headers: { ...authHeader() } })
-  return res.json();
+  return res.json()
 }
+
 export async function adminCreateManagerEdge(payload: any) {
-  const res = await fetch(withBase('/api/admin/manager-edges'), { method: 'POST', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) })
-  return res.json();
+  const res = await fetch(withBase('/api/admin/manager-edges'), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
+  return res.json()
 }
+
 export async function adminDeleteManagerEdge(payload: { managerId: number; subordinateId: number; startDate: string }) {
-  const res = await fetch(withBase('/api/admin/manager-edges'), { method: 'DELETE', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) })
-  return res.json();
+  const res = await fetch(withBase('/api/admin/manager-edges'), {
+    method: 'DELETE',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
+  return res.json()
 }
 
 export async function adminListRoleGrants() {
   const res = await fetch(withBase('/api/admin/role-grants'), { headers: { ...authHeader() } })
-  return res.json();
+  return res.json()
 }
+
 export async function adminCreateRoleGrant(payload: any) {
-  const res = await fetch(withBase('/api/admin/role-grants'), { method: 'POST', headers: { 'content-type': 'application/json', ...authHeader() }, body: JSON.stringify(payload) })
-  return res.json();
+  const res = await fetch(withBase('/api/admin/role-grants'), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
+  return res.json()
 }
+
 export async function adminDeleteRoleGrant(id: number) {
   const res = await fetch(withBase(`/api/admin/role-grants/${id}`), { method: 'DELETE', headers: { ...authHeader() } })
-  return res.json();
+  return res.json()
 }
 
 export async function adminListRoles() {
   const res = await fetch(withBase('/api/admin/roles'), { headers: { ...authHeader() } })
+  return res.json()
+}
+
+export async function adminMigrateToR2() {
+  const res = await fetch(withBase('/api/admin/migrate/r2'), { method: 'POST', headers: { ...authHeader() } })
   return res.json()
 }

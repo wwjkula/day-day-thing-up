@@ -97,6 +97,20 @@ export function createInMemoryR2(initial: Record<string, string | Uint8Array> = 
       }
     },
 
+    async list(options: { prefix?: string } = {}) {
+      const prefix = options.prefix ?? ''
+      const objects = Array.from(store.entries())
+        .filter(([key]) => key.startsWith(prefix))
+        .map(([key, value]) => ({
+          key,
+          size: value.body.length,
+          httpMetadata: value.httpMetadata,
+          etag: value.etag,
+          httpEtag: value.etag,
+        }))
+      return { objects, truncated: false, cursor: undefined }
+    },
+
     async delete(key: string): Promise<void> {
       store.delete(key)
     },
@@ -104,3 +118,5 @@ export function createInMemoryR2(initial: Record<string, string | Uint8Array> = 
     _store: store,
   }
 }
+
+
