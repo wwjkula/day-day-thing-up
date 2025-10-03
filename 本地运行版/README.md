@@ -1,26 +1,27 @@
 # 日事日清 · 本地运行版
 
-本目录提供脱离 Cloudflare 的纯内网部署方案。后端使用 Node.js 本地 JSON 存储，前端保留原 Vue 页面，实现与原先 Cloudflare 版本等价的功能（工作项填报、周报、缺报提醒、Excel 导出、管理员 CRUD 等）。
+该目录提供脱离 Cloudflare 的本地化部署方案。后端由 Node.js/Express 直接读写 `data/` 下的 JSON 文件，前端沿用现有 Vue 页面，功能覆盖工作项填报、周报、缺报提醒、Excel 导出以及管理员 CRUD。
 
 ## 目录结构
 
-- `server/`：Express 后端，直接读写 `data/*.json`
-- `web/`：Vue 3 前端，保留原组件代码，别名指向 `../shared`
-- `shared/`：前后端共用 DTO / 校验逻辑
-- `data/`：现有数据（用户、组织、管理关系、工作项等）
-- `exports/`：后端导出的 Excel 会写入此目录
+- `server/`：Express API 与本地数据访问层
+- `web/`：Vue 3 前端（使用 `../shared` 中的 DTO/校验）
+- `shared/`：前后端共享类型与工具
+- `data/`：JSON 数据源（用户、组织、角色、工作项等）
+- `exports/`：导出生成的 `.xlsx` 文件
 - `logs/`：预留日志目录
-- `Dockerfile`、`docker-compose.yml`：容器化运行脚手架
-- `启动Docker版.cmd`、`启动本地版.cmd`：Windows 一键启动脚本
+- `Dockerfile` & `docker-compose.yml`：容器化启动脚手架
+- `启动Docker版.cmd`：Windows 一键 Docker 启动脚本
+- `start_local.py`：跨平台（Windows/macOS/Linux）本地启动脚本
 
 ## 运行方式
 
-### 1. Docker（推荐，适合目标电脑未装 Node 环境）
+### 1. Docker（推荐，目标电脑无需预装 Node）
 
-1. 安装 [Docker Desktop](https://www.docker.com/products/docker-desktop)
-2. 双击 `启动Docker版.cmd`
-3. 首次执行会自动构建镜像并运行容器。完成后浏览器访问 `http://localhost:8080/`（局域网其它电脑访问 `http://10.10.20.69:8080/`）。
-4. 数据、导出文件与日志分别挂载到宿主机 `./data`、`./exports`、`./logs`，升级镜像不会丢数据。
+1. 安装 [Docker Desktop](https://www.docker.com/products/docker-desktop)。
+2. 双击 `启动Docker版.cmd`。
+3. 初次执行会自动构建镜像并启动容器。完成后，浏览器访问 `http://localhost:8080/`（局域网其它设备使用 `http://10.10.20.69:8080/`）。
+4. 数据、导出、日志分别挂载到宿主机的 `./data`、`./exports`、`./logs`，升级镜像不会丢失。
 
 常用命令：
 
@@ -29,14 +30,14 @@ docker compose logs -f   # 查看实时日志
 docker compose down      # 停止并移除容器
 ```
 
-### 2. 本地 Node.js（适合开发调试）
+### 2. 本地 Node.js（适合开发/调试）
 
-1. 安装 Node.js ≥ 18
-2. 双击 `启动本地版.cmd`
-   - 首次会自动执行 `npm install`、`npm install --prefix web`、`npm run build --prefix web`
-   - 完成后监听 `http://localhost:8080/`
+1. 安装 Node.js ≥ 18。
+2. 执行 `python start_local.py`。
+   - 首次会自动运行 `npm install`、`npm install --prefix web`、`npm run build --prefix web`。
+   - 完成后服务监听 `http://localhost:8080/`。
 
-手工执行也可：
+也可手动执行：
 
 ```powershell
 npm install
@@ -45,28 +46,37 @@ npm run build --prefix web
 npm start
 ```
 
+`start_local.py` 支持的可选参数：
+
+```bash
+python start_local.py --force-install       # 重新安装根依赖
+python start_local.py --force-install-web   # 重新安装 web 依赖
+python start_local.py --force-build         # 强制重新构建前端
+python start_local.py --skip-build          # 跳过前端构建
+```
+
 ## Excel 导出
 
-`POST /api/reports/weekly/export` 会即时生成 Excel（SheetJS），保存在 `exports/{jobId}.xlsx`。前端轮询 `/status` 后自动下载，文件结构与 Cloudflare 版一致（`Summary`、`ByUser`、`Details` 三个 Sheet）。
+调用 `POST /api/reports/weekly/export` 会实时生成 Excel（使用 SheetJS），文件保存在 `exports/{jobId}.xlsx`。前端按原逻辑轮询 `/status` 并触发下载，Sheet 结构与 Cloudflare 版一致（`Summary`、`ByUser`、`Details`）。
 
 ## 管理员入口
 
-- 仍然通过“工号 + 密码”登录
-- 判断管理员逻辑：`role_grants.json` 中授予 `sys_admin` 角色
-- 管理后台 `/api/admin/*` 覆盖组织、人员、上下级关系、角色授权等 CRUD，所有操作落盘并写入 `audit_logs.json`
+- 登录凭据仍为 “工号 + 密码”。
+- 通过 `role_grants.json` 中授予 `sys_admin` 角色判断管理员。
+- 管理端路由 `/api/admin/*` 覆盖组织、人员、上下级关系、角色授权等 CRUD；所有操作写回 JSON 并追加审计日志。
 
 ## 数据存储说明
 
-- 所有 JSON 以 `{ meta: { lastId }, items: [] }` 结构存储，自增 ID 由后端维护
-- 工作项分用户存放：`data/work_items/user/{userId}.json`
-- 缺报、周报统计均在内存根据 JSON 即时计算，无需外部数据库
-- 导出、审计日志会追加写入，无需外部服务
+- 所有 JSON 均采用 `{ meta: { lastId }, items: [] }` 结构，ID 自增由后端维护。
+- 工作项按用户拆分存储于 `data/work_items/user/{userId}.json`。
+- 周报、缺报统计在内存中基于 JSON 动态计算，无需数据库。
+- 审计、导出等写入同一 `data/` 目录，可按需备份。
 
 ## 注意事项
 
-- 首次构建/启动前无需手动修改数据文件，后端会自动创建缺失目录
-- 修改 JSON 数据前请停止服务，以免写入冲突
-- 如果需要重置管理员密码，可在 `data/users.json` 中替换 `passwordHash`（`bcryptjs` 算法）
-- 为保证内网性能，可定期清理 `exports/` 或归档 Excel
+- 首次启动无需手动修改 `data/`，缺失的目录会自动创建。
+- 修改 JSON 前建议停止服务，避免写入冲突。
+- 如需重置管理员密码，可替换 `data/users.json` 中的 `passwordHash`（bcryptjs）。
+- 建议定期清理 `exports/` 或归档生成的 Excel。
 
-如需扩展功能（定时任务、更多报表等），可在 `server/` 内继续迭代，不影响现有 Cloudflare 版本。
+如需扩展（定时任务、更多报表等），可在 `server/` 目录继续迭代，互不影响原 Cloudflare 部署。

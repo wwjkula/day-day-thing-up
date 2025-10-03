@@ -3,6 +3,8 @@ import path from 'node:path'
 
 const writeQueue = new Map()
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
 async function ensureDir(dirPath) {
   await fs.mkdir(dirPath, { recursive: true })
 }
@@ -25,7 +27,27 @@ export async function writeJson(fullPath, payload) {
   const prev = writeQueue.get(fullPath) || Promise.resolve()
   const next = prev.then(async () => {
     await fs.writeFile(tmp, json, 'utf8')
-    await fs.rename(tmp, fullPath)
+    let lastError
+    for (let attempt = 0; attempt < 5; attempt++) {
+      try {
+        await fs.rename(tmp, fullPath)
+        lastError = undefined
+        break
+      } catch (err) {
+        lastError = err
+        const code = err?.code
+        if (code === 'EPERM' || code === 'EACCES' || code === 'EBUSY') {
+          await fs.unlink(fullPath).catch(() => {})
+          await delay(50 * (attempt + 1))
+          continue
+        }
+        throw err
+      }
+    }
+    if (lastError) {
+      await fs.unlink(tmp).catch(() => {})
+      throw lastError
+    }
   })
   writeQueue.set(fullPath, next.catch(() => {}))
   return next
