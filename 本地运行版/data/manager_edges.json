@@ -1,0 +1,259 @@
+{
+  "meta": {
+    "lastId": 36
+  },
+  "items": [
+    {
+      "managerId": 4,
+      "subordinateId": 5,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 4,
+      "subordinateId": 6,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 4,
+      "subordinateId": 7,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 5,
+      "subordinateId": 7,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 8,
+      "subordinateId": 9,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 8,
+      "subordinateId": 10,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 8,
+      "subordinateId": 11,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 9,
+      "subordinateId": 11,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 12,
+      "subordinateId": 13,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 12,
+      "subordinateId": 14,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 12,
+      "subordinateId": 15,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 13,
+      "subordinateId": 15,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 16,
+      "subordinateId": 17,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 16,
+      "subordinateId": 18,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 16,
+      "subordinateId": 19,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 17,
+      "subordinateId": 19,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 20,
+      "subordinateId": 21,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 20,
+      "subordinateId": 22,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 20,
+      "subordinateId": 23,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 21,
+      "subordinateId": 23,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 24,
+      "subordinateId": 25,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 24,
+      "subordinateId": 26,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 24,
+      "subordinateId": 27,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 25,
+      "subordinateId": 27,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 28,
+      "subordinateId": 29,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 28,
+      "subordinateId": 30,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 28,
+      "subordinateId": 31,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 29,
+      "subordinateId": 31,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 32,
+      "subordinateId": 33,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 32,
+      "subordinateId": 34,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 32,
+      "subordinateId": 35,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 33,
+      "subordinateId": 35,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 36,
+      "subordinateId": 37,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 36,
+      "subordinateId": 38,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 36,
+      "subordinateId": 39,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    },
+    {
+      "managerId": 37,
+      "subordinateId": 39,
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "priority": 100
+    }
+  ]
+}

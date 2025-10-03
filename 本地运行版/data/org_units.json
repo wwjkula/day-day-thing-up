@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "lastId": 11
+  },
+  "items": [
+    {
+      "id": 1,
+      "name": "项目部",
+      "parentId": null,
+      "type": "root",
+      "active": true,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 4,
+      "name": "综合管理部",
+      "parentId": 1,
+      "type": "department",
+      "active": true,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 5,
+      "name": "工程管理部",
+      "parentId": 1,
+      "type": "department",
+      "active": true,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 6,
+      "name": "质量管理部",
+      "parentId": 1,
+      "type": "department",
+      "active": true,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 7,
+      "name": "设备物资部",
+      "parentId": 1,
+      "type": "department",
+      "active": true,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 8,
+      "name": "工程技术部",
+      "parentId": 1,
+      "type": "department",
+      "active": true,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 9,
+      "name": "测量队",
+      "parentId": 1,
+      "type": "department",
+      "active": true,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 10,
+      "name": "安全环保部",
+      "parentId": 1,
+      "type": "department",
+      "active": true,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 11,
+      "name": "计划合同部",
+      "parentId": 1,
+      "type": "department",
+      "active": true,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 2,
+      "name": "领导层",
+      "parentId": 1,
+      "type": "leadership",
+      "active": true,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 3,
+      "name": "财务管理部",
+      "parentId": 1,
+      "type": "department",
+      "active": true,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "ri-shi-ri-qing-local",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "node --watch server/index.js",
+    "start": "node server/index.js",
+    "build:web": "npm run build --prefix web"
+  },
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "dayjs": "1.11.13",
+    "express": "4.19.2",
+    "jsonwebtoken": "9.0.2",
+    "lodash": "4.17.21",
+    "morgan": "1.10.0",
+    "nanoid": "5.0.7",
+    "xlsx": "0.18.5"
+  }
+}

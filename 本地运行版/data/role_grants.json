@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "lastId": 12
+  },
+  "items": [
+    {
+      "id": 1,
+      "granteeUserId": 1,
+      "roleId": 1,
+      "domainOrgId": 1,
+      "scope": "subtree",
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 2,
+      "granteeUserId": 2,
+      "roleId": 2,
+      "domainOrgId": 1,
+      "scope": "subtree",
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 3,
+      "granteeUserId": 3,
+      "roleId": 2,
+      "domainOrgId": 1,
+      "scope": "subtree",
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 4,
+      "granteeUserId": 4,
+      "roleId": 3,
+      "domainOrgId": 3,
+      "scope": "subtree",
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 5,
+      "granteeUserId": 8,
+      "roleId": 3,
+      "domainOrgId": 4,
+      "scope": "subtree",
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 6,
+      "granteeUserId": 12,
+      "roleId": 3,
+      "domainOrgId": 5,
+      "scope": "subtree",
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 7,
+      "granteeUserId": 16,
+      "roleId": 3,
+      "domainOrgId": 6,
+      "scope": "subtree",
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 8,
+      "granteeUserId": 20,
+      "roleId": 3,
+      "domainOrgId": 7,
+      "scope": "subtree",
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 9,
+      "granteeUserId": 24,
+      "roleId": 3,
+      "domainOrgId": 8,
+      "scope": "subtree",
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 10,
+      "granteeUserId": 28,
+      "roleId": 3,
+      "domainOrgId": 9,
+      "scope": "subtree",
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 11,
+      "granteeUserId": 32,
+      "roleId": 3,
+      "domainOrgId": 10,
+      "scope": "subtree",
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 12,
+      "granteeUserId": 36,
+      "roleId": 3,
+      "domainOrgId": 11,
+      "scope": "subtree",
+      "startDate": "2025-09-22",
+      "endDate": null,
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    }
+  ]
+}

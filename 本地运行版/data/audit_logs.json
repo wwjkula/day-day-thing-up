@@ -1,0 +1,4028 @@
+{
+  "meta": {
+    "lastId": 320
+  },
+  "items": [
+    {
+      "id": 1,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T07:58:30.737Z"
+    },
+    {
+      "id": 2,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "rows": 0,
+        "scope": "self",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T07:58:33.131Z"
+    },
+    {
+      "id": 3,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-22",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-22T07:58:33.638Z"
+    },
+    {
+      "id": 4,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T08:09:37.104Z"
+    },
+    {
+      "id": 5,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-22",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-22T08:09:39.360Z"
+    },
+    {
+      "id": 6,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "rows": 0,
+        "scope": "self",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T08:09:39.541Z"
+    },
+    {
+      "id": 7,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T08:17:41.589Z"
+    },
+    {
+      "id": 8,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "rows": 0,
+        "scope": "self",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T08:17:44.014Z"
+    },
+    {
+      "id": 9,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-22",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-22T08:17:44.174Z"
+    },
+    {
+      "id": 10,
+      "actorUserId": 1,
+      "action": "admin_update_org",
+      "objectType": "org_unit",
+      "objectId": 2,
+      "detail": null,
+      "createdAt": "2025-09-22T08:17:59.759Z"
+    },
+    {
+      "id": 11,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T08:26:19.201Z"
+    },
+    {
+      "id": 12,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "rows": 0,
+        "scope": "self",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T08:26:21.575Z"
+    },
+    {
+      "id": 13,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-22",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-22T08:26:21.760Z"
+    },
+    {
+      "id": 14,
+      "actorUserId": 1,
+      "action": "admin_update_org",
+      "objectType": "org_unit",
+      "objectId": 2,
+      "detail": null,
+      "createdAt": "2025-09-22T08:26:29.406Z"
+    },
+    {
+      "id": 15,
+      "actorUserId": 1,
+      "action": "admin_update_org",
+      "objectType": "org_unit",
+      "objectId": 3,
+      "detail": null,
+      "createdAt": "2025-09-22T08:27:12.950Z"
+    },
+    {
+      "id": 16,
+      "actorUserId": 1,
+      "action": "admin_update_org",
+      "objectType": "org_unit",
+      "objectId": 3,
+      "detail": null,
+      "createdAt": "2025-09-22T08:27:34.226Z"
+    },
+    {
+      "id": 17,
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 4,
+      "detail": null,
+      "createdAt": "2025-09-22T08:28:15.149Z"
+    },
+    {
+      "id": 18,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T09:28:54.229Z"
+    },
+    {
+      "id": 19,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T09:30:38.947Z"
+    },
+    {
+      "id": 20,
+      "actorUserId": 1,
+      "action": "change_password",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T09:31:47.688Z"
+    },
+    {
+      "id": 21,
+      "actorUserId": 1,
+      "action": "create",
+      "objectType": "work_item",
+      "objectId": 5,
+      "detail": null,
+      "createdAt": "2025-09-22T09:35:08.022Z"
+    },
+    {
+      "id": 22,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T09:38:57.602Z"
+    },
+    {
+      "id": 23,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T09:48:00.239Z"
+    },
+    {
+      "id": 24,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T09:48:30.326Z"
+    },
+    {
+      "id": 25,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T09:49:45.149Z"
+    },
+    {
+      "id": 26,
+      "actorUserId": 1,
+      "action": "admin_update_org",
+      "objectType": "org_unit",
+      "objectId": 3,
+      "detail": null,
+      "createdAt": "2025-09-22T09:54:52.207Z"
+    },
+    {
+      "id": 27,
+      "actorUserId": 1,
+      "action": "admin_update_org",
+      "objectType": "org_unit",
+      "objectId": 3,
+      "detail": null,
+      "createdAt": "2025-09-22T09:55:00.609Z"
+    },
+    {
+      "id": 28,
+      "actorUserId": 1,
+      "action": "create",
+      "objectType": "work_item",
+      "objectId": 6,
+      "detail": null,
+      "createdAt": "2025-09-22T09:58:08.036Z"
+    },
+    {
+      "id": 29,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T10:06:29.201Z"
+    },
+    {
+      "id": 30,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T10:09:46.497Z"
+    },
+    {
+      "id": 31,
+      "actorUserId": 1,
+      "action": "create",
+      "objectType": "work_item",
+      "objectId": 7,
+      "detail": null,
+      "createdAt": "2025-09-22T10:11:30.065Z"
+    },
+    {
+      "id": 32,
+      "actorUserId": 1,
+      "action": "login_failed",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T10:20:00.267Z"
+    },
+    {
+      "id": 33,
+      "actorUserId": 2,
+      "action": "login_failed",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T10:20:08.626Z"
+    },
+    {
+      "id": 34,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T10:24:50.227Z"
+    },
+    {
+      "id": 35,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T10:32:15.267Z"
+    },
+    {
+      "id": 36,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T10:39:08.507Z"
+    },
+    {
+      "id": 37,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T10:45:29.015Z"
+    },
+    {
+      "id": 38,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T10:50:46.110Z"
+    },
+    {
+      "id": 39,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-22",
+        "count": 7,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-22T10:50:49.588Z"
+    },
+    {
+      "id": 40,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T10:56:22.786Z"
+    },
+    {
+      "id": 41,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "rows": 5,
+        "scope": "self",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T10:56:25.615Z"
+    },
+    {
+      "id": 42,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-22",
+        "count": 7,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-22T10:56:25.840Z"
+    },
+    {
+      "id": 43,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "rows": 5,
+        "scope": "self",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T10:57:00.640Z"
+    },
+    {
+      "id": 44,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "rows": 5,
+        "scope": "direct",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T10:57:05.703Z"
+    },
+    {
+      "id": 45,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "rows": 5,
+        "scope": "self",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T10:57:10.338Z"
+    },
+    {
+      "id": 46,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-22",
+        "count": 7,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-22T10:57:13.596Z"
+    },
+    {
+      "id": 47,
+      "actorUserId": 1,
+      "action": "create",
+      "objectType": "work_item",
+      "objectId": 8,
+      "detail": null,
+      "createdAt": "2025-09-22T10:57:17.386Z"
+    },
+    {
+      "id": 48,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-22",
+        "count": 8,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-22T10:57:23.150Z"
+    },
+    {
+      "id": 49,
+      "actorUserId": 1,
+      "action": "create",
+      "objectType": "work_item",
+      "objectId": 9,
+      "detail": null,
+      "createdAt": "2025-09-22T10:57:28.546Z"
+    },
+    {
+      "id": 50,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-22",
+        "count": 9,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-22T10:57:39.282Z"
+    },
+    {
+      "id": 51,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "rows": 5,
+        "scope": "self",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T10:58:10.091Z"
+    },
+    {
+      "id": 52,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T11:03:13.738Z"
+    },
+    {
+      "id": 53,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "rows": 1,
+        "scope": "self",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T11:03:16.216Z"
+    },
+    {
+      "id": 54,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-22",
+        "count": 5,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-22T11:03:16.346Z"
+    },
+    {
+      "id": 55,
+      "actorUserId": 1,
+      "action": "export",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "jobId": "346739dc-db71-44d3-beeb-2b88324e3d2c",
+        "scope": "self",
+        "start": "2025-09-22",
+        "format": "xlsx"
+      },
+      "createdAt": "2025-09-22T11:09:20.966Z"
+    },
+    {
+      "id": 56,
+      "actorUserId": 1,
+      "action": "export_request",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "jobId": "346739dc-db71-44d3-beeb-2b88324e3d2c",
+        "scope": "self",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T11:09:21.552Z"
+    },
+    {
+      "id": 57,
+      "actorUserId": 1,
+      "action": "export_download",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "jobId": "346739dc-db71-44d3-beeb-2b88324e3d2c"
+      },
+      "createdAt": "2025-09-22T11:09:24.067Z"
+    },
+    {
+      "id": 58,
+      "actorUserId": 3,
+      "action": "login_failed",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T11:16:45.603Z"
+    },
+    {
+      "id": 59,
+      "actorUserId": 3,
+      "action": "login_failed",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T11:16:50.899Z"
+    },
+    {
+      "id": 60,
+      "actorUserId": 3,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T11:16:57.655Z"
+    },
+    {
+      "id": 61,
+      "actorUserId": 3,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "rows": 0,
+        "scope": "self",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T11:16:59.939Z"
+    },
+    {
+      "id": 62,
+      "actorUserId": 3,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-22",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-22T11:17:00.459Z"
+    },
+    {
+      "id": 63,
+      "actorUserId": 1,
+      "action": "login_failed",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T11:19:38.666Z"
+    },
+    {
+      "id": 64,
+      "actorUserId": 1,
+      "action": "login_failed",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T11:19:51.905Z"
+    },
+    {
+      "id": 65,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-22T11:19:55.799Z"
+    },
+    {
+      "id": 66,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-09-28",
+        "rows": 1,
+        "scope": "self",
+        "start": "2025-09-22"
+      },
+      "createdAt": "2025-09-22T11:19:57.394Z"
+    },
+    {
+      "id": 67,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-22",
+        "count": 5,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-22T11:19:57.520Z"
+    },
+    {
+      "id": 68,
+      "actorUserId": 1,
+      "action": "login_failed",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-29T03:38:31.726Z"
+    },
+    {
+      "id": 69,
+      "actorUserId": 1,
+      "action": "login_failed",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-29T03:38:45.388Z"
+    },
+    {
+      "id": 70,
+      "actorUserId": 1,
+      "action": "login_failed",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-29T06:15:13.927Z"
+    },
+    {
+      "id": 71,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-29T06:15:26.795Z"
+    },
+    {
+      "id": 72,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 0,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-29T06:15:28.338Z"
+    },
+    {
+      "id": 73,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-29T06:15:28.480Z"
+    },
+    {
+      "id": 74,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-29T09:51:56.406Z"
+    },
+    {
+      "id": 75,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-29T09:51:59.216Z"
+    },
+    {
+      "id": 76,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 0,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-29T09:51:59.401Z"
+    },
+    {
+      "id": 77,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-29T09:52:00.779Z"
+    },
+    {
+      "id": 78,
+      "actorUserId": 1,
+      "action": "report_missing_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "scope": "self",
+        "start": "2025-09-29",
+        "userCount": 39,
+        "missingDatesTotal": 273,
+        "totalActiveVisible": 39
+      },
+      "createdAt": "2025-09-29T09:52:01.310Z"
+    },
+    {
+      "id": 79,
+      "actorUserId": 1,
+      "action": "create",
+      "objectType": "work_item",
+      "objectId": 10,
+      "detail": null,
+      "createdAt": "2025-09-29T09:55:14.391Z"
+    },
+    {
+      "id": 80,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-29T09:55:20.587Z"
+    },
+    {
+      "id": 81,
+      "actorUserId": 1,
+      "action": "report_missing_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "scope": "self",
+        "start": "2025-09-29",
+        "userCount": 39,
+        "missingDatesTotal": 272,
+        "totalActiveVisible": 39
+      },
+      "createdAt": "2025-09-29T09:55:27.026Z"
+    },
+    {
+      "id": 82,
+      "actorUserId": 1,
+      "action": "missing_notify",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "scope": "self",
+        "start": "2025-09-29",
+        "skipped": [],
+        "targetUserIds": [
+          2
+        ]
+      },
+      "createdAt": "2025-09-29T09:55:47.510Z"
+    },
+    {
+      "id": 83,
+      "actorUserId": 1,
+      "action": "report_missing_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "scope": "self",
+        "start": "2025-09-29",
+        "userCount": 39,
+        "missingDatesTotal": 272,
+        "totalActiveVisible": 39
+      },
+      "createdAt": "2025-09-29T09:55:49.259Z"
+    },
+    {
+      "id": 84,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-29T09:56:12.015Z"
+    },
+    {
+      "id": 85,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 1,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-29T09:56:15.385Z"
+    },
+    {
+      "id": 86,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-29T09:56:15.531Z"
+    },
+    {
+      "id": 87,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-29T09:56:17.075Z"
+    },
+    {
+      "id": 88,
+      "actorUserId": 2,
+      "action": "report_missing_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "scope": "self",
+        "start": "2025-09-29",
+        "userCount": 39,
+        "missingDatesTotal": 272,
+        "totalActiveVisible": 39
+      },
+      "createdAt": "2025-09-29T09:56:17.138Z"
+    },
+    {
+      "id": 89,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-28",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-29T09:56:51.190Z"
+    },
+    {
+      "id": 90,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-28",
+        "from": "2025-09-28",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-29T09:56:52.999Z"
+    },
+    {
+      "id": 91,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-29T10:11:38.950Z"
+    },
+    {
+      "id": 92,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 1,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-29T10:11:41.993Z"
+    },
+    {
+      "id": 93,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-29T10:11:42.170Z"
+    },
+    {
+      "id": 94,
+      "actorUserId": 2,
+      "action": "report_missing_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "scope": "self",
+        "start": "2025-09-29",
+        "userCount": 39,
+        "missingDatesTotal": 272,
+        "totalActiveVisible": 39
+      },
+      "createdAt": "2025-09-29T10:11:43.712Z"
+    },
+    {
+      "id": 95,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-29T10:11:43.722Z"
+    },
+    {
+      "id": 96,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 1,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T03:51:40.798Z"
+    },
+    {
+      "id": 97,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T03:51:41.095Z"
+    },
+    {
+      "id": 98,
+      "actorUserId": 2,
+      "action": "report_missing_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "scope": "self",
+        "start": "2025-09-29",
+        "userCount": 39,
+        "missingDatesTotal": 272,
+        "totalActiveVisible": 39
+      },
+      "createdAt": "2025-09-30T03:51:42.885Z"
+    },
+    {
+      "id": 99,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T03:51:42.933Z"
+    },
+    {
+      "id": 100,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-09-29",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T03:52:16.805Z"
+    },
+    {
+      "id": 101,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T04:20:32.392Z"
+    },
+    {
+      "id": 102,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T04:20:35.211Z"
+    },
+    {
+      "id": 103,
+      "actorUserId": 2,
+      "action": "report_missing_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "scope": "self",
+        "start": "2025-09-29",
+        "userCount": 39,
+        "missingDatesTotal": 272,
+        "totalActiveVisible": 39
+      },
+      "createdAt": "2025-09-30T04:20:35.491Z"
+    },
+    {
+      "id": 104,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 1,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T04:20:35.655Z"
+    },
+    {
+      "id": 105,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 1,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T06:15:49.948Z"
+    },
+    {
+      "id": 106,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:15:49.841Z"
+    },
+    {
+      "id": 107,
+      "actorUserId": 2,
+      "action": "report_missing_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "scope": "self",
+        "start": "2025-09-29",
+        "userCount": 39,
+        "missingDatesTotal": 272,
+        "totalActiveVisible": 39
+      },
+      "createdAt": "2025-09-30T06:15:50.554Z"
+    },
+    {
+      "id": 108,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T06:17:04.838Z"
+    },
+    {
+      "id": 109,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:17:07.229Z"
+    },
+    {
+      "id": 110,
+      "actorUserId": 2,
+      "action": "report_missing_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "scope": "self",
+        "start": "2025-09-29",
+        "userCount": 39,
+        "missingDatesTotal": 272,
+        "totalActiveVisible": 39
+      },
+      "createdAt": "2025-09-30T06:17:07.236Z"
+    },
+    {
+      "id": 111,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 1,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T06:17:07.455Z"
+    },
+    {
+      "id": 112,
+      "actorUserId": 2,
+      "action": "create",
+      "objectType": "work_item",
+      "objectId": 11,
+      "detail": null,
+      "createdAt": "2025-09-30T06:17:30.497Z"
+    },
+    {
+      "id": 113,
+      "actorUserId": 2,
+      "action": "report_missing_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "scope": "self",
+        "start": "2025-09-29",
+        "userCount": 39,
+        "missingDatesTotal": 271,
+        "totalActiveVisible": 39
+      },
+      "createdAt": "2025-09-30T06:17:32.221Z"
+    },
+    {
+      "id": 114,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 2,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:17:38.002Z"
+    },
+    {
+      "id": 115,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T06:23:28.440Z"
+    },
+    {
+      "id": 116,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 2,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T06:23:32.885Z"
+    },
+    {
+      "id": 117,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 2,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:23:33.487Z"
+    },
+    {
+      "id": 118,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 2,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:23:37.004Z"
+    },
+    {
+      "id": 119,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 2,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:23:45.997Z"
+    },
+    {
+      "id": 120,
+      "actorUserId": 9,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T06:25:01.861Z"
+    },
+    {
+      "id": 121,
+      "actorUserId": 9,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 0,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T06:25:03.689Z"
+    },
+    {
+      "id": 122,
+      "actorUserId": 9,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:25:04.232Z"
+    },
+    {
+      "id": 123,
+      "actorUserId": 9,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:25:05.773Z"
+    },
+    {
+      "id": 124,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T06:25:35.999Z"
+    },
+    {
+      "id": 125,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 2,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T06:25:38.140Z"
+    },
+    {
+      "id": 126,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 2,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:25:38.297Z"
+    },
+    {
+      "id": 127,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 2,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:25:39.858Z"
+    },
+    {
+      "id": 128,
+      "actorUserId": 1,
+      "action": "create",
+      "objectType": "work_item",
+      "objectId": 12,
+      "detail": null,
+      "createdAt": "2025-09-30T06:25:59.366Z"
+    },
+    {
+      "id": 129,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:26:01.101Z"
+    },
+    {
+      "id": 130,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T06:26:09.594Z"
+    },
+    {
+      "id": 131,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T06:34:26.907Z"
+    },
+    {
+      "id": 132,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T06:34:30.399Z"
+    },
+    {
+      "id": 133,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:34:30.968Z"
+    },
+    {
+      "id": 134,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:34:32.931Z"
+    },
+    {
+      "id": 135,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T06:39:34.841Z"
+    },
+    {
+      "id": 136,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T06:39:39.196Z"
+    },
+    {
+      "id": 137,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:39:39.930Z"
+    },
+    {
+      "id": 138,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:39:43.674Z"
+    },
+    {
+      "id": 139,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T06:39:52.537Z"
+    },
+    {
+      "id": 140,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T06:39:55.264Z"
+    },
+    {
+      "id": 141,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:39:56.202Z"
+    },
+    {
+      "id": 142,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:39:59.219Z"
+    },
+    {
+      "id": 143,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T06:45:25.084Z"
+    },
+    {
+      "id": 144,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:45:27.463Z"
+    },
+    {
+      "id": 145,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T06:45:27.627Z"
+    },
+    {
+      "id": 146,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:45:29.050Z"
+    },
+    {
+      "id": 147,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T06:57:36.485Z"
+    },
+    {
+      "id": 148,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:57:39.436Z"
+    },
+    {
+      "id": 149,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T06:57:39.948Z"
+    },
+    {
+      "id": 150,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:57:41.020Z"
+    },
+    {
+      "id": 151,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T06:57:55.284Z"
+    },
+    {
+      "id": 152,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T06:57:57.441Z"
+    },
+    {
+      "id": 153,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:57:57.503Z"
+    },
+    {
+      "id": 154,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T06:57:59.090Z"
+    },
+    {
+      "id": 155,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "direct",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T07:05:01.971Z"
+    },
+    {
+      "id": 156,
+      "actorUserId": 1,
+      "action": "export",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "jobId": "ea278e5d-ce62-4ae3-a853-92961025bc48",
+        "scope": "direct",
+        "start": "2025-09-29",
+        "format": "xlsx"
+      },
+      "createdAt": "2025-09-30T07:05:02.754Z"
+    },
+    {
+      "id": 157,
+      "actorUserId": 1,
+      "action": "export_request",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "jobId": "ea278e5d-ce62-4ae3-a853-92961025bc48",
+        "scope": "direct",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T07:05:02.959Z"
+    },
+    {
+      "id": 158,
+      "actorUserId": 1,
+      "action": "export_download",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "jobId": "ea278e5d-ce62-4ae3-a853-92961025bc48"
+      },
+      "createdAt": "2025-09-30T07:05:05.800Z"
+    },
+    {
+      "id": 159,
+      "actorUserId": 3,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T07:08:25.506Z"
+    },
+    {
+      "id": 160,
+      "actorUserId": 3,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T07:08:28.016Z"
+    },
+    {
+      "id": 161,
+      "actorUserId": 3,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T07:08:28.125Z"
+    },
+    {
+      "id": 162,
+      "actorUserId": 3,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T07:08:29.674Z"
+    },
+    {
+      "id": 163,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T07:09:21.981Z"
+    },
+    {
+      "id": 164,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T07:09:24.297Z"
+    },
+    {
+      "id": 165,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T07:09:24.474Z"
+    },
+    {
+      "id": 166,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T07:09:26.046Z"
+    },
+    {
+      "id": 167,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T07:36:28.021Z"
+    },
+    {
+      "id": 168,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T07:36:28.798Z"
+    },
+    {
+      "id": 169,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T07:36:30.371Z"
+    },
+    {
+      "id": 170,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T07:47:28.195Z"
+    },
+    {
+      "id": 171,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T07:47:30.850Z"
+    },
+    {
+      "id": 172,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T07:47:31.059Z"
+    },
+    {
+      "id": 173,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T07:47:32.697Z"
+    },
+    {
+      "id": 174,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T07:57:00.086Z"
+    },
+    {
+      "id": 175,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T07:57:00.811Z"
+    },
+    {
+      "id": 176,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T07:57:02.396Z"
+    },
+    {
+      "id": 177,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T08:08:34.526Z"
+    },
+    {
+      "id": 178,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:08:37.062Z"
+    },
+    {
+      "id": 179,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:08:37.582Z"
+    },
+    {
+      "id": 180,
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:08:39.135Z"
+    },
+    {
+      "id": 181,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "direct",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:14:51.709Z"
+    },
+    {
+      "id": 182,
+      "actorUserId": 1,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "subtree",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:14:57.037Z"
+    },
+    {
+      "id": 183,
+      "actorUserId": 4,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T08:17:09.437Z"
+    },
+    {
+      "id": 184,
+      "actorUserId": 4,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 0,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:17:11.596Z"
+    },
+    {
+      "id": 185,
+      "actorUserId": 4,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:17:11.718Z"
+    },
+    {
+      "id": 186,
+      "actorUserId": 4,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:17:13.284Z"
+    },
+    {
+      "id": 187,
+      "actorUserId": 4,
+      "action": "create",
+      "objectType": "work_item",
+      "objectId": 13,
+      "detail": null,
+      "createdAt": "2025-09-30T08:17:30.584Z"
+    },
+    {
+      "id": 188,
+      "actorUserId": 4,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:17:32.268Z"
+    },
+    {
+      "id": 189,
+      "actorUserId": 5,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T08:17:40.703Z"
+    },
+    {
+      "id": 190,
+      "actorUserId": 5,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:17:42.685Z"
+    },
+    {
+      "id": 191,
+      "actorUserId": 5,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 0,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:17:42.748Z"
+    },
+    {
+      "id": 192,
+      "actorUserId": 5,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:17:43.813Z"
+    },
+    {
+      "id": 193,
+      "actorUserId": 5,
+      "action": "create",
+      "objectType": "work_item",
+      "objectId": 14,
+      "detail": null,
+      "createdAt": "2025-09-30T08:17:51.663Z"
+    },
+    {
+      "id": 194,
+      "actorUserId": 5,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:17:52.997Z"
+    },
+    {
+      "id": 195,
+      "actorUserId": 5,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:17:58.283Z"
+    },
+    {
+      "id": 196,
+      "actorUserId": 5,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 1,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:18:03.812Z"
+    },
+    {
+      "id": 197,
+      "actorUserId": 5,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 1,
+        "scope": "direct",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:18:10.991Z"
+    },
+    {
+      "id": 198,
+      "actorUserId": 5,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 1,
+        "scope": "subtree",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:18:14.223Z"
+    },
+    {
+      "id": 199,
+      "actorUserId": 7,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T08:19:13.484Z"
+    },
+    {
+      "id": 200,
+      "actorUserId": 7,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:19:15.837Z"
+    },
+    {
+      "id": 201,
+      "actorUserId": 7,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 0,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:19:16.048Z"
+    },
+    {
+      "id": 202,
+      "actorUserId": 7,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 0,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:19:16.999Z"
+    },
+    {
+      "id": 203,
+      "actorUserId": 7,
+      "action": "create",
+      "objectType": "work_item",
+      "objectId": 15,
+      "detail": null,
+      "createdAt": "2025-09-30T08:19:22.669Z"
+    },
+    {
+      "id": 204,
+      "actorUserId": 7,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:19:24.035Z"
+    },
+    {
+      "id": 205,
+      "actorUserId": 7,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 1,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:19:26.661Z"
+    },
+    {
+      "id": 206,
+      "actorUserId": 7,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 1,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:20:03.424Z"
+    },
+    {
+      "id": 207,
+      "actorUserId": 4,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T08:20:57.160Z"
+    },
+    {
+      "id": 208,
+      "actorUserId": 4,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:20:59.409Z"
+    },
+    {
+      "id": 209,
+      "actorUserId": 4,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:20:59.909Z"
+    },
+    {
+      "id": 210,
+      "actorUserId": 4,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:21:01.471Z"
+    },
+    {
+      "id": 211,
+      "actorUserId": 4,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T08:34:43.872Z"
+    },
+    {
+      "id": 212,
+      "actorUserId": 4,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:34:46.514Z"
+    },
+    {
+      "id": 213,
+      "actorUserId": 4,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:34:46.716Z"
+    },
+    {
+      "id": 214,
+      "actorUserId": 4,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:34:48.027Z"
+    },
+    {
+      "id": 215,
+      "actorUserId": 4,
+      "action": "export",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "jobId": "4abf1665-cf7a-4cb5-abd8-aa23458e6139",
+        "scope": "self",
+        "start": "2025-09-29",
+        "format": "xlsx"
+      },
+      "createdAt": "2025-09-30T08:35:09.700Z"
+    },
+    {
+      "id": 216,
+      "actorUserId": 4,
+      "action": "export_request",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "jobId": "4abf1665-cf7a-4cb5-abd8-aa23458e6139",
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:35:09.890Z"
+    },
+    {
+      "id": 217,
+      "actorUserId": 4,
+      "action": "export_download",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "jobId": "4abf1665-cf7a-4cb5-abd8-aa23458e6139"
+      },
+      "createdAt": "2025-09-30T08:35:12.227Z"
+    },
+    {
+      "id": 218,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T08:56:40.681Z"
+    },
+    {
+      "id": 219,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:56:43.790Z"
+    },
+    {
+      "id": 220,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T08:56:43.983Z"
+    },
+    {
+      "id": 221,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T08:56:45.336Z"
+    },
+    {
+      "id": 222,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:00:18.348Z"
+    },
+    {
+      "id": 223,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:00:18.469Z"
+    },
+    {
+      "id": 224,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:00:20.057Z"
+    },
+    {
+      "id": 225,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:03:26.221Z"
+    },
+    {
+      "id": 226,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:03:26.032Z"
+    },
+    {
+      "id": 227,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:03:27.708Z"
+    },
+    {
+      "id": 228,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:03:31.998Z"
+    },
+    {
+      "id": 229,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:03:34.369Z"
+    },
+    {
+      "id": 230,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:03:34.532Z"
+    },
+    {
+      "id": 231,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:03:35.850Z"
+    },
+    {
+      "id": 232,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:04:28.794Z"
+    },
+    {
+      "id": 233,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:04:36.547Z"
+    },
+    {
+      "id": 234,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:04:39.213Z"
+    },
+    {
+      "id": 235,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:04:39.226Z"
+    },
+    {
+      "id": 236,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:04:39.456Z"
+    },
+    {
+      "id": 237,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:07:17.565Z"
+    },
+    {
+      "id": 238,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:07:17.740Z"
+    },
+    {
+      "id": 239,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:07:17.881Z"
+    },
+    {
+      "id": 240,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:09:01.826Z"
+    },
+    {
+      "id": 241,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:09:04.727Z"
+    },
+    {
+      "id": 242,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:09:05.035Z"
+    },
+    {
+      "id": 243,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:09:05.231Z"
+    },
+    {
+      "id": 244,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:09:19.282Z"
+    },
+    {
+      "id": 245,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:09:21.834Z"
+    },
+    {
+      "id": 246,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:09:21.830Z"
+    },
+    {
+      "id": 247,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:09:21.991Z"
+    },
+    {
+      "id": 248,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:10:28.694Z"
+    },
+    {
+      "id": 249,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:10:31.849Z"
+    },
+    {
+      "id": 250,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:10:32.145Z"
+    },
+    {
+      "id": 251,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:10:32.433Z"
+    },
+    {
+      "id": 252,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:11:44.082Z"
+    },
+    {
+      "id": 253,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:11:47.137Z"
+    },
+    {
+      "id": 254,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:11:47.196Z"
+    },
+    {
+      "id": 255,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:11:47.374Z"
+    },
+    {
+      "id": 256,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:16:43.417Z"
+    },
+    {
+      "id": 257,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:16:43.592Z"
+    },
+    {
+      "id": 258,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:16:43.824Z"
+    },
+    {
+      "id": 259,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:23:03.001Z"
+    },
+    {
+      "id": 260,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:23:05.636Z"
+    },
+    {
+      "id": 261,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:23:05.797Z"
+    },
+    {
+      "id": 262,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:23:07.259Z"
+    },
+    {
+      "id": 263,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:23:23.440Z"
+    },
+    {
+      "id": 264,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:23:25.886Z"
+    },
+    {
+      "id": 265,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:23:26.048Z"
+    },
+    {
+      "id": 266,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:23:27.264Z"
+    },
+    {
+      "id": 267,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:23:42.121Z"
+    },
+    {
+      "id": 268,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:23:42.268Z"
+    },
+    {
+      "id": 269,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:23:42.448Z"
+    },
+    {
+      "id": 270,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:26:05.693Z"
+    },
+    {
+      "id": 271,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:26:09.333Z"
+    },
+    {
+      "id": 272,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:26:09.439Z"
+    },
+    {
+      "id": 273,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:26:09.452Z"
+    },
+    {
+      "id": 274,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:31:27.049Z"
+    },
+    {
+      "id": 275,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:31:29.469Z"
+    },
+    {
+      "id": 276,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:31:29.471Z"
+    },
+    {
+      "id": 277,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:31:29.625Z"
+    },
+    {
+      "id": 278,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:31:43.726Z"
+    },
+    {
+      "id": 279,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:31:46.209Z"
+    },
+    {
+      "id": 280,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:31:46.219Z"
+    },
+    {
+      "id": 281,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:31:46.389Z"
+    },
+    {
+      "id": 282,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:32:02.155Z"
+    },
+    {
+      "id": 283,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:32:04.617Z"
+    },
+    {
+      "id": 284,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:32:04.624Z"
+    },
+    {
+      "id": 285,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:32:04.772Z"
+    },
+    {
+      "id": 286,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:37:00.520Z"
+    },
+    {
+      "id": 287,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:37:03.412Z"
+    },
+    {
+      "id": 288,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:37:03.771Z"
+    },
+    {
+      "id": 289,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:37:05.712Z"
+    },
+    {
+      "id": 290,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:37:27.847Z"
+    },
+    {
+      "id": 291,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:37:30.487Z"
+    },
+    {
+      "id": 292,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:37:31.066Z"
+    },
+    {
+      "id": 293,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:37:32.527Z"
+    },
+    {
+      "id": 294,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:41:46.396Z"
+    },
+    {
+      "id": 295,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:41:48.645Z"
+    },
+    {
+      "id": 296,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:41:49.239Z"
+    },
+    {
+      "id": 297,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:41:50.242Z"
+    },
+    {
+      "id": 298,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:42:04.177Z"
+    },
+    {
+      "id": 299,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:50:30.193Z"
+    },
+    {
+      "id": 300,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:50:30.375Z"
+    },
+    {
+      "id": 301,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:50:30.486Z"
+    },
+    {
+      "id": 302,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:50:36.826Z"
+    },
+    {
+      "id": 303,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:50:39.150Z"
+    },
+    {
+      "id": 304,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:50:39.160Z"
+    },
+    {
+      "id": 305,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:50:39.281Z"
+    },
+    {
+      "id": 306,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-09-30T09:51:17.397Z"
+    },
+    {
+      "id": 307,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:51:19.712Z"
+    },
+    {
+      "id": 308,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "to": "2025-10-05",
+        "from": "2025-09-29",
+        "count": 3,
+        "scope": "self"
+      },
+      "createdAt": "2025-09-30T09:51:19.711Z"
+    },
+    {
+      "id": 309,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "end": "2025-10-05",
+        "rows": 3,
+        "scope": "self",
+        "start": "2025-09-29"
+      },
+      "createdAt": "2025-09-30T09:51:19.924Z"
+    },
+    {
+      "id": 310,
+      "actorUserId": 0,
+      "action": "admin_migrate_neon_to_r2",
+      "objectType": "migration",
+      "objectId": null,
+      "detail": {
+        "users": 39,
+        "orgUnits": 11,
+        "memberships": 39,
+        "managerEdges": 36,
+        "roles": 5,
+        "roleGrants": 12,
+        "workItems": 3,
+        "auditLogs": 309
+      },
+      "createdAt": "2025-10-02T07:12:40.521Z"
+    },
+    {
+      "id": 311,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-10-02T07:12:59.736Z"
+    },
+    {
+      "id": 312,
+      "actorUserId": 2,
+      "action": "report_weekly",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "scope": "self",
+        "start": "2025-09-29",
+        "end": "2025-10-05",
+        "rows": 3
+      },
+      "createdAt": "2025-10-02T07:13:05.971Z"
+    },
+    {
+      "id": 313,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 3
+      },
+      "createdAt": "2025-10-02T07:13:09.460Z"
+    },
+    {
+      "id": 314,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-10-02T07:18:53.238Z"
+    },
+    {
+      "id": 315,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 3
+      },
+      "createdAt": "2025-10-02T07:18:57.241Z"
+    },
+    {
+      "id": 316,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 3
+      },
+      "createdAt": "2025-10-02T07:19:00.731Z"
+    },
+    {
+      "id": 317,
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-10-02T09:18:36.937Z"
+    },
+    {
+      "id": 318,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 3
+      },
+      "createdAt": "2025-10-02T09:18:40.877Z"
+    },
+    {
+      "id": 319,
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "objectId": null,
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 3
+      },
+      "createdAt": "2025-10-02T09:18:44.034Z"
+    },
+    {
+      "id": 320,
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user",
+      "objectId": null,
+      "detail": null,
+      "createdAt": "2025-10-02T09:19:13.399Z"
+    }
+  ]
+}

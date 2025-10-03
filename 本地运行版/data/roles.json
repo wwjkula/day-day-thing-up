@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "lastId": 5
+  },
+  "items": [
+    {
+      "id": 1,
+      "code": "sys_admin",
+      "name": "系统管理员",
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 2,
+      "code": "leadership",
+      "name": "领导",
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 3,
+      "code": "director",
+      "name": "主任",
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 4,
+      "code": "deputy_director",
+      "name": "副主任",
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    },
+    {
+      "id": 5,
+      "code": "employee",
+      "name": "员工",
+      "createdAt": "2025-10-02T07:12:28.220Z",
+      "updatedAt": "2025-10-02T07:12:28.220Z"
+    }
+  ]
+}
