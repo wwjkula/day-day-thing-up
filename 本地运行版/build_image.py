@@ -82,6 +82,9 @@ def main() -> int:
     except subprocess.CalledProcessError as err:
         if err.returncode != 0:
             print("[ERROR] 构建失败，请检查上面的 docker 输出。若 Docker Desktop 未启动，请先启动后重试。")
+            print("[HINT] 如果下载基础镜像失败，建议先尝试执行：")
+            print("        docker pull node:22-alpine")
+            print("      并确认网络/代理允许访问 registry.docker.io")
         raise
 
     if args.push:

@@ -1,4 +1,4 @@
-FROM node:18-alpine AS build
+FROM node:22-alpine AS build
 WORKDIR /app
 
 # Install server dependencies
@@ -12,12 +12,13 @@ RUN npm install --prefix web
 # Copy source
 COPY server ./server
 COPY shared ./shared
+COPY tsconfig.base.json ./tsconfig.base.json
 COPY web ./web
 
 RUN npm run build --prefix web
 RUN npm prune --omit=dev
 
-FROM node:18-alpine
+FROM node:22-alpine
 WORKDIR /app
 ENV NODE_ENV=production
 
