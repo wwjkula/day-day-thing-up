@@ -1,0 +1,13 @@
+.git
+.gitignore
+node_modules
+web/node_modules
+web/.vite
+web/dist
+**/__pycache__
+**/*.log
+*.pyc
+*.cmd
+*.ps1
+docker-compose.yml
+启动Docker版.cmd
