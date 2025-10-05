@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 276
   },
-  "items": []
+  "items": [
+    {
+      "id": 267,
+      "creatorId": 29,
+      "createdAt": "2025-10-05T01:09:19.101Z",
+      "updatedAt": "2025-10-05T01:09:19.101Z",
+      "orgId": 9,
+      "workDate": "2025-09-30",
+      "title": "测量队-副主任 2025-09-30 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：测量队-副主任 在 2025-09-30 完成关键任务。"
+    },
+    {
+      "id": 268,
+      "creatorId": 29,
+      "createdAt": "2025-10-05T01:09:19.101Z",
+      "updatedAt": "2025-10-05T01:09:19.101Z",
+      "orgId": 9,
+      "workDate": "2025-10-01",
+      "title": "测量队-副主任 2025-10-01 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：测量队-副主任 在 2025-10-01 的重点安排。"
+    },
+    {
+      "id": 269,
+      "creatorId": 29,
+      "createdAt": "2025-10-05T01:09:19.101Z",
+      "updatedAt": "2025-10-05T01:09:19.101Z",
+      "orgId": 9,
+      "workDate": "2025-10-01",
+      "title": "测量队-副主任 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：测量队-副主任 在 2025-10-01 完成关键任务。"
+    },
+    {
+      "id": 270,
+      "creatorId": 29,
+      "createdAt": "2025-10-05T01:09:19.101Z",
+      "updatedAt": "2025-10-05T01:09:19.101Z",
+      "orgId": 9,
+      "workDate": "2025-10-02",
+      "title": "测量队-副主任 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：测量队-副主任 在 2025-10-02 的重点安排。"
+    },
+    {
+      "id": 271,
+      "creatorId": 29,
+      "createdAt": "2025-10-05T01:09:19.101Z",
+      "updatedAt": "2025-10-05T01:09:19.101Z",
+      "orgId": 9,
+      "workDate": "2025-10-02",
+      "title": "测量队-副主任 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：测量队-副主任 在 2025-10-02 完成关键任务。"
+    },
+    {
+      "id": 272,
+      "creatorId": 29,
+      "createdAt": "2025-10-05T01:09:19.101Z",
+      "updatedAt": "2025-10-05T01:09:19.101Z",
+      "orgId": 9,
+      "workDate": "2025-10-03",
+      "title": "测量队-副主任 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：测量队-副主任 在 2025-10-03 的重点安排。"
+    },
+    {
+      "id": 273,
+      "creatorId": 29,
+      "createdAt": "2025-10-05T01:09:19.101Z",
+      "updatedAt": "2025-10-05T01:09:19.101Z",
+      "orgId": 9,
+      "workDate": "2025-10-03",
+      "title": "测量队-副主任 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：测量队-副主任 在 2025-10-03 完成关键任务。"
+    },
+    {
+      "id": 274,
+      "creatorId": 29,
+      "createdAt": "2025-10-05T01:09:19.101Z",
+      "updatedAt": "2025-10-05T01:09:19.101Z",
+      "orgId": 9,
+      "workDate": "2025-10-04",
+      "title": "测量队-副主任 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：测量队-副主任 在 2025-10-04 的重点安排。"
+    },
+    {
+      "id": 275,
+      "creatorId": 29,
+      "createdAt": "2025-10-05T01:09:19.101Z",
+      "updatedAt": "2025-10-05T01:09:19.101Z",
+      "orgId": 9,
+      "workDate": "2025-10-04",
+      "title": "测量队-副主任 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：测量队-副主任 在 2025-10-04 完成关键任务。"
+    },
+    {
+      "id": 276,
+      "creatorId": 29,
+      "createdAt": "2025-10-05T01:09:19.101Z",
+      "updatedAt": "2025-10-05T01:09:19.101Z",
+      "orgId": 9,
+      "workDate": "2025-10-05",
+      "title": "测量队-副主任 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：测量队-副主任 在 2025-10-05 的重点安排。"
+    }
+  ]
 }

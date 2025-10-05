@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastId": 350
+    "lastId": 365
   },
   "items": [
     {
@@ -4382,6 +4382,190 @@
         "from": "2025-09-29",
         "to": "2025-10-05",
         "count": 1
+      }
+    },
+    {
+      "id": 351,
+      "createdAt": "2025-10-05T01:10:15.207Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 11
+      }
+    },
+    {
+      "id": 352,
+      "createdAt": "2025-10-05T01:10:15.233Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 11
+      }
+    },
+    {
+      "id": 353,
+      "createdAt": "2025-10-05T01:11:29.634Z",
+      "actorUserId": 2,
+      "action": "create_work_item",
+      "objectType": "work_item",
+      "objectId": 407,
+      "detail": {
+        "workDate": "2025-10-05"
+      }
+    },
+    {
+      "id": 354,
+      "createdAt": "2025-10-05T01:11:29.670Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 12
+      }
+    },
+    {
+      "id": 355,
+      "createdAt": "2025-10-05T01:16:34.168Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 12
+      }
+    },
+    {
+      "id": 356,
+      "createdAt": "2025-10-05T01:16:34.202Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 12
+      }
+    },
+    {
+      "id": 357,
+      "createdAt": "2025-10-05T01:17:11.249Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "date": "2025-09-29"
+      }
+    },
+    {
+      "id": 358,
+      "createdAt": "2025-10-05T01:17:34.114Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 12
+      }
+    },
+    {
+      "id": 359,
+      "createdAt": "2025-10-05T01:17:34.168Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "date": "2025-10-05"
+      }
+    },
+    {
+      "id": 360,
+      "createdAt": "2025-10-05T01:17:34.197Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "start": "2025-09-29",
+        "end": "2025-10-05"
+      }
+    },
+    {
+      "id": 361,
+      "createdAt": "2025-10-05T01:17:34.212Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 12
+      }
+    },
+    {
+      "id": 362,
+      "createdAt": "2025-10-05T01:17:42.447Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 12
+      }
+    },
+    {
+      "id": 363,
+      "createdAt": "2025-10-05T01:17:42.468Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "date": "2025-10-05"
+      }
+    },
+    {
+      "id": 364,
+      "createdAt": "2025-10-05T01:17:42.493Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 12
+      }
+    },
+    {
+      "id": 365,
+      "createdAt": "2025-10-05T01:17:49.282Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "date": "2025-10-04"
       }
     }
   ]

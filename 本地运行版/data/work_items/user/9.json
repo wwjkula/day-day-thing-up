@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 76
   },
-  "items": []
+  "items": [
+    {
+      "id": 67,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T01:09:19.088Z",
+      "updatedAt": "2025-10-05T01:09:19.088Z",
+      "orgId": 4,
+      "workDate": "2025-09-30",
+      "title": "综合管理部-副主任 2025-09-30 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：综合管理部-副主任 在 2025-09-30 完成关键任务。"
+    },
+    {
+      "id": 68,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T01:09:19.088Z",
+      "updatedAt": "2025-10-05T01:09:19.088Z",
+      "orgId": 4,
+      "workDate": "2025-10-01",
+      "title": "综合管理部-副主任 2025-10-01 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：综合管理部-副主任 在 2025-10-01 的重点安排。"
+    },
+    {
+      "id": 69,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T01:09:19.088Z",
+      "updatedAt": "2025-10-05T01:09:19.088Z",
+      "orgId": 4,
+      "workDate": "2025-10-01",
+      "title": "综合管理部-副主任 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：综合管理部-副主任 在 2025-10-01 完成关键任务。"
+    },
+    {
+      "id": 70,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T01:09:19.088Z",
+      "updatedAt": "2025-10-05T01:09:19.088Z",
+      "orgId": 4,
+      "workDate": "2025-10-02",
+      "title": "综合管理部-副主任 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：综合管理部-副主任 在 2025-10-02 的重点安排。"
+    },
+    {
+      "id": 71,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T01:09:19.088Z",
+      "updatedAt": "2025-10-05T01:09:19.088Z",
+      "orgId": 4,
+      "workDate": "2025-10-02",
+      "title": "综合管理部-副主任 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：综合管理部-副主任 在 2025-10-02 完成关键任务。"
+    },
+    {
+      "id": 72,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T01:09:19.088Z",
+      "updatedAt": "2025-10-05T01:09:19.088Z",
+      "orgId": 4,
+      "workDate": "2025-10-03",
+      "title": "综合管理部-副主任 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：综合管理部-副主任 在 2025-10-03 的重点安排。"
+    },
+    {
+      "id": 73,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T01:09:19.088Z",
+      "updatedAt": "2025-10-05T01:09:19.088Z",
+      "orgId": 4,
+      "workDate": "2025-10-03",
+      "title": "综合管理部-副主任 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：综合管理部-副主任 在 2025-10-03 完成关键任务。"
+    },
+    {
+      "id": 74,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T01:09:19.088Z",
+      "updatedAt": "2025-10-05T01:09:19.088Z",
+      "orgId": 4,
+      "workDate": "2025-10-04",
+      "title": "综合管理部-副主任 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：综合管理部-副主任 在 2025-10-04 的重点安排。"
+    },
+    {
+      "id": 75,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T01:09:19.088Z",
+      "updatedAt": "2025-10-05T01:09:19.088Z",
+      "orgId": 4,
+      "workDate": "2025-10-04",
+      "title": "综合管理部-副主任 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：综合管理部-副主任 在 2025-10-04 完成关键任务。"
+    },
+    {
+      "id": 76,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T01:09:19.088Z",
+      "updatedAt": "2025-10-05T01:09:19.088Z",
+      "orgId": 4,
+      "workDate": "2025-10-05",
+      "title": "综合管理部-副主任 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：综合管理部-副主任 在 2025-10-05 的重点安排。"
+    }
+  ]
 }

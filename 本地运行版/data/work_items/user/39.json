@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 396
   },
-  "items": []
+  "items": [
+    {
+      "id": 387,
+      "creatorId": 39,
+      "createdAt": "2025-10-05T01:09:19.107Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-09-30",
+      "title": "计划合同部-员工2 2025-09-30 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：计划合同部-员工2 在 2025-09-30 完成关键任务。"
+    },
+    {
+      "id": 388,
+      "creatorId": 39,
+      "createdAt": "2025-10-05T01:09:19.107Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-10-01",
+      "title": "计划合同部-员工2 2025-10-01 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：计划合同部-员工2 在 2025-10-01 的重点安排。"
+    },
+    {
+      "id": 389,
+      "creatorId": 39,
+      "createdAt": "2025-10-05T01:09:19.107Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-10-01",
+      "title": "计划合同部-员工2 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：计划合同部-员工2 在 2025-10-01 完成关键任务。"
+    },
+    {
+      "id": 390,
+      "creatorId": 39,
+      "createdAt": "2025-10-05T01:09:19.107Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-10-02",
+      "title": "计划合同部-员工2 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：计划合同部-员工2 在 2025-10-02 的重点安排。"
+    },
+    {
+      "id": 391,
+      "creatorId": 39,
+      "createdAt": "2025-10-05T01:09:19.107Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-10-02",
+      "title": "计划合同部-员工2 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：计划合同部-员工2 在 2025-10-02 完成关键任务。"
+    },
+    {
+      "id": 392,
+      "creatorId": 39,
+      "createdAt": "2025-10-05T01:09:19.107Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-10-03",
+      "title": "计划合同部-员工2 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：计划合同部-员工2 在 2025-10-03 的重点安排。"
+    },
+    {
+      "id": 393,
+      "creatorId": 39,
+      "createdAt": "2025-10-05T01:09:19.107Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-10-03",
+      "title": "计划合同部-员工2 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：计划合同部-员工2 在 2025-10-03 完成关键任务。"
+    },
+    {
+      "id": 394,
+      "creatorId": 39,
+      "createdAt": "2025-10-05T01:09:19.107Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-10-04",
+      "title": "计划合同部-员工2 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：计划合同部-员工2 在 2025-10-04 的重点安排。"
+    },
+    {
+      "id": 395,
+      "creatorId": 39,
+      "createdAt": "2025-10-05T01:09:19.107Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-10-04",
+      "title": "计划合同部-员工2 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：计划合同部-员工2 在 2025-10-04 完成关键任务。"
+    },
+    {
+      "id": 396,
+      "creatorId": 39,
+      "createdAt": "2025-10-05T01:09:19.107Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-10-05",
+      "title": "计划合同部-员工2 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：计划合同部-员工2 在 2025-10-05 的重点安排。"
+    }
+  ]
 }

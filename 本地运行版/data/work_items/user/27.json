@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 256
   },
-  "items": []
+  "items": [
+    {
+      "id": 247,
+      "creatorId": 27,
+      "createdAt": "2025-10-05T01:09:19.099Z",
+      "updatedAt": "2025-10-05T01:09:19.099Z",
+      "orgId": 8,
+      "workDate": "2025-09-30",
+      "title": "工程技术部-员工2 2025-09-30 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：工程技术部-员工2 在 2025-09-30 完成关键任务。"
+    },
+    {
+      "id": 248,
+      "creatorId": 27,
+      "createdAt": "2025-10-05T01:09:19.099Z",
+      "updatedAt": "2025-10-05T01:09:19.099Z",
+      "orgId": 8,
+      "workDate": "2025-10-01",
+      "title": "工程技术部-员工2 2025-10-01 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：工程技术部-员工2 在 2025-10-01 的重点安排。"
+    },
+    {
+      "id": 249,
+      "creatorId": 27,
+      "createdAt": "2025-10-05T01:09:19.099Z",
+      "updatedAt": "2025-10-05T01:09:19.099Z",
+      "orgId": 8,
+      "workDate": "2025-10-01",
+      "title": "工程技术部-员工2 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：工程技术部-员工2 在 2025-10-01 完成关键任务。"
+    },
+    {
+      "id": 250,
+      "creatorId": 27,
+      "createdAt": "2025-10-05T01:09:19.099Z",
+      "updatedAt": "2025-10-05T01:09:19.099Z",
+      "orgId": 8,
+      "workDate": "2025-10-02",
+      "title": "工程技术部-员工2 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：工程技术部-员工2 在 2025-10-02 的重点安排。"
+    },
+    {
+      "id": 251,
+      "creatorId": 27,
+      "createdAt": "2025-10-05T01:09:19.099Z",
+      "updatedAt": "2025-10-05T01:09:19.099Z",
+      "orgId": 8,
+      "workDate": "2025-10-02",
+      "title": "工程技术部-员工2 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：工程技术部-员工2 在 2025-10-02 完成关键任务。"
+    },
+    {
+      "id": 252,
+      "creatorId": 27,
+      "createdAt": "2025-10-05T01:09:19.099Z",
+      "updatedAt": "2025-10-05T01:09:19.099Z",
+      "orgId": 8,
+      "workDate": "2025-10-03",
+      "title": "工程技术部-员工2 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：工程技术部-员工2 在 2025-10-03 的重点安排。"
+    },
+    {
+      "id": 253,
+      "creatorId": 27,
+      "createdAt": "2025-10-05T01:09:19.099Z",
+      "updatedAt": "2025-10-05T01:09:19.099Z",
+      "orgId": 8,
+      "workDate": "2025-10-03",
+      "title": "工程技术部-员工2 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：工程技术部-员工2 在 2025-10-03 完成关键任务。"
+    },
+    {
+      "id": 254,
+      "creatorId": 27,
+      "createdAt": "2025-10-05T01:09:19.099Z",
+      "updatedAt": "2025-10-05T01:09:19.099Z",
+      "orgId": 8,
+      "workDate": "2025-10-04",
+      "title": "工程技术部-员工2 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：工程技术部-员工2 在 2025-10-04 的重点安排。"
+    },
+    {
+      "id": 255,
+      "creatorId": 27,
+      "createdAt": "2025-10-05T01:09:19.099Z",
+      "updatedAt": "2025-10-05T01:09:19.099Z",
+      "orgId": 8,
+      "workDate": "2025-10-04",
+      "title": "工程技术部-员工2 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：工程技术部-员工2 在 2025-10-04 完成关键任务。"
+    },
+    {
+      "id": 256,
+      "creatorId": 27,
+      "createdAt": "2025-10-05T01:09:19.099Z",
+      "updatedAt": "2025-10-05T01:09:19.099Z",
+      "orgId": 8,
+      "workDate": "2025-10-05",
+      "title": "工程技术部-员工2 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：工程技术部-员工2 在 2025-10-05 的重点安排。"
+    }
+  ]
 }

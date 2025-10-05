@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 46
   },
-  "items": []
+  "items": [
+    {
+      "id": 37,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-09-30",
+      "title": "财务管理部-员工1 2025-09-30 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：财务管理部-员工1 在 2025-09-30 完成关键任务。"
+    },
+    {
+      "id": 38,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-01",
+      "title": "财务管理部-员工1 2025-10-01 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：财务管理部-员工1 在 2025-10-01 的重点安排。"
+    },
+    {
+      "id": 39,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-01",
+      "title": "财务管理部-员工1 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：财务管理部-员工1 在 2025-10-01 完成关键任务。"
+    },
+    {
+      "id": 40,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-02",
+      "title": "财务管理部-员工1 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：财务管理部-员工1 在 2025-10-02 的重点安排。"
+    },
+    {
+      "id": 41,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-02",
+      "title": "财务管理部-员工1 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：财务管理部-员工1 在 2025-10-02 完成关键任务。"
+    },
+    {
+      "id": 42,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-03",
+      "title": "财务管理部-员工1 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：财务管理部-员工1 在 2025-10-03 的重点安排。"
+    },
+    {
+      "id": 43,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-03",
+      "title": "财务管理部-员工1 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：财务管理部-员工1 在 2025-10-03 完成关键任务。"
+    },
+    {
+      "id": 44,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-04",
+      "title": "财务管理部-员工1 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：财务管理部-员工1 在 2025-10-04 的重点安排。"
+    },
+    {
+      "id": 45,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-04",
+      "title": "财务管理部-员工1 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：财务管理部-员工1 在 2025-10-04 完成关键任务。"
+    },
+    {
+      "id": 46,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-05",
+      "title": "财务管理部-员工1 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：财务管理部-员工1 在 2025-10-05 的重点安排。"
+    }
+  ]
 }

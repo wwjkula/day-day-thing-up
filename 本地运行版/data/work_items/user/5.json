@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastId": 14
+    "lastId": 36
   },
   "items": [
     {
@@ -15,6 +15,136 @@
       "detail": null,
       "createdAt": "2025-09-30T08:17:51.469Z",
       "updatedAt": "2025-09-30T08:17:51.469Z"
+    },
+    {
+      "id": 27,
+      "creatorId": 5,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-09-30",
+      "title": "财务管理部-副主任 2025-09-30 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：财务管理部-副主任 在 2025-09-30 完成关键任务。"
+    },
+    {
+      "id": 28,
+      "creatorId": 5,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-01",
+      "title": "财务管理部-副主任 2025-10-01 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：财务管理部-副主任 在 2025-10-01 的重点安排。"
+    },
+    {
+      "id": 29,
+      "creatorId": 5,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-01",
+      "title": "财务管理部-副主任 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：财务管理部-副主任 在 2025-10-01 完成关键任务。"
+    },
+    {
+      "id": 30,
+      "creatorId": 5,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-02",
+      "title": "财务管理部-副主任 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：财务管理部-副主任 在 2025-10-02 的重点安排。"
+    },
+    {
+      "id": 31,
+      "creatorId": 5,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-02",
+      "title": "财务管理部-副主任 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：财务管理部-副主任 在 2025-10-02 完成关键任务。"
+    },
+    {
+      "id": 32,
+      "creatorId": 5,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-03",
+      "title": "财务管理部-副主任 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：财务管理部-副主任 在 2025-10-03 的重点安排。"
+    },
+    {
+      "id": 33,
+      "creatorId": 5,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-03",
+      "title": "财务管理部-副主任 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：财务管理部-副主任 在 2025-10-03 完成关键任务。"
+    },
+    {
+      "id": 34,
+      "creatorId": 5,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-04",
+      "title": "财务管理部-副主任 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：财务管理部-副主任 在 2025-10-04 的重点安排。"
+    },
+    {
+      "id": 35,
+      "creatorId": 5,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-04",
+      "title": "财务管理部-副主任 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：财务管理部-副主任 在 2025-10-04 完成关键任务。"
+    },
+    {
+      "id": 36,
+      "creatorId": 5,
+      "createdAt": "2025-10-05T01:09:19.087Z",
+      "updatedAt": "2025-10-05T01:09:19.087Z",
+      "orgId": 3,
+      "workDate": "2025-10-05",
+      "title": "财务管理部-副主任 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：财务管理部-副主任 在 2025-10-05 的重点安排。"
     }
   ]
 }

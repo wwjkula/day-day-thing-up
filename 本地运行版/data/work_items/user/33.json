@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 316
   },
-  "items": []
+  "items": [
+    {
+      "id": 307,
+      "creatorId": 33,
+      "createdAt": "2025-10-05T01:09:19.103Z",
+      "updatedAt": "2025-10-05T01:09:19.103Z",
+      "orgId": 10,
+      "workDate": "2025-09-30",
+      "title": "安全环保部-副主任 2025-09-30 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：安全环保部-副主任 在 2025-09-30 完成关键任务。"
+    },
+    {
+      "id": 308,
+      "creatorId": 33,
+      "createdAt": "2025-10-05T01:09:19.104Z",
+      "updatedAt": "2025-10-05T01:09:19.104Z",
+      "orgId": 10,
+      "workDate": "2025-10-01",
+      "title": "安全环保部-副主任 2025-10-01 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：安全环保部-副主任 在 2025-10-01 的重点安排。"
+    },
+    {
+      "id": 309,
+      "creatorId": 33,
+      "createdAt": "2025-10-05T01:09:19.104Z",
+      "updatedAt": "2025-10-05T01:09:19.104Z",
+      "orgId": 10,
+      "workDate": "2025-10-01",
+      "title": "安全环保部-副主任 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：安全环保部-副主任 在 2025-10-01 完成关键任务。"
+    },
+    {
+      "id": 310,
+      "creatorId": 33,
+      "createdAt": "2025-10-05T01:09:19.104Z",
+      "updatedAt": "2025-10-05T01:09:19.104Z",
+      "orgId": 10,
+      "workDate": "2025-10-02",
+      "title": "安全环保部-副主任 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：安全环保部-副主任 在 2025-10-02 的重点安排。"
+    },
+    {
+      "id": 311,
+      "creatorId": 33,
+      "createdAt": "2025-10-05T01:09:19.104Z",
+      "updatedAt": "2025-10-05T01:09:19.104Z",
+      "orgId": 10,
+      "workDate": "2025-10-02",
+      "title": "安全环保部-副主任 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：安全环保部-副主任 在 2025-10-02 完成关键任务。"
+    },
+    {
+      "id": 312,
+      "creatorId": 33,
+      "createdAt": "2025-10-05T01:09:19.104Z",
+      "updatedAt": "2025-10-05T01:09:19.104Z",
+      "orgId": 10,
+      "workDate": "2025-10-03",
+      "title": "安全环保部-副主任 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：安全环保部-副主任 在 2025-10-03 的重点安排。"
+    },
+    {
+      "id": 313,
+      "creatorId": 33,
+      "createdAt": "2025-10-05T01:09:19.104Z",
+      "updatedAt": "2025-10-05T01:09:19.104Z",
+      "orgId": 10,
+      "workDate": "2025-10-03",
+      "title": "安全环保部-副主任 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：安全环保部-副主任 在 2025-10-03 完成关键任务。"
+    },
+    {
+      "id": 314,
+      "creatorId": 33,
+      "createdAt": "2025-10-05T01:09:19.104Z",
+      "updatedAt": "2025-10-05T01:09:19.104Z",
+      "orgId": 10,
+      "workDate": "2025-10-04",
+      "title": "安全环保部-副主任 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：安全环保部-副主任 在 2025-10-04 的重点安排。"
+    },
+    {
+      "id": 315,
+      "creatorId": 33,
+      "createdAt": "2025-10-05T01:09:19.104Z",
+      "updatedAt": "2025-10-05T01:09:19.104Z",
+      "orgId": 10,
+      "workDate": "2025-10-04",
+      "title": "安全环保部-副主任 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：安全环保部-副主任 在 2025-10-04 完成关键任务。"
+    },
+    {
+      "id": 316,
+      "creatorId": 33,
+      "createdAt": "2025-10-05T01:09:19.104Z",
+      "updatedAt": "2025-10-05T01:09:19.104Z",
+      "orgId": 10,
+      "workDate": "2025-10-05",
+      "title": "安全环保部-副主任 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：安全环保部-副主任 在 2025-10-05 的重点安排。"
+    }
+  ]
 }

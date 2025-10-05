@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 376
   },
-  "items": []
+  "items": [
+    {
+      "id": 367,
+      "creatorId": 37,
+      "createdAt": "2025-10-05T01:09:19.106Z",
+      "updatedAt": "2025-10-05T01:09:19.106Z",
+      "orgId": 11,
+      "workDate": "2025-09-30",
+      "title": "计划合同部-副主任 2025-09-30 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：计划合同部-副主任 在 2025-09-30 完成关键任务。"
+    },
+    {
+      "id": 368,
+      "creatorId": 37,
+      "createdAt": "2025-10-05T01:09:19.106Z",
+      "updatedAt": "2025-10-05T01:09:19.106Z",
+      "orgId": 11,
+      "workDate": "2025-10-01",
+      "title": "计划合同部-副主任 2025-10-01 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：计划合同部-副主任 在 2025-10-01 的重点安排。"
+    },
+    {
+      "id": 369,
+      "creatorId": 37,
+      "createdAt": "2025-10-05T01:09:19.106Z",
+      "updatedAt": "2025-10-05T01:09:19.106Z",
+      "orgId": 11,
+      "workDate": "2025-10-01",
+      "title": "计划合同部-副主任 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：计划合同部-副主任 在 2025-10-01 完成关键任务。"
+    },
+    {
+      "id": 370,
+      "creatorId": 37,
+      "createdAt": "2025-10-05T01:09:19.106Z",
+      "updatedAt": "2025-10-05T01:09:19.106Z",
+      "orgId": 11,
+      "workDate": "2025-10-02",
+      "title": "计划合同部-副主任 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：计划合同部-副主任 在 2025-10-02 的重点安排。"
+    },
+    {
+      "id": 371,
+      "creatorId": 37,
+      "createdAt": "2025-10-05T01:09:19.106Z",
+      "updatedAt": "2025-10-05T01:09:19.106Z",
+      "orgId": 11,
+      "workDate": "2025-10-02",
+      "title": "计划合同部-副主任 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：计划合同部-副主任 在 2025-10-02 完成关键任务。"
+    },
+    {
+      "id": 372,
+      "creatorId": 37,
+      "createdAt": "2025-10-05T01:09:19.106Z",
+      "updatedAt": "2025-10-05T01:09:19.106Z",
+      "orgId": 11,
+      "workDate": "2025-10-03",
+      "title": "计划合同部-副主任 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：计划合同部-副主任 在 2025-10-03 的重点安排。"
+    },
+    {
+      "id": 373,
+      "creatorId": 37,
+      "createdAt": "2025-10-05T01:09:19.106Z",
+      "updatedAt": "2025-10-05T01:09:19.106Z",
+      "orgId": 11,
+      "workDate": "2025-10-03",
+      "title": "计划合同部-副主任 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：计划合同部-副主任 在 2025-10-03 完成关键任务。"
+    },
+    {
+      "id": 374,
+      "creatorId": 37,
+      "createdAt": "2025-10-05T01:09:19.106Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-10-04",
+      "title": "计划合同部-副主任 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：计划合同部-副主任 在 2025-10-04 的重点安排。"
+    },
+    {
+      "id": 375,
+      "creatorId": 37,
+      "createdAt": "2025-10-05T01:09:19.107Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-10-04",
+      "title": "计划合同部-副主任 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：计划合同部-副主任 在 2025-10-04 完成关键任务。"
+    },
+    {
+      "id": 376,
+      "creatorId": 37,
+      "createdAt": "2025-10-05T01:09:19.107Z",
+      "updatedAt": "2025-10-05T01:09:19.107Z",
+      "orgId": 11,
+      "workDate": "2025-10-05",
+      "title": "计划合同部-副主任 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：计划合同部-副主任 在 2025-10-05 的重点安排。"
+    }
+  ]
 }

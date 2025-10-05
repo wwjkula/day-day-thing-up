@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 206
   },
-  "items": []
+  "items": [
+    {
+      "id": 197,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T01:09:19.094Z",
+      "updatedAt": "2025-10-05T01:09:19.094Z",
+      "orgId": 7,
+      "workDate": "2025-09-30",
+      "title": "设备物资部-员工1 2025-09-30 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：设备物资部-员工1 在 2025-09-30 完成关键任务。"
+    },
+    {
+      "id": 198,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T01:09:19.094Z",
+      "updatedAt": "2025-10-05T01:09:19.094Z",
+      "orgId": 7,
+      "workDate": "2025-10-01",
+      "title": "设备物资部-员工1 2025-10-01 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：设备物资部-员工1 在 2025-10-01 的重点安排。"
+    },
+    {
+      "id": 199,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T01:09:19.094Z",
+      "updatedAt": "2025-10-05T01:09:19.094Z",
+      "orgId": 7,
+      "workDate": "2025-10-01",
+      "title": "设备物资部-员工1 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：设备物资部-员工1 在 2025-10-01 完成关键任务。"
+    },
+    {
+      "id": 200,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T01:09:19.094Z",
+      "updatedAt": "2025-10-05T01:09:19.094Z",
+      "orgId": 7,
+      "workDate": "2025-10-02",
+      "title": "设备物资部-员工1 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：设备物资部-员工1 在 2025-10-02 的重点安排。"
+    },
+    {
+      "id": 201,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T01:09:19.094Z",
+      "updatedAt": "2025-10-05T01:09:19.094Z",
+      "orgId": 7,
+      "workDate": "2025-10-02",
+      "title": "设备物资部-员工1 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：设备物资部-员工1 在 2025-10-02 完成关键任务。"
+    },
+    {
+      "id": 202,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T01:09:19.094Z",
+      "updatedAt": "2025-10-05T01:09:19.094Z",
+      "orgId": 7,
+      "workDate": "2025-10-03",
+      "title": "设备物资部-员工1 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：设备物资部-员工1 在 2025-10-03 的重点安排。"
+    },
+    {
+      "id": 203,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T01:09:19.094Z",
+      "updatedAt": "2025-10-05T01:09:19.094Z",
+      "orgId": 7,
+      "workDate": "2025-10-03",
+      "title": "设备物资部-员工1 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：设备物资部-员工1 在 2025-10-03 完成关键任务。"
+    },
+    {
+      "id": 204,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T01:09:19.094Z",
+      "updatedAt": "2025-10-05T01:09:19.094Z",
+      "orgId": 7,
+      "workDate": "2025-10-04",
+      "title": "设备物资部-员工1 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：设备物资部-员工1 在 2025-10-04 的重点安排。"
+    },
+    {
+      "id": 205,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T01:09:19.094Z",
+      "updatedAt": "2025-10-05T01:09:19.094Z",
+      "orgId": 7,
+      "workDate": "2025-10-04",
+      "title": "设备物资部-员工1 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "示例工作内容：设备物资部-员工1 在 2025-10-04 完成关键任务。"
+    },
+    {
+      "id": 206,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T01:09:19.094Z",
+      "updatedAt": "2025-10-05T01:09:19.094Z",
+      "orgId": 7,
+      "workDate": "2025-10-05",
+      "title": "设备物资部-员工1 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "示例计划：设备物资部-员工1 在 2025-10-05 的重点安排。"
+    }
+  ]
 }
