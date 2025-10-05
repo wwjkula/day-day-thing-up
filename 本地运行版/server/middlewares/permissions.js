@@ -1,4 +1,3 @@
-import { getAuditLogs, appendAuditLog } from '../data/store.js'
 import { isUserAdmin } from '../services/domain.js'
 
 export function normalizeScope(raw) {
@@ -50,44 +49,6 @@ export function canRead(req, res, next) {
   if ('error' in range) return res.status(400).json({ error: range.error })
   req.scope = scope
   req.range = range
-  next()
-}
-
-async function exportRateLimited(userId) {
-  const logs = await getAuditLogs()
-  const now = Date.now()
-  const oneMinuteAgo = now - 60_000
-  const count = logs.items.filter(
-    (log) =>
-      Number(log.actorUserId) === Number(userId) &&
-      log.action === 'export_request' &&
-      new Date(log.createdAt).getTime() >= oneMinuteAgo
-  ).length
-  const MAX_PER_MIN = 5
-  return { limited: count >= MAX_PER_MIN, max: MAX_PER_MIN }
-}
-
-export async function canExport(req, res, next) {
-  const scope = normalizeScope(req.query.scope)
-  const range = parseRangeFromQuery(req.query)
-  if ('error' in range) return res.status(400).json({ error: range.error })
-  req.scope = scope
-  req.range = range
-
-  const actorId = req.user?.sub
-  if (actorId == null) return res.status(401).json({ error: 'Unauthorized' })
-
-  const { limited, max } = await exportRateLimited(actorId)
-  if (limited) {
-    await appendAuditLog({
-      actorUserId: Number(actorId),
-      action: 'export_denied',
-      objectType: 'work_item',
-      detail: { reason: 'rate_limit', maxPerMin: max },
-    })
-    return res.status(429).json({ code: 'RATE_LIMITED', error: 'too many export requests' })
-  }
-
   next()
 }
 

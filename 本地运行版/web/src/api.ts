@@ -38,43 +38,6 @@ export async function getMissingWeekly(params: { from: string; to: string; scope
   return j as MissingWeeklyResponse
 }
 
-export async function postWeeklyExport(params: { from: string; to: string; scope: VisibilityScope }) {
-  const qs = new URLSearchParams(params as any)
-  const res = await fetch(withBase(`/api/reports/weekly/export?${qs}`), { method: 'POST', headers: { ...authHeader() } })
-  const j = await res.json()
-  if (!res.ok || !j.ok) throw new Error(j.error || '导出请求失败')
-  return j as { ok: true; jobId: string }
-}
-
-export async function getExportStatus(jobId: string) {
-  const res = await fetch(withBase(`/api/reports/weekly/export/status?id=${encodeURIComponent(jobId)}`), { headers: { ...authHeader() } })
-  const j = await res.json()
-  if (!res.ok || !j.ok) throw new Error(j.error || '状态查询失败')
-  return j as { ok: true; status: 'pending' | 'ready' }
-}
-
-export function getExportDownloadUrl(jobId: string): string {
-  return withBase(`/api/reports/weekly/export/download?id=${encodeURIComponent(jobId)}`)
-}
-
-export async function downloadExport(jobId: string): Promise<void> {
-  const url = getExportDownloadUrl(jobId)
-  const res = await fetch(url, { headers: { ...authHeader() } })
-  if (!res.ok) {
-    const text = await res.text().catch(() => '')
-    throw new Error(text || `下载失败(${res.status})`)
-  }
-  const blob = await res.blob()
-  const objectUrl = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = objectUrl
-  a.download = `${jobId}.xlsx`
-  document.body.appendChild(a)
-  a.click()
-  a.remove()
-  setTimeout(() => URL.revokeObjectURL(objectUrl), 1000)
-}
-
 export async function postMissingWeeklyRemind(params: { from: string; to: string; scope: VisibilityScope; userIds: number[] }): Promise<MissingWeeklyRemindResponse> {
   const { userIds, ...rest } = params
   const qs = new URLSearchParams(rest as any)
@@ -239,7 +202,10 @@ export async function adminCreateRoleGrant(payload: any) {
 }
 
 export async function adminDeleteRoleGrant(id: number) {
-  const res = await fetch(withBase(`/api/admin/role-grants/${id}`), { method: 'DELETE', headers: { ...authHeader() } })
+  const res = await fetch(withBase(`/api/admin/role-grants/${id}`), {
+    method: 'DELETE',
+    headers: { ...authHeader() },
+  })
   return res.json()
 }
 
@@ -249,7 +215,10 @@ export async function adminListRoles() {
 }
 
 export async function adminMigrateToR2() {
-  const res = await fetch(withBase('/api/admin/migrate/r2'), { method: 'POST', headers: { ...authHeader() } })
+  const res = await fetch(withBase('/api/admin/migrate/r2'), {
+    method: 'POST',
+    headers: { ...authHeader() },
+  })
   return res.json()
 }
 

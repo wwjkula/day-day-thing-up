@@ -86,7 +86,7 @@ onMounted(() => {
 <template>
   <div>
     <div v-if="!user && !loading" class="login-container">
-      <Login :migrating="migrating" @logged-in="onLoggedIn" @run-migration="migrateData" />
+      <Login @logged-in="onLoggedIn" />
     </div>
     <div v-else-if="loading" class="loading">加载中...</div>
     <div v-else class="container">

@@ -30,7 +30,6 @@ COPY --from=build /app/web/dist ./web/dist
 
 # Default data directories (bind mount in compose/runtime)
 COPY data ./data
-COPY exports ./exports
 COPY logs ./logs
 
 EXPOSE 8080

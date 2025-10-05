@@ -2,11 +2,9 @@
 import { ref } from 'vue'
 import OrgAdmin from './OrgAdmin.vue'
 import UsersAdmin from './UsersAdmin.vue'
-import ManagerEdgesAdmin from './ManagerEdgesAdmin.vue'
-import RoleGrantsAdmin from './RoleGrantsAdmin.vue'
 import WorkItemsAdmin from './WorkItemsAdmin.vue'
 
-const tab = ref<'org'|'user'|'mgr'|'grant'|'work'>('org')
+const tab = ref<'org'|'user'|'work'>('org')
 </script>
 
 <template>
@@ -17,12 +15,6 @@ const tab = ref<'org'|'user'|'mgr'|'grant'|'work'>('org')
       </el-tab-pane>
       <el-tab-pane label="人员管理" name="user">
         <UsersAdmin />
-      </el-tab-pane>
-      <el-tab-pane label="管理关系" name="mgr">
-        <ManagerEdgesAdmin />
-      </el-tab-pane>
-      <el-tab-pane label="权限授权" name="grant">
-        <RoleGrantsAdmin />
       </el-tab-pane>
       <el-tab-pane label="工作数据" name="work">
         <WorkItemsAdmin />

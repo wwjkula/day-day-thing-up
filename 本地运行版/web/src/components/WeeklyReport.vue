@@ -8,13 +8,7 @@ import type {
   WeeklyOverviewUser,
   WeeklyOverviewOrg,
 } from '@drrq/shared/index'
-import {
-  getDailyOverview,
-  getWeeklyOverview,
-  postWeeklyExport,
-  getExportStatus,
-  downloadExport,
-} from '../api'
+import { getDailyOverview, getWeeklyOverview } from '../api'
 
 type ViewMode = 'daily' | 'weekly'
 const viewMode = ref<ViewMode>('daily')
@@ -81,7 +75,6 @@ const weeklyData = ref<WeeklyOverviewResponse | null>(null)
 
 const loadingDaily = ref(false)
 const loadingWeekly = ref(false)
-const exporting = ref(false)
 
 const dailyOrgFilter = ref<number[]>([])
 const dailySearch = ref('')
@@ -296,34 +289,6 @@ watch(
   { immediate: true }
 )
 
-async function exportWeeklyExcel() {
-  if (!weeklyRange.value[0] || !weeklyRange.value[1]) return
-  exporting.value = true
-  try {
-    const { jobId } = await postWeeklyExport({
-      from: weeklyRange.value[0],
-      to: weeklyRange.value[1],
-      scope: 'direct',
-    })
-    let attempts = 0
-    while (attempts < 30) {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      const status = await getExportStatus(jobId)
-      if (status.status === 'ready') {
-        await downloadExport(jobId)
-        ElMessage.success('导出已就绪，开始下载')
-        return
-      }
-      attempts += 1
-    }
-    throw new Error('导出超时，请稍后重试')
-  } catch (err: any) {
-    ElMessage.error(err?.message || '导出失败')
-  } finally {
-    exporting.value = false
-  }
-}
-
 watch(dailyDate, () => {
   loadDailyOverview()
 })
@@ -383,7 +348,6 @@ onMounted(() => {
         <el-checkbox v-model="weeklyOnlyMissing">只看缺报</el-checkbox>
         <el-checkbox v-model="weeklyOnlyPlan">只看有计划</el-checkbox>
         <el-button :loading="loadingWeekly" @click="loadWeeklyOverview">刷新</el-button>
-        <el-button type="primary" :loading="exporting" @click="exportWeeklyExcel">导出 Excel</el-button>
       </template>
     </div>
 

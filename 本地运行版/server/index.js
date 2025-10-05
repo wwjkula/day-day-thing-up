@@ -10,7 +10,6 @@ import {
   HOST,
   PORT,
   ROOT_DIR,
-  EXPORTS_DIR,
   getJwtSecret,
 } from './config.js'
 import {
@@ -31,10 +30,9 @@ import {
   getAuditLogs,
 } from './data/store.js'
 import { isUserAdmin, listUsers, mapUsersById, listRoleGrantsForUser, getPrimaryOrgId, listOrgUnits } from './services/domain.js'
-import { normalizeScope, canRead, canExport, requireAdmin, parseRangeFromQuery } from './middlewares/permissions.js'
+import { normalizeScope, canRead, requireAdmin, parseRangeFromQuery } from './middlewares/permissions.js'
 import { createWorkItem, listWorkItems, weeklyAggregate, calculateMissingReport } from './services/work.js'
 import { resolveVisibleUserIds } from './services/visibility.js'
-import { ensureExportsDir, createWeeklyExport } from './services/export.js'
 import { generateSampleWorkData, clearAllWorkItems } from './services/sample-data.js'
 import { parseISODate, toISODate } from './utils/datetime.js'
 import { buildDailyOverview, buildWeeklyOverview } from './services/overview.js'
@@ -42,8 +40,6 @@ import { buildDailyOverview, buildWeeklyOverview } from './services/overview.js'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
 const JWT_SECRET = getJwtSecret()
-
-const exportJobs = new Map()
 
 app.use(express.json({ limit: '2mb' }))
 app.use(morgan('dev'))
@@ -335,59 +331,6 @@ app.post('/api/reports/missing-weekly/remind', authenticate, canRead, async (req
     detail: { scope, start: from, end: to, targetUserIds: targets.map((t) => t.userId), skipped },
   })
   return res.json({ ok: true, notified: targets.length, targets, skipped })
-})
-
-app.post('/api/reports/weekly/export', authenticate, canExport, async (req, res) => {
-  const scope = req.scope || 'self'
-  const from = toISODate(req.range.start)
-  const to = toISODate(req.range.end)
-  await ensureExportsDir()
-  const { jobId, filePath } = await createWeeklyExport(req.user.sub, scope, { from, to })
-  exportJobs.set(jobId, { status: 'ready', filePath, createdAt: Date.now(), range: { from, to } })
-  await recordAudit({
-    actorUserId: req.user.sub,
-    action: 'export_request',
-    objectType: 'work_item',
-    detail: { scope, start: from, end: to, jobId },
-  })
-  return res.json({ ok: true, jobId })
-})
-
-app.get('/api/reports/weekly/export/status', authenticate, async (req, res) => {
-  const jobId = String(req.query.id || '').trim()
-  if (!jobId) return res.status(400).json({ error: 'id required' })
-  const job = exportJobs.get(jobId)
-  if (!job) {
-    const filePath = path.join(EXPORTS_DIR, `${jobId}.xlsx`)
-    try {
-      await fs.access(filePath)
-      exportJobs.set(jobId, { status: 'ready', filePath, createdAt: Date.now(), range: null })
-      return res.json({ ok: true, status: 'ready' })
-    } catch {
-      return res.json({ ok: true, status: 'pending' })
-    }
-  }
-  return res.json({ ok: true, status: job.status })
-})
-
-app.get('/api/reports/weekly/export/download', authenticate, async (req, res) => {
-  const jobId = String(req.query.id || '').trim()
-  if (!jobId) return res.status(400).json({ error: 'id required' })
-  let job = exportJobs.get(jobId)
-  const filePath = job?.filePath || path.join(EXPORTS_DIR, `${jobId}.xlsx`)
-  try {
-    await fs.access(filePath)
-    if (!job) {
-      job = { status: 'ready', filePath, createdAt: Date.now(), range: null }
-      exportJobs.set(jobId, job)
-    }
-    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    res.setHeader('Content-Disposition', `attachment; filename="${jobId}.xlsx"`)
-    const stream = await fs.readFile(filePath)
-    return res.end(stream)
-  } catch {
-    return res.status(404).json({ error: 'Not Found' })
-  }
 })
 
 // --- Admin APIs ---

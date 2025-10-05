@@ -3,11 +3,8 @@ import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { authLogin } from '../api'
 
-const props = defineProps<{ migrating?: boolean }>()
-
 const emit = defineEmits<{
   (e: 'logged-in', user: any): void
-  (e: 'run-migration'): void
 }>()
 
 const loading = ref(false)
@@ -37,11 +34,6 @@ async function onSubmit() {
     loading.value = false
   }
 }
-
-function onRunMigration() {
-  if (loading.value || props.migrating) return
-  emit('run-migration')
-}
 </script>
 
 <template>
@@ -57,7 +49,6 @@ function onRunMigration() {
         </el-form-item>
         <el-form-item>
           <el-button type="primary" :loading="loading" @click="onSubmit">登录</el-button>
-          <el-button type="warning" plain :loading="props.migrating" style="margin-left: 8px" @click="onRunMigration">运行数据迁移</el-button>
         </el-form-item>
       </el-form>
       <div class="hint">如该账号尚未设置密码，可直接留空密码登录；建议登录后尽快在右上角“修改密码”完成设置。</div>
