@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 11
   },
-  "items": []
+  "items": [
+    {
+      "id": 2,
+      "creatorId": 3,
+      "createdAt": "2025-10-05T08:49:44.839Z",
+      "updatedAt": "2025-10-05T08:49:44.839Z",
+      "orgId": 2,
+      "workDate": "2025-10-01",
+      "title": "【示例】李副总 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】李副总 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 3,
+      "creatorId": 3,
+      "createdAt": "2025-10-05T08:49:44.876Z",
+      "updatedAt": "2025-10-05T08:49:44.876Z",
+      "orgId": 2,
+      "workDate": "2025-10-02",
+      "title": "【示例】李副总 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】李副总 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 4,
+      "creatorId": 3,
+      "createdAt": "2025-10-05T08:49:44.901Z",
+      "updatedAt": "2025-10-05T08:49:44.901Z",
+      "orgId": 2,
+      "workDate": "2025-10-02",
+      "title": "【示例】李副总 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】李副总 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 5,
+      "creatorId": 3,
+      "createdAt": "2025-10-05T08:49:44.914Z",
+      "updatedAt": "2025-10-05T08:49:44.914Z",
+      "orgId": 2,
+      "workDate": "2025-10-03",
+      "title": "【示例】李副总 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】李副总 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 6,
+      "creatorId": 3,
+      "createdAt": "2025-10-05T08:49:44.933Z",
+      "updatedAt": "2025-10-05T08:49:44.933Z",
+      "orgId": 2,
+      "workDate": "2025-10-03",
+      "title": "【示例】李副总 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】李副总 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 7,
+      "creatorId": 3,
+      "createdAt": "2025-10-05T08:49:44.951Z",
+      "updatedAt": "2025-10-05T08:49:44.951Z",
+      "orgId": 2,
+      "workDate": "2025-10-04",
+      "title": "【示例】李副总 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】李副总 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 8,
+      "creatorId": 3,
+      "createdAt": "2025-10-05T08:49:44.980Z",
+      "updatedAt": "2025-10-05T08:49:44.980Z",
+      "orgId": 2,
+      "workDate": "2025-10-04",
+      "title": "【示例】李副总 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】李副总 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 9,
+      "creatorId": 3,
+      "createdAt": "2025-10-05T08:49:45.008Z",
+      "updatedAt": "2025-10-05T08:49:45.008Z",
+      "orgId": 2,
+      "workDate": "2025-10-05",
+      "title": "【示例】李副总 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】李副总 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 10,
+      "creatorId": 3,
+      "createdAt": "2025-10-05T08:49:45.041Z",
+      "updatedAt": "2025-10-05T08:49:45.041Z",
+      "orgId": 2,
+      "workDate": "2025-10-05",
+      "title": "【示例】李副总 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】李副总 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 11,
+      "creatorId": 3,
+      "createdAt": "2025-10-05T08:49:45.066Z",
+      "updatedAt": "2025-10-05T08:49:45.066Z",
+      "orgId": 2,
+      "workDate": "2025-10-06",
+      "title": "【示例】李副总 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】李副总 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }

@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 191
   },
-  "items": []
+  "items": [
+    {
+      "id": 182,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T08:49:48.921Z",
+      "updatedAt": "2025-10-05T08:49:48.921Z",
+      "orgId": 7,
+      "workDate": "2025-10-01",
+      "title": "【示例】设备物资部-员工1 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】设备物资部-员工1 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 183,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T08:49:48.937Z",
+      "updatedAt": "2025-10-05T08:49:48.937Z",
+      "orgId": 7,
+      "workDate": "2025-10-02",
+      "title": "【示例】设备物资部-员工1 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】设备物资部-员工1 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 184,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T08:49:48.953Z",
+      "updatedAt": "2025-10-05T08:49:48.953Z",
+      "orgId": 7,
+      "workDate": "2025-10-02",
+      "title": "【示例】设备物资部-员工1 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】设备物资部-员工1 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 185,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T08:49:48.975Z",
+      "updatedAt": "2025-10-05T08:49:48.975Z",
+      "orgId": 7,
+      "workDate": "2025-10-03",
+      "title": "【示例】设备物资部-员工1 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】设备物资部-员工1 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 186,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T08:49:48.996Z",
+      "updatedAt": "2025-10-05T08:49:48.996Z",
+      "orgId": 7,
+      "workDate": "2025-10-03",
+      "title": "【示例】设备物资部-员工1 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】设备物资部-员工1 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 187,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T08:49:49.016Z",
+      "updatedAt": "2025-10-05T08:49:49.016Z",
+      "orgId": 7,
+      "workDate": "2025-10-04",
+      "title": "【示例】设备物资部-员工1 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】设备物资部-员工1 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 188,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T08:49:49.033Z",
+      "updatedAt": "2025-10-05T08:49:49.033Z",
+      "orgId": 7,
+      "workDate": "2025-10-04",
+      "title": "【示例】设备物资部-员工1 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】设备物资部-员工1 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 189,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T08:49:49.046Z",
+      "updatedAt": "2025-10-05T08:49:49.046Z",
+      "orgId": 7,
+      "workDate": "2025-10-05",
+      "title": "【示例】设备物资部-员工1 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】设备物资部-员工1 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 190,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T08:49:49.064Z",
+      "updatedAt": "2025-10-05T08:49:49.064Z",
+      "orgId": 7,
+      "workDate": "2025-10-05",
+      "title": "【示例】设备物资部-员工1 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】设备物资部-员工1 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 191,
+      "creatorId": 22,
+      "createdAt": "2025-10-05T08:49:49.088Z",
+      "updatedAt": "2025-10-05T08:49:49.088Z",
+      "orgId": 7,
+      "workDate": "2025-10-06",
+      "title": "【示例】设备物资部-员工1 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】设备物资部-员工1 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }

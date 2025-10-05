@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 31
   },
-  "items": []
+  "items": [
+    {
+      "id": 22,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T08:49:45.340Z",
+      "updatedAt": "2025-10-05T08:49:45.340Z",
+      "orgId": 3,
+      "workDate": "2025-10-01",
+      "title": "【示例】财务管理部-员工1 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】财务管理部-员工1 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 23,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T08:49:45.366Z",
+      "updatedAt": "2025-10-05T08:49:45.366Z",
+      "orgId": 3,
+      "workDate": "2025-10-02",
+      "title": "【示例】财务管理部-员工1 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】财务管理部-员工1 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 24,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T08:49:45.389Z",
+      "updatedAt": "2025-10-05T08:49:45.389Z",
+      "orgId": 3,
+      "workDate": "2025-10-02",
+      "title": "【示例】财务管理部-员工1 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】财务管理部-员工1 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 25,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T08:49:45.430Z",
+      "updatedAt": "2025-10-05T08:49:45.430Z",
+      "orgId": 3,
+      "workDate": "2025-10-03",
+      "title": "【示例】财务管理部-员工1 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】财务管理部-员工1 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 26,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T08:49:45.471Z",
+      "updatedAt": "2025-10-05T08:49:45.471Z",
+      "orgId": 3,
+      "workDate": "2025-10-03",
+      "title": "【示例】财务管理部-员工1 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】财务管理部-员工1 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 27,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T08:49:45.496Z",
+      "updatedAt": "2025-10-05T08:49:45.496Z",
+      "orgId": 3,
+      "workDate": "2025-10-04",
+      "title": "【示例】财务管理部-员工1 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】财务管理部-员工1 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 28,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T08:49:45.528Z",
+      "updatedAt": "2025-10-05T08:49:45.528Z",
+      "orgId": 3,
+      "workDate": "2025-10-04",
+      "title": "【示例】财务管理部-员工1 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】财务管理部-员工1 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 29,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T08:49:45.544Z",
+      "updatedAt": "2025-10-05T08:49:45.544Z",
+      "orgId": 3,
+      "workDate": "2025-10-05",
+      "title": "【示例】财务管理部-员工1 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】财务管理部-员工1 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 30,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T08:49:45.567Z",
+      "updatedAt": "2025-10-05T08:49:45.567Z",
+      "orgId": 3,
+      "workDate": "2025-10-05",
+      "title": "【示例】财务管理部-员工1 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】财务管理部-员工1 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 31,
+      "creatorId": 6,
+      "createdAt": "2025-10-05T08:49:45.589Z",
+      "updatedAt": "2025-10-05T08:49:45.589Z",
+      "orgId": 3,
+      "workDate": "2025-10-06",
+      "title": "【示例】财务管理部-员工1 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】财务管理部-员工1 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }

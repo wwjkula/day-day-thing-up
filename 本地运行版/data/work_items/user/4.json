@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 391
   },
-  "items": []
+  "items": [
+    {
+      "id": 382,
+      "creatorId": 4,
+      "createdAt": "2025-10-05T08:49:52.993Z",
+      "updatedAt": "2025-10-05T08:49:52.993Z",
+      "orgId": 3,
+      "workDate": "2025-10-01",
+      "title": "【示例】财务管理部-主任 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】财务管理部-主任 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 383,
+      "creatorId": 4,
+      "createdAt": "2025-10-05T08:49:53.017Z",
+      "updatedAt": "2025-10-05T08:49:53.017Z",
+      "orgId": 3,
+      "workDate": "2025-10-02",
+      "title": "【示例】财务管理部-主任 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】财务管理部-主任 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 384,
+      "creatorId": 4,
+      "createdAt": "2025-10-05T08:49:53.036Z",
+      "updatedAt": "2025-10-05T08:49:53.036Z",
+      "orgId": 3,
+      "workDate": "2025-10-02",
+      "title": "【示例】财务管理部-主任 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】财务管理部-主任 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 385,
+      "creatorId": 4,
+      "createdAt": "2025-10-05T08:49:53.058Z",
+      "updatedAt": "2025-10-05T08:49:53.058Z",
+      "orgId": 3,
+      "workDate": "2025-10-03",
+      "title": "【示例】财务管理部-主任 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】财务管理部-主任 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 386,
+      "creatorId": 4,
+      "createdAt": "2025-10-05T08:49:53.074Z",
+      "updatedAt": "2025-10-05T08:49:53.074Z",
+      "orgId": 3,
+      "workDate": "2025-10-03",
+      "title": "【示例】财务管理部-主任 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】财务管理部-主任 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 387,
+      "creatorId": 4,
+      "createdAt": "2025-10-05T08:49:53.084Z",
+      "updatedAt": "2025-10-05T08:49:53.084Z",
+      "orgId": 3,
+      "workDate": "2025-10-04",
+      "title": "【示例】财务管理部-主任 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】财务管理部-主任 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 388,
+      "creatorId": 4,
+      "createdAt": "2025-10-05T08:49:53.102Z",
+      "updatedAt": "2025-10-05T08:49:53.102Z",
+      "orgId": 3,
+      "workDate": "2025-10-04",
+      "title": "【示例】财务管理部-主任 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】财务管理部-主任 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 389,
+      "creatorId": 4,
+      "createdAt": "2025-10-05T08:49:53.126Z",
+      "updatedAt": "2025-10-05T08:49:53.126Z",
+      "orgId": 3,
+      "workDate": "2025-10-05",
+      "title": "【示例】财务管理部-主任 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】财务管理部-主任 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 390,
+      "creatorId": 4,
+      "createdAt": "2025-10-05T08:49:53.146Z",
+      "updatedAt": "2025-10-05T08:49:53.146Z",
+      "orgId": 3,
+      "workDate": "2025-10-05",
+      "title": "【示例】财务管理部-主任 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】财务管理部-主任 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 391,
+      "creatorId": 4,
+      "createdAt": "2025-10-05T08:49:53.166Z",
+      "updatedAt": "2025-10-05T08:49:53.166Z",
+      "orgId": 3,
+      "workDate": "2025-10-06",
+      "title": "【示例】财务管理部-主任 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】财务管理部-主任 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }

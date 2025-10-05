@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 371
   },
-  "items": []
+  "items": [
+    {
+      "id": 362,
+      "creatorId": 38,
+      "createdAt": "2025-10-05T08:49:52.606Z",
+      "updatedAt": "2025-10-05T08:49:52.606Z",
+      "orgId": 11,
+      "workDate": "2025-10-01",
+      "title": "【示例】计划合同部-员工1 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】计划合同部-员工1 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 363,
+      "creatorId": 38,
+      "createdAt": "2025-10-05T08:49:52.625Z",
+      "updatedAt": "2025-10-05T08:49:52.625Z",
+      "orgId": 11,
+      "workDate": "2025-10-02",
+      "title": "【示例】计划合同部-员工1 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】计划合同部-员工1 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 364,
+      "creatorId": 38,
+      "createdAt": "2025-10-05T08:49:52.651Z",
+      "updatedAt": "2025-10-05T08:49:52.651Z",
+      "orgId": 11,
+      "workDate": "2025-10-02",
+      "title": "【示例】计划合同部-员工1 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】计划合同部-员工1 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 365,
+      "creatorId": 38,
+      "createdAt": "2025-10-05T08:49:52.672Z",
+      "updatedAt": "2025-10-05T08:49:52.672Z",
+      "orgId": 11,
+      "workDate": "2025-10-03",
+      "title": "【示例】计划合同部-员工1 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】计划合同部-员工1 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 366,
+      "creatorId": 38,
+      "createdAt": "2025-10-05T08:49:52.693Z",
+      "updatedAt": "2025-10-05T08:49:52.693Z",
+      "orgId": 11,
+      "workDate": "2025-10-03",
+      "title": "【示例】计划合同部-员工1 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】计划合同部-员工1 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 367,
+      "creatorId": 38,
+      "createdAt": "2025-10-05T08:49:52.713Z",
+      "updatedAt": "2025-10-05T08:49:52.713Z",
+      "orgId": 11,
+      "workDate": "2025-10-04",
+      "title": "【示例】计划合同部-员工1 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】计划合同部-员工1 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 368,
+      "creatorId": 38,
+      "createdAt": "2025-10-05T08:49:52.732Z",
+      "updatedAt": "2025-10-05T08:49:52.732Z",
+      "orgId": 11,
+      "workDate": "2025-10-04",
+      "title": "【示例】计划合同部-员工1 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】计划合同部-员工1 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 369,
+      "creatorId": 38,
+      "createdAt": "2025-10-05T08:49:52.746Z",
+      "updatedAt": "2025-10-05T08:49:52.746Z",
+      "orgId": 11,
+      "workDate": "2025-10-05",
+      "title": "【示例】计划合同部-员工1 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】计划合同部-员工1 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 370,
+      "creatorId": 38,
+      "createdAt": "2025-10-05T08:49:52.767Z",
+      "updatedAt": "2025-10-05T08:49:52.767Z",
+      "orgId": 11,
+      "workDate": "2025-10-05",
+      "title": "【示例】计划合同部-员工1 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】计划合同部-员工1 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 371,
+      "creatorId": 38,
+      "createdAt": "2025-10-05T08:49:52.785Z",
+      "updatedAt": "2025-10-05T08:49:52.785Z",
+      "orgId": 11,
+      "workDate": "2025-10-06",
+      "title": "【示例】计划合同部-员工1 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】计划合同部-员工1 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }

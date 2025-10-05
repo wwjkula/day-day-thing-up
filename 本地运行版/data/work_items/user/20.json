@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 171
   },
-  "items": []
+  "items": [
+    {
+      "id": 162,
+      "creatorId": 20,
+      "createdAt": "2025-10-05T08:49:48.490Z",
+      "updatedAt": "2025-10-05T08:49:48.490Z",
+      "orgId": 7,
+      "workDate": "2025-10-01",
+      "title": "【示例】设备物资部-主任 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】设备物资部-主任 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 163,
+      "creatorId": 20,
+      "createdAt": "2025-10-05T08:49:48.505Z",
+      "updatedAt": "2025-10-05T08:49:48.505Z",
+      "orgId": 7,
+      "workDate": "2025-10-02",
+      "title": "【示例】设备物资部-主任 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】设备物资部-主任 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 164,
+      "creatorId": 20,
+      "createdAt": "2025-10-05T08:49:48.520Z",
+      "updatedAt": "2025-10-05T08:49:48.520Z",
+      "orgId": 7,
+      "workDate": "2025-10-02",
+      "title": "【示例】设备物资部-主任 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】设备物资部-主任 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 165,
+      "creatorId": 20,
+      "createdAt": "2025-10-05T08:49:48.549Z",
+      "updatedAt": "2025-10-05T08:49:48.549Z",
+      "orgId": 7,
+      "workDate": "2025-10-03",
+      "title": "【示例】设备物资部-主任 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】设备物资部-主任 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 166,
+      "creatorId": 20,
+      "createdAt": "2025-10-05T08:49:48.583Z",
+      "updatedAt": "2025-10-05T08:49:48.583Z",
+      "orgId": 7,
+      "workDate": "2025-10-03",
+      "title": "【示例】设备物资部-主任 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】设备物资部-主任 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 167,
+      "creatorId": 20,
+      "createdAt": "2025-10-05T08:49:48.613Z",
+      "updatedAt": "2025-10-05T08:49:48.613Z",
+      "orgId": 7,
+      "workDate": "2025-10-04",
+      "title": "【示例】设备物资部-主任 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】设备物资部-主任 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 168,
+      "creatorId": 20,
+      "createdAt": "2025-10-05T08:49:48.642Z",
+      "updatedAt": "2025-10-05T08:49:48.642Z",
+      "orgId": 7,
+      "workDate": "2025-10-04",
+      "title": "【示例】设备物资部-主任 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】设备物资部-主任 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 169,
+      "creatorId": 20,
+      "createdAt": "2025-10-05T08:49:48.669Z",
+      "updatedAt": "2025-10-05T08:49:48.669Z",
+      "orgId": 7,
+      "workDate": "2025-10-05",
+      "title": "【示例】设备物资部-主任 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】设备物资部-主任 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 170,
+      "creatorId": 20,
+      "createdAt": "2025-10-05T08:49:48.690Z",
+      "updatedAt": "2025-10-05T08:49:48.690Z",
+      "orgId": 7,
+      "workDate": "2025-10-05",
+      "title": "【示例】设备物资部-主任 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】设备物资部-主任 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 171,
+      "creatorId": 20,
+      "createdAt": "2025-10-05T08:49:48.717Z",
+      "updatedAt": "2025-10-05T08:49:48.717Z",
+      "orgId": 7,
+      "workDate": "2025-10-06",
+      "title": "【示例】设备物资部-主任 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】设备物资部-主任 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }

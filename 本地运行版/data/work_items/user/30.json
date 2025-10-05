@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 271
   },
-  "items": []
+  "items": [
+    {
+      "id": 262,
+      "creatorId": 30,
+      "createdAt": "2025-10-05T08:49:50.483Z",
+      "updatedAt": "2025-10-05T08:49:50.483Z",
+      "orgId": 9,
+      "workDate": "2025-10-01",
+      "title": "【示例】测量队-员工1 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】测量队-员工1 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 263,
+      "creatorId": 30,
+      "createdAt": "2025-10-05T08:49:50.502Z",
+      "updatedAt": "2025-10-05T08:49:50.502Z",
+      "orgId": 9,
+      "workDate": "2025-10-02",
+      "title": "【示例】测量队-员工1 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】测量队-员工1 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 264,
+      "creatorId": 30,
+      "createdAt": "2025-10-05T08:49:50.518Z",
+      "updatedAt": "2025-10-05T08:49:50.518Z",
+      "orgId": 9,
+      "workDate": "2025-10-02",
+      "title": "【示例】测量队-员工1 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】测量队-员工1 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 265,
+      "creatorId": 30,
+      "createdAt": "2025-10-05T08:49:50.536Z",
+      "updatedAt": "2025-10-05T08:49:50.536Z",
+      "orgId": 9,
+      "workDate": "2025-10-03",
+      "title": "【示例】测量队-员工1 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】测量队-员工1 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 266,
+      "creatorId": 30,
+      "createdAt": "2025-10-05T08:49:50.550Z",
+      "updatedAt": "2025-10-05T08:49:50.550Z",
+      "orgId": 9,
+      "workDate": "2025-10-03",
+      "title": "【示例】测量队-员工1 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】测量队-员工1 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 267,
+      "creatorId": 30,
+      "createdAt": "2025-10-05T08:49:50.572Z",
+      "updatedAt": "2025-10-05T08:49:50.572Z",
+      "orgId": 9,
+      "workDate": "2025-10-04",
+      "title": "【示例】测量队-员工1 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】测量队-员工1 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 268,
+      "creatorId": 30,
+      "createdAt": "2025-10-05T08:49:50.603Z",
+      "updatedAt": "2025-10-05T08:49:50.603Z",
+      "orgId": 9,
+      "workDate": "2025-10-04",
+      "title": "【示例】测量队-员工1 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】测量队-员工1 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 269,
+      "creatorId": 30,
+      "createdAt": "2025-10-05T08:49:50.617Z",
+      "updatedAt": "2025-10-05T08:49:50.617Z",
+      "orgId": 9,
+      "workDate": "2025-10-05",
+      "title": "【示例】测量队-员工1 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】测量队-员工1 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 270,
+      "creatorId": 30,
+      "createdAt": "2025-10-05T08:49:50.640Z",
+      "updatedAt": "2025-10-05T08:49:50.640Z",
+      "orgId": 9,
+      "workDate": "2025-10-05",
+      "title": "【示例】测量队-员工1 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】测量队-员工1 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 271,
+      "creatorId": 30,
+      "createdAt": "2025-10-05T08:49:50.658Z",
+      "updatedAt": "2025-10-05T08:49:50.658Z",
+      "orgId": 9,
+      "workDate": "2025-10-06",
+      "title": "【示例】测量队-员工1 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】测量队-员工1 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }

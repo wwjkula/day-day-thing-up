@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 321
   },
-  "items": []
+  "items": [
+    {
+      "id": 312,
+      "creatorId": 35,
+      "createdAt": "2025-10-05T08:49:51.559Z",
+      "updatedAt": "2025-10-05T08:49:51.559Z",
+      "orgId": 10,
+      "workDate": "2025-10-01",
+      "title": "【示例】安全环保部-员工2 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】安全环保部-员工2 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 313,
+      "creatorId": 35,
+      "createdAt": "2025-10-05T08:49:51.582Z",
+      "updatedAt": "2025-10-05T08:49:51.582Z",
+      "orgId": 10,
+      "workDate": "2025-10-02",
+      "title": "【示例】安全环保部-员工2 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】安全环保部-员工2 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 314,
+      "creatorId": 35,
+      "createdAt": "2025-10-05T08:49:51.600Z",
+      "updatedAt": "2025-10-05T08:49:51.600Z",
+      "orgId": 10,
+      "workDate": "2025-10-02",
+      "title": "【示例】安全环保部-员工2 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】安全环保部-员工2 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 315,
+      "creatorId": 35,
+      "createdAt": "2025-10-05T08:49:51.619Z",
+      "updatedAt": "2025-10-05T08:49:51.619Z",
+      "orgId": 10,
+      "workDate": "2025-10-03",
+      "title": "【示例】安全环保部-员工2 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】安全环保部-员工2 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 316,
+      "creatorId": 35,
+      "createdAt": "2025-10-05T08:49:51.631Z",
+      "updatedAt": "2025-10-05T08:49:51.631Z",
+      "orgId": 10,
+      "workDate": "2025-10-03",
+      "title": "【示例】安全环保部-员工2 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】安全环保部-员工2 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 317,
+      "creatorId": 35,
+      "createdAt": "2025-10-05T08:49:51.661Z",
+      "updatedAt": "2025-10-05T08:49:51.661Z",
+      "orgId": 10,
+      "workDate": "2025-10-04",
+      "title": "【示例】安全环保部-员工2 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】安全环保部-员工2 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 318,
+      "creatorId": 35,
+      "createdAt": "2025-10-05T08:49:51.672Z",
+      "updatedAt": "2025-10-05T08:49:51.672Z",
+      "orgId": 10,
+      "workDate": "2025-10-04",
+      "title": "【示例】安全环保部-员工2 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】安全环保部-员工2 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 319,
+      "creatorId": 35,
+      "createdAt": "2025-10-05T08:49:51.690Z",
+      "updatedAt": "2025-10-05T08:49:51.690Z",
+      "orgId": 10,
+      "workDate": "2025-10-05",
+      "title": "【示例】安全环保部-员工2 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】安全环保部-员工2 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 320,
+      "creatorId": 35,
+      "createdAt": "2025-10-05T08:49:51.717Z",
+      "updatedAt": "2025-10-05T08:49:51.717Z",
+      "orgId": 10,
+      "workDate": "2025-10-05",
+      "title": "【示例】安全环保部-员工2 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】安全环保部-员工2 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 321,
+      "creatorId": 35,
+      "createdAt": "2025-10-05T08:49:51.756Z",
+      "updatedAt": "2025-10-05T08:49:51.756Z",
+      "orgId": 10,
+      "workDate": "2025-10-06",
+      "title": "【示例】安全环保部-员工2 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】安全环保部-员工2 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }

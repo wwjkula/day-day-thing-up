@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 101
   },
-  "items": []
+  "items": [
+    {
+      "id": 92,
+      "creatorId": 13,
+      "createdAt": "2025-10-05T08:49:47.067Z",
+      "updatedAt": "2025-10-05T08:49:47.067Z",
+      "orgId": 5,
+      "workDate": "2025-10-01",
+      "title": "【示例】工程管理部-副主任 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】工程管理部-副主任 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 93,
+      "creatorId": 13,
+      "createdAt": "2025-10-05T08:49:47.084Z",
+      "updatedAt": "2025-10-05T08:49:47.084Z",
+      "orgId": 5,
+      "workDate": "2025-10-02",
+      "title": "【示例】工程管理部-副主任 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】工程管理部-副主任 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 94,
+      "creatorId": 13,
+      "createdAt": "2025-10-05T08:49:47.105Z",
+      "updatedAt": "2025-10-05T08:49:47.105Z",
+      "orgId": 5,
+      "workDate": "2025-10-02",
+      "title": "【示例】工程管理部-副主任 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】工程管理部-副主任 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 95,
+      "creatorId": 13,
+      "createdAt": "2025-10-05T08:49:47.134Z",
+      "updatedAt": "2025-10-05T08:49:47.134Z",
+      "orgId": 5,
+      "workDate": "2025-10-03",
+      "title": "【示例】工程管理部-副主任 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】工程管理部-副主任 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 96,
+      "creatorId": 13,
+      "createdAt": "2025-10-05T08:49:47.154Z",
+      "updatedAt": "2025-10-05T08:49:47.154Z",
+      "orgId": 5,
+      "workDate": "2025-10-03",
+      "title": "【示例】工程管理部-副主任 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】工程管理部-副主任 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 97,
+      "creatorId": 13,
+      "createdAt": "2025-10-05T08:49:47.183Z",
+      "updatedAt": "2025-10-05T08:49:47.183Z",
+      "orgId": 5,
+      "workDate": "2025-10-04",
+      "title": "【示例】工程管理部-副主任 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】工程管理部-副主任 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 98,
+      "creatorId": 13,
+      "createdAt": "2025-10-05T08:49:47.200Z",
+      "updatedAt": "2025-10-05T08:49:47.200Z",
+      "orgId": 5,
+      "workDate": "2025-10-04",
+      "title": "【示例】工程管理部-副主任 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】工程管理部-副主任 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 99,
+      "creatorId": 13,
+      "createdAt": "2025-10-05T08:49:47.215Z",
+      "updatedAt": "2025-10-05T08:49:47.215Z",
+      "orgId": 5,
+      "workDate": "2025-10-05",
+      "title": "【示例】工程管理部-副主任 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】工程管理部-副主任 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 100,
+      "creatorId": 13,
+      "createdAt": "2025-10-05T08:49:47.243Z",
+      "updatedAt": "2025-10-05T08:49:47.243Z",
+      "orgId": 5,
+      "workDate": "2025-10-05",
+      "title": "【示例】工程管理部-副主任 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】工程管理部-副主任 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 101,
+      "creatorId": 13,
+      "createdAt": "2025-10-05T08:49:47.271Z",
+      "updatedAt": "2025-10-05T08:49:47.271Z",
+      "orgId": 5,
+      "workDate": "2025-10-06",
+      "title": "【示例】工程管理部-副主任 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】工程管理部-副主任 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }

@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 161
   },
-  "items": []
+  "items": [
+    {
+      "id": 152,
+      "creatorId": 19,
+      "createdAt": "2025-10-05T08:49:48.315Z",
+      "updatedAt": "2025-10-05T08:49:48.315Z",
+      "orgId": 6,
+      "workDate": "2025-10-01",
+      "title": "【示例】质量管理部-员工2 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】质量管理部-员工2 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 153,
+      "creatorId": 19,
+      "createdAt": "2025-10-05T08:49:48.336Z",
+      "updatedAt": "2025-10-05T08:49:48.336Z",
+      "orgId": 6,
+      "workDate": "2025-10-02",
+      "title": "【示例】质量管理部-员工2 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】质量管理部-员工2 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 154,
+      "creatorId": 19,
+      "createdAt": "2025-10-05T08:49:48.354Z",
+      "updatedAt": "2025-10-05T08:49:48.354Z",
+      "orgId": 6,
+      "workDate": "2025-10-02",
+      "title": "【示例】质量管理部-员工2 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】质量管理部-员工2 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 155,
+      "creatorId": 19,
+      "createdAt": "2025-10-05T08:49:48.364Z",
+      "updatedAt": "2025-10-05T08:49:48.364Z",
+      "orgId": 6,
+      "workDate": "2025-10-03",
+      "title": "【示例】质量管理部-员工2 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】质量管理部-员工2 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 156,
+      "creatorId": 19,
+      "createdAt": "2025-10-05T08:49:48.380Z",
+      "updatedAt": "2025-10-05T08:49:48.380Z",
+      "orgId": 6,
+      "workDate": "2025-10-03",
+      "title": "【示例】质量管理部-员工2 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】质量管理部-员工2 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 157,
+      "creatorId": 19,
+      "createdAt": "2025-10-05T08:49:48.399Z",
+      "updatedAt": "2025-10-05T08:49:48.399Z",
+      "orgId": 6,
+      "workDate": "2025-10-04",
+      "title": "【示例】质量管理部-员工2 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】质量管理部-员工2 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 158,
+      "creatorId": 19,
+      "createdAt": "2025-10-05T08:49:48.421Z",
+      "updatedAt": "2025-10-05T08:49:48.421Z",
+      "orgId": 6,
+      "workDate": "2025-10-04",
+      "title": "【示例】质量管理部-员工2 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】质量管理部-员工2 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 159,
+      "creatorId": 19,
+      "createdAt": "2025-10-05T08:49:48.442Z",
+      "updatedAt": "2025-10-05T08:49:48.442Z",
+      "orgId": 6,
+      "workDate": "2025-10-05",
+      "title": "【示例】质量管理部-员工2 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】质量管理部-员工2 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 160,
+      "creatorId": 19,
+      "createdAt": "2025-10-05T08:49:48.459Z",
+      "updatedAt": "2025-10-05T08:49:48.459Z",
+      "orgId": 6,
+      "workDate": "2025-10-05",
+      "title": "【示例】质量管理部-员工2 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】质量管理部-员工2 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 161,
+      "creatorId": 19,
+      "createdAt": "2025-10-05T08:49:48.475Z",
+      "updatedAt": "2025-10-05T08:49:48.475Z",
+      "orgId": 6,
+      "workDate": "2025-10-06",
+      "title": "【示例】质量管理部-员工2 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】质量管理部-员工2 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }

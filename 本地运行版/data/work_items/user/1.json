@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 331
   },
-  "items": []
+  "items": [
+    {
+      "id": 322,
+      "creatorId": 1,
+      "createdAt": "2025-10-05T08:49:51.778Z",
+      "updatedAt": "2025-10-05T08:49:51.778Z",
+      "orgId": 2,
+      "workDate": "2025-10-01",
+      "title": "【示例】系统管理员 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】系统管理员 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 323,
+      "creatorId": 1,
+      "createdAt": "2025-10-05T08:49:51.799Z",
+      "updatedAt": "2025-10-05T08:49:51.799Z",
+      "orgId": 2,
+      "workDate": "2025-10-02",
+      "title": "【示例】系统管理员 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】系统管理员 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 324,
+      "creatorId": 1,
+      "createdAt": "2025-10-05T08:49:51.826Z",
+      "updatedAt": "2025-10-05T08:49:51.826Z",
+      "orgId": 2,
+      "workDate": "2025-10-02",
+      "title": "【示例】系统管理员 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】系统管理员 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 325,
+      "creatorId": 1,
+      "createdAt": "2025-10-05T08:49:51.843Z",
+      "updatedAt": "2025-10-05T08:49:51.843Z",
+      "orgId": 2,
+      "workDate": "2025-10-03",
+      "title": "【示例】系统管理员 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】系统管理员 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 326,
+      "creatorId": 1,
+      "createdAt": "2025-10-05T08:49:51.858Z",
+      "updatedAt": "2025-10-05T08:49:51.858Z",
+      "orgId": 2,
+      "workDate": "2025-10-03",
+      "title": "【示例】系统管理员 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】系统管理员 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 327,
+      "creatorId": 1,
+      "createdAt": "2025-10-05T08:49:51.875Z",
+      "updatedAt": "2025-10-05T08:49:51.875Z",
+      "orgId": 2,
+      "workDate": "2025-10-04",
+      "title": "【示例】系统管理员 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】系统管理员 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 328,
+      "creatorId": 1,
+      "createdAt": "2025-10-05T08:49:51.898Z",
+      "updatedAt": "2025-10-05T08:49:51.898Z",
+      "orgId": 2,
+      "workDate": "2025-10-04",
+      "title": "【示例】系统管理员 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】系统管理员 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 329,
+      "creatorId": 1,
+      "createdAt": "2025-10-05T08:49:51.911Z",
+      "updatedAt": "2025-10-05T08:49:51.911Z",
+      "orgId": 2,
+      "workDate": "2025-10-05",
+      "title": "【示例】系统管理员 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】系统管理员 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 330,
+      "creatorId": 1,
+      "createdAt": "2025-10-05T08:49:51.942Z",
+      "updatedAt": "2025-10-05T08:49:51.942Z",
+      "orgId": 2,
+      "workDate": "2025-10-05",
+      "title": "【示例】系统管理员 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】系统管理员 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 331,
+      "creatorId": 1,
+      "createdAt": "2025-10-05T08:49:51.964Z",
+      "updatedAt": "2025-10-05T08:49:51.964Z",
+      "orgId": 2,
+      "workDate": "2025-10-06",
+      "title": "【示例】系统管理员 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】系统管理员 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }

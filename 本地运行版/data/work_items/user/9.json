@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 61
   },
-  "items": []
+  "items": [
+    {
+      "id": 52,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T08:49:46.092Z",
+      "updatedAt": "2025-10-05T08:49:46.092Z",
+      "orgId": 4,
+      "workDate": "2025-10-01",
+      "title": "【示例】综合管理部-副主任 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】综合管理部-副主任 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 53,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T08:49:46.102Z",
+      "updatedAt": "2025-10-05T08:49:46.102Z",
+      "orgId": 4,
+      "workDate": "2025-10-02",
+      "title": "【示例】综合管理部-副主任 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】综合管理部-副主任 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 54,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T08:49:46.115Z",
+      "updatedAt": "2025-10-05T08:49:46.115Z",
+      "orgId": 4,
+      "workDate": "2025-10-02",
+      "title": "【示例】综合管理部-副主任 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】综合管理部-副主任 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 55,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T08:49:46.137Z",
+      "updatedAt": "2025-10-05T08:49:46.137Z",
+      "orgId": 4,
+      "workDate": "2025-10-03",
+      "title": "【示例】综合管理部-副主任 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】综合管理部-副主任 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 56,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T08:49:46.167Z",
+      "updatedAt": "2025-10-05T08:49:46.167Z",
+      "orgId": 4,
+      "workDate": "2025-10-03",
+      "title": "【示例】综合管理部-副主任 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】综合管理部-副主任 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 57,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T08:49:46.207Z",
+      "updatedAt": "2025-10-05T08:49:46.207Z",
+      "orgId": 4,
+      "workDate": "2025-10-04",
+      "title": "【示例】综合管理部-副主任 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】综合管理部-副主任 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 58,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T08:49:46.230Z",
+      "updatedAt": "2025-10-05T08:49:46.230Z",
+      "orgId": 4,
+      "workDate": "2025-10-04",
+      "title": "【示例】综合管理部-副主任 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】综合管理部-副主任 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 59,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T08:49:46.271Z",
+      "updatedAt": "2025-10-05T08:49:46.271Z",
+      "orgId": 4,
+      "workDate": "2025-10-05",
+      "title": "【示例】综合管理部-副主任 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】综合管理部-副主任 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 60,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T08:49:46.297Z",
+      "updatedAt": "2025-10-05T08:49:46.297Z",
+      "orgId": 4,
+      "workDate": "2025-10-05",
+      "title": "【示例】综合管理部-副主任 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】综合管理部-副主任 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 61,
+      "creatorId": 9,
+      "createdAt": "2025-10-05T08:49:46.329Z",
+      "updatedAt": "2025-10-05T08:49:46.329Z",
+      "orgId": 4,
+      "workDate": "2025-10-06",
+      "title": "【示例】综合管理部-副主任 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】综合管理部-副主任 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }

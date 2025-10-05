@@ -1,6 +1,137 @@
 {
   "meta": {
-    "lastId": 0
+    "lastId": 141
   },
-  "items": []
+  "items": [
+    {
+      "id": 132,
+      "creatorId": 17,
+      "createdAt": "2025-10-05T08:49:47.953Z",
+      "updatedAt": "2025-10-05T08:49:47.953Z",
+      "orgId": 6,
+      "workDate": "2025-10-01",
+      "title": "【示例】质量管理部-副主任 2025-10-01 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】质量管理部-副主任 2025-10-01 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 133,
+      "creatorId": 17,
+      "createdAt": "2025-10-05T08:49:47.968Z",
+      "updatedAt": "2025-10-05T08:49:47.968Z",
+      "orgId": 6,
+      "workDate": "2025-10-02",
+      "title": "【示例】质量管理部-副主任 2025-10-02 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】质量管理部-副主任 2025-10-02 示例计划 - 示例计划"
+    },
+    {
+      "id": 134,
+      "creatorId": 17,
+      "createdAt": "2025-10-05T08:49:47.987Z",
+      "updatedAt": "2025-10-05T08:49:47.987Z",
+      "orgId": 6,
+      "workDate": "2025-10-02",
+      "title": "【示例】质量管理部-副主任 2025-10-02 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】质量管理部-副主任 2025-10-02 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 135,
+      "creatorId": 17,
+      "createdAt": "2025-10-05T08:49:48.015Z",
+      "updatedAt": "2025-10-05T08:49:48.015Z",
+      "orgId": 6,
+      "workDate": "2025-10-03",
+      "title": "【示例】质量管理部-副主任 2025-10-03 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】质量管理部-副主任 2025-10-03 示例计划 - 示例计划"
+    },
+    {
+      "id": 136,
+      "creatorId": 17,
+      "createdAt": "2025-10-05T08:49:48.035Z",
+      "updatedAt": "2025-10-05T08:49:48.035Z",
+      "orgId": 6,
+      "workDate": "2025-10-03",
+      "title": "【示例】质量管理部-副主任 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】质量管理部-副主任 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 137,
+      "creatorId": 17,
+      "createdAt": "2025-10-05T08:49:48.050Z",
+      "updatedAt": "2025-10-05T08:49:48.050Z",
+      "orgId": 6,
+      "workDate": "2025-10-04",
+      "title": "【示例】质量管理部-副主任 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】质量管理部-副主任 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 138,
+      "creatorId": 17,
+      "createdAt": "2025-10-05T08:49:48.072Z",
+      "updatedAt": "2025-10-05T08:49:48.072Z",
+      "orgId": 6,
+      "workDate": "2025-10-04",
+      "title": "【示例】质量管理部-副主任 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】质量管理部-副主任 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 139,
+      "creatorId": 17,
+      "createdAt": "2025-10-05T08:49:48.088Z",
+      "updatedAt": "2025-10-05T08:49:48.088Z",
+      "orgId": 6,
+      "workDate": "2025-10-05",
+      "title": "【示例】质量管理部-副主任 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】质量管理部-副主任 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 140,
+      "creatorId": 17,
+      "createdAt": "2025-10-05T08:49:48.111Z",
+      "updatedAt": "2025-10-05T08:49:48.111Z",
+      "orgId": 6,
+      "workDate": "2025-10-05",
+      "title": "【示例】质量管理部-副主任 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】质量管理部-副主任 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 141,
+      "creatorId": 17,
+      "createdAt": "2025-10-05T08:49:48.133Z",
+      "updatedAt": "2025-10-05T08:49:48.133Z",
+      "orgId": 6,
+      "workDate": "2025-10-06",
+      "title": "【示例】质量管理部-副主任 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】质量管理部-副主任 2025-10-06 示例计划 - 示例计划"
+    }
+  ]
 }
