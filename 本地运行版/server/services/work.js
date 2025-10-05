@@ -4,7 +4,7 @@ import { resolveVisibleUserIds } from './visibility.js'
 import { getPrimaryOrgId, mapUsersById } from './domain.js'
 import { parseISODate, toISODate } from '../utils/datetime.js'
 
-const allowedTypes = new Set(['done', 'progress', 'temp', 'assist'])
+const allowedTypes = new Set(['done', 'progress', 'temp', 'assist', 'plan'])
 
 export function validateWorkItemInput(body) {
   const errors = []
@@ -64,7 +64,13 @@ export async function createWorkItem(actorId, body) {
 }
 
 export async function listWorkItems(actorId, scope, { from, to, limit = 50, offset = 0 }) {
-  const visible = await resolveVisibleUserIds(actorId, scope, parseISODate(to))
+  const actor = Number(actorId)
+  const effectiveScope = scope === 'self' ? 'self' : scope
+  const endDate = parseISODate(to)
+  const visible =
+    effectiveScope === 'self'
+      ? [actor]
+      : await resolveVisibleUserIds(actor, effectiveScope, endDate)
   const { items, total } = await listWorkItemsPaginated(visible, {
     startDate: from,
     endDate: to,
@@ -83,6 +89,7 @@ export async function weeklyAggregate(actorId, scope, { from, to }) {
   const groupedByUserDay = new Map()
 
   for (const item of items) {
+    if (item.type === 'plan') continue
     const key = `${item.creatorId}|${item.workDate}`
     const current = groupedByUserDay.get(key) || {
       creatorId: Number(item.creatorId),
@@ -156,7 +163,11 @@ export async function calculateMissingReport(actorId, scope, { from, to }) {
   }
 
   const workItems = await listWorkItemsForUsers(visible, { startDate: from, endDate: to })
-  const seen = new Set(workItems.map((item) => `${item.creatorId}|${item.workDate}`))
+  const seen = new Set(
+    workItems
+      .filter((item) => item.type !== 'plan')
+      .map((item) => `${item.creatorId}|${item.workDate}`)
+  )
 
   const missing = []
   let missingDatesTotal = 0

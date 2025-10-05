@@ -31,11 +31,12 @@ import {
   getAuditLogs,
 } from './data/store.js'
 import { isUserAdmin, listUsers, mapUsersById, listRoleGrantsForUser, getPrimaryOrgId, listOrgUnits } from './services/domain.js'
-import { normalizeScope, canRead, canExport, requireAdmin } from './middlewares/permissions.js'
+import { normalizeScope, canRead, canExport, requireAdmin, parseRangeFromQuery } from './middlewares/permissions.js'
 import { createWorkItem, listWorkItems, weeklyAggregate, calculateMissingReport } from './services/work.js'
 import { resolveVisibleUserIds } from './services/visibility.js'
 import { ensureExportsDir, createWeeklyExport } from './services/export.js'
 import { parseISODate, toISODate } from './utils/datetime.js'
+import { buildDailyOverview, buildWeeklyOverview } from './services/overview.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
@@ -246,6 +247,46 @@ app.get('/api/reports/missing-weekly', authenticate, canRead, async (req, res) =
     detail: { scope, start: from, end: to, missingUsers: report.data.length },
   })
   return res.json(report)
+})
+
+app.get('/api/reports/daily-overview', authenticate, async (req, res) => {
+  const scope = normalizeScope(req.query.scope)
+  const dateStr = typeof req.query.date === 'string' ? req.query.date.trim() : ''
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+    return res.status(400).json({ error: 'date must be YYYY-MM-DD' })
+  }
+  try {
+    const overview = await buildDailyOverview(req.user.sub, scope, dateStr)
+    await recordAudit({
+      actorUserId: req.user.sub,
+      action: 'report_daily_overview',
+      objectType: 'work_item',
+      detail: { scope, date: dateStr },
+    })
+    return res.json(overview)
+  } catch (err) {
+    return res.status(400).json({ error: 'invalid date range' })
+  }
+})
+
+app.get('/api/reports/weekly-overview', authenticate, async (req, res) => {
+  const scope = normalizeScope(req.query.scope)
+  const range = parseRangeFromQuery(req.query)
+  if ('error' in range) return res.status(400).json({ error: range.error })
+  const from = toISODate(range.start)
+  const to = toISODate(range.end)
+  try {
+    const overview = await buildWeeklyOverview(req.user.sub, scope, { from, to })
+    await recordAudit({
+      actorUserId: req.user.sub,
+      action: 'report_weekly_overview',
+      objectType: 'work_item',
+      detail: { scope, start: from, end: to },
+    })
+    return res.json(overview)
+  } catch (err) {
+    return res.status(400).json({ error: 'invalid date range' })
+  }
 })
 
 app.post('/api/reports/missing-weekly/remind', authenticate, canRead, async (req, res) => {

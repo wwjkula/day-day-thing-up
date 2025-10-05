@@ -1,6 +1,12 @@
 export type VisibilityScope = 'self' | 'direct' | 'subtree'
 
-import type { MissingWeeklyResponse, MissingWeeklyRemindResponse, ListWorkItemsResponse } from '@drrq/shared/index'
+import type {
+  MissingWeeklyResponse,
+  MissingWeeklyRemindResponse,
+  ListWorkItemsResponse,
+  DailyOverviewResponse,
+  WeeklyOverviewResponse,
+} from '@drrq/shared/index'
 
 declare global {
   interface Window {
@@ -90,6 +96,22 @@ export async function listWorkItems(params: { from: string; to: string; scope: V
     throw new Error((j as any).error || res.statusText)
   }
   return res.json()
+}
+
+export async function getDailyOverview(params: { date: string; scope: VisibilityScope }): Promise<DailyOverviewResponse> {
+  const qs = new URLSearchParams({ date: params.date, scope: params.scope } as any)
+  const res = await fetch(withBase(`/api/reports/daily-overview?${qs}`), { headers: { ...authHeader() } })
+  const j = await res.json()
+  if (!res.ok || !j.ok) throw new Error(j.error || '加载日视图失败')
+  return j as DailyOverviewResponse
+}
+
+export async function getWeeklyOverview(params: { from: string; to: string; scope: VisibilityScope }): Promise<WeeklyOverviewResponse> {
+  const qs = new URLSearchParams({ from: params.from, to: params.to, scope: params.scope } as any)
+  const res = await fetch(withBase(`/api/reports/weekly-overview?${qs}`), { headers: { ...authHeader() } })
+  const j = await res.json()
+  if (!res.ok || !j.ok) throw new Error(j.error || '加载周视图失败')
+  return j as WeeklyOverviewResponse
 }
 
 // --- Auth APIs ---

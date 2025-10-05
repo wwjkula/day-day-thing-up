@@ -1,4 +1,4 @@
-export type WorkItemType = 'done' | 'progress' | 'temp' | 'assist';
+export type WorkItemType = 'done' | 'progress' | 'temp' | 'assist' | 'plan';
 export type VisibilityScope = 'self' | 'direct' | 'subtree';
 
 // Request DTOs
@@ -78,6 +78,96 @@ export interface MissingWeeklyRemindResponse {
   skipped: Array<{ userId: number; reason: 'not_visible' | 'no_missing' }>;
 }
 
+export interface DailyOverviewMetrics {
+  completedCount: number;
+  completedMinutes: number;
+  planCount: number;
+  hasPlan: boolean;
+  missing: boolean;
+}
+
+export interface DailyOverviewUser {
+  userId: number;
+  name: string | null;
+  orgId: number | null;
+  orgName: string | null;
+  metrics: DailyOverviewMetrics;
+  completed: WorkItemResponse[];
+  plans: WorkItemResponse[];
+}
+
+export interface DailyOverviewOrgMetrics {
+  userCount: number;
+  completedUsers: number;
+  completedCount: number;
+  completedMinutes: number;
+  planUsers: number;
+  planCount: number;
+  missingUsers: number;
+}
+
+export interface DailyOverviewOrg {
+  orgId: number;
+  parentId: number | null;
+  name: string;
+  metrics: DailyOverviewOrgMetrics;
+}
+
+export interface DailyOverviewResponse {
+  ok: true;
+  date: string;
+  nextDate: string;
+  scope: VisibilityScope;
+  totals: DailyOverviewOrgMetrics;
+  users: DailyOverviewUser[];
+  orgs: DailyOverviewOrg[];
+}
+
+export interface WeeklyOverviewDay {
+  date: string;
+  completedCount: number;
+  completedMinutes: number;
+  planCount: number;
+  completed: WorkItemResponse[];
+  plans: WorkItemResponse[];
+}
+
+export interface WeeklyOverviewSummary {
+  completedCount: number;
+  completedMinutes: number;
+  typeCounts: Record<'done' | 'progress' | 'temp' | 'assist', number>;
+  planCount: number;
+  missingDays: string[];
+}
+
+export interface WeeklyOverviewUser {
+  userId: number;
+  name: string | null;
+  orgId: number | null;
+  orgName: string | null;
+  days: WeeklyOverviewDay[];
+  summary: WeeklyOverviewSummary;
+}
+
+export interface WeeklyOverviewOrg {
+  orgId: number;
+  parentId: number | null;
+  name: string;
+  summary: WeeklyOverviewSummary & {
+    userCount: number;
+    completedUsers: number;
+    planUsers: number;
+  };
+}
+
+export interface WeeklyOverviewResponse {
+  ok: true;
+  range: { start: string; end: string };
+  scope: VisibilityScope;
+  users: WeeklyOverviewUser[];
+  orgs: WeeklyOverviewOrg[];
+}
+
 // Validation helpers (pure functions, no runtime deps)
 export function validateWorkItemTitle(title: string): { valid: boolean; error?: string } {
   if (!title || typeof title !== 'string') return { valid: false, error: 'title is required' };
@@ -88,7 +178,7 @@ export function validateWorkItemTitle(title: string): { valid: boolean; error?: 
 }
 
 export function validateWorkItemType(type: string): { valid: boolean; error?: string } {
-  const allowedTypes = new Set<string>(['done', 'progress', 'temp', 'assist']);
+  const allowedTypes = new Set<string>(['done', 'progress', 'temp', 'assist', 'plan']);
   if (!allowedTypes.has(type)) return { valid: false, error: 'invalid type' };
   return { valid: true };
 }

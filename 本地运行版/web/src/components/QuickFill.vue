@@ -45,7 +45,9 @@ async function loadMissing() {
     const { from, to } = currentWeekRange()
     const todayStr = toDateString(new Date())
     const recordResponse = await listWorkItems({ from, to, scope: 'self' })
-    const recordedDates = new Set((recordResponse.items ?? []).map(item => item.workDate))
+    const recordedDates = new Set((recordResponse.items ?? [])
+      .filter(item => item.type !== 'plan')
+      .map(item => item.workDate))
 
     const start = new Date(`${from}T00:00:00`)
     const end = new Date(`${to}T00:00:00`)
@@ -130,12 +132,13 @@ onMounted(() => {
         <el-date-picker v-model="form.workDate" type="date" value-format="YYYY-MM-DD" />
       </el-form-item>
       <el-form-item label="类型">
-        <el-select v-model="form.type">
-          <el-option label="完成" value="done" />
-          <el-option label="推进" value="progress" />
-          <el-option label="临时" value="temp" />
-          <el-option label="协同" value="assist" />
-        </el-select>
+      <el-select v-model="form.type">
+        <el-option label="完成" value="done" />
+        <el-option label="推进" value="progress" />
+        <el-option label="临时" value="temp" />
+        <el-option label="协同" value="assist" />
+        <el-option label="计划" value="plan" />
+      </el-select>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" :loading="submitting" @click="submit">提交</el-button>
