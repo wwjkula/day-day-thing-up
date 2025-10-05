@@ -277,13 +277,23 @@ const weeklyGrouping = computed(() => {
 const weeklyOpenGroups = ref<string[]>([])
 
 watch(
-  () => {
-    const { groups, unassigned } = weeklyGrouping.value
-    const keys = groups.map((group) => group.key)
-    if (unassigned.length) keys.push('__unassigned')
-    return keys
-  },
-  (keys) => {
+  [
+    () => weeklyGrouping.value,
+    () => weeklySearch.value.trim().toLowerCase(),
+  ],
+  ([grouping, keyword]) => {
+    const keys: string[] = []
+    if (keyword) {
+      grouping.groups.forEach((group) => {
+        if (group.users.length) keys.push(group.key)
+      })
+      if (grouping.unassigned.length) keys.push('__unassigned')
+    } else {
+      grouping.groups.forEach((group) => {
+        keys.push(group.key)
+      })
+      if (grouping.unassigned.length) keys.push('__unassigned')
+    }
     weeklyOpenGroups.value = keys
   },
   { immediate: true }
