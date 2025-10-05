@@ -7,6 +7,7 @@ import type {
   DailyOverviewUser,
   WeeklyOverviewResponse,
   WeeklyOverviewUser,
+  WeeklyOverviewOrg,
 } from '@drrq/shared/index'
 import {
   getDailyOverview,
@@ -17,8 +18,6 @@ import {
 } from '../api'
 
 type ViewMode = 'daily' | 'weekly'
-type GroupTab = 'users' | 'orgs'
-
 const scope = ref<VisibilityScope>('self')
 const viewMode = ref<ViewMode>('daily')
 
@@ -90,17 +89,43 @@ const dailyOrgFilter = ref<number[]>([])
 const dailySearch = ref('')
 const dailyOnlyMissing = ref(false)
 const dailyOnlyPlan = ref(false)
-const dailyGroupTab = ref<GroupTab>('users')
-
-const weeklyOrgFilter = ref<number[]>([])
 const weeklySearch = ref('')
 const weeklyOnlyMissing = ref(false)
 const weeklyOnlyPlan = ref(false)
-const weeklyGroupTab = ref<GroupTab>('users')
 
-const weeklyDrawerVisible = ref(false)
-const weeklyDrawerUser = ref<WeeklyOverviewUser | null>(null)
-const weeklyDrawerActiveDate = ref('')
+function resolveWeeklyDay(user: WeeklyOverviewUser, date: string) {
+  const found = user.days.find((day) => day.date === date)
+  return (
+    found ?? {
+      date,
+      completedCount: 0,
+      completedMinutes: 0,
+      planCount: 0,
+      completed: [],
+      plans: [],
+    }
+  )
+}
+
+function aggregateGroupStats(users: WeeklyOverviewUser[], summary?: WeeklyOverviewOrg['summary']) {
+  if (summary) {
+    return {
+      completedCount: summary.completedCount ?? 0,
+      completedMinutes: summary.completedMinutes ?? 0,
+      planCount: summary.planCount ?? 0,
+      userCount: summary.userCount ?? users.length,
+    }
+  }
+  let completedCount = 0
+  let completedMinutes = 0
+  let planCount = 0
+  for (const user of users) {
+    completedCount += user.summary.completedCount
+    completedMinutes += user.summary.completedMinutes
+    planCount += user.summary.planCount
+  }
+  return { completedCount, completedMinutes, planCount, userCount: users.length }
+}
 
 async function loadDailyOverview() {
   loadingDaily.value = true
@@ -141,22 +166,6 @@ function resetWeek() {
 
 function resetToday() {
   dailyDate.value = todayISO()
-}
-
-function openWeeklyDrawer(user: WeeklyOverviewUser) {
-  weeklyDrawerUser.value = user
-  weeklyDrawerActiveDate.value = user.days[0]?.date ?? ''
-  weeklyDrawerVisible.value = true
-}
-
-function closeWeeklyDrawer() {
-  weeklyDrawerVisible.value = false
-  weeklyDrawerUser.value = null
-  weeklyDrawerActiveDate.value = ''
-}
-
-function weekDates(): string[] {
-  return eachDay(weeklyRange.value[0], weeklyRange.value[1])
 }
 
 const scopeOptions = [
@@ -208,29 +217,10 @@ const filteredDailyUsers = computed<DailyOverviewUser[]>(() => {
   })
 })
 
-const dailyOrgsForDisplay = computed(() => dailyData.value?.orgs || [])
-
-const weeklyRootOrgIds = computed(() =>
-  (weeklyData.value?.orgs || []).filter((org) => org.parentId == null).map((org) => org.orgId)
-)
-
-const weeklyOrgOptions = computed(() =>
-  (weeklyData.value?.orgs || []).map((org) => ({
-    label: org.name,
-    value: org.orgId,
-    parentId: org.parentId,
-  }))
-)
-
-const weeklyDatesComputed = computed(() => weekDates())
-
 const filteredWeeklyUsers = computed<WeeklyOverviewUser[]>(() => {
   if (!weeklyData.value) return []
   const keyword = weeklySearch.value.trim().toLowerCase()
-  const selected = weeklyOrgFilter.value
-  const roots = weeklyRootOrgIds.value
   return weeklyData.value.users.filter((user) => {
-    if (!matchesOrg(user.orgId ?? null, selected, roots)) return false
     if (keyword) {
       const name = (user.name || '').toLowerCase()
       if (!name.includes(keyword)) return false
@@ -241,7 +231,78 @@ const filteredWeeklyUsers = computed<WeeklyOverviewUser[]>(() => {
   })
 })
 
-const weeklyOrgsForDisplay = computed(() => weeklyData.value?.orgs || [])
+const weeklyDates = computed(() => eachDay(weeklyRange.value[0], weeklyRange.value[1]))
+
+const weeklyGrouping = computed(() => {
+  const data = weeklyData.value
+  if (!data) return { groups: [] as Array<{ key: string; title: string; summary: any; users: WeeklyOverviewUser[] }>, unassigned: [] as WeeklyOverviewUser[] }
+  const orgs: WeeklyOverviewOrg[] = data.orgs || []
+  const users = filteredWeeklyUsers.value
+  const orgMap = new Map<number, WeeklyOverviewOrg>()
+  const childrenMap = new Map<number | null, WeeklyOverviewOrg[]>()
+  for (const org of orgs) {
+    orgMap.set(org.orgId, org)
+    const parent = org.parentId != null ? Number(org.parentId) : null
+    let bucket = childrenMap.get(parent)
+    if (!bucket) {
+      bucket = []
+      childrenMap.set(parent, bucket)
+    }
+    bucket.push(org)
+  }
+  const rootChildren = childrenMap.get(null) || []
+  let topLevel = rootChildren
+  if (rootChildren.length === 1) {
+    const rootOrg = rootChildren[0]
+    if (rootOrg) {
+      const childList = childrenMap.get(rootOrg.orgId)
+      topLevel = childList || []
+    }
+  }
+  const descendantCache = new Map<number, number[]>()
+  function collect(orgId: number): number[] {
+    const cached = descendantCache.get(orgId)
+    if (cached) return cached
+    const ids = [orgId]
+    const children = childrenMap.get(orgId) || []
+    for (const child of children) {
+      ids.push(...collect(child.orgId))
+    }
+    descendantCache.set(orgId, ids)
+    return ids
+  }
+  const assigned = new Set<number>()
+  const groups = topLevel
+    .map((org) => {
+      const descendantIds = collect(org.orgId)
+      const groupUsers = users.filter((user) => user.orgId != null && descendantIds.includes(Number(user.orgId)))
+      groupUsers.forEach((user) => assigned.add(user.userId))
+      return {
+        key: String(org.orgId),
+        title: org.name,
+        summary: org.summary,
+        users: groupUsers,
+      }
+    })
+    .filter((group) => group.users.length || (group.summary && group.summary.userCount))
+  const unassigned = users.filter((user) => !assigned.has(user.userId))
+  return { groups, unassigned }
+})
+
+const weeklyOpenGroups = ref<string[]>([])
+
+watch(
+  () => {
+    const { groups, unassigned } = weeklyGrouping.value
+    const keys = groups.map((group) => group.key)
+    if (unassigned.length) keys.push('__unassigned')
+    return keys
+  },
+  (keys) => {
+    weeklyOpenGroups.value = keys
+  },
+  { immediate: true }
+)
 
 async function exportWeeklyExcel() {
   if (!weeklyRange.value[0] || !weeklyRange.value[1]) return
@@ -334,9 +395,6 @@ onMounted(() => {
           <el-button @click="resetWeek">本周</el-button>
           <el-button @click="shiftWeek(1)">下一周</el-button>
         </el-button-group>
-        <el-select v-model="weeklyOrgFilter" multiple collapse-tags style="min-width: 220px" placeholder="按组织筛选">
-          <el-option v-for="org in weeklyOrgOptions" :key="org.value" :label="org.label" :value="org.value" />
-        </el-select>
         <el-input v-model="weeklySearch" placeholder="搜索人员" style="width: 200px" />
         <el-checkbox v-model="weeklyOnlyMissing">只看缺报</el-checkbox>
         <el-checkbox v-model="weeklyOnlyPlan">只看有计划</el-checkbox>
@@ -355,165 +413,216 @@ onMounted(() => {
         <el-tag type="danger">缺报 {{ dailyTotals.missingUsers }}</el-tag>
       </div>
 
-      <el-tabs v-model="dailyGroupTab" class="daily-tabs">
-        <el-tab-pane label="按人员" name="users">
-          <el-empty v-if="!filteredDailyUsers.length && !loadingDaily" description="暂无可见人员" />
-          <div v-else class="daily-card-grid" v-loading="loadingDaily">
-            <el-card
-              v-for="user in filteredDailyUsers"
-              :key="user.userId"
-              shadow="hover"
-              class="daily-card"
-            >
-              <div class="daily-card__header">
-                <div>
-                  <div class="daily-card__name">{{ user.name || `用户 ${user.userId}` }}</div>
-                  <div class="daily-card__org" v-if="user.orgName">{{ user.orgName }}</div>
-                </div>
-                <div class="daily-card__chips">
-                  <el-tag type="success" v-if="user.metrics.completedCount">完成 {{ user.metrics.completedCount }}</el-tag>
-                  <el-tag type="warning" v-if="user.metrics.planCount">计划 {{ user.metrics.planCount }}</el-tag>
-                  <el-tag type="danger" v-if="user.metrics.missing">缺报</el-tag>
-                </div>
-              </div>
-              <div class="daily-card__section">
-                <div class="section-title">今日完成</div>
-                <el-empty v-if="!user.completed.length" description="暂无完成记录" />
-                <ul v-else class="item-list">
-                  <li v-for="item in user.completed" :key="item.id">
-                    <span class="item-title">{{ item.title }}</span>
-                    <span class="item-type">{{ typeLabel(item.type) }}</span>
-                    <span v-if="item.durationMinutes" class="item-duration">{{ item.durationMinutes }} 分钟</span>
-                  </li>
-                </ul>
-              </div>
-              <div class="daily-card__section">
-                <div class="section-title">明日计划（{{ dailyData?.nextDate }}）</div>
-                <el-empty v-if="!user.plans.length" description="暂无计划" />
-                <ul v-else class="item-list">
-                  <li v-for="item in user.plans" :key="`plan-${item.id}`">
-                    <span class="item-title">{{ item.title }}</span>
-                    <span class="item-type">计划</span>
-                    <span v-if="item.durationMinutes" class="item-duration">{{ item.durationMinutes }} 分钟</span>
-                  </li>
-                </ul>
-              </div>
-            </el-card>
-          </div>
-        </el-tab-pane>
-        <el-tab-pane label="按组织" name="orgs">
-          <el-table :data="dailyOrgsForDisplay" size="small" class="org-table" v-loading="loadingDaily">
-            <el-table-column prop="name" label="组织" min-width="180" />
-            <el-table-column prop="metrics.userCount" label="人数" width="100" />
-            <el-table-column prop="metrics.completedUsers" label="已完成" width="100" />
-            <el-table-column prop="metrics.planUsers" label="有计划" width="100" />
-            <el-table-column prop="metrics.planCount" label="计划条目" width="110" />
-            <el-table-column prop="metrics.completedCount" label="完成条目" width="120" />
-            <el-table-column prop="metrics.completedMinutes" label="总时长(分钟)" width="140" />
-            <el-table-column prop="metrics.missingUsers" label="缺报" width="100" />
-          </el-table>
-        </el-tab-pane>
-      </el-tabs>
-    </template>
-
-    <template v-else>
-      <el-tabs v-model="weeklyGroupTab" class="weekly-tabs">
-        <el-tab-pane label="按人员" name="users">
-          <el-table :data="filteredWeeklyUsers" v-loading="loadingWeekly" style="width: 100%">
-            <el-table-column label="人员" min-width="220">
-              <template #default="{ row }">
-                <div class="weekly-user">
-                  <div class="weekly-user__name">{{ row.name || `用户 ${row.userId}` }}</div>
-                  <div class="weekly-user__org" v-if="row.orgName">{{ row.orgName }}</div>
-                  <el-tag type="danger" size="small" v-if="row.summary.missingDays.length">缺报 {{ row.summary.missingDays.length }} 天</el-tag>
-                </div>
-              </template>
-            </el-table-column>
-            <el-table-column
-              v-for="(date, index) in weeklyDatesComputed"
-              :key="date"
-              :label="formatDateLabel(date)"
-              width="150"
-            >
-              <template #default="{ row }">
-                <div class="weekly-day-cell">
-                  <div class="count">完成 {{ row.days[index]?.completedCount || 0 }}</div>
-                  <div v-if="row.days[index]?.planCount" class="plan">计划 {{ row.days[index]?.planCount }}</div>
-                  <div v-if="row.days[index]?.completedMinutes" class="minutes">
-                    {{ row.days[index]?.completedMinutes }} 分钟
-                  </div>
-                </div>
-              </template>
-            </el-table-column>
-            <el-table-column label="汇总" width="220">
-              <template #default="{ row }">
-                <div class="weekly-summary">
-                  <div>完成 {{ row.summary.completedCount }} 条 / {{ row.summary.completedMinutes }} 分钟</div>
-                  <div>计划 {{ row.summary.planCount }} 条</div>
-                  <div v-if="row.summary.missingDays.length">缺报 {{ row.summary.missingDays.length }} 天</div>
-                  <el-button size="small" type="primary" text @click="openWeeklyDrawer(row)">查看详情</el-button>
-                </div>
-              </template>
-            </el-table-column>
-          </el-table>
-        </el-tab-pane>
-        <el-tab-pane label="按组织" name="orgs">
-          <el-table :data="weeklyOrgsForDisplay" size="small" v-loading="loadingWeekly">
-            <el-table-column prop="name" label="组织" min-width="200" />
-            <el-table-column prop="summary.userCount" label="人数" width="100" />
-            <el-table-column prop="summary.completedUsers" label="已完成" width="100" />
-            <el-table-column prop="summary.planUsers" label="有计划" width="100" />
-            <el-table-column prop="summary.planCount" label="计划条目" width="110" />
-            <el-table-column prop="summary.completedCount" label="完成条目" width="120" />
-            <el-table-column prop="summary.completedMinutes" label="总时长(分钟)" width="140" />
-          </el-table>
-        </el-tab-pane>
-      </el-tabs>
-    </template>
-
-    <el-drawer
-      v-model="weeklyDrawerVisible"
-      :title="weeklyDrawerUser ? `${weeklyDrawerUser.name || `用户 ${weeklyDrawerUser.userId}`} · 周详情` : ''"
-      size="50%"
-      @close="closeWeeklyDrawer"
-    >
-      <div v-if="weeklyDrawerUser" class="drawer-summary">
-        <div>完成 {{ weeklyDrawerUser.summary.completedCount }} 条 · {{ weeklyDrawerUser.summary.completedMinutes }} 分钟</div>
-        <div>计划 {{ weeklyDrawerUser.summary.planCount }} 条</div>
-        <div v-if="weeklyDrawerUser.summary.missingDays.length">缺报 {{ weeklyDrawerUser.summary.missingDays.length }} 天</div>
-      </div>
-      <el-tabs v-if="weeklyDrawerUser" v-model="weeklyDrawerActiveDate">
-        <el-tab-pane
-          v-for="day in weeklyDrawerUser.days"
-          :key="day.date"
-          :label="formatDateLabel(day.date)"
-          :name="day.date"
+      <el-empty v-if="!filteredDailyUsers.length && !loadingDaily" description="暂无可见人员" />
+      <div v-else class="daily-card-grid" v-loading="loadingDaily">
+        <el-card
+          v-for="user in filteredDailyUsers"
+          :key="user.userId"
+          shadow="hover"
+          class="daily-card"
         >
-          <div class="drawer-section">
-            <div class="section-title">完成</div>
-            <el-empty v-if="!day.completed.length" description="暂无完成记录" />
+          <div class="daily-card__header">
+            <div>
+              <div class="daily-card__name">{{ user.name || `用户 ${user.userId}` }}</div>
+              <div class="daily-card__org" v-if="user.orgName">{{ user.orgName }}</div>
+            </div>
+            <div class="daily-card__chips">
+              <el-tag type="success" v-if="user.metrics.completedCount">完成 {{ user.metrics.completedCount }}</el-tag>
+              <el-tag type="warning" v-if="user.metrics.planCount">计划 {{ user.metrics.planCount }}</el-tag>
+              <el-tag type="danger" v-if="user.metrics.missing">缺报</el-tag>
+            </div>
+          </div>
+          <div class="daily-card__section">
+            <div class="section-title">今日完成</div>
+            <el-empty v-if="!user.completed.length" description="暂无完成记录" />
             <ul v-else class="item-list">
-              <li v-for="item in day.completed" :key="item.id">
+              <li v-for="item in user.completed" :key="item.id">
                 <span class="item-title">{{ item.title }}</span>
                 <span class="item-type">{{ typeLabel(item.type) }}</span>
                 <span v-if="item.durationMinutes" class="item-duration">{{ item.durationMinutes }} 分钟</span>
               </li>
             </ul>
           </div>
-          <div class="drawer-section">
-            <div class="section-title">计划</div>
-            <el-empty v-if="!day.plans.length" description="暂无计划" />
+          <div class="daily-card__section">
+            <div class="section-title">明日计划（{{ dailyData?.nextDate }}）</div>
+            <el-empty v-if="!user.plans.length" description="暂无计划" />
             <ul v-else class="item-list">
-              <li v-for="item in day.plans" :key="`plan-${item.id}`">
+              <li v-for="item in user.plans" :key="`plan-${item.id}`">
                 <span class="item-title">{{ item.title }}</span>
                 <span class="item-type">计划</span>
                 <span v-if="item.durationMinutes" class="item-duration">{{ item.durationMinutes }} 分钟</span>
               </li>
             </ul>
           </div>
-        </el-tab-pane>
-      </el-tabs>
-    </el-drawer>
+        </el-card>
+      </div>
+    </template>
+
+    <template v-else>
+      <div v-if="!filteredWeeklyUsers.length">
+        <el-empty v-if="!loadingWeekly" description="暂无可见人员" />
+      </div>
+      <el-collapse
+        v-else
+        v-model="weeklyOpenGroups"
+        class="weekly-collapse"
+        accordion="false"
+      >
+        <el-collapse-item
+          v-for="group in weeklyGrouping.groups"
+          :key="group.key"
+          :name="group.key"
+        >
+          <template #title>
+            <div class="weekly-collapse__title">
+              <span>{{ group.title }}</span>
+              <span class="weekly-collapse__stats">
+                <template v-for="stats in [aggregateGroupStats(group.users, group.summary)]" :key="group.key + '-stats'">
+                  完成 {{ stats.completedCount }} 条 · {{ stats.completedMinutes }} 分钟 · 计划 {{ stats.planCount }} 条 · 人员 {{ stats.userCount }}
+                </template>
+              </span>
+            </div>
+          </template>
+          <el-empty v-if="!group.users.length" description="该部门暂无符合条件的人员" />
+          <el-table
+            v-else
+            :data="group.users"
+            class="weekly-table"
+            border
+            style="width: 100%"
+          >
+            <el-table-column label="人员" min-width="200">
+              <template #default="{ row }">
+                <div class="weekly-table__user">
+                  <div class="weekly-table__name">{{ row.name || `用户 ${row.userId}` }}</div>
+                  <div class="weekly-table__org" v-if="row.orgName">{{ row.orgName }}</div>
+                  <div class="weekly-table__chips">
+                    <el-tag type="warning" size="small" v-if="row.summary.planCount">计划 {{ row.summary.planCount }}</el-tag>
+                    <el-tag type="danger" size="small" v-if="row.summary.missingDays.length">缺报 {{ row.summary.missingDays.length }} 天</el-tag>
+                  </div>
+                </div>
+              </template>
+            </el-table-column>
+            <el-table-column
+              v-for="date in weeklyDates"
+              :key="date"
+              :label="formatDateLabel(date)"
+              min-width="260"
+            >
+              <template #default="{ row }">
+                <template v-for="day in [resolveWeeklyDay(row, date)]" :key="day.date">
+                  <div class="weekly-cell">
+                    <div class="weekly-cell__section">
+                      <div class="section-title">完成</div>
+                      <div v-if="!day.completed.length" class="weekly-cell__empty">暂无完成记录</div>
+                      <ul v-else class="item-list">
+                        <li v-for="item in day.completed" :key="item.id">
+                          <span class="item-title">{{ item.title }}</span>
+                          <span class="item-type">{{ typeLabel(item.type) }}</span>
+                          <span v-if="item.durationMinutes" class="item-duration">{{ item.durationMinutes }} 分钟</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="weekly-cell__section">
+                      <div class="section-title">计划</div>
+                      <div v-if="!day.plans.length" class="weekly-cell__empty">暂无计划</div>
+                      <ul v-else class="item-list">
+                        <li v-for="item in day.plans" :key="`plan-${item.id}`">
+                          <span class="item-title">{{ item.title }}</span>
+                          <span class="item-type">计划</span>
+                          <span v-if="item.durationMinutes" class="item-duration">{{ item.durationMinutes }} 分钟</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </template>
+              </template>
+            </el-table-column>
+            <el-table-column label="本周概览" min-width="220">
+              <template #default="{ row }">
+                <div class="weekly-summary">
+                  <div>完成 {{ row.summary.completedCount }} 条 · {{ row.summary.completedMinutes }} 分钟</div>
+                  <div>计划 {{ row.summary.planCount }} 条</div>
+                  <div v-if="row.summary.missingDays.length">缺报 {{ row.summary.missingDays.length }} 天</div>
+                </div>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-collapse-item>
+        <el-collapse-item v-if="weeklyGrouping.unassigned.length" name="__unassigned">
+          <template #title>
+            <div class="weekly-collapse__title">
+              <span>未分配组织</span>
+              <span class="weekly-collapse__stats" v-for="stats in [aggregateGroupStats(weeklyGrouping.unassigned)]" :key="'unassigned-stats'">
+                完成 {{ stats.completedCount }} 条 · {{ stats.completedMinutes }} 分钟 · 计划 {{ stats.planCount }} 条 · 人员 {{ stats.userCount }}
+              </span>
+            </div>
+          </template>
+          <el-table
+            :data="weeklyGrouping.unassigned"
+            class="weekly-table"
+            border
+            style="width: 100%"
+          >
+            <el-table-column label="人员" min-width="200">
+              <template #default="{ row }">
+                <div class="weekly-table__user">
+                  <div class="weekly-table__name">{{ row.name || `用户 ${row.userId}` }}</div>
+                  <div class="weekly-table__chips">
+                    <el-tag type="warning" size="small" v-if="row.summary.planCount">计划 {{ row.summary.planCount }}</el-tag>
+                    <el-tag type="danger" size="small" v-if="row.summary.missingDays.length">缺报 {{ row.summary.missingDays.length }} 天</el-tag>
+                  </div>
+                </div>
+              </template>
+            </el-table-column>
+            <el-table-column
+              v-for="date in weeklyDates"
+              :key="date"
+              :label="formatDateLabel(date)"
+              min-width="260"
+            >
+              <template #default="{ row }">
+                <template v-for="day in [resolveWeeklyDay(row, date)]" :key="day.date">
+                  <div class="weekly-cell">
+                    <div class="weekly-cell__section">
+                      <div class="section-title">完成</div>
+                      <div v-if="!day.completed.length" class="weekly-cell__empty">暂无完成记录</div>
+                      <ul v-else class="item-list">
+                        <li v-for="item in day.completed" :key="item.id">
+                          <span class="item-title">{{ item.title }}</span>
+                          <span class="item-type">{{ typeLabel(item.type) }}</span>
+                          <span v-if="item.durationMinutes" class="item-duration">{{ item.durationMinutes }} 分钟</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="weekly-cell__section">
+                      <div class="section-title">计划</div>
+                      <div v-if="!day.plans.length" class="weekly-cell__empty">暂无计划</div>
+                      <ul v-else class="item-list">
+                        <li v-for="item in day.plans" :key="`plan-${item.id}`">
+                          <span class="item-title">{{ item.title }}</span>
+                          <span class="item-type">计划</span>
+                          <span v-if="item.durationMinutes" class="item-duration">{{ item.durationMinutes }} 分钟</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </template>
+              </template>
+            </el-table-column>
+            <el-table-column label="本周概览" min-width="220">
+              <template #default="{ row }">
+                <div class="weekly-summary">
+                  <div>完成 {{ row.summary.completedCount }} 条 · {{ row.summary.completedMinutes }} 分钟</div>
+                  <div>计划 {{ row.summary.planCount }} 条</div>
+                  <div v-if="row.summary.missingDays.length">缺报 {{ row.summary.missingDays.length }} 天</div>
+                </div>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-collapse-item>
+      </el-collapse>
+    </template>
   </div>
 </template>
 
@@ -539,11 +648,6 @@ onMounted(() => {
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 12px;
-}
-
-.daily-tabs,
-.weekly-tabs {
-  --el-tabs-header-height: 42px;
 }
 
 .daily-card-grid {
@@ -622,41 +726,81 @@ onMounted(() => {
   color: var(--el-text-color-secondary);
 }
 
-.org-table {
+.daily-card__chips .el-tag.type-warning {
+  color: var(--el-color-warning);
+}
+
+.weekly-table {
   margin-top: 12px;
 }
 
-.weekly-user {
+.weekly-table :deep(.el-table__cell) {
+  vertical-align: top;
+  padding: 12px;
+}
+
+.weekly-table__user {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.weekly-user__name {
+.weekly-table__name {
   font-weight: 600;
 }
 
-.weekly-user__org {
+.weekly-table__org {
   font-size: 13px;
   color: var(--el-text-color-secondary);
 }
 
-.weekly-day-cell {
+.weekly-table__chips {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
-.weekly-day-cell .count {
-  font-weight: 600;
-}
-
-.weekly-day-cell .plan {
+.weekly-table__chips .el-tag.type-warning {
   color: var(--el-color-warning);
 }
 
-.weekly-day-cell .minutes {
-  font-size: 12px;
+.weekly-collapse {
+  margin-top: 12px;
+}
+
+.weekly-collapse__title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.weekly-collapse__stats {
+  font-size: 13px;
+  color: var(--el-text-color-secondary);
+  font-weight: 400;
+}
+
+.weekly-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.weekly-cell__section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.weekly-cell__section .section-title {
+  margin-bottom: 0;
+}
+
+.weekly-cell__empty {
+  font-size: 13px;
   color: var(--el-text-color-secondary);
 }
 
@@ -664,29 +808,5 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 4px;
-}
-
-.drawer-summary {
-  margin-bottom: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.drawer-section {
-  margin-bottom: 16px;
-}
-
-.drawer-section:last-child {
-  margin-bottom: 0;
-}
-
-.weekly-day-cell .plan,
-.daily-card__chips .el-tag.type-warning {
-  color: var(--el-color-warning);
-}
-
-.weekly-report-page :deep(.el-table__cell) {
-  padding: 10px 12px;
 }
 </style>

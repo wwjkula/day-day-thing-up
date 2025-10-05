@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastId": 341
+    "lastId": 350
   },
   "items": [
     {
@@ -4268,6 +4268,120 @@
       "detail": {
         "scope": "self",
         "date": "2025-10-05"
+      }
+    },
+    {
+      "id": 342,
+      "createdAt": "2025-10-05T00:39:55.390Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 1
+      }
+    },
+    {
+      "id": 343,
+      "createdAt": "2025-10-05T00:39:55.417Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 1
+      }
+    },
+    {
+      "id": 344,
+      "createdAt": "2025-10-05T00:39:55.525Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "date": "2025-10-05"
+      }
+    },
+    {
+      "id": 345,
+      "createdAt": "2025-10-05T00:48:16.598Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 1
+      }
+    },
+    {
+      "id": 346,
+      "createdAt": "2025-10-05T00:48:16.621Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 1
+      }
+    },
+    {
+      "id": 347,
+      "createdAt": "2025-10-05T00:52:23.315Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 1
+      }
+    },
+    {
+      "id": 348,
+      "createdAt": "2025-10-05T00:52:23.340Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "start": "2025-09-29",
+        "end": "2025-10-05"
+      }
+    },
+    {
+      "id": 349,
+      "createdAt": "2025-10-05T01:01:59.832Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 1
+      }
+    },
+    {
+      "id": 350,
+      "createdAt": "2025-10-05T01:01:59.863Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-09-29",
+        "to": "2025-10-05",
+        "count": 1
       }
     }
   ]
