@@ -63,6 +63,17 @@ function sanitizeUser(user, isAdmin) {
   }
 }
 
+function normalizeVisibleUserIds(raw, selfId) {
+  const base = Array.isArray(raw) ? raw : [selfId]
+  const numbers = base
+    .map((value) => Number(value))
+    .filter((num) => Number.isFinite(num) && num > 0)
+  if (!numbers.includes(selfId)) numbers.push(selfId)
+  const unique = Array.from(new Set(numbers))
+  unique.sort((a, b) => a - b)
+  return unique
+}
+
 async function loginRateLimited(userId) {
   const logs = (await getAuditLogs()).items
   const since = Date.now() - 5 * 60_000
@@ -471,8 +482,10 @@ app.get('/api/admin/users', async (req, res) => {
     email: u.email ?? null,
     employeeNo: u.employeeNo ?? null,
     jobTitle: u.jobTitle ?? null,
-    grade: u.grade ?? null,
     active: u.active !== false,
+    visibleUserIds: Array.isArray(u.visibleUserIds)
+      ? u.visibleUserIds.map((id) => Number(id)).filter((num) => Number.isFinite(num))
+      : [Number(u.id)],
   }))
   res.json({ items, total: filtered.length, limit, offset })
 })
@@ -486,18 +499,19 @@ app.post('/api/admin/users', async (req, res) => {
   await replaceUsers(async (data) => {
     const id = ++data.meta.lastId
     newId = id
+    const visibleUserIds = normalizeVisibleUserIds(body.visibleUserIds, id)
     data.items.push({
       id,
       name,
       email: body.email ? String(body.email) : null,
       employeeNo: body.employeeNo ? String(body.employeeNo) : null,
       jobTitle: body.jobTitle ? String(body.jobTitle) : null,
-      grade: body.grade ? String(body.grade) : null,
       active: body.active != null ? !!body.active : true,
       passwordHash: null,
       passwordChangedAt: null,
       createdAt: now,
       updatedAt: now,
+      visibleUserIds,
     })
   })
   const id = Number(newId)
@@ -519,9 +533,12 @@ app.put('/api/admin/users/:id', async (req, res) => {
         email: body.email !== undefined ? (body.email ? String(body.email) : null) : data.items[idx].email,
         employeeNo: body.employeeNo !== undefined ? (body.employeeNo ? String(body.employeeNo) : null) : data.items[idx].employeeNo,
         jobTitle: body.jobTitle !== undefined ? (body.jobTitle ? String(body.jobTitle) : null) : data.items[idx].jobTitle,
-        grade: body.grade !== undefined ? (body.grade ? String(body.grade) : null) : data.items[idx].grade,
         active: body.active != null ? !!body.active : data.items[idx].active,
         updatedAt: new Date().toISOString(),
+        visibleUserIds:
+          body.visibleUserIds !== undefined
+            ? normalizeVisibleUserIds(body.visibleUserIds, idNum)
+            : normalizeVisibleUserIds(data.items[idx].visibleUserIds, idNum),
       }
     })
   } catch (err) {

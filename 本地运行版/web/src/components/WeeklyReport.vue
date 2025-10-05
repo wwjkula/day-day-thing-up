@@ -2,7 +2,6 @@
 import { ref, computed, watch, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import type {
-  VisibilityScope,
   DailyOverviewResponse,
   DailyOverviewUser,
   WeeklyOverviewResponse,
@@ -18,7 +17,6 @@ import {
 } from '../api'
 
 type ViewMode = 'daily' | 'weekly'
-const scope = ref<VisibilityScope>('self')
 const viewMode = ref<ViewMode>('daily')
 
 function todayISO(): string {
@@ -130,7 +128,7 @@ function aggregateGroupStats(users: WeeklyOverviewUser[], summary?: WeeklyOvervi
 async function loadDailyOverview() {
   loadingDaily.value = true
   try {
-    const data = await getDailyOverview({ date: dailyDate.value, scope: scope.value })
+    const data = await getDailyOverview({ date: dailyDate.value, scope: 'direct' })
     dailyData.value = data
   } catch (err: any) {
     ElMessage.error(err?.message || '加载日视图失败')
@@ -143,7 +141,7 @@ async function loadWeeklyOverview() {
   if (!weeklyRange.value[0] || !weeklyRange.value[1]) return
   loadingWeekly.value = true
   try {
-    const data = await getWeeklyOverview({ from: weeklyRange.value[0], to: weeklyRange.value[1], scope: scope.value })
+    const data = await getWeeklyOverview({ from: weeklyRange.value[0], to: weeklyRange.value[1], scope: 'direct' })
     weeklyData.value = data
   } catch (err: any) {
     ElMessage.error(err?.message || '加载周视图失败')
@@ -167,12 +165,6 @@ function resetWeek() {
 function resetToday() {
   dailyDate.value = todayISO()
 }
-
-const scopeOptions = [
-  { label: '仅本人', value: 'self' },
-  { label: '直属下属', value: 'direct' },
-  { label: '子树', value: 'subtree' },
-]
 
 const viewOptions = [
   { label: '日视图', value: 'daily' },
@@ -311,7 +303,7 @@ async function exportWeeklyExcel() {
     const { jobId } = await postWeeklyExport({
       from: weeklyRange.value[0],
       to: weeklyRange.value[1],
-      scope: scope.value,
+      scope: 'direct',
     })
     let attempts = 0
     while (attempts < 30) {
@@ -331,11 +323,6 @@ async function exportWeeklyExcel() {
     exporting.value = false
   }
 }
-
-watch(scope, () => {
-  loadDailyOverview()
-  loadWeeklyOverview()
-})
 
 watch(dailyDate, () => {
   loadDailyOverview()
@@ -363,9 +350,6 @@ onMounted(() => {
   <div class="weekly-report-page">
     <div class="toolbar">
       <el-segmented v-model="viewMode" :options="viewOptions" />
-      <el-select v-model="scope" style="width: 140px">
-        <el-option v-for="option in scopeOptions" :key="option.value" :label="option.label" :value="option.value" />
-      </el-select>
 
       <template v-if="viewMode === 'daily'">
         <el-date-picker v-model="dailyDate" type="date" value-format="YYYY-MM-DD" :clearable="false" />

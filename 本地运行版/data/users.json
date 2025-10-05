@@ -10,12 +10,52 @@
       "email": "leader2@example.com",
       "phone": null,
       "jobTitle": "副总经理",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ]
     },
     {
       "id": 5,
@@ -24,12 +64,16 @@
       "email": null,
       "phone": null,
       "jobTitle": "副主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        5,
+        6,
+        7
+      ]
     },
     {
       "id": 6,
@@ -38,12 +82,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        6
+      ]
     },
     {
       "id": 7,
@@ -52,12 +98,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        7
+      ]
     },
     {
       "id": 8,
@@ -66,12 +114,17 @@
       "email": null,
       "phone": null,
       "jobTitle": "主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        8,
+        9,
+        10,
+        11
+      ]
     },
     {
       "id": 9,
@@ -80,12 +133,15 @@
       "email": null,
       "phone": null,
       "jobTitle": "副主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        9,
+        11
+      ]
     },
     {
       "id": 10,
@@ -94,12 +150,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        10
+      ]
     },
     {
       "id": 11,
@@ -108,12 +166,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        11
+      ]
     },
     {
       "id": 12,
@@ -122,12 +182,17 @@
       "email": null,
       "phone": null,
       "jobTitle": "主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        12,
+        13,
+        14,
+        15
+      ]
     },
     {
       "id": 13,
@@ -136,12 +201,15 @@
       "email": null,
       "phone": null,
       "jobTitle": "副主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        13,
+        15
+      ]
     },
     {
       "id": 14,
@@ -150,12 +218,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        14
+      ]
     },
     {
       "id": 15,
@@ -164,12 +234,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        15
+      ]
     },
     {
       "id": 16,
@@ -178,12 +250,17 @@
       "email": null,
       "phone": null,
       "jobTitle": "主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        16,
+        17,
+        18,
+        19
+      ]
     },
     {
       "id": 17,
@@ -192,12 +269,15 @@
       "email": null,
       "phone": null,
       "jobTitle": "副主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        17,
+        19
+      ]
     },
     {
       "id": 18,
@@ -206,12 +286,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        18
+      ]
     },
     {
       "id": 19,
@@ -220,12 +302,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        19
+      ]
     },
     {
       "id": 20,
@@ -234,12 +318,17 @@
       "email": null,
       "phone": null,
       "jobTitle": "主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        20,
+        21,
+        22,
+        23
+      ]
     },
     {
       "id": 21,
@@ -248,12 +337,15 @@
       "email": null,
       "phone": null,
       "jobTitle": "副主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        21,
+        23
+      ]
     },
     {
       "id": 22,
@@ -262,12 +354,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        22
+      ]
     },
     {
       "id": 23,
@@ -276,12 +370,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        23
+      ]
     },
     {
       "id": 24,
@@ -290,12 +386,17 @@
       "email": null,
       "phone": null,
       "jobTitle": "主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        24,
+        25,
+        26,
+        27
+      ]
     },
     {
       "id": 25,
@@ -304,12 +405,15 @@
       "email": null,
       "phone": null,
       "jobTitle": "副主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        25,
+        27
+      ]
     },
     {
       "id": 26,
@@ -318,12 +422,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        26
+      ]
     },
     {
       "id": 27,
@@ -332,12 +438,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        27
+      ]
     },
     {
       "id": 28,
@@ -346,12 +454,17 @@
       "email": null,
       "phone": null,
       "jobTitle": "主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        28,
+        29,
+        30,
+        31
+      ]
     },
     {
       "id": 29,
@@ -360,12 +473,15 @@
       "email": null,
       "phone": null,
       "jobTitle": "副主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        29,
+        31
+      ]
     },
     {
       "id": 30,
@@ -374,12 +490,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        30
+      ]
     },
     {
       "id": 31,
@@ -388,12 +506,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        31
+      ]
     },
     {
       "id": 32,
@@ -402,12 +522,17 @@
       "email": null,
       "phone": null,
       "jobTitle": "主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        32,
+        33,
+        34,
+        35
+      ]
     },
     {
       "id": 33,
@@ -416,12 +541,15 @@
       "email": null,
       "phone": null,
       "jobTitle": "副主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        33,
+        35
+      ]
     },
     {
       "id": 34,
@@ -430,12 +558,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        34
+      ]
     },
     {
       "id": 35,
@@ -444,40 +574,121 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        35
+      ]
     },
     {
       "id": 1,
       "employeeNo": "ADMIN001",
       "name": "系统管理员",
-      "email": "admin@example.com",
+      "email": null,
       "phone": null,
       "jobTitle": "系统管理员",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": "2025-09-22T09:31:47.447Z",
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-05T04:28:10.533Z",
+      "visibleUserIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ]
     },
     {
       "id": 2,
       "employeeNo": "L001",
       "name": "陈继杨",
-      "email": "leader1@example.com",
+      "email": null,
       "phone": null,
-      "jobTitle": "总经理",
-      "grade": null,
+      "jobTitle": "项目经理",
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-05T03:19:44.680Z",
+      "visibleUserIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ]
     },
     {
       "id": 36,
@@ -486,12 +697,17 @@
       "email": null,
       "phone": null,
       "jobTitle": "主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        36,
+        37,
+        38,
+        39
+      ]
     },
     {
       "id": 37,
@@ -500,12 +716,15 @@
       "email": null,
       "phone": null,
       "jobTitle": "副主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        37,
+        39
+      ]
     },
     {
       "id": 38,
@@ -514,12 +733,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        38
+      ]
     },
     {
       "id": 39,
@@ -528,12 +749,14 @@
       "email": null,
       "phone": null,
       "jobTitle": "员工",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        39
+      ]
     },
     {
       "id": 4,
@@ -542,12 +765,17 @@
       "email": null,
       "phone": null,
       "jobTitle": "主任",
-      "grade": null,
       "active": true,
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": null,
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-02T07:12:28.220Z"
+      "updatedAt": "2025-10-02T07:12:28.220Z",
+      "visibleUserIds": [
+        4,
+        5,
+        6,
+        7
+      ]
     }
   ]
 }
