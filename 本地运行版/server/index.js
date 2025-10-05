@@ -35,6 +35,7 @@ import { normalizeScope, canRead, canExport, requireAdmin, parseRangeFromQuery }
 import { createWorkItem, listWorkItems, weeklyAggregate, calculateMissingReport } from './services/work.js'
 import { resolveVisibleUserIds } from './services/visibility.js'
 import { ensureExportsDir, createWeeklyExport } from './services/export.js'
+import { generateSampleWorkData, clearAllWorkItems } from './services/sample-data.js'
 import { parseISODate, toISODate } from './utils/datetime.js'
 import { buildDailyOverview, buildWeeklyOverview } from './services/overview.js'
 
@@ -686,6 +687,45 @@ app.delete('/api/admin/role-grants/:id', async (req, res) => {
   await saveRoleGrants(data)
   await recordAudit({ actorUserId: req.user.sub, action: 'admin_delete_role_grant', objectType: 'role_grant', objectId: idNum })
   res.json({ ok: true })
+})
+
+app.post('/api/admin/work-items/sample-data', async (req, res) => {
+  const body = req.body || {}
+  try {
+    const result = await generateSampleWorkData({
+      startDate: body.startDate,
+      endDate: body.endDate,
+    })
+    await recordAudit({
+      actorUserId: req.user.sub,
+      action: 'admin_generate_sample_work',
+      objectType: 'work_item',
+      detail: {
+        startDate: result.startDate,
+        endDate: result.endDate,
+        created: result.created,
+        processedUsers: result.processedUsers,
+      },
+    })
+    res.json({ ok: true, ...result })
+  } catch (err) {
+    res.status(400).json({ ok: false, error: err.message || 'failed to generate sample data' })
+  }
+})
+
+app.delete('/api/admin/work-items', async (req, res) => {
+  try {
+    const result = await clearAllWorkItems()
+    await recordAudit({
+      actorUserId: req.user.sub,
+      action: 'admin_clear_work_items',
+      objectType: 'work_item',
+      detail: { cleared: result.cleared },
+    })
+    res.json({ ok: true, ...result })
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message || 'failed to clear work items' })
+  }
 })
 
 app.post('/api/admin/migrate/r2', async (req, res) => {

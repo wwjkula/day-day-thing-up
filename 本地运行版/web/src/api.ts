@@ -252,3 +252,24 @@ export async function adminMigrateToR2() {
   const res = await fetch(withBase('/api/admin/migrate/r2'), { method: 'POST', headers: { ...authHeader() } })
   return res.json()
 }
+
+export async function adminGenerateSampleWorkItems(payload: { startDate: string; endDate?: string }) {
+  const res = await fetch(withBase('/api/admin/work-items/sample-data'), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
+  const j = await res.json()
+  if (!res.ok || !j.ok) throw new Error(j.error || '生成示例数据失败')
+  return j as { ok: true; created: number; processedUsers: number; startDate: string; endDate: string }
+}
+
+export async function adminClearWorkItems(): Promise<{ ok: true; cleared: number; processedUsers: number }> {
+  const res = await fetch(withBase('/api/admin/work-items'), {
+    method: 'DELETE',
+    headers: { ...authHeader() },
+  })
+  const j = await res.json()
+  if (!res.ok || !j.ok) throw new Error(j.error || '清空工作记录失败')
+  return j as { ok: true; cleared: number; processedUsers: number }
+}
