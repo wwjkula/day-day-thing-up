@@ -158,6 +158,30 @@ export async function addWorkItem(userId, payload) {
   return record
 }
 
+export async function updateWorkItem(userId, recordId, patch) {
+  const collection = await loadWorkItemCollection(userId)
+  const idx = collection.items.findIndex((item) => Number(item.id) === Number(recordId))
+  if (idx === -1) return null
+  const current = collection.items[idx]
+  const updated = {
+    ...current,
+    ...patch,
+    updatedAt: new Date().toISOString(),
+  }
+  collection.items[idx] = updated
+  await saveWorkItemCollection(userId, collection)
+  return updated
+}
+export async function removeWorkItem(userId, recordId) {
+  const collection = await loadWorkItemCollection(userId)
+  const before = collection.items.length
+  collection.items = collection.items.filter((item) => Number(item.id) !== Number(recordId))
+  if (collection.items.length === before) return false
+  await saveWorkItemCollection(userId, collection)
+  return true
+}
+
+
 export async function listWorkItemsForUsers(userIds, { startDate, endDate }) {
   const result = []
   for (const id of userIds) {

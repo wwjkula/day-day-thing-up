@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "lastId": 450
+  },
+  "items": [
+    {
+      "id": 441,
+      "creatorId": 72,
+      "createdAt": "2025-10-07T08:38:34.481Z",
+      "updatedAt": "2025-10-07T08:38:34.481Z",
+      "orgId": null,
+      "workDate": "2025-10-03",
+      "title": "【示例】惠秀 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】惠秀 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 442,
+      "creatorId": 72,
+      "createdAt": "2025-10-07T08:38:34.495Z",
+      "updatedAt": "2025-10-07T08:38:34.495Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】惠秀 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】惠秀 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 443,
+      "creatorId": 72,
+      "createdAt": "2025-10-07T08:38:34.508Z",
+      "updatedAt": "2025-10-07T08:38:34.508Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】惠秀 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】惠秀 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 444,
+      "creatorId": 72,
+      "createdAt": "2025-10-07T08:38:34.524Z",
+      "updatedAt": "2025-10-07T08:38:34.524Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】惠秀 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】惠秀 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 445,
+      "creatorId": 72,
+      "createdAt": "2025-10-07T08:38:34.542Z",
+      "updatedAt": "2025-10-07T08:38:34.542Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】惠秀 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】惠秀 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 446,
+      "creatorId": 72,
+      "createdAt": "2025-10-07T08:38:34.555Z",
+      "updatedAt": "2025-10-07T08:38:34.555Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】惠秀 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】惠秀 2025-10-06 示例计划 - 示例计划"
+    },
+    {
+      "id": 447,
+      "creatorId": 72,
+      "createdAt": "2025-10-07T08:38:34.573Z",
+      "updatedAt": "2025-10-07T08:38:34.573Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】惠秀 2025-10-06 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】惠秀 2025-10-06 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 448,
+      "creatorId": 72,
+      "createdAt": "2025-10-07T08:38:34.587Z",
+      "updatedAt": "2025-10-07T08:38:34.587Z",
+      "orgId": 3,
+      "workDate": "2025-10-07",
+      "title": "【示例】惠秀 2025-10-07 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】惠秀 2025-10-07 示例计划 - 示例计划"
+    },
+    {
+      "id": 449,
+      "creatorId": 72,
+      "createdAt": "2025-10-07T08:38:34.601Z",
+      "updatedAt": "2025-10-07T08:38:34.601Z",
+      "orgId": 3,
+      "workDate": "2025-10-07",
+      "title": "【示例】惠秀 2025-10-07 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】惠秀 2025-10-07 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 450,
+      "creatorId": 72,
+      "createdAt": "2025-10-07T08:38:34.614Z",
+      "updatedAt": "2025-10-07T08:38:34.614Z",
+      "orgId": 3,
+      "workDate": "2025-10-08",
+      "title": "【示例】惠秀 2025-10-08 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】惠秀 2025-10-08 示例计划 - 示例计划"
+    }
+  ]
+}

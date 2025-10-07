@@ -31,7 +31,7 @@ import {
 } from './data/store.js'
 import { isUserAdmin, listUsers, mapUsersById, listRoleGrantsForUser, getPrimaryOrgId, listOrgUnits } from './services/domain.js'
 import { normalizeScope, canRead, requireAdmin, parseRangeFromQuery } from './middlewares/permissions.js'
-import { createWorkItem, listWorkItems, weeklyAggregate, calculateMissingReport } from './services/work.js'
+import { createWorkItem, listWorkItems, weeklyAggregate, calculateMissingReport, modifyWorkItem, deleteWorkItem } from './services/work.js'
 import { resolveVisibleUserIds } from './services/visibility.js'
 import { generateSampleWorkData, clearAllWorkItems } from './services/sample-data.js'
 import { parseISODate, toISODate } from './utils/datetime.js'
@@ -209,6 +209,29 @@ app.post('/api/work-items', authenticate, async (req, res) => {
   const result = await createWorkItem(req.user.sub, req.body || {})
   if (!result.ok) return res.status(400).json({ error: result.error })
   return res.status(201).json({ id: result.record.id })
+})
+
+
+app.patch('/api/work-items/:id', authenticate, async (req, res) => {
+  const idNum = Number(req.params.id)
+  if (!Number.isFinite(idNum)) return res.status(400).json({ error: 'invalid id' })
+  const result = await modifyWorkItem(req.user.sub, idNum, req.body || {})
+  if (!result.ok) {
+    if (result.error === 'not found') return res.status(404).json({ error: 'not found' })
+    return res.status(400).json({ error: result.error || 'unable to update' })
+  }
+  res.json({ ok: true })
+})
+
+app.delete('/api/work-items/:id', authenticate, async (req, res) => {
+  const idNum = Number(req.params.id)
+  if (!Number.isFinite(idNum)) return res.status(400).json({ error: 'invalid id' })
+  const result = await deleteWorkItem(req.user.sub, idNum)
+  if (!result.ok) {
+    if (result.error === 'not found') return res.status(404).json({ error: 'not found' })
+    return res.status(400).json({ error: result.error || 'unable to delete' })
+  }
+  res.json({ ok: true })
 })
 
 app.get('/api/work-items', authenticate, canRead, async (req, res) => {

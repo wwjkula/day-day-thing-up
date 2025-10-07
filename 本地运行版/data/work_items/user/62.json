@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "lastId": 400
+  },
+  "items": [
+    {
+      "id": 391,
+      "creatorId": 62,
+      "createdAt": "2025-10-07T08:38:33.659Z",
+      "updatedAt": "2025-10-07T08:38:33.659Z",
+      "orgId": null,
+      "workDate": "2025-10-03",
+      "title": "【示例】王英睿 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】王英睿 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 392,
+      "creatorId": 62,
+      "createdAt": "2025-10-07T08:38:33.689Z",
+      "updatedAt": "2025-10-07T08:38:33.689Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】王英睿 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】王英睿 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 393,
+      "creatorId": 62,
+      "createdAt": "2025-10-07T08:38:33.708Z",
+      "updatedAt": "2025-10-07T08:38:33.708Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】王英睿 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】王英睿 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 394,
+      "creatorId": 62,
+      "createdAt": "2025-10-07T08:38:33.730Z",
+      "updatedAt": "2025-10-07T08:38:33.730Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】王英睿 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】王英睿 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 395,
+      "creatorId": 62,
+      "createdAt": "2025-10-07T08:38:33.751Z",
+      "updatedAt": "2025-10-07T08:38:33.751Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】王英睿 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】王英睿 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 396,
+      "creatorId": 62,
+      "createdAt": "2025-10-07T08:38:33.771Z",
+      "updatedAt": "2025-10-07T08:38:33.771Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】王英睿 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】王英睿 2025-10-06 示例计划 - 示例计划"
+    },
+    {
+      "id": 397,
+      "creatorId": 62,
+      "createdAt": "2025-10-07T08:38:33.788Z",
+      "updatedAt": "2025-10-07T08:38:33.788Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】王英睿 2025-10-06 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】王英睿 2025-10-06 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 398,
+      "creatorId": 62,
+      "createdAt": "2025-10-07T08:38:33.807Z",
+      "updatedAt": "2025-10-07T08:38:33.807Z",
+      "orgId": 11,
+      "workDate": "2025-10-07",
+      "title": "【示例】王英睿 2025-10-07 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】王英睿 2025-10-07 示例计划 - 示例计划"
+    },
+    {
+      "id": 399,
+      "creatorId": 62,
+      "createdAt": "2025-10-07T08:38:33.825Z",
+      "updatedAt": "2025-10-07T08:38:33.825Z",
+      "orgId": 11,
+      "workDate": "2025-10-07",
+      "title": "【示例】王英睿 2025-10-07 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】王英睿 2025-10-07 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 400,
+      "creatorId": 62,
+      "createdAt": "2025-10-07T08:38:33.845Z",
+      "updatedAt": "2025-10-07T08:38:33.845Z",
+      "orgId": 11,
+      "workDate": "2025-10-08",
+      "title": "【示例】王英睿 2025-10-08 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】王英睿 2025-10-08 示例计划 - 示例计划"
+    }
+  ]
+}

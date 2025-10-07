@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "lastId": 540
+  },
+  "items": [
+    {
+      "id": 531,
+      "creatorId": 88,
+      "createdAt": "2025-10-07T08:38:36.687Z",
+      "updatedAt": "2025-10-07T08:38:36.687Z",
+      "orgId": null,
+      "workDate": "2025-10-03",
+      "title": "【示例】黄顺友 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】黄顺友 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 532,
+      "creatorId": 88,
+      "createdAt": "2025-10-07T08:38:36.718Z",
+      "updatedAt": "2025-10-07T08:38:36.718Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】黄顺友 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】黄顺友 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 533,
+      "creatorId": 88,
+      "createdAt": "2025-10-07T08:38:36.745Z",
+      "updatedAt": "2025-10-07T08:38:36.745Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】黄顺友 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】黄顺友 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 534,
+      "creatorId": 88,
+      "createdAt": "2025-10-07T08:38:36.779Z",
+      "updatedAt": "2025-10-07T08:38:36.779Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】黄顺友 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】黄顺友 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 535,
+      "creatorId": 88,
+      "createdAt": "2025-10-07T08:38:36.799Z",
+      "updatedAt": "2025-10-07T08:38:36.799Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】黄顺友 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】黄顺友 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 536,
+      "creatorId": 88,
+      "createdAt": "2025-10-07T08:38:36.824Z",
+      "updatedAt": "2025-10-07T08:38:36.824Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】黄顺友 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】黄顺友 2025-10-06 示例计划 - 示例计划"
+    },
+    {
+      "id": 537,
+      "creatorId": 88,
+      "createdAt": "2025-10-07T08:38:36.849Z",
+      "updatedAt": "2025-10-07T08:38:36.849Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】黄顺友 2025-10-06 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】黄顺友 2025-10-06 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 538,
+      "creatorId": 88,
+      "createdAt": "2025-10-07T08:38:36.871Z",
+      "updatedAt": "2025-10-07T08:38:36.871Z",
+      "orgId": 10,
+      "workDate": "2025-10-07",
+      "title": "【示例】黄顺友 2025-10-07 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】黄顺友 2025-10-07 示例计划 - 示例计划"
+    },
+    {
+      "id": 539,
+      "creatorId": 88,
+      "createdAt": "2025-10-07T08:38:36.916Z",
+      "updatedAt": "2025-10-07T08:38:36.916Z",
+      "orgId": 10,
+      "workDate": "2025-10-07",
+      "title": "【示例】黄顺友 2025-10-07 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】黄顺友 2025-10-07 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 540,
+      "creatorId": 88,
+      "createdAt": "2025-10-07T08:38:36.940Z",
+      "updatedAt": "2025-10-07T08:38:36.940Z",
+      "orgId": 10,
+      "workDate": "2025-10-08",
+      "title": "【示例】黄顺友 2025-10-08 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】黄顺友 2025-10-08 示例计划 - 示例计划"
+    }
+  ]
+}

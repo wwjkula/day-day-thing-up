@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "lastId": 520
+  },
+  "items": [
+    {
+      "id": 511,
+      "creatorId": 86,
+      "createdAt": "2025-10-07T08:38:36.107Z",
+      "updatedAt": "2025-10-07T08:38:36.107Z",
+      "orgId": null,
+      "workDate": "2025-10-03",
+      "title": "【示例】赵炫越 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】赵炫越 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 512,
+      "creatorId": 86,
+      "createdAt": "2025-10-07T08:38:36.137Z",
+      "updatedAt": "2025-10-07T08:38:36.137Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】赵炫越 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】赵炫越 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 513,
+      "creatorId": 86,
+      "createdAt": "2025-10-07T08:38:36.179Z",
+      "updatedAt": "2025-10-07T08:38:36.179Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】赵炫越 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】赵炫越 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 514,
+      "creatorId": 86,
+      "createdAt": "2025-10-07T08:38:36.209Z",
+      "updatedAt": "2025-10-07T08:38:36.209Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】赵炫越 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】赵炫越 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 515,
+      "creatorId": 86,
+      "createdAt": "2025-10-07T08:38:36.239Z",
+      "updatedAt": "2025-10-07T08:38:36.239Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】赵炫越 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】赵炫越 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 516,
+      "creatorId": 86,
+      "createdAt": "2025-10-07T08:38:36.268Z",
+      "updatedAt": "2025-10-07T08:38:36.268Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】赵炫越 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】赵炫越 2025-10-06 示例计划 - 示例计划"
+    },
+    {
+      "id": 517,
+      "creatorId": 86,
+      "createdAt": "2025-10-07T08:38:36.311Z",
+      "updatedAt": "2025-10-07T08:38:36.311Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】赵炫越 2025-10-06 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】赵炫越 2025-10-06 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 518,
+      "creatorId": 86,
+      "createdAt": "2025-10-07T08:38:36.334Z",
+      "updatedAt": "2025-10-07T08:38:36.334Z",
+      "orgId": 10,
+      "workDate": "2025-10-07",
+      "title": "【示例】赵炫越 2025-10-07 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】赵炫越 2025-10-07 示例计划 - 示例计划"
+    },
+    {
+      "id": 519,
+      "creatorId": 86,
+      "createdAt": "2025-10-07T08:38:36.353Z",
+      "updatedAt": "2025-10-07T08:38:36.353Z",
+      "orgId": 10,
+      "workDate": "2025-10-07",
+      "title": "【示例】赵炫越 2025-10-07 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】赵炫越 2025-10-07 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 520,
+      "creatorId": 86,
+      "createdAt": "2025-10-07T08:38:36.379Z",
+      "updatedAt": "2025-10-07T08:38:36.379Z",
+      "orgId": 10,
+      "workDate": "2025-10-08",
+      "title": "【示例】赵炫越 2025-10-08 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】赵炫越 2025-10-08 示例计划 - 示例计划"
+    }
+  ]
+}

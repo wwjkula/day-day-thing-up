@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "lastId": 410
+  },
+  "items": [
+    {
+      "id": 401,
+      "creatorId": 63,
+      "createdAt": "2025-10-07T08:38:33.862Z",
+      "updatedAt": "2025-10-07T08:38:33.862Z",
+      "orgId": null,
+      "workDate": "2025-10-03",
+      "title": "【示例】赵正雄 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】赵正雄 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 402,
+      "creatorId": 63,
+      "createdAt": "2025-10-07T08:38:33.880Z",
+      "updatedAt": "2025-10-07T08:38:33.880Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】赵正雄 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】赵正雄 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 403,
+      "creatorId": 63,
+      "createdAt": "2025-10-07T08:38:33.900Z",
+      "updatedAt": "2025-10-07T08:38:33.900Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】赵正雄 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】赵正雄 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 404,
+      "creatorId": 63,
+      "createdAt": "2025-10-07T08:38:33.924Z",
+      "updatedAt": "2025-10-07T08:38:33.924Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】赵正雄 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】赵正雄 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 405,
+      "creatorId": 63,
+      "createdAt": "2025-10-07T08:38:33.943Z",
+      "updatedAt": "2025-10-07T08:38:33.943Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】赵正雄 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】赵正雄 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 406,
+      "creatorId": 63,
+      "createdAt": "2025-10-07T08:38:33.969Z",
+      "updatedAt": "2025-10-07T08:38:33.969Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】赵正雄 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】赵正雄 2025-10-06 示例计划 - 示例计划"
+    },
+    {
+      "id": 407,
+      "creatorId": 63,
+      "createdAt": "2025-10-07T08:38:33.986Z",
+      "updatedAt": "2025-10-07T08:38:33.986Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】赵正雄 2025-10-06 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】赵正雄 2025-10-06 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 408,
+      "creatorId": 63,
+      "createdAt": "2025-10-07T08:38:34.008Z",
+      "updatedAt": "2025-10-07T08:38:34.008Z",
+      "orgId": 11,
+      "workDate": "2025-10-07",
+      "title": "【示例】赵正雄 2025-10-07 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】赵正雄 2025-10-07 示例计划 - 示例计划"
+    },
+    {
+      "id": 409,
+      "creatorId": 63,
+      "createdAt": "2025-10-07T08:38:34.028Z",
+      "updatedAt": "2025-10-07T08:38:34.028Z",
+      "orgId": 11,
+      "workDate": "2025-10-07",
+      "title": "【示例】赵正雄 2025-10-07 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】赵正雄 2025-10-07 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 410,
+      "creatorId": 63,
+      "createdAt": "2025-10-07T08:38:34.043Z",
+      "updatedAt": "2025-10-07T08:38:34.043Z",
+      "orgId": 11,
+      "workDate": "2025-10-08",
+      "title": "【示例】赵正雄 2025-10-08 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】赵正雄 2025-10-08 示例计划 - 示例计划"
+    }
+  ]
+}

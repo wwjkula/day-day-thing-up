@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "lastId": 6
+  },
+  "items": [
+    {
+      "userId": 2,
+      "orgId": 2,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 4,
+      "orgId": 2,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 3,
+      "orgId": 2,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 5,
+      "orgId": 2,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 6,
+      "orgId": 2,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 7,
+      "orgId": 2,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    }
+  ]
+}

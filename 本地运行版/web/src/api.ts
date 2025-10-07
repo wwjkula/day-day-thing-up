@@ -51,6 +51,23 @@ export async function postMissingWeeklyRemind(params: { from: string; to: string
   return j as MissingWeeklyRemindResponse
 }
 
+
+export async function updateWorkItem(id: number, payload: { title: string; workDate: string; type: string; durationMinutes: number | null }) {
+  const res = await fetch(withBase(`/api/work-items/${id}`), {
+    method: 'PATCH',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
+  return res.json()
+}
+
+export async function deleteWorkItem(id: number) {
+  const res = await fetch(withBase(`/api/work-items/${id}`), {
+    method: 'DELETE',
+    headers: { ...authHeader() },
+  })
+  return res.json()
+}
 export async function listWorkItems(params: { from: string; to: string; scope: VisibilityScope }): Promise<ListWorkItemsResponse> {
   const qs = new URLSearchParams({ ...params } as any)
   const res = await fetch(withBase(`/api/work-items?${qs}`), { headers: { ...authHeader() } })

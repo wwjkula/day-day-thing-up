@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "lastId": 440
+  },
+  "items": [
+    {
+      "id": 431,
+      "creatorId": 71,
+      "createdAt": "2025-10-07T08:38:34.340Z",
+      "updatedAt": "2025-10-07T08:38:34.340Z",
+      "orgId": null,
+      "workDate": "2025-10-03",
+      "title": "【示例】刘茂林 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】刘茂林 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 432,
+      "creatorId": 71,
+      "createdAt": "2025-10-07T08:38:34.354Z",
+      "updatedAt": "2025-10-07T08:38:34.354Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】刘茂林 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】刘茂林 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 433,
+      "creatorId": 71,
+      "createdAt": "2025-10-07T08:38:34.368Z",
+      "updatedAt": "2025-10-07T08:38:34.368Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】刘茂林 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】刘茂林 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 434,
+      "creatorId": 71,
+      "createdAt": "2025-10-07T08:38:34.382Z",
+      "updatedAt": "2025-10-07T08:38:34.382Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】刘茂林 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】刘茂林 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 435,
+      "creatorId": 71,
+      "createdAt": "2025-10-07T08:38:34.395Z",
+      "updatedAt": "2025-10-07T08:38:34.395Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】刘茂林 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】刘茂林 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 436,
+      "creatorId": 71,
+      "createdAt": "2025-10-07T08:38:34.409Z",
+      "updatedAt": "2025-10-07T08:38:34.409Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】刘茂林 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】刘茂林 2025-10-06 示例计划 - 示例计划"
+    },
+    {
+      "id": 437,
+      "creatorId": 71,
+      "createdAt": "2025-10-07T08:38:34.421Z",
+      "updatedAt": "2025-10-07T08:38:34.421Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】刘茂林 2025-10-06 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】刘茂林 2025-10-06 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 438,
+      "creatorId": 71,
+      "createdAt": "2025-10-07T08:38:34.435Z",
+      "updatedAt": "2025-10-07T08:38:34.435Z",
+      "orgId": 3,
+      "workDate": "2025-10-07",
+      "title": "【示例】刘茂林 2025-10-07 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】刘茂林 2025-10-07 示例计划 - 示例计划"
+    },
+    {
+      "id": 439,
+      "creatorId": 71,
+      "createdAt": "2025-10-07T08:38:34.451Z",
+      "updatedAt": "2025-10-07T08:38:34.451Z",
+      "orgId": 3,
+      "workDate": "2025-10-07",
+      "title": "【示例】刘茂林 2025-10-07 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】刘茂林 2025-10-07 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 440,
+      "creatorId": 71,
+      "createdAt": "2025-10-07T08:38:34.467Z",
+      "updatedAt": "2025-10-07T08:38:34.467Z",
+      "orgId": 3,
+      "workDate": "2025-10-08",
+      "title": "【示例】刘茂林 2025-10-08 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】刘茂林 2025-10-08 示例计划 - 示例计划"
+    }
+  ]
+}

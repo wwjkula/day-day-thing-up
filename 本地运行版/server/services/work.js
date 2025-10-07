@@ -1,4 +1,4 @@
-import { addWorkItem, listWorkItemsForUsers, listWorkItemsPaginated } from '../data/store.js'
+import { addWorkItem, listWorkItemsForUsers, listWorkItemsPaginated, updateWorkItem, removeWorkItem } from '../data/store.js'
 import { appendAuditLog } from '../data/store.js'
 import { resolveVisibleUserIds } from './visibility.js'
 import { getPrimaryOrgId, mapUsersById } from './domain.js'
@@ -63,6 +63,48 @@ export async function createWorkItem(actorId, body) {
   return { ok: true, record }
 }
 
+export function validateWorkItemPatch(body) {
+  const errors = []
+  const patch = {}
+
+  if (body.title !== undefined) {
+    const title = typeof body.title === 'string' ? body.title.trim() : ''
+    if (!title) errors.push('title is required')
+    else if ([...title].length > 20) errors.push('title must be <= 20 characters')
+    else patch.title = title
+  }
+
+  if (body.workDate !== undefined) {
+    const workDate = typeof body.workDate === 'string' ? body.workDate : ''
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(workDate)) errors.push('workDate must be YYYY-MM-DD')
+    else if (isNaN(parseISODate(workDate).getTime())) errors.push('invalid workDate')
+    else patch.workDate = workDate
+  }
+
+  if (body.type !== undefined) {
+    const type = typeof body.type === 'string' ? body.type : ''
+    if (!allowedTypes.has(type)) errors.push('invalid type')
+    else patch.type = type
+  }
+
+  if (body.durationMinutes !== undefined) {
+    if (body.durationMinutes === null) {
+      patch.durationMinutes = null
+    } else {
+      const duration = Number(body.durationMinutes)
+      if (!Number.isInteger(duration) || duration < 0) errors.push('durationMinutes must be a non-negative integer')
+      else patch.durationMinutes = duration
+    }
+  }
+
+  if (body.tags !== undefined) {
+    patch.tags = Array.isArray(body.tags) ? body.tags.map((t) => String(t)).slice(0, 20) : []
+  }
+
+  return { valid: errors.length === 0, errors, patch }
+}
+
+
 export async function listWorkItems(actorId, scope, { from, to, limit = 50, offset = 0 }) {
   const actor = Number(actorId)
   const effectiveScope = scope === 'self' ? 'self' : scope
@@ -79,6 +121,49 @@ export async function listWorkItems(actorId, scope, { from, to, limit = 50, offs
   })
   return { items, total, limit, offset }
 }
+
+export async function modifyWorkItem(actorId, itemId, body) {
+  const { valid, errors, patch } = validateWorkItemPatch(body)
+  if (!valid) return { ok: false, error: errors[0] }
+
+  const actor = Number(actorId)
+  const payload = { ...patch }
+
+  if (patch.workDate) {
+    const orgId = await getPrimaryOrgId(actor, parseISODate(patch.workDate))
+    if (orgId == null) return { ok: false, error: 'no primary org for user' }
+    payload.orgId = orgId
+  }
+
+  const record = await updateWorkItem(actor, itemId, payload)
+  if (!record) return { ok: false, error: 'not found' }
+
+  await appendAuditLog({
+    actorUserId: actor,
+    action: 'update_work_item',
+    objectType: 'work_item',
+    objectId: Number(itemId),
+    detail: Object.keys(payload),
+  })
+
+  return { ok: true }
+}
+
+export async function deleteWorkItem(actorId, itemId) {
+  const actor = Number(actorId)
+  const removed = await removeWorkItem(actor, itemId)
+  if (!removed) return { ok: false, error: 'not found' }
+
+  await appendAuditLog({
+    actorUserId: actor,
+    action: 'delete_work_item',
+    objectType: 'work_item',
+    objectId: Number(itemId),
+  })
+
+  return { ok: true }
+}
+
 
 export async function weeklyAggregate(actorId, scope, { from, to }) {
   const visible = await resolveVisibleUserIds(actorId, scope, parseISODate(to))

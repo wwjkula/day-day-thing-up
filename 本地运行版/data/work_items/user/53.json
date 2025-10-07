@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "lastId": 370
+  },
+  "items": [
+    {
+      "id": 361,
+      "creatorId": 53,
+      "createdAt": "2025-10-07T08:38:33.046Z",
+      "updatedAt": "2025-10-07T08:38:33.046Z",
+      "orgId": null,
+      "workDate": "2025-10-03",
+      "title": "【示例】苏时钧 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】苏时钧 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 362,
+      "creatorId": 53,
+      "createdAt": "2025-10-07T08:38:33.061Z",
+      "updatedAt": "2025-10-07T08:38:33.061Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】苏时钧 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】苏时钧 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 363,
+      "creatorId": 53,
+      "createdAt": "2025-10-07T08:38:33.084Z",
+      "updatedAt": "2025-10-07T08:38:33.084Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】苏时钧 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】苏时钧 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 364,
+      "creatorId": 53,
+      "createdAt": "2025-10-07T08:38:33.118Z",
+      "updatedAt": "2025-10-07T08:38:33.118Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】苏时钧 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】苏时钧 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 365,
+      "creatorId": 53,
+      "createdAt": "2025-10-07T08:38:33.138Z",
+      "updatedAt": "2025-10-07T08:38:33.138Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】苏时钧 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】苏时钧 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 366,
+      "creatorId": 53,
+      "createdAt": "2025-10-07T08:38:33.160Z",
+      "updatedAt": "2025-10-07T08:38:33.160Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】苏时钧 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】苏时钧 2025-10-06 示例计划 - 示例计划"
+    },
+    {
+      "id": 367,
+      "creatorId": 53,
+      "createdAt": "2025-10-07T08:38:33.186Z",
+      "updatedAt": "2025-10-07T08:38:33.186Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】苏时钧 2025-10-06 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】苏时钧 2025-10-06 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 368,
+      "creatorId": 53,
+      "createdAt": "2025-10-07T08:38:33.206Z",
+      "updatedAt": "2025-10-07T08:38:33.206Z",
+      "orgId": 7,
+      "workDate": "2025-10-07",
+      "title": "【示例】苏时钧 2025-10-07 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】苏时钧 2025-10-07 示例计划 - 示例计划"
+    },
+    {
+      "id": 369,
+      "creatorId": 53,
+      "createdAt": "2025-10-07T08:38:33.233Z",
+      "updatedAt": "2025-10-07T08:38:33.233Z",
+      "orgId": 7,
+      "workDate": "2025-10-07",
+      "title": "【示例】苏时钧 2025-10-07 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】苏时钧 2025-10-07 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 370,
+      "creatorId": 53,
+      "createdAt": "2025-10-07T08:38:33.272Z",
+      "updatedAt": "2025-10-07T08:38:33.272Z",
+      "orgId": 7,
+      "workDate": "2025-10-08",
+      "title": "【示例】苏时钧 2025-10-08 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】苏时钧 2025-10-08 示例计划 - 示例计划"
+    }
+  ]
+}

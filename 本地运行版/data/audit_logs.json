@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastId": 416
+    "lastId": 651
   },
   "items": [
     {
@@ -5167,6 +5167,2463 @@
       "action": "admin_update_user",
       "objectType": "user",
       "objectId": 40
+    },
+    {
+      "id": 417,
+      "createdAt": "2025-10-07T02:48:22.778Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 1
+      }
+    },
+    {
+      "id": 418,
+      "createdAt": "2025-10-07T02:48:22.801Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 1
+      }
+    },
+    {
+      "id": 419,
+      "createdAt": "2025-10-07T02:48:22.812Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 420,
+      "createdAt": "2025-10-07T02:48:29.467Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 421,
+      "createdAt": "2025-10-07T02:49:03.000Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 1
+    },
+    {
+      "id": 422,
+      "createdAt": "2025-10-07T02:49:18.312Z",
+      "actorUserId": 1,
+      "action": "admin_generate_sample_work",
+      "objectType": "work_item",
+      "detail": {
+        "startDate": "2025-10-03",
+        "endDate": "2025-10-07",
+        "created": 544,
+        "processedUsers": 55
+      }
+    },
+    {
+      "id": 423,
+      "createdAt": "2025-10-07T02:49:24.142Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 424,
+      "createdAt": "2025-10-07T02:49:58.788Z",
+      "actorUserId": 1,
+      "action": "create_work_item",
+      "objectType": "work_item",
+      "objectId": 936,
+      "detail": {
+        "workDate": "2025-10-07"
+      }
+    },
+    {
+      "id": 425,
+      "createdAt": "2025-10-07T02:49:58.821Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 6
+      }
+    },
+    {
+      "id": 426,
+      "createdAt": "2025-10-07T02:50:00.795Z",
+      "actorUserId": 1,
+      "action": "create_work_item",
+      "objectType": "work_item",
+      "objectId": 937,
+      "detail": {
+        "workDate": "2025-10-07"
+      }
+    },
+    {
+      "id": 427,
+      "createdAt": "2025-10-07T02:50:00.824Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 428,
+      "createdAt": "2025-10-07T02:50:03.615Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 429,
+      "createdAt": "2025-10-07T02:58:44.460Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 430,
+      "createdAt": "2025-10-07T02:58:44.489Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 431,
+      "createdAt": "2025-10-07T03:02:04.235Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 87
+    },
+    {
+      "id": 432,
+      "createdAt": "2025-10-07T03:02:04.261Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 87,
+      "detail": {
+        "orgId": 10
+      }
+    },
+    {
+      "id": 433,
+      "createdAt": "2025-10-07T03:02:09.507Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 434,
+      "createdAt": "2025-10-07T03:03:58.696Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 435,
+      "createdAt": "2025-10-07T03:03:58.721Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 436,
+      "createdAt": "2025-10-07T04:23:01.498Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 437,
+      "createdAt": "2025-10-07T04:23:01.525Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 438,
+      "createdAt": "2025-10-07T04:23:01.656Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 439,
+      "createdAt": "2025-10-07T04:26:31.316Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 440,
+      "createdAt": "2025-10-07T04:26:31.347Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 441,
+      "createdAt": "2025-10-07T06:33:45.859Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 442,
+      "createdAt": "2025-10-07T06:33:45.890Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 443,
+      "createdAt": "2025-10-07T06:38:04.034Z",
+      "actorUserId": 1,
+      "action": "admin_create_user",
+      "objectType": "user",
+      "objectId": 94
+    },
+    {
+      "id": 444,
+      "createdAt": "2025-10-07T06:38:04.061Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 94,
+      "detail": {
+        "orgId": 2
+      }
+    },
+    {
+      "id": 445,
+      "createdAt": "2025-10-07T07:27:27.444Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 40
+    },
+    {
+      "id": 446,
+      "createdAt": "2025-10-07T07:27:27.487Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 40,
+      "detail": {
+        "orgId": 2
+      }
+    },
+    {
+      "id": 447,
+      "createdAt": "2025-10-07T07:27:32.195Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 3
+    },
+    {
+      "id": 448,
+      "createdAt": "2025-10-07T07:27:32.225Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 3,
+      "detail": {
+        "orgId": 2
+      }
+    },
+    {
+      "id": 449,
+      "createdAt": "2025-10-07T07:27:36.322Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 5
+    },
+    {
+      "id": 450,
+      "createdAt": "2025-10-07T07:27:36.358Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 5,
+      "detail": {
+        "orgId": 2
+      }
+    },
+    {
+      "id": 451,
+      "createdAt": "2025-10-07T07:59:06.093Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 452,
+      "createdAt": "2025-10-07T07:59:06.129Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 453,
+      "createdAt": "2025-10-07T08:06:16.453Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 454,
+      "createdAt": "2025-10-07T08:06:16.465Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 455,
+      "createdAt": "2025-10-07T08:06:16.492Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 456,
+      "createdAt": "2025-10-07T08:06:56.305Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 4
+    },
+    {
+      "id": 457,
+      "createdAt": "2025-10-07T08:06:56.340Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 4,
+      "detail": {
+        "orgId": 2
+      }
+    },
+    {
+      "id": 458,
+      "createdAt": "2025-10-07T08:08:35.200Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 4
+    },
+    {
+      "id": 459,
+      "createdAt": "2025-10-07T08:08:35.233Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 4,
+      "detail": {
+        "orgId": 2
+      }
+    },
+    {
+      "id": 460,
+      "createdAt": "2025-10-07T08:10:13.105Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 461,
+      "createdAt": "2025-10-07T08:10:13.142Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 462,
+      "createdAt": "2025-10-07T08:10:13.165Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 463,
+      "createdAt": "2025-10-07T08:10:28.958Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 8
+    },
+    {
+      "id": 464,
+      "createdAt": "2025-10-07T08:10:28.987Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 8,
+      "detail": {
+        "orgId": 2
+      }
+    },
+    {
+      "id": 465,
+      "createdAt": "2025-10-07T08:10:38.796Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 8
+    },
+    {
+      "id": 466,
+      "createdAt": "2025-10-07T08:10:38.830Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 8,
+      "detail": {
+        "orgId": 2
+      }
+    },
+    {
+      "id": 467,
+      "createdAt": "2025-10-07T08:11:06.095Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 11
+    },
+    {
+      "id": 468,
+      "createdAt": "2025-10-07T08:11:06.124Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 11,
+      "detail": {
+        "orgId": 5
+      }
+    },
+    {
+      "id": 469,
+      "createdAt": "2025-10-07T08:11:19.744Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 11
+    },
+    {
+      "id": 470,
+      "createdAt": "2025-10-07T08:11:19.777Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 11,
+      "detail": {
+        "orgId": 5
+      }
+    },
+    {
+      "id": 471,
+      "createdAt": "2025-10-07T08:11:27.367Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 11
+    },
+    {
+      "id": 472,
+      "createdAt": "2025-10-07T08:11:27.401Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 11,
+      "detail": {
+        "orgId": 5
+      }
+    },
+    {
+      "id": 473,
+      "createdAt": "2025-10-07T08:11:36.325Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 11
+    },
+    {
+      "id": 474,
+      "createdAt": "2025-10-07T08:11:36.353Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 11,
+      "detail": {
+        "orgId": 5
+      }
+    },
+    {
+      "id": 475,
+      "createdAt": "2025-10-07T08:11:47.820Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 12
+    },
+    {
+      "id": 476,
+      "createdAt": "2025-10-07T08:11:47.848Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 12,
+      "detail": {
+        "orgId": 5
+      }
+    },
+    {
+      "id": 477,
+      "createdAt": "2025-10-07T08:12:35.541Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 13
+    },
+    {
+      "id": 478,
+      "createdAt": "2025-10-07T08:12:35.578Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 13,
+      "detail": {
+        "orgId": 5
+      }
+    },
+    {
+      "id": 479,
+      "createdAt": "2025-10-07T08:12:41.363Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 14
+    },
+    {
+      "id": 480,
+      "createdAt": "2025-10-07T08:12:41.390Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 14,
+      "detail": {
+        "orgId": 5
+      }
+    },
+    {
+      "id": 481,
+      "createdAt": "2025-10-07T08:12:47.141Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 15
+    },
+    {
+      "id": 482,
+      "createdAt": "2025-10-07T08:12:47.168Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 15,
+      "detail": {
+        "orgId": 5
+      }
+    },
+    {
+      "id": 483,
+      "createdAt": "2025-10-07T08:12:53.687Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 16
+    },
+    {
+      "id": 484,
+      "createdAt": "2025-10-07T08:12:53.723Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 16,
+      "detail": {
+        "orgId": 5
+      }
+    },
+    {
+      "id": 485,
+      "createdAt": "2025-10-07T08:12:58.113Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 17
+    },
+    {
+      "id": 486,
+      "createdAt": "2025-10-07T08:12:58.150Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 17,
+      "detail": {
+        "orgId": 5
+      }
+    },
+    {
+      "id": 487,
+      "createdAt": "2025-10-07T08:13:03.004Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 18
+    },
+    {
+      "id": 488,
+      "createdAt": "2025-10-07T08:13:03.032Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 18,
+      "detail": {
+        "orgId": 5
+      }
+    },
+    {
+      "id": 489,
+      "createdAt": "2025-10-07T08:13:13.620Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 19
+    },
+    {
+      "id": 490,
+      "createdAt": "2025-10-07T08:13:13.660Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 19,
+      "detail": {
+        "orgId": 5
+      }
+    },
+    {
+      "id": 491,
+      "createdAt": "2025-10-07T08:13:32.771Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 21
+    },
+    {
+      "id": 492,
+      "createdAt": "2025-10-07T08:13:32.815Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 21,
+      "detail": {
+        "orgId": 4
+      }
+    },
+    {
+      "id": 493,
+      "createdAt": "2025-10-07T08:13:43.428Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 22
+    },
+    {
+      "id": 494,
+      "createdAt": "2025-10-07T08:13:43.457Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 22,
+      "detail": {
+        "orgId": 4
+      }
+    },
+    {
+      "id": 495,
+      "createdAt": "2025-10-07T08:14:12.838Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 31
+    },
+    {
+      "id": 496,
+      "createdAt": "2025-10-07T08:14:12.865Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 31,
+      "detail": {
+        "orgId": 8
+      }
+    },
+    {
+      "id": 497,
+      "createdAt": "2025-10-07T08:14:32.077Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 32
+    },
+    {
+      "id": 498,
+      "createdAt": "2025-10-07T08:14:32.104Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 32,
+      "detail": {
+        "orgId": 8
+      }
+    },
+    {
+      "id": 499,
+      "createdAt": "2025-10-07T08:14:43.684Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 33
+    },
+    {
+      "id": 500,
+      "createdAt": "2025-10-07T08:14:43.716Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 33,
+      "detail": {
+        "orgId": 8
+      }
+    },
+    {
+      "id": 501,
+      "createdAt": "2025-10-07T08:14:46.401Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 34
+    },
+    {
+      "id": 502,
+      "createdAt": "2025-10-07T08:14:46.423Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 34,
+      "detail": {
+        "orgId": 8
+      }
+    },
+    {
+      "id": 503,
+      "createdAt": "2025-10-07T08:14:49.143Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 35
+    },
+    {
+      "id": 504,
+      "createdAt": "2025-10-07T08:14:49.171Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 35,
+      "detail": {
+        "orgId": 8
+      }
+    },
+    {
+      "id": 505,
+      "createdAt": "2025-10-07T08:14:51.796Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 36
+    },
+    {
+      "id": 506,
+      "createdAt": "2025-10-07T08:14:51.832Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 36,
+      "detail": {
+        "orgId": 8
+      }
+    },
+    {
+      "id": 507,
+      "createdAt": "2025-10-07T08:14:54.383Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 37
+    },
+    {
+      "id": 508,
+      "createdAt": "2025-10-07T08:14:54.411Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 37,
+      "detail": {
+        "orgId": 8
+      }
+    },
+    {
+      "id": 509,
+      "createdAt": "2025-10-07T08:14:57.084Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 38
+    },
+    {
+      "id": 510,
+      "createdAt": "2025-10-07T08:14:57.111Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 38,
+      "detail": {
+        "orgId": 8
+      }
+    },
+    {
+      "id": 511,
+      "createdAt": "2025-10-07T08:15:07.241Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 41
+    },
+    {
+      "id": 512,
+      "createdAt": "2025-10-07T08:15:07.269Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 41,
+      "detail": {
+        "orgId": 6
+      }
+    },
+    {
+      "id": 513,
+      "createdAt": "2025-10-07T08:15:14.104Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 41
+    },
+    {
+      "id": 514,
+      "createdAt": "2025-10-07T08:15:14.140Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 41,
+      "detail": {
+        "orgId": 6
+      }
+    },
+    {
+      "id": 515,
+      "createdAt": "2025-10-07T08:15:31.981Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 42
+    },
+    {
+      "id": 516,
+      "createdAt": "2025-10-07T08:15:32.019Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 42,
+      "detail": {
+        "orgId": 6
+      }
+    },
+    {
+      "id": 517,
+      "createdAt": "2025-10-07T08:15:43.225Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 43
+    },
+    {
+      "id": 518,
+      "createdAt": "2025-10-07T08:15:43.260Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 43,
+      "detail": {
+        "orgId": 6
+      }
+    },
+    {
+      "id": 519,
+      "createdAt": "2025-10-07T08:15:52.965Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 44
+    },
+    {
+      "id": 520,
+      "createdAt": "2025-10-07T08:15:52.994Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 44,
+      "detail": {
+        "orgId": 6
+      }
+    },
+    {
+      "id": 521,
+      "createdAt": "2025-10-07T08:16:11.267Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 44
+    },
+    {
+      "id": 522,
+      "createdAt": "2025-10-07T08:16:11.299Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 44,
+      "detail": {
+        "orgId": 6
+      }
+    },
+    {
+      "id": 523,
+      "createdAt": "2025-10-07T08:16:21.412Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 42
+    },
+    {
+      "id": 524,
+      "createdAt": "2025-10-07T08:16:21.448Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 42,
+      "detail": {
+        "orgId": 6
+      }
+    },
+    {
+      "id": 525,
+      "createdAt": "2025-10-07T08:16:25.009Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 41
+    },
+    {
+      "id": 526,
+      "createdAt": "2025-10-07T08:16:25.039Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 41,
+      "detail": {
+        "orgId": 6
+      }
+    },
+    {
+      "id": 527,
+      "createdAt": "2025-10-07T08:16:49.807Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 46
+    },
+    {
+      "id": 528,
+      "createdAt": "2025-10-07T08:16:49.838Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 46,
+      "detail": {
+        "orgId": 6
+      }
+    },
+    {
+      "id": 529,
+      "createdAt": "2025-10-07T08:17:37.812Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 51
+    },
+    {
+      "id": 530,
+      "createdAt": "2025-10-07T08:17:37.841Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 51,
+      "detail": {
+        "orgId": 7
+      }
+    },
+    {
+      "id": 531,
+      "createdAt": "2025-10-07T08:17:59.587Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 52
+    },
+    {
+      "id": 532,
+      "createdAt": "2025-10-07T08:17:59.618Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 52,
+      "detail": {
+        "orgId": 7
+      }
+    },
+    {
+      "id": 533,
+      "createdAt": "2025-10-07T08:18:24.112Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 53
+    },
+    {
+      "id": 534,
+      "createdAt": "2025-10-07T08:18:24.140Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 53,
+      "detail": {
+        "orgId": 7
+      }
+    },
+    {
+      "id": 535,
+      "createdAt": "2025-10-07T08:18:29.701Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 54
+    },
+    {
+      "id": 536,
+      "createdAt": "2025-10-07T08:18:29.738Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 54,
+      "detail": {
+        "orgId": 7
+      }
+    },
+    {
+      "id": 537,
+      "createdAt": "2025-10-07T08:18:47.621Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 61
+    },
+    {
+      "id": 538,
+      "createdAt": "2025-10-07T08:18:47.653Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 61,
+      "detail": {
+        "orgId": 11
+      }
+    },
+    {
+      "id": 539,
+      "createdAt": "2025-10-07T08:18:53.404Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 62
+    },
+    {
+      "id": 540,
+      "createdAt": "2025-10-07T08:18:53.441Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 62,
+      "detail": {
+        "orgId": 11
+      }
+    },
+    {
+      "id": 541,
+      "createdAt": "2025-10-07T08:18:56.849Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 63
+    },
+    {
+      "id": 542,
+      "createdAt": "2025-10-07T08:18:56.880Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 63,
+      "detail": {
+        "orgId": 11
+      }
+    },
+    {
+      "id": 543,
+      "createdAt": "2025-10-07T08:19:00.365Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 64
+    },
+    {
+      "id": 544,
+      "createdAt": "2025-10-07T08:19:00.397Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 64,
+      "detail": {
+        "orgId": 11
+      }
+    },
+    {
+      "id": 545,
+      "createdAt": "2025-10-07T08:20:35.644Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 65
+    },
+    {
+      "id": 546,
+      "createdAt": "2025-10-07T08:20:35.678Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 65,
+      "detail": {
+        "orgId": 11
+      }
+    },
+    {
+      "id": 547,
+      "createdAt": "2025-10-07T08:20:59.144Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 61
+    },
+    {
+      "id": 548,
+      "createdAt": "2025-10-07T08:20:59.181Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 61,
+      "detail": {
+        "orgId": 11
+      }
+    },
+    {
+      "id": 549,
+      "createdAt": "2025-10-07T08:21:05.576Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 62
+    },
+    {
+      "id": 550,
+      "createdAt": "2025-10-07T08:21:05.613Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 62,
+      "detail": {
+        "orgId": 11
+      }
+    },
+    {
+      "id": 551,
+      "createdAt": "2025-10-07T08:21:10.662Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 63
+    },
+    {
+      "id": 552,
+      "createdAt": "2025-10-07T08:21:10.699Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 63,
+      "detail": {
+        "orgId": 11
+      }
+    },
+    {
+      "id": 553,
+      "createdAt": "2025-10-07T08:21:13.947Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 64
+    },
+    {
+      "id": 554,
+      "createdAt": "2025-10-07T08:21:13.986Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 64,
+      "detail": {
+        "orgId": 11
+      }
+    },
+    {
+      "id": 555,
+      "createdAt": "2025-10-07T08:21:33.632Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 72
+    },
+    {
+      "id": 556,
+      "createdAt": "2025-10-07T08:21:33.671Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 72,
+      "detail": {
+        "orgId": 3
+      }
+    },
+    {
+      "id": 557,
+      "createdAt": "2025-10-07T08:21:47.977Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 71
+    },
+    {
+      "id": 558,
+      "createdAt": "2025-10-07T08:21:47.997Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 71,
+      "detail": {
+        "orgId": 3
+      }
+    },
+    {
+      "id": 559,
+      "createdAt": "2025-10-07T08:21:56.764Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 52
+    },
+    {
+      "id": 560,
+      "createdAt": "2025-10-07T08:21:56.799Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 52,
+      "detail": {
+        "orgId": 7
+      }
+    },
+    {
+      "id": 561,
+      "createdAt": "2025-10-07T08:22:29.945Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 81
+    },
+    {
+      "id": 562,
+      "createdAt": "2025-10-07T08:22:29.981Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 81,
+      "detail": {
+        "orgId": 10
+      }
+    },
+    {
+      "id": 563,
+      "createdAt": "2025-10-07T08:25:31.217Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 82
+    },
+    {
+      "id": 564,
+      "createdAt": "2025-10-07T08:25:31.248Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 82,
+      "detail": {
+        "orgId": 10
+      }
+    },
+    {
+      "id": 565,
+      "createdAt": "2025-10-07T08:25:35.916Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 83
+    },
+    {
+      "id": 566,
+      "createdAt": "2025-10-07T08:25:35.947Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 83,
+      "detail": {
+        "orgId": 10
+      }
+    },
+    {
+      "id": 567,
+      "createdAt": "2025-10-07T08:25:41.087Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 84
+    },
+    {
+      "id": 568,
+      "createdAt": "2025-10-07T08:25:41.111Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 84,
+      "detail": {
+        "orgId": 10
+      }
+    },
+    {
+      "id": 569,
+      "createdAt": "2025-10-07T08:25:47.915Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 85
+    },
+    {
+      "id": 570,
+      "createdAt": "2025-10-07T08:25:47.935Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 85,
+      "detail": {
+        "orgId": 10
+      }
+    },
+    {
+      "id": 571,
+      "createdAt": "2025-10-07T08:25:54.730Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 86
+    },
+    {
+      "id": 572,
+      "createdAt": "2025-10-07T08:25:54.762Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 86,
+      "detail": {
+        "orgId": 10
+      }
+    },
+    {
+      "id": 573,
+      "createdAt": "2025-10-07T08:26:23.028Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 87
+    },
+    {
+      "id": 574,
+      "createdAt": "2025-10-07T08:26:23.070Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 87,
+      "detail": {
+        "orgId": 10
+      }
+    },
+    {
+      "id": 575,
+      "createdAt": "2025-10-07T08:26:27.407Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 86
+    },
+    {
+      "id": 576,
+      "createdAt": "2025-10-07T08:26:27.445Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 86,
+      "detail": {
+        "orgId": 10
+      }
+    },
+    {
+      "id": 577,
+      "createdAt": "2025-10-07T08:26:31.600Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 88
+    },
+    {
+      "id": 578,
+      "createdAt": "2025-10-07T08:26:31.640Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 88,
+      "detail": {
+        "orgId": 10
+      }
+    },
+    {
+      "id": 579,
+      "createdAt": "2025-10-07T08:30:35.505Z",
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user"
+    },
+    {
+      "id": 580,
+      "createdAt": "2025-10-07T08:30:35.564Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 1
+      }
+    },
+    {
+      "id": 581,
+      "createdAt": "2025-10-07T08:30:35.604Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 582,
+      "createdAt": "2025-10-07T08:30:35.641Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 583,
+      "createdAt": "2025-10-07T08:30:35.669Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 1
+      }
+    },
+    {
+      "id": 584,
+      "createdAt": "2025-10-07T08:32:21.583Z",
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user"
+    },
+    {
+      "id": 585,
+      "createdAt": "2025-10-07T08:32:21.695Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 1
+      }
+    },
+    {
+      "id": 586,
+      "createdAt": "2025-10-07T08:32:21.718Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 1
+      }
+    },
+    {
+      "id": 587,
+      "createdAt": "2025-10-07T08:32:21.743Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 588,
+      "createdAt": "2025-10-07T08:32:51.374Z",
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user"
+    },
+    {
+      "id": 589,
+      "createdAt": "2025-10-07T08:32:51.492Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 1
+      }
+    },
+    {
+      "id": 590,
+      "createdAt": "2025-10-07T08:32:51.516Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 1
+      }
+    },
+    {
+      "id": 591,
+      "createdAt": "2025-10-07T08:32:51.546Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 592,
+      "createdAt": "2025-10-07T08:34:15.594Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 593,
+      "createdAt": "2025-10-07T08:34:16.545Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-13",
+        "end": "2025-10-19"
+      }
+    },
+    {
+      "id": 594,
+      "createdAt": "2025-10-07T08:34:40.499Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 595,
+      "createdAt": "2025-10-07T08:36:47.409Z",
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user"
+    },
+    {
+      "id": 596,
+      "createdAt": "2025-10-07T08:36:47.518Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 1
+      }
+    },
+    {
+      "id": 597,
+      "createdAt": "2025-10-07T08:36:47.543Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 1
+      }
+    },
+    {
+      "id": 598,
+      "createdAt": "2025-10-07T08:36:47.566Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 599,
+      "createdAt": "2025-10-07T08:38:16.135Z",
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user"
+    },
+    {
+      "id": 600,
+      "createdAt": "2025-10-07T08:38:16.230Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 601,
+      "createdAt": "2025-10-07T08:38:16.262Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 7
+      }
+    },
+    {
+      "id": 602,
+      "createdAt": "2025-10-07T08:38:16.318Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 603,
+      "createdAt": "2025-10-07T08:38:21.330Z",
+      "actorUserId": 1,
+      "action": "admin_clear_work_items",
+      "objectType": "work_item",
+      "detail": {
+        "cleared": 93
+      }
+    },
+    {
+      "id": 604,
+      "createdAt": "2025-10-07T08:38:37.198Z",
+      "actorUserId": 1,
+      "action": "admin_generate_sample_work",
+      "objectType": "work_item",
+      "detail": {
+        "startDate": "2025-10-03",
+        "endDate": "2025-10-07",
+        "created": 550,
+        "processedUsers": 55
+      }
+    },
+    {
+      "id": 605,
+      "createdAt": "2025-10-07T08:38:43.367Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 606,
+      "createdAt": "2025-10-07T08:54:09.351Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 607,
+      "createdAt": "2025-10-07T08:54:09.383Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 608,
+      "createdAt": "2025-10-07T08:55:43.092Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 609,
+      "createdAt": "2025-10-07T08:55:43.126Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 610,
+      "createdAt": "2025-10-07T09:09:44.955Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 611,
+      "createdAt": "2025-10-07T09:09:44.979Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 612,
+      "createdAt": "2025-10-07T09:10:47.328Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 613,
+      "createdAt": "2025-10-07T09:10:47.442Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 614,
+      "createdAt": "2025-10-07T09:10:47.567Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 615,
+      "createdAt": "2025-10-07T09:10:47.698Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 616,
+      "createdAt": "2025-10-07T09:11:32.428Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 617,
+      "createdAt": "2025-10-07T09:11:32.489Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 618,
+      "createdAt": "2025-10-07T09:12:27.320Z",
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user"
+    },
+    {
+      "id": 619,
+      "createdAt": "2025-10-07T09:12:27.410Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 620,
+      "createdAt": "2025-10-07T09:12:27.438Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 621,
+      "createdAt": "2025-10-07T09:12:27.497Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 622,
+      "createdAt": "2025-10-07T09:13:16.537Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-06"
+      }
+    },
+    {
+      "id": 623,
+      "createdAt": "2025-10-07T09:13:19.239Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-05"
+      }
+    },
+    {
+      "id": 624,
+      "createdAt": "2025-10-07T09:13:20.436Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-04"
+      }
+    },
+    {
+      "id": 625,
+      "createdAt": "2025-10-07T09:13:21.435Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-03"
+      }
+    },
+    {
+      "id": 626,
+      "createdAt": "2025-10-07T09:13:23.949Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 627,
+      "createdAt": "2025-10-07T09:53:51.619Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 628,
+      "createdAt": "2025-10-07T09:53:53.334Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-13",
+        "end": "2025-10-19"
+      }
+    },
+    {
+      "id": 629,
+      "createdAt": "2025-10-07T09:53:54.344Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 630,
+      "createdAt": "2025-10-07T09:53:55.222Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-13",
+        "end": "2025-10-19"
+      }
+    },
+    {
+      "id": 631,
+      "createdAt": "2025-10-07T09:53:57.681Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-08"
+      }
+    },
+    {
+      "id": 632,
+      "createdAt": "2025-10-07T09:53:59.248Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 633,
+      "createdAt": "2025-10-07T09:53:59.931Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-06"
+      }
+    },
+    {
+      "id": 634,
+      "createdAt": "2025-10-07T09:54:01.378Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 635,
+      "createdAt": "2025-10-07T09:54:02.339Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-08"
+      }
+    },
+    {
+      "id": 636,
+      "createdAt": "2025-10-07T09:54:05.320Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-09"
+      }
+    },
+    {
+      "id": 637,
+      "createdAt": "2025-10-07T09:54:05.839Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-10"
+      }
+    },
+    {
+      "id": 638,
+      "createdAt": "2025-10-07T09:54:06.416Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-11"
+      }
+    },
+    {
+      "id": 639,
+      "createdAt": "2025-10-07T09:54:06.732Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-12"
+      }
+    },
+    {
+      "id": 640,
+      "createdAt": "2025-10-07T09:54:06.912Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-13"
+      }
+    },
+    {
+      "id": 641,
+      "createdAt": "2025-10-07T09:54:07.476Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-12"
+      }
+    },
+    {
+      "id": 642,
+      "createdAt": "2025-10-07T09:54:07.633Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-11"
+      }
+    },
+    {
+      "id": 643,
+      "createdAt": "2025-10-07T09:54:07.830Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-10"
+      }
+    },
+    {
+      "id": 644,
+      "createdAt": "2025-10-07T09:54:08.140Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-09"
+      }
+    },
+    {
+      "id": 645,
+      "createdAt": "2025-10-07T09:54:08.632Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-08"
+      }
+    },
+    {
+      "id": 646,
+      "createdAt": "2025-10-07T09:54:08.779Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 647,
+      "createdAt": "2025-10-07T09:54:08.965Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-06"
+      }
+    },
+    {
+      "id": 648,
+      "createdAt": "2025-10-07T09:54:09.361Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-05"
+      }
+    },
+    {
+      "id": 649,
+      "createdAt": "2025-10-07T09:54:09.643Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-04"
+      }
+    },
+    {
+      "id": 650,
+      "createdAt": "2025-10-07T09:54:10.238Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-07"
+      }
+    },
+    {
+      "id": 651,
+      "createdAt": "2025-10-07T09:54:11.570Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-06"
+      }
     }
   ]
 }

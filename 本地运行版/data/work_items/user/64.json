@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "lastId": 420
+  },
+  "items": [
+    {
+      "id": 411,
+      "creatorId": 64,
+      "createdAt": "2025-10-07T08:38:34.055Z",
+      "updatedAt": "2025-10-07T08:38:34.055Z",
+      "orgId": null,
+      "workDate": "2025-10-03",
+      "title": "【示例】黄松 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】黄松 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 412,
+      "creatorId": 64,
+      "createdAt": "2025-10-07T08:38:34.071Z",
+      "updatedAt": "2025-10-07T08:38:34.071Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】黄松 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】黄松 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 413,
+      "creatorId": 64,
+      "createdAt": "2025-10-07T08:38:34.085Z",
+      "updatedAt": "2025-10-07T08:38:34.085Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】黄松 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】黄松 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 414,
+      "creatorId": 64,
+      "createdAt": "2025-10-07T08:38:34.098Z",
+      "updatedAt": "2025-10-07T08:38:34.098Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】黄松 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】黄松 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 415,
+      "creatorId": 64,
+      "createdAt": "2025-10-07T08:38:34.113Z",
+      "updatedAt": "2025-10-07T08:38:34.113Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】黄松 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】黄松 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 416,
+      "creatorId": 64,
+      "createdAt": "2025-10-07T08:38:34.131Z",
+      "updatedAt": "2025-10-07T08:38:34.131Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】黄松 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】黄松 2025-10-06 示例计划 - 示例计划"
+    },
+    {
+      "id": 417,
+      "creatorId": 64,
+      "createdAt": "2025-10-07T08:38:34.145Z",
+      "updatedAt": "2025-10-07T08:38:34.145Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】黄松 2025-10-06 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】黄松 2025-10-06 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 418,
+      "creatorId": 64,
+      "createdAt": "2025-10-07T08:38:34.164Z",
+      "updatedAt": "2025-10-07T08:38:34.164Z",
+      "orgId": 11,
+      "workDate": "2025-10-07",
+      "title": "【示例】黄松 2025-10-07 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】黄松 2025-10-07 示例计划 - 示例计划"
+    },
+    {
+      "id": 419,
+      "creatorId": 64,
+      "createdAt": "2025-10-07T08:38:34.178Z",
+      "updatedAt": "2025-10-07T08:38:34.178Z",
+      "orgId": 11,
+      "workDate": "2025-10-07",
+      "title": "【示例】黄松 2025-10-07 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】黄松 2025-10-07 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 420,
+      "creatorId": 64,
+      "createdAt": "2025-10-07T08:38:34.194Z",
+      "updatedAt": "2025-10-07T08:38:34.194Z",
+      "orgId": 11,
+      "workDate": "2025-10-08",
+      "title": "【示例】黄松 2025-10-08 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】黄松 2025-10-08 示例计划 - 示例计划"
+    }
+  ]
+}

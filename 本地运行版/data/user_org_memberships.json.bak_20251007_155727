@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "lastId": 9
+  },
+  "items": [
+    {
+      "userId": 2,
+      "orgId": 2,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 4,
+      "orgId": 2,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 3,
+      "orgId": 2,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 5,
+      "orgId": 2,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 6,
+      "orgId": 2,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 7,
+      "orgId": 2,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 21,
+      "orgId": 4,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 22,
+      "orgId": 4,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 23,
+      "orgId": 4,
+      "isPrimary": true,
+      "startDate": "2025-10-07",
+      "endDate": null
+    }
+  ]
+}

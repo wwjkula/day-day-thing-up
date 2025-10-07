@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "lastId": 380
+  },
+  "items": [
+    {
+      "id": 371,
+      "creatorId": 54,
+      "createdAt": "2025-10-07T08:38:33.299Z",
+      "updatedAt": "2025-10-07T08:38:33.299Z",
+      "orgId": null,
+      "workDate": "2025-10-03",
+      "title": "【示例】毛鸿樱 2025-10-03 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】毛鸿樱 2025-10-03 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 372,
+      "creatorId": 54,
+      "createdAt": "2025-10-07T08:38:33.323Z",
+      "updatedAt": "2025-10-07T08:38:33.323Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】毛鸿樱 2025-10-04 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】毛鸿樱 2025-10-04 示例计划 - 示例计划"
+    },
+    {
+      "id": 373,
+      "creatorId": 54,
+      "createdAt": "2025-10-07T08:38:33.344Z",
+      "updatedAt": "2025-10-07T08:38:33.344Z",
+      "orgId": null,
+      "workDate": "2025-10-04",
+      "title": "【示例】毛鸿樱 2025-10-04 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】毛鸿樱 2025-10-04 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 374,
+      "creatorId": 54,
+      "createdAt": "2025-10-07T08:38:33.364Z",
+      "updatedAt": "2025-10-07T08:38:33.364Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】毛鸿樱 2025-10-05 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】毛鸿樱 2025-10-05 示例计划 - 示例计划"
+    },
+    {
+      "id": 375,
+      "creatorId": 54,
+      "createdAt": "2025-10-07T08:38:33.384Z",
+      "updatedAt": "2025-10-07T08:38:33.384Z",
+      "orgId": null,
+      "workDate": "2025-10-05",
+      "title": "【示例】毛鸿樱 2025-10-05 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】毛鸿樱 2025-10-05 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 376,
+      "creatorId": 54,
+      "createdAt": "2025-10-07T08:38:33.405Z",
+      "updatedAt": "2025-10-07T08:38:33.405Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】毛鸿樱 2025-10-06 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】毛鸿樱 2025-10-06 示例计划 - 示例计划"
+    },
+    {
+      "id": 377,
+      "creatorId": 54,
+      "createdAt": "2025-10-07T08:38:33.423Z",
+      "updatedAt": "2025-10-07T08:38:33.423Z",
+      "orgId": null,
+      "workDate": "2025-10-06",
+      "title": "【示例】毛鸿樱 2025-10-06 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】毛鸿樱 2025-10-06 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 378,
+      "creatorId": 54,
+      "createdAt": "2025-10-07T08:38:33.444Z",
+      "updatedAt": "2025-10-07T08:38:33.444Z",
+      "orgId": 7,
+      "workDate": "2025-10-07",
+      "title": "【示例】毛鸿樱 2025-10-07 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】毛鸿樱 2025-10-07 示例计划 - 示例计划"
+    },
+    {
+      "id": 379,
+      "creatorId": 54,
+      "createdAt": "2025-10-07T08:38:33.459Z",
+      "updatedAt": "2025-10-07T08:38:33.459Z",
+      "orgId": 7,
+      "workDate": "2025-10-07",
+      "title": "【示例】毛鸿樱 2025-10-07 示例工作",
+      "type": "done",
+      "durationMinutes": 120,
+      "tags": [],
+      "detail": "【示例】毛鸿樱 2025-10-07 示例工作 - 示例工作内容"
+    },
+    {
+      "id": 380,
+      "creatorId": 54,
+      "createdAt": "2025-10-07T08:38:33.474Z",
+      "updatedAt": "2025-10-07T08:38:33.474Z",
+      "orgId": 7,
+      "workDate": "2025-10-08",
+      "title": "【示例】毛鸿樱 2025-10-08 示例计划",
+      "type": "plan",
+      "durationMinutes": null,
+      "tags": [],
+      "detail": "【示例】毛鸿樱 2025-10-08 示例计划 - 示例计划"
+    }
+  ]
+}
