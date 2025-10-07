@@ -264,7 +264,7 @@ async function exportWeeklyExcel() {
               e: { r: endRow, c: col },
             })
             const topCellRef = utils.encode_cell({ r: startRow, c: col })
-            ensureAlignment(topCellRef, { vertical: 'top' })
+            ensureAlignment(topCellRef, { horizontal: 'center', vertical: 'center' })
           }
         }
         sheet['!merges'] = sheetMerges
