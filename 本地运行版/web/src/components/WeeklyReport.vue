@@ -288,8 +288,16 @@ async function exportWeeklyExcel() {
               s: { r: startRow, c: col },
               e: { r: endRow, c: col },
             })
-            const topCellRef = utils.encode_cell({ r: startRow, c: col })
-            applyCellStyle(topCellRef, { alignment: { horizontal: 'center', vertical: 'center' }, border: fullBorder })
+            for (let row = startRow; row <= endRow; row += 1) {
+              const cellRef = utils.encode_cell({ r: row, c: col })
+              const border: any = {
+                left: thinBlackBorder,
+                right: thinBlackBorder,
+              }
+              if (row === startRow) border.top = thinBlackBorder
+              if (row === endRow) border.bottom = thinBlackBorder
+              applyCellStyle(cellRef, { alignment: { horizontal: 'center', vertical: 'center' }, border })
+            }
           }
         }
         sheet['!merges'] = sheetMerges
