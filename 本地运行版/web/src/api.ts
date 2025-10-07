@@ -163,6 +163,13 @@ export async function adminSetPrimaryOrg(userId: number, orgId: number) {
   return res.json()
 }
 
+export async function adminGetPrimaryOrg(userId: number): Promise<{ orgId: number | null }> {
+  const res = await fetch(withBase(`/api/admin/users/${userId}/primary-org`), {
+    headers: { ...authHeader() },
+  })
+  return res.json()
+}
+
 export async function adminListManagerEdges(params: { managerId?: number; subordinateId?: number } = {}) {
   const qs = new URLSearchParams(params as any)
   const res = await fetch(withBase(`/api/admin/manager-edges?${qs}`), { headers: { ...authHeader() } })

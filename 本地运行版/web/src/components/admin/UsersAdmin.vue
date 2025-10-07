@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
-import { authHeader, withBase, adminListUsers } from '../../api'
+import { authHeader, withBase, adminListUsers, adminGetPrimaryOrg } from '../../api'
 
 interface User { id: number; name: string; email?: string|null; employeeNo?: string|null; jobTitle?: string|null; active: boolean; visibleUserIds?: number[] }
 interface Org { id: number; name: string }
@@ -51,13 +51,24 @@ function openCreate() {
   formVisible.value = true
 }
 
-function openEdit(row: User) {
+async function openEdit(row: User) {
   editing.value = row
   form.value = { ...row }
   primaryOrg.value = null
   const current = Array.isArray(row.visibleUserIds) ? row.visibleUserIds.slice() : [row.id]
   if (!current.includes(row.id)) current.push(row.id)
   visibleSelection.value = current
+  try {
+    const result = await adminGetPrimaryOrg(row.id)
+    if (result && typeof result.orgId === 'number') {
+      primaryOrg.value = result.orgId
+    } else {
+      primaryOrg.value = null
+    }
+  } catch (e) {
+    primaryOrg.value = null
+    console.error('Failed to load primary org', e)
+  }
   formVisible.value = true
 }
 

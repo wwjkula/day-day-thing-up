@@ -512,6 +512,23 @@ app.patch('/api/admin/users/:id/primary-org', async (req, res) => {
   res.json({ ok: true })
 })
 
+app.get('/api/admin/users/:id/primary-org', async (req, res) => {
+  const idNum = Number(req.params.id)
+  if (!Number.isFinite(idNum)) return res.status(400).json({ error: 'invalid id' })
+  const data = await getUserOrgMemberships()
+  const active = data.items
+    .filter((m) => Number(m.userId) === idNum && m.isPrimary)
+    .filter((m) => m.endDate == null || m.endDate === '')
+    .sort((a, b) => {
+      const aStart = a.startDate || ''
+      const bStart = b.startDate || ''
+      if (aStart === bStart) return 0
+      return aStart < bStart ? 1 : -1
+    })
+  const record = active.length ? active[0] : null
+  res.json({ orgId: record ? Number(record.orgId) : null })
+})
+
 app.get('/api/admin/manager-edges', async (req, res) => {
   const data = await getManagerEdges()
   const managerId = req.query.managerId ? Number(req.query.managerId) : undefined
