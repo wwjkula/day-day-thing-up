@@ -343,6 +343,7 @@ export async function buildWeeklyOverview(actorId, scope, range) {
     users.push({
       userId,
       name: user.name ?? null,
+      employeeNo: user.employeeNo ?? null,
       orgId: orgId ?? null,
       orgName: org?.name ?? null,
       days,

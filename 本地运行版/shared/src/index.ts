@@ -143,6 +143,7 @@ export interface WeeklyOverviewSummary {
 export interface WeeklyOverviewUser {
   userId: number;
   name: string | null;
+  employeeNo: string | null;
   orgId: number | null;
   orgName: string | null;
   days: WeeklyOverviewDay[];

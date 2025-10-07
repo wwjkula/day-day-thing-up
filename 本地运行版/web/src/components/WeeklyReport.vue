@@ -7,6 +7,7 @@ import type {
   WeeklyOverviewResponse,
   WeeklyOverviewUser,
   WeeklyOverviewOrg,
+  WeeklyOverviewDay,
 } from '@drrq/shared/index'
 import { getDailyOverview, getWeeklyOverview } from '../api'
 
@@ -83,6 +84,7 @@ const dailyOnlyPlan = ref(false)
 const weeklySearch = ref('')
 const weeklyOnlyMissing = ref(false)
 const weeklyOnlyPlan = ref(false)
+const exporting = ref(false)
 
 function resolveWeeklyDay(user: WeeklyOverviewUser, date: string) {
   const found = user.days.find((day) => day.date === date)
@@ -116,6 +118,167 @@ function aggregateGroupStats(users: WeeklyOverviewUser[], summary?: WeeklyOvervi
     planCount += user.summary.planCount
   }
   return { completedCount, completedMinutes, planCount, userCount: users.length }
+}
+
+function formatWorkItems(items: WeeklyOverviewDay['completed']) {
+  if (!items.length) return ''
+  return items
+    .map((item) => {
+      const label = typeLabel(item.type)
+      const title = item.title || ''
+      const duration = item.durationMinutes ? `(${item.durationMinutes}分)` : ''
+      return `${label}: ${title}${duration}`
+    })
+    .join('\n')
+}
+
+function sanitizeSheetName(raw: string, used: Set<string>) {
+  const invalidChars = /[\[\]:*?\/\\]/g
+  let base = raw.replace(invalidChars, '_').trim()
+  if (!base) base = 'Sheet'
+  if (base.length > 31) base = base.slice(0, 31)
+  let name = base
+  let counter = 1
+  while (used.has(name)) {
+    const suffix = `_${counter++}`
+    const maxLen = Math.max(31 - suffix.length, 1)
+    name = `${base.slice(0, maxLen)}${suffix}`
+  }
+  used.add(name)
+  return name
+}
+
+async function exportWeeklyExcel() {
+  if (!weeklyData.value) {
+    await loadWeeklyOverview()
+    if (!weeklyData.value) {
+      ElMessage.warning('周视图数据尚未加载完成')
+      return
+    }
+  }
+  try {
+    exporting.value = true
+    const [{ utils, writeFile }] = await Promise.all([import('xlsx-js-style')])
+    const workbook = utils.book_new()
+    const usedNames = new Set<string>()
+    const dates = weeklyDates.value
+    const header = [
+      '工号',
+      '姓名',
+      '用户ID',
+      '组织',
+      ...dates.map((date) => formatDateLabel(date)),
+      '完成总数',
+      '完成总分钟',
+      '计划总数',
+      '缺报天数',
+      '缺报日期',
+    ]
+
+    const appendSheet = (title: string, users: WeeklyOverviewUser[]) => {
+      const rows: (string | number)[][] = []
+      const rowSpans: Array<{ start: number; end: number }> = []
+      const summaryStartIndex = 4 + dates.length
+      const mergeColumns: number[] = [0, 1, 2, 3]
+      for (let col = summaryStartIndex; col < header.length; col += 1) {
+        mergeColumns.push(col)
+      }
+
+      for (const user of users) {
+        const summary = user.summary
+        const daysData = dates.map((date) => resolveWeeklyDay(user, date))
+        const completedCells = daysData.map((day) => formatWorkItems(day.completed))
+        const planCells = daysData.map((day) => formatWorkItems(day.plans))
+        const missingDates = summary.missingDays.join(', ')
+        const completedRow: (string | number)[] = [
+          user.employeeNo ?? '',
+          user.name ?? '',
+          user.userId,
+          user.orgName ?? '',
+          ...completedCells,
+          summary.completedCount,
+          summary.completedMinutes,
+          summary.planCount,
+          summary.missingDays.length,
+          missingDates,
+        ]
+        const planRow: (string | number)[] = [
+          '',
+          '',
+          '',
+          '',
+          ...planCells,
+          ...Array(header.length - summaryStartIndex).fill(''),
+        ]
+        const startIdx = rows.length
+        rows.push(completedRow)
+        rows.push(planRow)
+        rowSpans.push({ start: startIdx, end: startIdx + 1 })
+      }
+
+      if (!rows.length) {
+        rows.push(['（无符合人员）', ...Array(header.length - 1).fill('')])
+      }
+
+      const sheet = utils.aoa_to_sheet([header, ...rows])
+      const dayColumnIndices = dates.map((_, idx) => 4 + idx)
+
+      const ensureAlignment = (cellRef: string, options: any) => {
+        const cell = sheet[cellRef]
+        if (!cell) return
+        const prev = cell.s?.alignment ?? {}
+        cell.s = { ...(cell.s || {}), alignment: { ...prev, ...options } }
+      }
+
+      if (rowSpans.length && mergeColumns.length) {
+        const sheetMerges = sheet['!merges'] ?? []
+        for (const span of rowSpans) {
+          const startRow = span.start + 1
+          const endRow = span.end + 1
+          for (const col of mergeColumns) {
+            sheetMerges.push({
+              s: { r: startRow, c: col },
+              e: { r: endRow, c: col },
+            })
+            const topCellRef = utils.encode_cell({ r: startRow, c: col })
+            ensureAlignment(topCellRef, { vertical: 'top' })
+          }
+        }
+        sheet['!merges'] = sheetMerges
+      }
+
+      for (let r = 0; r < rows.length; r += 1) {
+        const sheetRow = r + 1
+        for (const col of dayColumnIndices) {
+          const cellRef = utils.encode_cell({ r: sheetRow, c: col })
+          ensureAlignment(cellRef, { wrapText: true, vertical: 'top' })
+        }
+      }
+
+      const sheetName = sanitizeSheetName(title, usedNames)
+      utils.book_append_sheet(workbook, sheet, sheetName)
+    }
+
+    weeklyGrouping.value.groups.forEach((group) => {
+      appendSheet(group.title, group.users)
+    })
+    if (weeklyGrouping.value.unassigned.length) {
+      appendSheet('未分配', weeklyGrouping.value.unassigned)
+    }
+    if (!workbook.SheetNames.length) {
+      appendSheet('周视图', [])
+    }
+
+    const [from, to] = weeklyRange.value
+    const scope = weeklyData.value?.scope ?? 'self'
+    const fileName = `周视图_${from}_${to}_${scope}.xlsx`
+    writeFile(workbook, fileName)
+    ElMessage.success('已导出周视图数据')
+  } catch (err: any) {
+    ElMessage.error(err?.message || '导出失败')
+  } finally {
+    exporting.value = false
+  }
 }
 
 async function loadDailyOverview() {
@@ -358,6 +521,22 @@ onMounted(() => {
         <el-checkbox v-model="weeklyOnlyMissing">只看缺报</el-checkbox>
         <el-checkbox v-model="weeklyOnlyPlan">只看有计划</el-checkbox>
         <el-button :loading="loadingWeekly" @click="loadWeeklyOverview">刷新</el-button>
+
+        <el-button
+
+          type="primary"
+
+          :loading="exporting"
+
+          :disabled="loadingWeekly || !weeklyData"
+
+          @click="exportWeeklyExcel"
+
+        >
+
+          导出Excel
+
+        </el-button>
       </template>
     </div>
 
