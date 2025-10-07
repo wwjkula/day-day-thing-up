@@ -253,6 +253,11 @@ async function exportWeeklyExcel() {
         cell.s = { ...(cell.s || {}), alignment: { ...prev, ...options } }
       }
 
+      for (let c = 0; c < header.length; c += 1) {
+        const headerRef = utils.encode_cell({ r: 0, c })
+        ensureAlignment(headerRef, { horizontal: 'center', vertical: 'center' })
+      }
+
       if (rowSpans.length && mergeColumns.length) {
         const sheetMerges = sheet['!merges'] ?? []
         for (const span of rowSpans) {
