@@ -201,6 +201,14 @@ async function exportWeeklyExcel() {
     const appendSheet = (title: string, users: WeeklyOverviewUser[]) => {
       const rows: (string | number)[][] = []
       const rowSpans: Array<{ start: number; end: number }> = []
+      const rowHasValues: boolean[] = []
+      const thinBlackBorder = { style: 'thin', color: { rgb: 'FF000000' } }
+      const fullBorder = {
+        top: thinBlackBorder,
+        bottom: thinBlackBorder,
+        left: thinBlackBorder,
+        right: thinBlackBorder,
+      }
       const summaryStartIndex = 4 + dates.length
       const mergeColumns: number[] = [0, 1, 2, 3]
       for (let col = summaryStartIndex; col < header.length; col += 1) {
@@ -212,6 +220,8 @@ async function exportWeeklyExcel() {
         const daysData = dates.map((date) => resolveWeeklyDay(user, date))
         const completedCells = daysData.map((day) => formatWorkItems(day.completed))
         const planCells = daysData.map((day) => formatWorkItems(day.plans))
+        const completedHasValues = completedCells.some((cell) => typeof cell === 'string' && cell.trim() !== '')
+        const planHasValues = planCells.some((cell) => typeof cell === 'string' && cell.trim() !== '')
         const missingDates = summary.missingDays.join(', ')
         const completedRow: (string | number)[] = [
           user.employeeNo ?? '',
@@ -236,26 +246,36 @@ async function exportWeeklyExcel() {
         const startIdx = rows.length
         rows.push(completedRow)
         rows.push(planRow)
+        rowHasValues.push(completedHasValues)
+        rowHasValues.push(planHasValues)
         rowSpans.push({ start: startIdx, end: startIdx + 1 })
       }
 
       if (!rows.length) {
         rows.push(['（无符合人员）', ...Array(header.length - 1).fill('')])
+        rowHasValues.push(false)
       }
 
       const sheet = utils.aoa_to_sheet([header, ...rows])
       const dayColumnIndices = dates.map((_, idx) => 4 + idx)
 
-      const ensureAlignment = (cellRef: string, options: any) => {
+      const applyCellStyle = (cellRef: string, style: { alignment?: any; border?: any }) => {
         const cell = sheet[cellRef]
         if (!cell) return
-        const prev = cell.s?.alignment ?? {}
-        cell.s = { ...(cell.s || {}), alignment: { ...prev, ...options } }
+        cell.s = cell.s || {}
+        if (style.alignment) {
+          const prevAlignment = cell.s.alignment ?? {}
+          cell.s.alignment = { ...prevAlignment, ...style.alignment }
+        }
+        if (style.border) {
+          const prevBorder = cell.s.border ?? {}
+          cell.s.border = { ...prevBorder, ...style.border }
+        }
       }
 
       for (let c = 0; c < header.length; c += 1) {
         const headerRef = utils.encode_cell({ r: 0, c })
-        ensureAlignment(headerRef, { horizontal: 'center', vertical: 'center' })
+        applyCellStyle(headerRef, { alignment: { horizontal: 'center', vertical: 'center' }, border: fullBorder })
       }
 
       if (rowSpans.length && mergeColumns.length) {
@@ -269,7 +289,7 @@ async function exportWeeklyExcel() {
               e: { r: endRow, c: col },
             })
             const topCellRef = utils.encode_cell({ r: startRow, c: col })
-            ensureAlignment(topCellRef, { horizontal: 'center', vertical: 'center' })
+            applyCellStyle(topCellRef, { alignment: { horizontal: 'center', vertical: 'center' }, border: fullBorder })
           }
         }
         sheet['!merges'] = sheetMerges
@@ -277,9 +297,14 @@ async function exportWeeklyExcel() {
 
       for (let r = 0; r < rows.length; r += 1) {
         const sheetRow = r + 1
+        const hasValue = rowHasValues[r]
         for (const col of dayColumnIndices) {
           const cellRef = utils.encode_cell({ r: sheetRow, c: col })
-          ensureAlignment(cellRef, { wrapText: true, vertical: 'top' })
+          const style: { alignment: any; border?: any } = { alignment: { wrapText: true, vertical: 'top' } }
+          if (hasValue) {
+            style.border = fullBorder
+          }
+          applyCellStyle(cellRef, style)
         }
       }
 
