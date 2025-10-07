@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastId": 93
+    "lastId": 94
   },
   "items": [
     {
@@ -14,51 +14,25 @@
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": "2025-09-22T09:31:47.447Z",
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-05T04:28:10.533Z",
+      "updatedAt": "2025-10-07T02:49:02.997Z",
       "visibleUserIds": [
         1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        31,
-        32,
-        33,
-        34,
-        35,
-        36,
-        37,
-        38,
-        39
+        40,
+        41,
+        42,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93
       ]
     },
     {
-      "id": 40,
-      "employeeNo": "L003",
+      "id": 4,
+      "employeeNo": "L004",
       "name": "黄志直",
       "email": null,
       "phone": null,
@@ -81,8 +55,8 @@
       ]
     },
     {
-      "id": 41,
-      "employeeNo": "L004",
+      "id": 3,
+      "employeeNo": "L003",
       "name": "魏光辉",
       "email": null,
       "phone": null,
@@ -91,7 +65,7 @@
       "passwordHash": null,
       "passwordChangedAt": null,
       "createdAt": "2025-10-05T08:00:00.000Z",
-      "updatedAt": "2025-10-05T08:00:00.000Z",
+      "updatedAt": "2025-10-07T07:27:32.191Z",
       "visibleUserIds": [
         1,
         2,
@@ -140,7 +114,7 @@
       ]
     },
     {
-      "id": 42,
+      "id": 5,
       "employeeNo": "L005",
       "name": "李登铖",
       "email": null,
@@ -150,7 +124,7 @@
       "passwordHash": null,
       "passwordChangedAt": null,
       "createdAt": "2025-10-05T08:00:00.000Z",
-      "updatedAt": "2025-10-05T08:00:00.000Z",
+      "updatedAt": "2025-10-07T07:27:36.316Z",
       "visibleUserIds": [
         1,
         2,
@@ -199,7 +173,7 @@
       ]
     },
     {
-      "id": 43,
+      "id": 6,
       "employeeNo": "L006",
       "name": "古朝华",
       "email": null,
@@ -258,7 +232,7 @@
       ]
     },
     {
-      "id": 44,
+      "id": 7,
       "employeeNo": "L007",
       "name": "何江虎",
       "email": null,
@@ -317,8 +291,8 @@
       ]
     },
     {
-      "id": 45,
-      "employeeNo": "D0313",
+      "id": 8,
+      "employeeNo": "D008",
       "name": "张书炜",
       "email": null,
       "phone": null,
@@ -341,8 +315,8 @@
       ]
     },
     {
-      "id": 46,
-      "employeeNo": "D0314",
+      "id": 11,
+      "employeeNo": "D011",
       "name": "何秀卓",
       "email": null,
       "phone": null,
@@ -358,8 +332,8 @@
       ]
     },
     {
-      "id": 47,
-      "employeeNo": "D0315",
+      "id": 12,
+      "employeeNo": "D012",
       "name": "何施钱",
       "email": null,
       "phone": null,
@@ -375,8 +349,8 @@
       ]
     },
     {
-      "id": 48,
-      "employeeNo": "D0303",
+      "id": 13,
+      "employeeNo": "D013",
       "name": "刘星雨",
       "email": null,
       "phone": null,
@@ -399,8 +373,8 @@
       ]
     },
     {
-      "id": 49,
-      "employeeNo": "D0316",
+      "id": 14,
+      "employeeNo": "D014",
       "name": "陈伟局",
       "email": null,
       "phone": null,
@@ -416,8 +390,8 @@
       ]
     },
     {
-      "id": 50,
-      "employeeNo": "D0317",
+      "id": 15,
+      "employeeNo": "D015",
       "name": "刘泓均",
       "email": null,
       "phone": null,
@@ -433,8 +407,8 @@
       ]
     },
     {
-      "id": 51,
-      "employeeNo": "D0318",
+      "id": 16,
+      "employeeNo": "D016",
       "name": "班远航",
       "email": null,
       "phone": null,
@@ -450,8 +424,8 @@
       ]
     },
     {
-      "id": 52,
-      "employeeNo": "D0319",
+      "id": 17,
+      "employeeNo": "D017",
       "name": "郭华斌",
       "email": null,
       "phone": null,
@@ -467,8 +441,8 @@
       ]
     },
     {
-      "id": 53,
-      "employeeNo": "D0320",
+      "id": 18,
+      "employeeNo": "D018",
       "name": "段乔峰",
       "email": null,
       "phone": null,
@@ -484,8 +458,8 @@
       ]
     },
     {
-      "id": 54,
-      "employeeNo": "D0321",
+      "id": 19,
+      "employeeNo": "D019",
       "name": "刘思琦",
       "email": null,
       "phone": null,
@@ -501,8 +475,8 @@
       ]
     },
     {
-      "id": 55,
-      "employeeNo": "D0322",
+      "id": 20,
+      "employeeNo": "D020",
       "name": "蒋梦禄",
       "email": null,
       "phone": null,
@@ -517,8 +491,8 @@
       ]
     },
     {
-      "id": 56,
-      "employeeNo": "D0205",
+      "id": 21,
+      "employeeNo": "D021",
       "name": "肖江波",
       "email": null,
       "phone": null,
@@ -535,8 +509,8 @@
       ]
     },
     {
-      "id": 57,
-      "employeeNo": "D0206",
+      "id": 22,
+      "employeeNo": "D022",
       "name": "胡玉尧",
       "email": null,
       "phone": null,
@@ -552,8 +526,8 @@
       ]
     },
     {
-      "id": 58,
-      "employeeNo": "D0213",
+      "id": 23,
+      "employeeNo": "D023",
       "name": "王文君",
       "email": null,
       "phone": null,
@@ -568,8 +542,8 @@
       ]
     },
     {
-      "id": 59,
-      "employeeNo": "D0603",
+      "id": 24,
+      "employeeNo": "D024",
       "name": "李博",
       "email": null,
       "phone": null,
@@ -590,8 +564,8 @@
       ]
     },
     {
-      "id": 60,
-      "employeeNo": "D0604",
+      "id": 25,
+      "employeeNo": "D025",
       "name": "张宗俊",
       "email": null,
       "phone": null,
@@ -612,8 +586,8 @@
       ]
     },
     {
-      "id": 61,
-      "employeeNo": "D0613",
+      "id": 26,
+      "employeeNo": "D026",
       "name": "阚君禹",
       "email": null,
       "phone": null,
@@ -628,8 +602,8 @@
       ]
     },
     {
-      "id": 62,
-      "employeeNo": "D0614",
+      "id": 27,
+      "employeeNo": "D027",
       "name": "韦桂流",
       "email": null,
       "phone": null,
@@ -644,8 +618,8 @@
       ]
     },
     {
-      "id": 63,
-      "employeeNo": "D0615",
+      "id": 28,
+      "employeeNo": "D028",
       "name": "唐宇星",
       "email": null,
       "phone": null,
@@ -660,8 +634,8 @@
       ]
     },
     {
-      "id": 64,
-      "employeeNo": "D0616",
+      "id": 29,
+      "employeeNo": "D029",
       "name": "赵小伟",
       "email": null,
       "phone": null,
@@ -676,8 +650,8 @@
       ]
     },
     {
-      "id": 65,
-      "employeeNo": "D0617",
+      "id": 30,
+      "employeeNo": "D030",
       "name": "郑耀辉",
       "email": null,
       "phone": null,
@@ -692,8 +666,8 @@
       ]
     },
     {
-      "id": 66,
-      "employeeNo": "D0618",
+      "id": 31,
+      "employeeNo": "D031",
       "name": "罗少华",
       "email": null,
       "phone": null,
@@ -708,8 +682,8 @@
       ]
     },
     {
-      "id": 67,
-      "employeeNo": "D0403",
+      "id": 32,
+      "employeeNo": "D032",
       "name": "熊晓杰",
       "email": null,
       "phone": null,
@@ -734,8 +708,8 @@
       ]
     },
     {
-      "id": 68,
-      "employeeNo": "D0404",
+      "id": 33,
+      "employeeNo": "D033",
       "name": "王耀东",
       "email": null,
       "phone": null,
@@ -755,8 +729,8 @@
       ]
     },
     {
-      "id": 69,
-      "employeeNo": "D0405",
+      "id": 34,
+      "employeeNo": "D034",
       "name": "王开琼",
       "email": null,
       "phone": null,
@@ -776,8 +750,8 @@
       ]
     },
     {
-      "id": 70,
-      "employeeNo": "D0406",
+      "id": 35,
+      "employeeNo": "D035",
       "name": "刘一",
       "email": null,
       "phone": null,
@@ -797,8 +771,8 @@
       ]
     },
     {
-      "id": 71,
-      "employeeNo": "D0413",
+      "id": 36,
+      "employeeNo": "D036",
       "name": "刘和铭",
       "email": null,
       "phone": null,
@@ -813,8 +787,8 @@
       ]
     },
     {
-      "id": 72,
-      "employeeNo": "D0414",
+      "id": 37,
+      "employeeNo": "D037",
       "name": "路梦晖",
       "email": null,
       "phone": null,
@@ -830,8 +804,8 @@
       ]
     },
     {
-      "id": 73,
-      "employeeNo": "D0407",
+      "id": 38,
+      "employeeNo": "D038",
       "name": "胡忠",
       "email": null,
       "phone": null,
@@ -851,8 +825,8 @@
       ]
     },
     {
-      "id": 74,
-      "employeeNo": "D0408",
+      "id": 39,
+      "employeeNo": "D039",
       "name": "苑志莹",
       "email": null,
       "phone": null,
@@ -872,25 +846,32 @@
       ]
     },
     {
-      "id": 75,
-      "employeeNo": "D0415",
-      "name": "王旸",
+      "id": 40,
+      "employeeNo": "L003",
+      "name": "黄志直",
       "email": null,
       "phone": null,
-      "jobTitle": "主办",
+      "jobTitle": "安全总监",
       "active": true,
       "passwordHash": null,
       "passwordChangedAt": null,
       "createdAt": "2025-10-05T08:00:00.000Z",
-      "updatedAt": "2025-10-05T08:00:00.000Z",
+      "updatedAt": "2025-10-07T07:27:27.438Z",
       "visibleUserIds": [
-        75,
-        71
+        40,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93
       ]
     },
     {
-      "id": 76,
-      "employeeNo": "D0416",
+      "id": 41,
+      "employeeNo": "D041",
       "name": "苏时钧",
       "email": null,
       "phone": null,
@@ -906,8 +887,8 @@
       ]
     },
     {
-      "id": 77,
-      "employeeNo": "D0417",
+      "id": 42,
+      "employeeNo": "D042",
       "name": "毛鸿樱",
       "email": null,
       "phone": null,
@@ -923,8 +904,8 @@
       ]
     },
     {
-      "id": 78,
-      "employeeNo": "D0903",
+      "id": 43,
+      "employeeNo": "D043",
       "name": "黄堃",
       "email": null,
       "phone": null,
@@ -943,8 +924,8 @@
       ]
     },
     {
-      "id": 79,
-      "employeeNo": "D0913",
+      "id": 44,
+      "employeeNo": "D044",
       "name": "王英睿",
       "email": null,
       "phone": null,
@@ -960,8 +941,8 @@
       ]
     },
     {
-      "id": 80,
-      "employeeNo": "D0914",
+      "id": 45,
+      "employeeNo": "D045",
       "name": "赵正雄",
       "email": null,
       "phone": null,
@@ -977,8 +958,8 @@
       ]
     },
     {
-      "id": 81,
-      "employeeNo": "D0915",
+      "id": 46,
+      "employeeNo": "D046",
       "name": "黄松",
       "email": null,
       "phone": null,
@@ -994,8 +975,8 @@
       ]
     },
     {
-      "id": 82,
-      "employeeNo": "D0916",
+      "id": 47,
+      "employeeNo": "D047",
       "name": "杨福盛",
       "email": null,
       "phone": null,
@@ -1010,8 +991,8 @@
       ]
     },
     {
-      "id": 83,
-      "employeeNo": "D0103",
+      "id": 48,
+      "employeeNo": "D048",
       "name": "刘茂林",
       "email": null,
       "phone": null,
@@ -1035,8 +1016,8 @@
       ]
     },
     {
-      "id": 84,
-      "employeeNo": "D0114",
+      "id": 49,
+      "employeeNo": "D049",
       "name": "惠秀",
       "email": null,
       "phone": null,
@@ -1052,8 +1033,8 @@
       ]
     },
     {
-      "id": 85,
-      "employeeNo": "D0113",
+      "id": 50,
+      "employeeNo": "D050",
       "name": "刘怡彤",
       "email": null,
       "phone": null,
@@ -1068,8 +1049,8 @@
       ]
     },
     {
-      "id": 86,
-      "employeeNo": "D0104",
+      "id": 51,
+      "employeeNo": "D051",
       "name": "刘志刚",
       "email": null,
       "phone": null,
@@ -1093,8 +1074,8 @@
       ]
     },
     {
-      "id": 87,
-      "employeeNo": "D0115",
+      "id": 52,
+      "employeeNo": "D052",
       "name": "陈通",
       "email": null,
       "phone": null,
@@ -1103,15 +1084,15 @@
       "passwordHash": null,
       "passwordChangedAt": null,
       "createdAt": "2025-10-05T08:00:00.000Z",
-      "updatedAt": "2025-10-05T08:00:00.000Z",
+      "updatedAt": "2025-10-07T03:02:04.224Z",
       "visibleUserIds": [
-        87,
-        85
+        85,
+        87
       ]
     },
     {
-      "id": 88,
-      "employeeNo": "D0116",
+      "id": 53,
+      "employeeNo": "D053",
       "name": "黄生文",
       "email": null,
       "phone": null,
@@ -1127,8 +1108,8 @@
       ]
     },
     {
-      "id": 89,
-      "employeeNo": "D0117",
+      "id": 54,
+      "employeeNo": "D054",
       "name": "李伟",
       "email": null,
       "phone": null,
@@ -1144,8 +1125,8 @@
       ]
     },
     {
-      "id": 90,
-      "employeeNo": "D0118",
+      "id": 55,
+      "employeeNo": "D055",
       "name": "武庆丰",
       "email": null,
       "phone": null,
@@ -1161,8 +1142,8 @@
       ]
     },
     {
-      "id": 91,
-      "employeeNo": "D0119",
+      "id": 56,
+      "employeeNo": "D056",
       "name": "赵炫越",
       "email": null,
       "phone": null,
@@ -1178,8 +1159,8 @@
       ]
     },
     {
-      "id": 92,
-      "employeeNo": "D0120",
+      "id": 57,
+      "employeeNo": "D057",
       "name": "王俊",
       "email": null,
       "phone": null,
@@ -1195,8 +1176,8 @@
       ]
     },
     {
-      "id": 93,
-      "employeeNo": "D0121",
+      "id": 58,
+      "employeeNo": "D058",
       "name": "黄顺友",
       "email": null,
       "phone": null,
@@ -1209,6 +1190,21 @@
       "visibleUserIds": [
         93,
         85
+      ]
+    },
+    {
+      "id": 2,
+      "name": "陈继杨",
+      "email": null,
+      "employeeNo": "L002",
+      "jobTitle": "项目经理",
+      "active": true,
+      "passwordHash": null,
+      "passwordChangedAt": null,
+      "createdAt": "2025-10-07T06:38:04.022Z",
+      "updatedAt": "2025-10-07T06:38:04.022Z",
+      "visibleUserIds": [
+        94
       ]
     }
   ]
