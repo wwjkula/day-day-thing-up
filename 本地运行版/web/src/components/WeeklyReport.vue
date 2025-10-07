@@ -126,10 +126,33 @@ function formatWorkItems(items: WeeklyOverviewDay['completed']) {
     .map((item) => {
       const label = typeLabel(item.type)
       const title = item.title || ''
-      const duration = item.durationMinutes ? `(${item.durationMinutes}分)` : ''
+      const duration = item.durationMinutes ? `(${item.durationMinutes}m)` : ''
       return `${label}: ${title}${duration}`
     })
     .join('\n')
+}
+
+function charDisplayWidth(cp: number): number {
+  if (
+    (cp >= 0x1100 && cp <= 0x11ff) ||
+    (cp >= 0x2e80 && cp <= 0x9fff) ||
+    (cp >= 0xac00 && cp <= 0xd7af) ||
+    (cp >= 0xf900 && cp <= 0xfaff) ||
+    (cp >= 0xff00 && cp <= 0xffef)
+  ) {
+    return 2
+  }
+  return 1
+}
+
+function displayLength(str: string): number {
+  let length = 0
+  for (let i = 0; i < str.length; ) {
+    const cp = str.codePointAt(i)!
+    length += charDisplayWidth(cp)
+    i += cp > 0xffff ? 2 : 1
+  }
+  return length
 }
 
 function sanitizeSheetName(raw: string, used: Set<string>) {
@@ -255,6 +278,26 @@ async function exportWeeklyExcel() {
         }
       }
 
+      {
+        const cols: Array<{ wch: number }> = Array.from({ length: header.length }, () => ({ wch: 10 }))
+        const maxLineLength = (value: unknown) => {
+          if (typeof value !== 'string' || !value) return 0
+          return value
+            .split(/\r?\n/)
+            .reduce((max, line) => Math.max(max, displayLength(line)), 0)
+        }
+        for (const col of dayColumnIndices) {
+          let maxLen = 0
+          for (let r = 0; r < rows.length; r += 1) {
+            const cellValue = rows[r]?.[col] ?? ''
+            const lineLength = maxLineLength(cellValue)
+            if (lineLength > maxLen) maxLen = lineLength
+          }
+          cols[col] = { wch: Math.max(10, maxLen) }
+        }
+        ;(sheet as any)['!cols'] = cols
+      }
+
       const sheetName = sanitizeSheetName(title, usedNames)
       utils.book_append_sheet(workbook, sheet, sheetName)
     }
@@ -271,7 +314,7 @@ async function exportWeeklyExcel() {
 
     const [from, to] = weeklyRange.value
     const scope = weeklyData.value?.scope ?? 'self'
-    const fileName = `周视图_${from}_${to}_${scope}.xlsx`
+    const fileName = `Weekly_${from}_${to}_${scope}.xlsx`
     writeFile(workbook, fileName)
     ElMessage.success('已导出周视图数据')
   } catch (err: any) {
