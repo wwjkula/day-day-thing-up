@@ -188,7 +188,6 @@ async function exportWeeklyExcel() {
     const header = [
       '工号',
       '姓名',
-      '用户ID',
       '组织',
       ...dates.map((date) => formatDateLabel(date)),
       '完成总数',
@@ -209,8 +208,8 @@ async function exportWeeklyExcel() {
         left: thinBlackBorder,
         right: thinBlackBorder,
       }
-      const summaryStartIndex = 4 + dates.length
-      const mergeColumns: number[] = [0, 1, 2, 3]
+      const summaryStartIndex = 3 + dates.length
+      const mergeColumns: number[] = [0, 1, 2]
       for (let col = summaryStartIndex; col < header.length; col += 1) {
         mergeColumns.push(col)
       }
@@ -226,7 +225,6 @@ async function exportWeeklyExcel() {
         const completedRow: (string | number)[] = [
           user.employeeNo ?? '',
           user.name ?? '',
-          user.userId,
           user.orgName ?? '',
           ...completedCells,
           summary.completedCount,
@@ -236,7 +234,6 @@ async function exportWeeklyExcel() {
           missingDates,
         ]
         const planRow: (string | number)[] = [
-          '',
           '',
           '',
           '',
@@ -257,7 +254,7 @@ async function exportWeeklyExcel() {
       }
 
       const sheet = utils.aoa_to_sheet([header, ...rows])
-      const dayColumnIndices = dates.map((_, idx) => 4 + idx)
+      const dayColumnIndices = dates.map((_, idx) => 3 + idx)
 
       const applyCellStyle = (cellRef: string, style: { alignment?: any; border?: any }) => {
         const cell = sheet[cellRef]
@@ -331,7 +328,7 @@ async function exportWeeklyExcel() {
             const lineLength = maxLineLength(cellValue)
             if (lineLength > maxLen) maxLen = lineLength
           }
-          cols[col] = { wch: Math.max(10, maxLen) }
+          cols[col] = { wch: Math.max(20, maxLen) }
         }
         ;(sheet as any)['!cols'] = cols
       }
