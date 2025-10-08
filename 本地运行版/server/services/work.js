@@ -127,15 +127,7 @@ export async function modifyWorkItem(actorId, itemId, body) {
   if (!valid) return { ok: false, error: errors[0] }
 
   const actor = Number(actorId)
-  const payload = { ...patch }
-
-  if (patch.workDate) {
-    const orgId = await getPrimaryOrgId(actor, parseISODate(patch.workDate))
-    if (orgId == null) return { ok: false, error: 'no primary org for user' }
-    payload.orgId = orgId
-  }
-
-  const record = await updateWorkItem(actor, itemId, payload)
+  const record = await updateWorkItem(actor, itemId, patch)
   if (!record) return { ok: false, error: 'not found' }
 
   await appendAuditLog({
@@ -143,7 +135,7 @@ export async function modifyWorkItem(actorId, itemId, body) {
     action: 'update_work_item',
     objectType: 'work_item',
     objectId: Number(itemId),
-    detail: Object.keys(payload),
+    detail: Object.keys(patch),
   })
 
   return { ok: true }
