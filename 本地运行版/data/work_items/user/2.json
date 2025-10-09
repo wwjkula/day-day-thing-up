@@ -69,19 +69,6 @@
       "detail": "【示例】陈继杨 2025-10-05 示例工作 - 示例工作内容"
     },
     {
-      "id": 546,
-      "creatorId": 2,
-      "createdAt": "2025-10-07T08:38:37.094Z",
-      "updatedAt": "2025-10-07T08:38:37.094Z",
-      "orgId": null,
-      "workDate": "2025-10-06",
-      "title": "【示例】陈继杨 2025-10-06 示例计划",
-      "type": "plan",
-      "durationMinutes": null,
-      "tags": [],
-      "detail": "【示例】陈继杨 2025-10-06 示例计划 - 示例计划"
-    },
-    {
       "id": 547,
       "creatorId": 2,
       "createdAt": "2025-10-07T08:38:37.125Z",

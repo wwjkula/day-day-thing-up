@@ -1,0 +1,32 @@
+
+      const ensureAlignment = (cellRef: string, options: any) => {
+        const cell = sheet[cellRef]
+        if (!cell) return
+        const prev = cell.s?.alignment ?? {}
+        cell.s = { ...(cell.s || {}), alignment: { ...prev, ...options } }
+      }
+
+      if (rowSpans.length && mergeColumns.length) {
+        const sheetMerges = sheet['!merges'] ?? []
+        for (const span of rowSpans) {
+          const startRow = span.start + 1
+          const endRow = span.end + 1
+          for (const col of mergeColumns) {
+            sheetMerges.push({
+              s: { r: startRow, c: col },
+              e: { r: endRow, c: col },
+            })
+            const topCellRef = utils.encode_cell({ r: startRow, c: col })
+            ensureAlignment(topCellRef, { vertical: 'top' })
+          }
+        }
+        sheet['!merges'] = sheetMerges
+      }
+
+      for (let r = 0; r < rows.length; r += 1) {
+        const sheetRow = r + 1
+        for (const col of dayColumnIndices) {
+          const cellRef = utils.encode_cell({ r: sheetRow, c: col })
+          ensureAlignment(cellRef, { wrapText: true, vertical: 'top' })
+        }
+      }

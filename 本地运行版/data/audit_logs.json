@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastId": 651
+    "lastId": 674
   },
   "items": [
     {
@@ -7624,6 +7624,272 @@
         "scope": "direct",
         "date": "2025-10-06"
       }
+    },
+    {
+      "id": 652,
+      "createdAt": "2025-10-08T01:11:14.627Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 653,
+      "createdAt": "2025-10-08T01:11:14.656Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 654,
+      "createdAt": "2025-10-08T01:11:15.430Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 655,
+      "createdAt": "2025-10-08T01:12:46.361Z",
+      "actorUserId": 2,
+      "action": "delete_work_item",
+      "objectType": "work_item",
+      "objectId": 546
+    },
+    {
+      "id": 656,
+      "createdAt": "2025-10-08T01:12:46.381Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 4
+      }
+    },
+    {
+      "id": 657,
+      "createdAt": "2025-10-08T03:16:30.610Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 4
+      }
+    },
+    {
+      "id": 658,
+      "createdAt": "2025-10-08T03:16:30.634Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 4
+      }
+    },
+    {
+      "id": 659,
+      "createdAt": "2025-10-08T03:18:48.348Z",
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user"
+    },
+    {
+      "id": 660,
+      "createdAt": "2025-10-08T03:18:48.405Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 4
+      }
+    },
+    {
+      "id": 661,
+      "createdAt": "2025-10-08T03:18:48.429Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-08"
+      }
+    },
+    {
+      "id": 662,
+      "createdAt": "2025-10-08T03:18:48.458Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 663,
+      "createdAt": "2025-10-08T03:18:48.485Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 4
+      }
+    },
+    {
+      "id": 664,
+      "createdAt": "2025-10-08T03:18:57.721Z",
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user"
+    },
+    {
+      "id": 665,
+      "createdAt": "2025-10-08T03:18:57.815Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 666,
+      "createdAt": "2025-10-08T03:18:57.838Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 667,
+      "createdAt": "2025-10-08T03:34:28.873Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 668,
+      "createdAt": "2025-10-08T03:34:28.895Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 669,
+      "createdAt": "2025-10-08T03:34:28.924Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 670,
+      "createdAt": "2025-10-08T03:34:35.615Z",
+      "actorUserId": 1,
+      "action": "update_work_item",
+      "objectType": "work_item",
+      "objectId": 6,
+      "detail": [
+        "title",
+        "workDate",
+        "type",
+        "durationMinutes"
+      ]
+    },
+    {
+      "id": 671,
+      "createdAt": "2025-10-08T03:34:35.646Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 672,
+      "createdAt": "2025-10-08T03:35:17.032Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 22
+    },
+    {
+      "id": 673,
+      "createdAt": "2025-10-08T03:35:17.073Z",
+      "actorUserId": 1,
+      "action": "admin_set_primary_org",
+      "objectType": "user",
+      "objectId": 22,
+      "detail": {
+        "orgId": 4
+      }
+    },
+    {
+      "id": 674,
+      "createdAt": "2025-10-08T03:35:27.620Z",
+      "actorUserId": 1,
+      "action": "admin_update_user",
+      "objectType": "user",
+      "objectId": 1
     }
   ]
 }

@@ -151,13 +151,6 @@
       "endDate": null
     },
     {
-      "userId": 22,
-      "orgId": 4,
-      "isPrimary": true,
-      "startDate": "2025-10-07",
-      "endDate": null
-    },
-    {
       "userId": 31,
       "orgId": 8,
       "isPrimary": true,
@@ -379,6 +372,13 @@
       "orgId": 10,
       "isPrimary": true,
       "startDate": "2025-10-07",
+      "endDate": null
+    },
+    {
+      "userId": 22,
+      "orgId": 4,
+      "isPrimary": true,
+      "startDate": "2025-10-08",
       "endDate": null
     }
   ]

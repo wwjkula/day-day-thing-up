@@ -6,7 +6,7 @@
     {
       "id": 1,
       "employeeNo": "ADMIN001",
-      "name": "系统管理员",
+      "name": "管理员",
       "email": null,
       "phone": null,
       "jobTitle": "系统管理员",
@@ -14,7 +14,7 @@
       "passwordHash": "$2b$10$i6egmMU20bF15GlBfO/q1.M55NJZR74tv8TTa4sAIsOKOX4DWv1KK",
       "passwordChangedAt": "2025-09-22T09:31:47.447Z",
       "createdAt": "2025-10-02T07:12:28.220Z",
-      "updatedAt": "2025-10-07T02:49:02.997Z",
+      "updatedAt": "2025-10-08T03:35:27.617Z",
       "visibleUserIds": [
         1,
         2,
@@ -677,12 +677,12 @@
       "name": "胡玉尧",
       "email": null,
       "phone": null,
-      "jobTitle": "团支部书记、副主任",
+      "jobTitle": "副主任",
       "active": true,
       "passwordHash": null,
       "passwordChangedAt": null,
       "createdAt": "2025-10-05T08:00:00.000Z",
-      "updatedAt": "2025-10-07T08:13:43.424Z",
+      "updatedAt": "2025-10-08T03:35:17.024Z",
       "visibleUserIds": [
         21,
         22,
