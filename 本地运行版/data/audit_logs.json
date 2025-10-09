@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastId": 700
+    "lastId": 707
   },
   "items": [
     {
@@ -8198,6 +8198,94 @@
     {
       "id": 700,
       "createdAt": "2025-10-09T07:15:22.663Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-09",
+        "to": "2025-10-09",
+        "count": 7
+      }
+    },
+    {
+      "id": 701,
+      "createdAt": "2025-10-09T07:22:47.398Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 11
+      }
+    },
+    {
+      "id": 702,
+      "createdAt": "2025-10-09T07:22:47.450Z",
+      "actorUserId": 2,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-09"
+      }
+    },
+    {
+      "id": 703,
+      "createdAt": "2025-10-09T07:22:47.471Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 704,
+      "createdAt": "2025-10-09T07:23:27.181Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-08",
+        "to": "2025-10-08",
+        "count": 1
+      }
+    },
+    {
+      "id": 705,
+      "createdAt": "2025-10-09T07:23:31.011Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-06",
+        "count": 1
+      }
+    },
+    {
+      "id": 706,
+      "createdAt": "2025-10-09T07:23:35.227Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-10",
+        "to": "2025-10-10",
+        "count": 0
+      }
+    },
+    {
+      "id": 707,
+      "createdAt": "2025-10-09T07:24:02.057Z",
       "actorUserId": 2,
       "action": "list",
       "objectType": "work_item",
