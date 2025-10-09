@@ -213,7 +213,7 @@ function tiltStyle(id: number) {
                 <el-button size="small" type="primary" link @click="openEdit(it)">编辑</el-button>
                 <el-button size="small" type="danger" link @click="confirmDelete(it)">删除</el-button>
               </div>
-              <div class="note-punch" aria-hidden="true"></div>
+              
             </div>
           </template>
         </div>
@@ -251,7 +251,7 @@ function tiltStyle(id: number) {
                 <el-button size="small" type="primary" link @click="openEdit(it)">编辑</el-button>
                 <el-button size="small" type="danger" link @click="confirmDelete(it)">删除</el-button>
               </div>
-              <div class="note-punch" aria-hidden="true"></div>
+              
             </div>
           </template>
         </div>
@@ -427,17 +427,7 @@ function tiltStyle(id: number) {
   filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.06));
 }
 
-.note-punch {
-  position: absolute;
-  left: 50%;
-  top: -8px;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.06) 70%, transparent 72%);
-  z-index: 3; /* above the rope a little for depth */
-}
+ 
 
 .note-content {
   display: flex;
