@@ -359,7 +359,7 @@ function tiltStyle(id: number) {
       var(--rope-color-2) 24px
     );
   box-shadow: 0 2px 2px var(--rope-shadow);
-  z-index: 2;
+  z-index: 0;
 }
 
 .board-header {
