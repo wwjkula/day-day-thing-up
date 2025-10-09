@@ -81,4 +81,6 @@
 
 .weekly-collapse {
   padding-left: 16px;
+  /* Scheme A: give collapse container same surface color to cover left gutter */
+  background: var(--el-bg-color);
 }
