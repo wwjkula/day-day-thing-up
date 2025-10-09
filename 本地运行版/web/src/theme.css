@@ -41,6 +41,16 @@
   --el-box-shadow: var(--app-card-shadow);
   --el-box-shadow-light: 0 12px 32px rgba(15, 23, 42, 0.1);
   --el-box-shadow-dark: 0 20px 56px rgba(15, 23, 42, 0.18);
+
+  /* Note & Rope (skeuomorphic) */
+  --note-surface: #fff4d6; /* 米黄纸面 */
+  --note-border: rgba(120, 94, 38, 0.22);
+  --note-ink: #1f2937;
+  --note-shadow: 0 8px 22px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.06);
+  --note-corner: #f1e6c2;
+  --rope-color-1: #caa46a;
+  --rope-color-2: #b38c58;
+  --rope-shadow: rgba(15, 23, 42, 0.18);
 }
 
 .dark {
@@ -73,6 +83,14 @@
   --el-box-shadow: 0 24px 80px rgba(15, 23, 42, 0.6);
   --el-box-shadow-light: 0 18px 54px rgba(15, 23, 42, 0.48);
   --el-box-shadow-dark: 0 28px 88px rgba(15, 23, 42, 0.65);
+
+  /* Note & Rope in dark mode */
+  --note-surface: #f5e9c9; /* 保持纸感但略压暗 */
+  --note-border: rgba(120, 94, 38, 0.28);
+  --note-ink: #1f2937;
+  --note-shadow: 0 10px 26px rgba(0, 0, 0, 0.32), 0 2px 8px rgba(0, 0, 0, 0.22);
+  --note-corner: #eadcad;
+  --rope-shadow: rgba(0, 0, 0, 0.45);
 }
 
 .dark body {

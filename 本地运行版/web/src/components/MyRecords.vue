@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import type { ListWorkItemsResponse, WorkItemResponse, WorkItemType } from '@drrq/shared/index'
 import { validateWorkItemTitle, validateWorkItemType, validateDateString } from '@drrq/shared/index'
@@ -8,15 +8,12 @@ import { withBase, authHeader, updateWorkItem, deleteWorkItem } from '../api'
 const items = ref<WorkItemResponse[]>([])
 const loading = ref(false)
 
-function initialRange(): { from: string; to: string } {
-  const now = new Date()
-  const day = (now.getUTCDay() + 6) % 7
-  const monday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - day))
-  const sunday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + (6 - day)))
-  return { from: monday.toISOString().slice(0, 10), to: sunday.toISOString().slice(0, 10) }
+function todayISO(): string {
+  return new Date().toISOString().slice(0, 10)
 }
 
-const range = ref(initialRange())
+// 单日选择：用户选哪天就显示哪天
+const selectedDate = ref<string>(todayISO())
 
 const editVisible = ref(false)
 const editLoading = ref(false)
@@ -54,7 +51,7 @@ function resetEditForm() {
 async function load() {
   loading.value = true
   try {
-    const params = new URLSearchParams({ from: range.value.from, to: range.value.to, scope: 'self' })
+    const params = new URLSearchParams({ from: selectedDate.value, to: selectedDate.value, scope: 'self' })
     const res = await fetch(withBase(`/api/work-items?${params}`), { headers: { ...authHeader() } })
     const data: ListWorkItemsResponse = await res.json()
     items.value = data.items
@@ -81,7 +78,7 @@ async function submitEdit() {
 
   const titleCheck = validateWorkItemTitle(editForm.value.title)
   if (!titleCheck.valid) {
-    ElMessage.error(titleCheck.error || '标题不合法')
+    ElMessage.error(titleCheck.error || '标题不合规')
     return
   }
 
@@ -93,7 +90,7 @@ async function submitEdit() {
 
   const typeCheck = validateWorkItemType(editForm.value.type)
   if (!typeCheck.valid) {
-    ElMessage.error(typeCheck.error || '类型不合法')
+    ElMessage.error(typeCheck.error || '类型不合规')
     return
   }
 
@@ -128,7 +125,7 @@ async function submitEdit() {
 
 async function confirmDelete(row: WorkItemResponse) {
   try {
-    await ElMessageBox.confirm('确认删除该记录？删除后不可恢复。', '提示', {
+    await ElMessageBox.confirm('确认删除该记录？删除后不可恢复', '提示', {
       confirmButtonText: '删除',
       cancelButtonText: '取消',
       type: 'warning',
@@ -152,6 +149,26 @@ async function confirmDelete(row: WorkItemResponse) {
 onMounted(() => {
   load()
 })
+
+watch(selectedDate, () => {
+  load()
+})
+
+// 数据分组：当日计划 / 今日完成
+const todayPlans = computed(() => items.value.filter((it) => it.type === 'plan'))
+const todayDone = computed(() => items.value.filter((it) => it.type !== 'plan'))
+const todayDoneMinutes = computed(() =>
+  todayDone.value.reduce((sum, it) => sum + (typeof it.durationMinutes === 'number' ? it.durationMinutes : 0), 0)
+)
+
+// 为每张便笺生成稳定的轻微倾斜角度（-1.2° ~ 1.2°）
+function tiltForId(id: number): number {
+  const n = ((id * 9301 + 49297) % 233280) / 233280
+  return (n - 0.5) * 2.4
+}
+function tiltStyle(id: number) {
+  return { ['--tilt' as any]: `${tiltForId(id).toFixed(2)}deg` }
+}
 </script>
 
 <template>
@@ -159,41 +176,83 @@ onMounted(() => {
     <div class="my-records__header">
       <div>
         <div class="my-records__title">我的记录</div>
-        <div class="my-records__subtitle">筛选一段时间内的填报，随时编辑或删除。</div>
+        <div class="my-records__subtitle">选择一个日期，查看当天的计划与完成。</div>
       </div>
       <el-space class="my-records__filters" alignment="center" wrap>
-        <el-date-picker v-model="range.from" type="date" value-format="YYYY-MM-DD" placeholder="开始日期" />
-        <span class="range-separator">~</span>
-        <el-date-picker v-model="range.to" type="date" value-format="YYYY-MM-DD" placeholder="结束日期" />
+        <el-date-picker v-model="selectedDate" type="date" value-format="YYYY-MM-DD" placeholder="选择日期" />
         <el-button type="primary" plain :loading="loading" @click="load">刷新</el-button>
       </el-space>
     </div>
 
-    <div class="table-wrapper">
-      <template v-if="loading">
-        <el-skeleton :rows="6" animated />
-      </template>
-      <el-table v-else :data="items" :fit="false" :header-cell-style="{ background: 'transparent' }" empty-text="暂无记录">
-        <el-table-column prop="workDate" label="日期" width="140" />
-        <el-table-column prop="title" label="标题" min-width="420" show-overflow-tooltip />
-        <el-table-column label="类型" width="120">
-          <template #default="{ row }">
-            {{ typeLabels[row.type] ?? row.type }}
-          </template>
-        </el-table-column>
-        <el-table-column label="时长(分钟)" width="140">
-          <template #default="{ row }">
-            {{ row.durationMinutes != null ? row.durationMinutes : '—' }}
-          </template>
-        </el-table-column>
-        <el-table-column label="操作" width="160" fixed="right">
-          <template #default="{ row }">
-            <el-button size="small" type="primary" link @click="openEdit(row)">编辑</el-button>
-            <el-button size="small" type="danger" link @click="confirmDelete(row)">删除</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-    </div>
+    <!-- 当日计划 -->
+    <section class="note-board" aria-label="当日计划">
+      <div class="board-header">
+        <div class="board-title">当日计划</div>
+        <div class="board-stats">
+          <el-tag type="warning" effect="plain">{{ todayPlans.length }}</el-tag>
+        </div>
+      </div>
+      <div class="note-grid" v-loading="loading">
+        <el-empty v-if="!loading && todayPlans.length === 0" description="今日暂无计划" />
+        <template v-else>
+          <div
+            class="note-card"
+            v-for="it in todayPlans"
+            :key="it.id"
+            :style="tiltStyle(it.id)"
+          >
+            <div class="note-content">
+              <div class="note-title" :title="it.title">{{ it.title }}</div>
+              <div class="note-meta">
+                <el-tag size="small" type="warning" effect="light">计划</el-tag>
+                <span class="note-date">{{ it.workDate }}</span>
+              </div>
+            </div>
+            <div class="note-actions">
+              <el-button size="small" type="primary" link @click="openEdit(it)">编辑</el-button>
+              <el-button size="small" type="danger" link @click="confirmDelete(it)">删除</el-button>
+            </div>
+            <div class="note-punch" aria-hidden="true"></div>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- 今日完成 -->
+    <section class="note-board" aria-label="今日完成">
+      <div class="board-header">
+        <div class="board-title">今日完成</div>
+        <div class="board-stats">
+          <el-tag type="success" effect="plain">{{ todayDone.length }}</el-tag>
+          <el-tag type="info" effect="plain" v-if="todayDoneMinutes">{{ todayDoneMinutes }} 分钟</el-tag>
+        </div>
+      </div>
+      <div class="note-grid" v-loading="loading">
+        <el-empty v-if="!loading && todayDone.length === 0" description="今日暂无完成" />
+        <template v-else>
+          <div
+            class="note-card"
+            v-for="it in todayDone"
+            :key="it.id"
+            :style="tiltStyle(it.id)"
+          >
+            <div class="note-content">
+              <div class="note-title" :title="it.title">{{ it.title }}</div>
+              <div class="note-meta">
+                <el-tag size="small" type="success" effect="light">{{ typeLabels[it.type] || '完成' }}</el-tag>
+                <span v-if="it.durationMinutes" class="note-duration">{{ it.durationMinutes }} 分钟</span>
+                <span class="note-date">{{ it.workDate }}</span>
+              </div>
+            </div>
+            <div class="note-actions">
+              <el-button size="small" type="primary" link @click="openEdit(it)">编辑</el-button>
+              <el-button size="small" type="danger" link @click="confirmDelete(it)">删除</el-button>
+            </div>
+            <div class="note-punch" aria-hidden="true"></div>
+          </div>
+        </template>
+      </div>
+    </section>
 
     <el-dialog v-model="editVisible" title="编辑记录" width="420px" @close="resetEditForm">
       <el-form label-width="100px">
@@ -229,6 +288,7 @@ onMounted(() => {
       </template>
     </el-dialog>
   </div>
+  
 </template>
 
 <style scoped>
@@ -269,49 +329,138 @@ onMounted(() => {
   gap: 10px;
 }
 
-.range-separator {
-  color: var(--app-text-secondary);
-  font-size: 13px;
+/* Note Board */
+.note-board {
+  position: relative;
+  padding-top: 26px; /* space for the rope */
 }
 
-.table-wrapper {
-  border-radius: 16px;
-  border: 1px solid rgba(148, 163, 184, 0.16);
-  background: rgba(255, 255, 255, 0.4);
-  padding: 0;
-  overflow: hidden;
+.note-board::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6px;
+  height: 8px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+      90deg,
+      var(--rope-color-1),
+      var(--rope-color-1) 12px,
+      var(--rope-color-2) 12px,
+      var(--rope-color-2) 24px
+    );
+  box-shadow: 0 2px 2px var(--rope-shadow);
+  z-index: 2;
 }
 
-.dark .table-wrapper {
-  background: rgba(30, 41, 59, 0.4);
-  border-color: rgba(148, 163, 184, 0.24);
+.board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.table-wrapper :deep(.el-table) {
-  --el-table-border-color: transparent;
-  --el-table-border: none;
-  background: transparent;
+.board-title {
+  font-weight: 700;
 }
 
-.table-wrapper :deep(.el-table__inner-wrapper::before) {
-  display: none;
+.board-stats {
+  display: flex;
+  gap: 8px;
 }
 
-.table-wrapper :deep(.el-table tr) {
-  transition: background 0.2s ease;
+.note-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  align-items: start;
 }
 
-.table-wrapper :deep(.el-table tr:hover > td) {
-  background: rgba(59, 130, 246, 0.08);
+.note-card {
+  position: relative;
+  background: var(--note-surface);
+  color: var(--note-ink);
+  border: 1px solid var(--note-border);
+  border-radius: 10px;
+  padding: 14px 12px 36px 12px;
+  box-shadow: var(--note-shadow);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.table-wrapper :deep(.el-table__header th) {
+.note-card:hover {
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16), 0 3px 8px rgba(15, 23, 42, 0.1);
+  transform: rotate(calc(var(--tilt, 0deg) * 0.3));
+}
+
+/* small string connecting note to the rope */
+.note-card::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -14px;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 14px;
+  background: linear-gradient(to bottom, var(--rope-color-2), var(--rope-color-1));
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  z-index: 1; /* under the rope (::before of board has z-index 2) */
+}
+
+/* folded corner */
+.note-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top: 16px solid var(--note-corner);
+  border-left: 16px solid transparent;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.06));
+}
+
+.note-punch {
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.06) 70%, transparent 72%);
+  z-index: 3; /* above the rope a little for depth */
+}
+
+.note-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.note-title {
+  font-size: 16px;
   font-weight: 600;
-  color: var(--app-text-secondary);
+  line-height: 1.4;
 }
 
-.table-wrapper :deep(.el-table__empty-block) {
-  padding: 24px 0;
+.note-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.note-duration {
+  color: #64748b;
+}
+
+.note-actions {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  display: flex;
+  gap: 8px;
 }
 
 @media (max-width: 960px) {
@@ -319,18 +468,10 @@ onMounted(() => {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .my-records__filters {
     width: 100%;
     justify-content: flex-start;
   }
-
-  .table-wrapper {
-    overflow-x: auto;
-  }
-
-  .table-wrapper :deep(.el-table) {
-    min-width: 720px;
-  }
 }
 </style>
+
