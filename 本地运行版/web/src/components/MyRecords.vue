@@ -192,29 +192,31 @@ function tiltStyle(id: number) {
           <el-tag type="warning" effect="plain">{{ todayPlans.length }}</el-tag>
         </div>
       </div>
-      <div class="note-grid" v-loading="loading">
-        <el-empty v-if="!loading && todayPlans.length === 0" description="今日暂无计划" />
-        <template v-else>
-          <div
-            class="note-card"
-            v-for="it in todayPlans"
-            :key="it.id"
-            :style="tiltStyle(it.id)"
-          >
-            <div class="note-content">
-              <div class="note-title" :title="it.title">{{ it.title }}</div>
-              <div class="note-meta">
-                <el-tag size="small" type="warning" effect="light">计划</el-tag>
-                <span class="note-date">{{ it.workDate }}</span>
+      <div class="board-body">
+        <div class="note-grid" v-loading="loading">
+          <el-empty v-if="!loading && todayPlans.length === 0" description="今日暂无计划" />
+          <template v-else>
+            <div
+              class="note-card"
+              v-for="it in todayPlans"
+              :key="it.id"
+              :style="tiltStyle(it.id)"
+            >
+              <div class="note-content">
+                <div class="note-title" :title="it.title">{{ it.title }}</div>
+                <div class="note-meta">
+                  <el-tag size="small" type="warning" effect="light">计划</el-tag>
+                  <span class="note-date">{{ it.workDate }}</span>
+                </div>
               </div>
+              <div class="note-actions">
+                <el-button size="small" type="primary" link @click="openEdit(it)">编辑</el-button>
+                <el-button size="small" type="danger" link @click="confirmDelete(it)">删除</el-button>
+              </div>
+              <div class="note-punch" aria-hidden="true"></div>
             </div>
-            <div class="note-actions">
-              <el-button size="small" type="primary" link @click="openEdit(it)">编辑</el-button>
-              <el-button size="small" type="danger" link @click="confirmDelete(it)">删除</el-button>
-            </div>
-            <div class="note-punch" aria-hidden="true"></div>
-          </div>
-        </template>
+          </template>
+        </div>
       </div>
     </section>
 
@@ -227,30 +229,32 @@ function tiltStyle(id: number) {
           <el-tag type="info" effect="plain" v-if="todayDoneMinutes">{{ todayDoneMinutes }} 分钟</el-tag>
         </div>
       </div>
-      <div class="note-grid" v-loading="loading">
-        <el-empty v-if="!loading && todayDone.length === 0" description="今日暂无完成" />
-        <template v-else>
-          <div
-            class="note-card"
-            v-for="it in todayDone"
-            :key="it.id"
-            :style="tiltStyle(it.id)"
-          >
-            <div class="note-content">
-              <div class="note-title" :title="it.title">{{ it.title }}</div>
-              <div class="note-meta">
-                <el-tag size="small" type="success" effect="light">{{ typeLabels[it.type] || '完成' }}</el-tag>
-                <span v-if="it.durationMinutes" class="note-duration">{{ it.durationMinutes }} 分钟</span>
-                <span class="note-date">{{ it.workDate }}</span>
+      <div class="board-body">
+        <div class="note-grid" v-loading="loading">
+          <el-empty v-if="!loading && todayDone.length === 0" description="今日暂无完成" />
+          <template v-else>
+            <div
+              class="note-card"
+              v-for="it in todayDone"
+              :key="it.id"
+              :style="tiltStyle(it.id)"
+            >
+              <div class="note-content">
+                <div class="note-title" :title="it.title">{{ it.title }}</div>
+                <div class="note-meta">
+                  <el-tag size="small" type="success" effect="light">{{ typeLabels[it.type] || '完成' }}</el-tag>
+                  <span v-if="it.durationMinutes" class="note-duration">{{ it.durationMinutes }} 分钟</span>
+                  <span class="note-date">{{ it.workDate }}</span>
+                </div>
               </div>
+              <div class="note-actions">
+                <el-button size="small" type="primary" link @click="openEdit(it)">编辑</el-button>
+                <el-button size="small" type="danger" link @click="confirmDelete(it)">删除</el-button>
+              </div>
+              <div class="note-punch" aria-hidden="true"></div>
             </div>
-            <div class="note-actions">
-              <el-button size="small" type="primary" link @click="openEdit(it)">编辑</el-button>
-              <el-button size="small" type="danger" link @click="confirmDelete(it)">删除</el-button>
-            </div>
-            <div class="note-punch" aria-hidden="true"></div>
-          </div>
-        </template>
+          </template>
+        </div>
       </div>
     </section>
 
@@ -332,10 +336,14 @@ function tiltStyle(id: number) {
 /* Note Board */
 .note-board {
   position: relative;
-  padding-top: 26px; /* space for the rope */
 }
 
-.note-board::before {
+.board-body {
+  position: relative;
+  padding-top: 24px; /* space for the rope */
+}
+
+.board-body::before {
   content: '';
   position: absolute;
   left: 0;
@@ -399,10 +407,10 @@ function tiltStyle(id: number) {
   content: '';
   position: absolute;
   left: 50%;
-  top: -14px;
+  top: -20px;
   transform: translateX(-50%);
   width: 2px;
-  height: 14px;
+  height: 20px;
   background: linear-gradient(to bottom, var(--rope-color-2), var(--rope-color-1));
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   z-index: 1; /* under the rope (::before of board has z-index 2) */
@@ -474,4 +482,3 @@ function tiltStyle(id: number) {
   }
 }
 </style>
-
