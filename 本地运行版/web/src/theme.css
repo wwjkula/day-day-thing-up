@@ -1,0 +1,84 @@
+:root {
+  color-scheme: light;
+  font-family: 'Inter', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --app-bg-color: #f5f7fb;
+  --app-surface-color: #ffffff;
+  --app-surface-muted: rgba(255, 255, 255, 0.8);
+  --app-border-color: rgba(15, 23, 42, 0.08);
+  --app-text-color: #111827;
+  --app-text-secondary: #475569;
+  --app-card-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+
+  --el-color-primary: #3b82f6;
+  --el-color-primary-dark-2: #1d4fd7;
+  --el-color-primary-light-3: #6da6fb;
+  --el-color-primary-light-5: #94befe;
+  --el-color-primary-light-7: #c3dbfe;
+  --el-color-primary-light-8: #dbe9ff;
+  --el-color-primary-light-9: #eef3ff;
+
+  --el-font-family: 'Inter', 'Noto Sans SC', 'Microsoft YaHei', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --el-text-color-primary: var(--app-text-color);
+  --el-text-color-regular: var(--app-text-secondary);
+  --el-text-color-secondary: rgba(71, 85, 105, 0.85);
+  --el-border-color: var(--app-border-color);
+  --el-border-color-light: rgba(15, 23, 42, 0.05);
+  --el-border-radius-base: 10px;
+  --el-border-radius-small: 8px;
+  --el-border-radius-round: 999px;
+  --el-fill-color-blank: var(--app-surface-color);
+  --el-fill-color-light: #f3f6fc;
+  --el-bg-color: var(--app-surface-color);
+  --el-bg-color-overlay: rgba(255, 255, 255, 0.95);
+  --el-box-shadow: var(--app-card-shadow);
+  --el-box-shadow-light: 0 12px 32px rgba(15, 23, 42, 0.1);
+  --el-box-shadow-dark: 0 20px 56px rgba(15, 23, 42, 0.18);
+}
+
+.dark {
+  color-scheme: dark;
+  --app-bg-color: #0f172a;
+  --app-surface-color: rgba(15, 23, 42, 0.72);
+  --app-surface-muted: rgba(30, 41, 59, 0.72);
+  --app-border-color: rgba(148, 163, 184, 0.24);
+  --app-text-color: #f8fafc;
+  --app-text-secondary: rgba(226, 232, 240, 0.7);
+  --app-card-shadow: 0 24px 60px rgba(2, 6, 23, 0.45);
+
+  --el-color-primary: #60a5fa;
+  --el-color-primary-dark-2: #2563eb;
+  --el-color-primary-light-3: #93c5fd;
+  --el-color-primary-light-5: #bfdbfe;
+  --el-color-primary-light-7: #dbeafe;
+  --el-color-primary-light-8: #e5edff;
+  --el-color-primary-light-9: #eef2ff;
+
+  --el-text-color-primary: var(--app-text-color);
+  --el-text-color-regular: var(--app-text-secondary);
+  --el-text-color-secondary: rgba(203, 213, 225, 0.75);
+  --el-border-color: rgba(148, 163, 184, 0.24);
+  --el-border-color-light: rgba(148, 163, 184, 0.16);
+  --el-fill-color-blank: rgba(30, 41, 59, 0.8);
+  --el-fill-color-light: rgba(51, 65, 85, 0.6);
+  --el-bg-color: rgba(15, 23, 42, 0.84);
+  --el-bg-color-overlay: rgba(15, 23, 42, 0.92);
+  --el-box-shadow: 0 24px 80px rgba(15, 23, 42, 0.6);
+  --el-box-shadow-light: 0 18px 54px rgba(15, 23, 42, 0.48);
+  --el-box-shadow-dark: 0 28px 88px rgba(15, 23, 42, 0.65);
+}
+
+.dark body {
+  background-color: var(--app-bg-color);
+}
+
+.weekly-collapse {
+  padding-left: 16px;
+}
