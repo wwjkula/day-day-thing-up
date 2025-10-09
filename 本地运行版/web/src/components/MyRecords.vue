@@ -196,24 +196,21 @@ function tiltStyle(id: number) {
         <div class="note-grid" v-loading="loading">
           <el-empty v-if="!loading && todayPlans.length === 0" description="今日暂无计划" />
           <template v-else>
-            <div
-              class="note-card"
-              v-for="it in todayPlans"
-              :key="it.id"
-              :style="tiltStyle(it.id)"
-            >
-              <div class="note-content">
-                <div class="note-title" :title="it.title">{{ it.title }}</div>
-                <div class="note-meta">
-                  <el-tag size="small" type="warning" effect="light">计划</el-tag>
-                  <span class="note-date">{{ it.workDate }}</span>
+            <div class="note-item" v-for="it in todayPlans" :key="it.id">
+              <div class="note-card" :style="tiltStyle(it.id)">
+                <div class="note-content">
+                  <div class="note-title" :title="it.title">{{ it.title }}</div>
+                  <div class="note-meta">
+                    <el-tag size="small" type="warning" effect="light">计划</el-tag>
+                    <span class="note-date">{{ it.workDate }}</span>
+                  </div>
+                </div>
+                <div class="note-actions">
+                  <el-button size="small" type="primary" link @click="openEdit(it)">编辑</el-button>
+                  <el-button size="small" type="danger" link @click="confirmDelete(it)">删除</el-button>
                 </div>
               </div>
-              <div class="note-actions">
-                <el-button size="small" type="primary" link @click="openEdit(it)">编辑</el-button>
-                <el-button size="small" type="danger" link @click="confirmDelete(it)">删除</el-button>
-              </div>
-              
+              <div class="note-string" aria-hidden="true"></div>
             </div>
           </template>
         </div>
@@ -233,25 +230,22 @@ function tiltStyle(id: number) {
         <div class="note-grid" v-loading="loading">
           <el-empty v-if="!loading && todayDone.length === 0" description="今日暂无完成" />
           <template v-else>
-            <div
-              class="note-card"
-              v-for="it in todayDone"
-              :key="it.id"
-              :style="tiltStyle(it.id)"
-            >
-              <div class="note-content">
-                <div class="note-title" :title="it.title">{{ it.title }}</div>
-                <div class="note-meta">
-                  <el-tag size="small" type="success" effect="light">{{ typeLabels[it.type] || '完成' }}</el-tag>
-                  <span v-if="it.durationMinutes" class="note-duration">{{ it.durationMinutes }} 分钟</span>
-                  <span class="note-date">{{ it.workDate }}</span>
+            <div class="note-item" v-for="it in todayDone" :key="it.id">
+              <div class="note-card" :style="tiltStyle(it.id)">
+                <div class="note-content">
+                  <div class="note-title" :title="it.title">{{ it.title }}</div>
+                  <div class="note-meta">
+                    <el-tag size="small" type="success" effect="light">{{ typeLabels[it.type] || '完成' }}</el-tag>
+                    <span v-if="it.durationMinutes" class="note-duration">{{ it.durationMinutes }} 分钟</span>
+                    <span class="note-date">{{ it.workDate }}</span>
+                  </div>
+                </div>
+                <div class="note-actions">
+                  <el-button size="small" type="primary" link @click="openEdit(it)">编辑</el-button>
+                  <el-button size="small" type="danger" link @click="confirmDelete(it)">删除</el-button>
                 </div>
               </div>
-              <div class="note-actions">
-                <el-button size="small" type="primary" link @click="openEdit(it)">编辑</el-button>
-                <el-button size="small" type="danger" link @click="confirmDelete(it)">删除</el-button>
-              </div>
-              
+              <div class="note-string" aria-hidden="true"></div>
             </div>
           </template>
         </div>
@@ -385,6 +379,11 @@ function tiltStyle(id: number) {
   align-items: start;
 }
 
+/* wrapper for each note to host the free-hanging string outside masked card */
+.note-item {
+  position: relative;
+}
+
 .note-card {
   position: relative;
   background: var(--note-surface);
@@ -395,6 +394,21 @@ function tiltStyle(id: number) {
   box-shadow: var(--note-shadow);
   transform: rotate(var(--tilt, 0deg));
   transition: transform 0.12s ease, box-shadow 0.12s ease;
+  /* Real punch hole: bottom-center transparent circle */
+  --note-hole-size: 4px; /* radius */
+  --note-hole-offset: 10px; /* distance from bottom */
+  -webkit-mask-image: radial-gradient(
+    circle var(--note-hole-size) at 50% calc(100% - var(--note-hole-offset)),
+    transparent 99%,
+    #fff 100%
+  );
+  mask-image: radial-gradient(
+    circle var(--note-hole-size) at 50% calc(100% - var(--note-hole-offset)),
+    transparent 99%,
+    #fff 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 .note-card:hover {
@@ -403,8 +417,9 @@ function tiltStyle(id: number) {
 }
 
 /* small string connecting note to the rope */
-.note-card::before {
-  content: '';
+.note-card::before { content: none; }
+
+.note-string {
   position: absolute;
   left: 50%;
   top: -20px;
@@ -413,7 +428,8 @@ function tiltStyle(id: number) {
   height: 20px;
   background: linear-gradient(to bottom, var(--rope-color-2), var(--rope-color-1));
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  z-index: 1; /* under the rope (::before of board has z-index 2) */
+  z-index: 3; /* above rope and card */
+  pointer-events: none;
 }
 
 /* folded corner */
