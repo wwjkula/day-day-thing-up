@@ -395,15 +395,15 @@ function tiltStyle(id: number) {
   transform: rotate(var(--tilt, 0deg));
   transition: transform 0.12s ease, box-shadow 0.12s ease;
   /* Real punch hole: bottom-center transparent circle */
-  --note-hole-size: 4px; /* radius */
-  --note-hole-offset: 10px; /* distance from bottom */
+  --note-hole-size: 2.3px; /* radius */
+  --note-hole-offset: 5px; /* distance from bottom */
   -webkit-mask-image: radial-gradient(
-    circle var(--note-hole-size) at 50% calc(100% - var(--note-hole-offset)),
+    circle var(--note-hole-size) at 49.7% calc(100% - var(--note-hole-offset)),
     transparent 99%,
     #fff 100%
   );
   mask-image: radial-gradient(
-    circle var(--note-hole-size) at 50% calc(100% - var(--note-hole-offset)),
+    circle var(--note-hole-size) at 49.7% calc(100% - var(--note-hole-offset)),
     transparent 99%,
     #fff 100%
   );
