@@ -8,12 +8,14 @@ import WeeklyReport from './components/WeeklyReport.vue'
 import AdminPanel from './components/admin/AdminPanel.vue'
 import Login from './components/Login.vue'
 import ChangePassword from './components/ChangePassword.vue'
+import SuggestionCenter from './components/SuggestionCenter.vue'
 import { getMe, adminMigrateToR2 } from './api'
 
 const activeTab = ref<'quick' | 'mine' | 'weekly' | 'admin'>('quick')
 const user = ref<any | null>(null)
 const loading = ref(false)
 const cpVisible = ref(false)
+const suggVisible = ref(false)
 const migrating = ref(false)
 
 const THEME_STORAGE_KEY = 'APP_THEME'
@@ -146,7 +148,6 @@ onMounted(() => {
         <div class="brand-mark">日</div>
         <div class="brand-copy">
           <div class="brand-title">日事日清 · 周度汇总</div>
-          <div class="brand-subtitle">Daily Rhythm Dashboard</div>
         </div>
       </div>
       <div class="header-right">
@@ -184,12 +185,13 @@ onMounted(() => {
               继续保持日清日进的节奏，周报一目了然。
             </div>
           </div>
-          <div class="workspace-actions">
-            <el-button
-              v-if="user?.isAdmin"
-              type="warning"
-              plain
-              :loading="migrating"
+        <div class="workspace-actions">
+          <el-button plain @click="suggVisible = true">意见反馈</el-button>
+          <el-button
+            v-if="user?.isAdmin"
+            type="warning"
+            plain
+            :loading="migrating"
               @click="migrateData"
             >
               数据迁移
@@ -230,6 +232,7 @@ onMounted(() => {
         </el-tabs>
       </div>
       <ChangePassword v-model:visible="cpVisible" />
+      <SuggestionCenter v-model:visible="suggVisible" />
     </main>
   </div>
 </template>

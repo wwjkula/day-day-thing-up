@@ -22,6 +22,10 @@ import {
   saveOrgUnits   ,saveUserOrgMemberships,
   getUserOrgMemberships,
   getAuditLogs,
+  getSuggestions,
+  replaceSuggestions,
+  addSuggestion,
+  getSuggestionById,
 } from './data/store.js'
 import { isUserAdmin, listUsers, mapUsersById, listRoleGrantsForUser, getPrimaryOrgId, listOrgUnits } from './services/domain.js'
 import { normalizeScope, canRead, requireAdmin, parseRangeFromQuery } from './middlewares/permissions.js'
@@ -75,6 +79,19 @@ async function loginRateLimited(userId) {
 
 async function recordAudit(entry) {
   await appendAuditLog(entry)
+}
+
+async function suggestionRateLimited(userId) {
+  const data = await getSuggestions()
+  const since = Date.now() - 60 * 60_000
+  let count = 0
+  for (const it of data.items) {
+    if (Number(it.creatorUserId) !== Number(userId)) continue
+    const ts = new Date(it.createdAt).getTime()
+    if (!Number.isFinite(ts)) continue
+    if (ts >= since) count += 1
+  }
+  return count >= 5
 }
 
 async function authenticate(req, res, next) {
@@ -184,6 +201,30 @@ app.post('/api/auth/change-password', authenticate, async (req, res) => {
 
 app.get('/me', authenticate, async (req, res) => {
   res.json({ user: req.user })
+})
+
+// --- Suggestions (User) ---
+app.post('/api/suggestions', authenticate, async (req, res) => {
+  const content = typeof req.body?.content === 'string' ? req.body.content : ''
+  if (!content || !content.trim()) return res.status(400).json({ ok: false, error: 'content required' })
+  const limited = await suggestionRateLimited(req.user.sub)
+  if (limited) {
+    await recordAudit({ actorUserId: req.user.sub, action: 'suggestion_denied_rate_limit', objectType: 'suggestion' })
+    return res.status(429).json({ ok: false, code: 'RATE_LIMITED', error: 'too many suggestions' })
+  }
+  const record = await addSuggestion(req.user.sub, content)
+  await recordAudit({ actorUserId: req.user.sub, action: 'suggestion_create', objectType: 'suggestion', objectId: record.id })
+  res.status(201).json({ ok: true, id: record.id })
+})
+
+app.get('/api/suggestions', authenticate, async (req, res) => {
+  const data = await getSuggestions()
+  const myId = Number(req.user.sub)
+  const items = data.items
+    .filter((it) => Number(it.creatorUserId) === myId)
+    .sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''))
+  await recordAudit({ actorUserId: req.user.sub, action: 'suggestion_list_self', objectType: 'suggestion', detail: { count: items.length } })
+  res.json({ ok: true, items })
 })
 
 app.get('/subordinates', authenticate, async (req, res) => {
@@ -570,6 +611,86 @@ app.post('/api/admin/work-items/sample-data', async (req, res) => {
   } catch (err) {
     res.status(400).json({ ok: false, error: err.message || 'failed to generate sample data' })
   }
+})
+
+// Suggestions Admin APIs
+app.get('/api/admin/suggestions', async (req, res) => {
+  const status = String(req.query.status || '').toLowerCase()
+  const keyword = String(req.query.q || '').trim().toLowerCase()
+  const limit = Math.min(Math.max(Number(req.query.limit ?? 50), 1), 200)
+  const offset = Math.max(Number(req.query.offset ?? 0), 0)
+  const data = await getSuggestions()
+  const users = await mapUsersById()
+  let list = data.items.slice()
+  if (status === 'unread') list = list.filter((it) => !it.readAt)
+  if (status === 'read') list = list.filter((it) => !!it.readAt)
+  if (keyword) {
+    list = list.filter((it) => {
+      const c = (it.content || '').toString().toLowerCase()
+      if (c.includes(keyword)) return true
+      // optional: search replies
+      if (Array.isArray(it.replies)) {
+        return it.replies.some((r) => String(r.content || '').toLowerCase().includes(keyword))
+      }
+      return false
+    })
+  }
+  list.sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''))
+  const page = list.slice(offset, offset + limit)
+  const items = page.map((it) => ({
+    id: Number(it.id),
+    content: it.content,
+    readAt: it.readAt || null,
+    createdAt: it.createdAt,
+    updatedAt: it.updatedAt,
+    creator: (() => {
+      const u = users.get(Number(it.creatorUserId))
+      return u ? { id: Number(u.id), name: u.name ?? null, employeeNo: u.employeeNo ?? null } : { id: Number(it.creatorUserId), name: null, employeeNo: null }
+    })(),
+    replies: (Array.isArray(it.replies) ? it.replies : []).map((r) => {
+      const au = users.get(Number(r.authorUserId))
+      return { id: Number(r.id), authorUserId: Number(r.authorUserId), authorName: au?.name ?? null, content: r.content, createdAt: r.createdAt }
+    }),
+  }))
+  res.json({ ok: true, items, total: list.length, limit, offset })
+})
+
+app.post('/api/admin/suggestions/:id/replies', async (req, res) => {
+  const idNum = Number(req.params.id)
+  const content = typeof req.body?.content === 'string' ? req.body.content : ''
+  if (!Number.isFinite(idNum)) return res.status(400).json({ ok: false, error: 'invalid id' })
+  if (!content || !content.trim()) return res.status(400).json({ ok: false, error: 'content required' })
+  let updated = null
+  await replaceSuggestions(async (data) => {
+    const idx = data.items.findIndex((it) => Number(it.id) === idNum)
+    if (idx === -1) throw new Error('not_found')
+    const now = new Date().toISOString()
+    const item = data.items[idx]
+    const replyId = (Array.isArray(item.replies) ? item.replies.length : 0) + 1
+    const reply = { id: replyId, authorUserId: Number(req.user.sub), content: String(content), createdAt: now }
+    item.replies = Array.isArray(item.replies) ? item.replies : []
+    item.replies.push(reply)
+    item.readAt = item.readAt || now // replying implies read
+    item.updatedAt = now
+    data.items[idx] = item
+    updated = item
+  })
+  await recordAudit({ actorUserId: req.user.sub, action: 'suggestion_reply', objectType: 'suggestion', objectId: idNum })
+  res.json({ ok: true })
+})
+
+app.patch('/api/admin/suggestions/:id/read', async (req, res) => {
+  const idNum = Number(req.params.id)
+  const read = !!req.body?.read
+  if (!Number.isFinite(idNum)) return res.status(400).json({ ok: false, error: 'invalid id' })
+  await replaceSuggestions(async (data) => {
+    const idx = data.items.findIndex((it) => Number(it.id) === idNum)
+    if (idx === -1) throw new Error('not_found')
+    const now = new Date().toISOString()
+    data.items[idx] = { ...data.items[idx], readAt: read ? (data.items[idx].readAt || now) : null, updatedAt: now }
+  })
+  await recordAudit({ actorUserId: req.user.sub, action: read ? 'suggestion_mark_read' : 'suggestion_mark_unread', objectType: 'suggestion', objectId: idNum })
+  res.json({ ok: true })
 })
 
 app.delete('/api/admin/work-items', async (req, res) => {

@@ -163,3 +163,61 @@ export async function adminClearWorkItems(): Promise<{ ok: true; cleared: number
   return j as { ok: true; cleared: number; processedUsers: number }
 }
 
+// --- Suggestions ---
+export interface SuggestionReply {
+  id: number
+  authorUserId: number
+  authorName?: string | null
+  content: string
+  createdAt: string
+}
+
+export interface SuggestionItem {
+  id: number
+  creatorUserId?: number
+  content: string
+  readAt: string | null
+  createdAt: string
+  updatedAt: string
+  replies: SuggestionReply[]
+}
+
+export async function postSuggestion(payload: { content: string }): Promise<{ ok: boolean; id?: number; error?: string }> {
+  const res = await fetch(withBase('/api/suggestions'), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
+  return res.json()
+}
+
+export async function listMySuggestions(params: { limit?: number; offset?: number } = {}): Promise<{ ok: true; items: SuggestionItem[] }> {
+  const qs = new URLSearchParams(params as any)
+  const res = await fetch(withBase(`/api/suggestions?${qs}`), { headers: { ...authHeader() } })
+  return res.json()
+}
+
+export async function adminListSuggestions(params: { status?: 'unread' | 'read'; q?: string; limit?: number; offset?: number } = {}) {
+  const qs = new URLSearchParams(params as any)
+  const res = await fetch(withBase(`/api/admin/suggestions?${qs}`), { headers: { ...authHeader() } })
+  return res.json()
+}
+
+export async function adminReplySuggestion(id: number, payload: { content: string }) {
+  const res = await fetch(withBase(`/api/admin/suggestions/${id}/replies`), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
+  return res.json()
+}
+
+export async function adminMarkSuggestionRead(id: number, read: boolean) {
+  const res = await fetch(withBase(`/api/admin/suggestions/${id}/read`), {
+    method: 'PATCH',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify({ read }),
+  })
+  return res.json()
+}
+

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastId": 749
+    "lastId": 758
   },
   "items": [
     {
@@ -8800,6 +8800,99 @@
         "start": "2025-10-06",
         "end": "2025-10-12"
       }
+    },
+    {
+      "id": 750,
+      "createdAt": "2025-10-10T02:36:20.816Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-06",
+        "to": "2025-10-12",
+        "count": 5
+      }
+    },
+    {
+      "id": 751,
+      "createdAt": "2025-10-10T02:36:21.698Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 752,
+      "createdAt": "2025-10-10T02:36:23.052Z",
+      "actorUserId": 1,
+      "action": "suggestion_list_self",
+      "objectType": "suggestion",
+      "detail": {
+        "count": 0
+      }
+    },
+    {
+      "id": 753,
+      "createdAt": "2025-10-10T02:36:29.876Z",
+      "actorUserId": 1,
+      "action": "suggestion_create",
+      "objectType": "suggestion",
+      "objectId": 1
+    },
+    {
+      "id": 754,
+      "createdAt": "2025-10-10T02:36:29.908Z",
+      "actorUserId": 1,
+      "action": "suggestion_list_self",
+      "objectType": "suggestion",
+      "detail": {
+        "count": 1
+      }
+    },
+    {
+      "id": 755,
+      "createdAt": "2025-10-10T02:36:50.910Z",
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user"
+    },
+    {
+      "id": 756,
+      "createdAt": "2025-10-10T02:36:50.981Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-10",
+        "to": "2025-10-10",
+        "count": 0
+      }
+    },
+    {
+      "id": 757,
+      "createdAt": "2025-10-10T02:36:51.018Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 758,
+      "createdAt": "2025-10-10T02:36:58.898Z",
+      "actorUserId": 1,
+      "action": "suggestion_mark_read",
+      "objectType": "suggestion",
+      "objectId": 1
     }
   ]
 }

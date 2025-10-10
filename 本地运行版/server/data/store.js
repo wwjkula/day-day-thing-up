@@ -11,6 +11,7 @@ const AUDIT_LOG_FILE = path.join(DATA_DIR, 'audit_logs.json')
 const WORK_ITEMS_ROOT = path.join(DATA_DIR, 'work_items')
 const WORK_ITEMS_META = path.join(WORK_ITEMS_ROOT, 'meta.json')
 const WORK_ITEMS_USER_DIR = path.join(WORK_ITEMS_ROOT, 'user')
+const SUGGESTIONS_FILE = path.join(DATA_DIR, 'suggestions.json')
 
 const defaultCollection = () => ({ meta: { lastId: 0 }, items: [] })
 
@@ -205,4 +206,46 @@ export async function getAllWorkItems() {
     items.push(...collection.items)
   }
   return items
+}
+
+// --- Suggestions ---
+
+export async function getSuggestions() {
+  return loadCollection(SUGGESTIONS_FILE)
+}
+
+export async function saveSuggestions(data) {
+  await saveCollection(SUGGESTIONS_FILE, data)
+}
+
+export async function replaceSuggestions(updater) {
+  const data = await getSuggestions()
+  const result = await updater(data)
+  if (result !== false) {
+    await saveSuggestions(data)
+  }
+  return data
+}
+
+export async function addSuggestion(userId, content) {
+  const data = await getSuggestions()
+  const now = new Date().toISOString()
+  const id = ++data.meta.lastId
+  const record = {
+    id,
+    creatorUserId: Number(userId),
+    content: String(content),
+    readAt: null,
+    createdAt: now,
+    updatedAt: now,
+    replies: [],
+  }
+  data.items.push(record)
+  await saveSuggestions(data)
+  return record
+}
+
+export async function getSuggestionById(id) {
+  const data = await getSuggestions()
+  return data.items.find((it) => Number(it.id) === Number(id)) || null
 }

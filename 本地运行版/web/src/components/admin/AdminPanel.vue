@@ -4,7 +4,9 @@ import OrgAdmin from './OrgAdmin.vue'
 import UsersAdmin from './UsersAdmin.vue'
 import WorkItemsAdmin from './WorkItemsAdmin.vue'
 
-const tab = ref<'org'|'user'|'work'>('org')
+import SuggestionsAdmin from './SuggestionsAdmin.vue'
+
+const tab = ref<'org'|'user'|'work'|'suggest'>('org')
 </script>
 
 <template>
@@ -18,6 +20,9 @@ const tab = ref<'org'|'user'|'work'>('org')
       </el-tab-pane>
       <el-tab-pane label="工作数据" name="work">
         <WorkItemsAdmin />
+      </el-tab-pane>
+      <el-tab-pane label="建议管理" name="suggest">
+        <SuggestionsAdmin />
       </el-tab-pane>
     </el-tabs>
   </div>
