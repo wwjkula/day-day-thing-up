@@ -55,28 +55,20 @@ async function onSubmit() {
 
         <ul class="auth-list">
           <li class="auth-item">
-            <span class="point-icon"></span>
+            <span class="point-icon"><el-icon><User /></el-icon></span>
             <el-input
               v-model="form.employeeNo"
               @keyup.enter.native="onSubmit"
-            >
-              <template #prefix>
-                <el-icon><User /></el-icon>
-              </template>
-            </el-input>
+            />
           </li>
           <li class="auth-item">
-            <span class="point-icon"></span>
+            <span class="point-icon"><el-icon><Lock /></el-icon></span>
             <el-input
               v-model="form.password"
               type="password"
               show-password
               @keyup.enter.native="onSubmit"
-            >
-              <template #prefix>
-                <el-icon><Lock /></el-icon>
-              </template>
-            </el-input>
+            />
           </li>
           <li class="auth-item actions">
             <span class="point-icon"></span>
@@ -205,7 +197,8 @@ async function onSubmit() {
 
 .auth-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; max-width: 520px; }
 .auth-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); }
-.point-icon { width: 22px; height: 22px; border-radius: 8px; background: linear-gradient(135deg, var(--brand-grad-start), var(--brand-grad-end)); box-shadow: 0 6px 16px rgba(94,160,255,.35); opacity: .92; }
+.point-icon { width: 22px; height: 22px; border-radius: 8px; background: linear-gradient(135deg, var(--brand-grad-start), var(--brand-grad-end)); box-shadow: 0 6px 16px rgba(94,160,255,.35); opacity: .92; display:flex; align-items:center; justify-content:center; }
+.point-icon :deep(.el-icon) { color: #fff; font-size: 14px; }
 
 .auth-item :deep(.el-input__wrapper) {
   border-radius: 12px;
