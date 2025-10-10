@@ -230,7 +230,7 @@ onMounted(() => {
 
 .history .history-head { display:flex; align-items:center; gap: 10px; margin-bottom: 8px; }
 .history-title { font-weight: 600; color: var(--app-text-color); }
-.list { border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 12px; background: rgba(255,255,255,0.06); box-shadow: 0 12px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06); min-height: 160px; backdrop-filter: blur(12px); }
+.list { border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 12px; background: rgba(255,255,255,0.06); box-shadow: 0 12px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06); min-height: 100px; backdrop-filter: blur(12px); }
 
 .cards { display: flex; flex-direction: column; gap: 12px; max-height: 420px; }
 .sugg-card { position:relative; border: 1px solid rgba(255,255,255,0.10); border-radius: 14px; padding: 12px; background: rgba(255,255,255,0.06); box-shadow: 0 10px 24px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.06); transition: transform .12s ease, box-shadow .12s ease; backdrop-filter: blur(10px); }
