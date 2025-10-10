@@ -57,7 +57,9 @@ async function onSubmit() {
       <!-- Login glass card (right) -->
       <div class="login-card">
         <div class="login-card__head">
-          <div class="logo-slot" aria-label="公司 LOGO 预留"></div>
+          <div class="logo-slot" aria-label="公司 LOGO">
+            <img class="logo-img" src="/logo-company.png" alt="中国电建" />
+          </div>
           <div class="head-copy">
             <div class="head-title">日事日清</div>
             <div class="head-sub">欢迎登录</div>
@@ -175,7 +177,8 @@ async function onSubmit() {
 
 .login-card__head { position: relative; display: flex; align-items: center; gap: 12px; padding: 6px 2px 14px; }
 .head-topline { position:absolute; left: -18px; right: -18px; top: -2px; height: 1px; background: rgba(255,255,255,0.55); opacity: .28; }
-.logo-slot { width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.5); }
+.logo-slot { width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); box-shadow: inset 0 1px 0 rgba(255,255,255,.45); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.logo-img { width: 28px; height: 28px; object-fit: contain; filter: drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
 .head-copy { display:flex; flex-direction: column; }
 .head-title { font-weight: 700; color: #fff; }
 .head-sub { font-size: 12px; opacity: .85; color: #e7efff; }
