@@ -104,8 +104,8 @@ async function onSubmit() {
 
 /* Ambient aurora */
 .aurora-layer {
-  position: absolute;
-  inset: -10% -6% -10% -6%;
+  position: fixed;
+  inset: 0;
   background:
     radial-gradient(70% 90% at 15% 20%, rgba(96,165,250,0.35), transparent 60%),
     radial-gradient(70% 90% at 85% 40%, rgba(94,224,255,0.32), transparent 60%),
