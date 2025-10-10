@@ -184,12 +184,13 @@ onMounted(() => {
   justify-content: space-between;
   gap: 12px;
   padding: 14px 18px;
-  /* Gradient fades to transparent and sits on top of dialog overlay color */
+  /* Horizontal gradient: left colored -> transparent around halfway to blend with dialog background */
   background: linear-gradient(
-      135deg,
+      90deg,
       var(--el-color-primary) 0%,
-      var(--el-color-primary-light-3) 60%,
-      rgba(93, 224, 255, 0) 100%
+      var(--el-color-primary-light-3) 34%,
+      rgba(93, 224, 255, 0.32) 48%,
+      rgba(93, 224, 255, 0) 54%
     ),
     var(--el-bg-color);
   color: #fff;
