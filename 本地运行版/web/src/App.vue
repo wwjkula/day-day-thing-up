@@ -143,7 +143,7 @@ onMounted(() => {
 
 <template>
   <div class="app-shell">
-    <header class="app-header">
+    <header class="app-header" v-if="user">
       <div class="header-left">
         <div class="brand-mark">日</div>
         <div class="brand-copy">
