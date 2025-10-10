@@ -184,13 +184,16 @@ onMounted(() => {
   justify-content: space-between;
   gap: 12px;
   padding: 14px 18px;
-  /* Horizontal gradient: left colored -> transparent around halfway to blend with dialog background */
+  /* Horizontal gradient: left colored -> long gentle fade to transparent */
   background: linear-gradient(
       90deg,
       var(--el-color-primary) 0%,
       var(--el-color-primary-light-3) 34%,
-      rgba(93, 224, 255, 0.32) 48%,
-      rgba(93, 224, 255, 0) 54%
+      rgba(93, 224, 255, 0.28) 52%,
+      rgba(93, 224, 255, 0.18) 62%,
+      rgba(93, 224, 255, 0.10) 74%,
+      rgba(93, 224, 255, 0.04) 88%,
+      rgba(93, 224, 255, 0) 100%
     ),
     var(--el-bg-color);
   color: #fff;
