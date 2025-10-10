@@ -80,9 +80,9 @@ async function onSubmit() {
               </template>
             </el-input>
           </li>
-          <li class="auth-item">
+          <li class="auth-item actions">
             <span class="point-icon"></span>
-            <el-button class="btn-primary" :loading="loading" @click="onSubmit">登录</el-button>
+            <el-button class="btn-primary btn-long" :loading="loading" @click="onSubmit">登录</el-button>
           </li>
         </ul>
       </div>
@@ -213,6 +213,10 @@ async function onSubmit() {
 .auth-item :deep(.el-input__wrapper.is-focus),
 .auth-item :deep(.el-input__wrapper:hover) { box-shadow: inset 0 0 0 1px rgba(94,160,255,.65), 0 0 0 2px rgba(94,160,255,.2), 0 10px 26px rgba(94,160,255,.18); }
 .auth-item .el-button.btn-primary { padding: 12px 18px; border-radius: 12px; }
+/* center and lengthen login button */
+.auth-item.actions { justify-content: center; }
+.auth-item.actions .point-icon { display: none; }
+.auth-item.actions .el-button.btn-primary { width: 100%; height: 44px; border-radius: 12px; }
 
 /* removed right login card styles */
 
