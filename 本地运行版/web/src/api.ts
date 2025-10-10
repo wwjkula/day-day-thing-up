@@ -197,6 +197,14 @@ export async function listMySuggestions(params: { limit?: number; offset?: numbe
   return res.json()
 }
 
+export async function deleteSuggestion(id: number): Promise<{ ok: boolean; error?: string }> {
+  const res = await fetch(withBase(`/api/suggestions/${id}`), {
+    method: 'DELETE',
+    headers: { ...authHeader() },
+  })
+  return res.json()
+}
+
 export async function adminListSuggestions(params: { status?: 'unread' | 'read'; q?: string; limit?: number; offset?: number } = {}) {
   const qs = new URLSearchParams(params as any)
   const res = await fetch(withBase(`/api/admin/suggestions?${qs}`), { headers: { ...authHeader() } })

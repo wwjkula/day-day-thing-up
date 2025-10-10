@@ -227,6 +227,28 @@ app.get('/api/suggestions', authenticate, async (req, res) => {
   res.json({ ok: true, items })
 })
 
+app.delete('/api/suggestions/:id', authenticate, async (req, res) => {
+  const idNum = Number(req.params.id)
+  if (!Number.isFinite(idNum)) return res.status(400).json({ ok: false, error: 'invalid id' })
+  let removed = false
+  let forbidden = false
+  await replaceSuggestions(async (data) => {
+    const idx = data.items.findIndex((it) => Number(it.id) === idNum)
+    if (idx === -1) return false
+    const item = data.items[idx]
+    if (Number(item.creatorUserId) !== Number(req.user.sub)) {
+      forbidden = true
+      return false
+    }
+    data.items.splice(idx, 1)
+    removed = true
+  })
+  if (forbidden) return res.status(403).json({ ok: false, error: 'forbidden' })
+  if (!removed) return res.status(404).json({ ok: false, error: 'not found' })
+  await recordAudit({ actorUserId: req.user.sub, action: 'suggestion_delete', objectType: 'suggestion', objectId: idNum })
+  res.json({ ok: true })
+})
+
 app.get('/subordinates', authenticate, async (req, res) => {
   const viewerId = req.user.sub
   const visible = await resolveVisibleUserIds(viewerId, 'direct', new Date())

@@ -2,7 +2,7 @@
 import { onMounted, ref, watch, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 import { ChatLineRound } from '@element-plus/icons-vue'
-import { listMySuggestions, postSuggestion, type SuggestionItem } from '../api'
+import { listMySuggestions, postSuggestion, deleteSuggestion, type SuggestionItem } from '../api'
 
 const visible = defineModel<boolean>('visible', { required: true })
 
@@ -11,7 +11,6 @@ const submitting = ref(false)
 const loading = ref(false)
 const items = ref<SuggestionItem[]>([])
 const filter = ref<'all' | 'unread' | 'read'>('all')
-const expanded = ref<Set<number>>(new Set())
 
 const STORAGE_KEY = 'SUGGESTION_DRAFT'
 
@@ -22,15 +21,17 @@ const filteredItems = computed(() => {
   return list
 })
 
-function toggleExpand(id: number) {
-  const set = new Set(expanded.value)
-  if (set.has(id)) set.delete(id)
-  else set.add(id)
-  expanded.value = set
-}
-
-function isExpanded(id: number) {
-  return expanded.value.has(id)
+async function removeItem(id: number) {
+  const ok = window.confirm('确认删除该条建议？删除后不可恢复')
+  if (!ok) return
+  try {
+    const r = await deleteSuggestion(id)
+    if (!r?.ok) throw new Error(r?.error || '删除失败')
+    ElMessage.success('已删除')
+    await loadList()
+  } catch (e: any) {
+    ElMessage.error(e?.message || '删除失败')
+  }
 }
 
 async function loadList() {
@@ -116,12 +117,12 @@ onMounted(() => {
     <div class="sugg-body">
       <!-- Left: compose -->
       <section class="compose">
+        <div class="compose-title">写下你的建议</div>
         <div class="card">
-          <div class="compose-title">写下你的建议</div>
           <el-input
             v-model="content"
             type="textarea"
-            :autosize="{ minRows: 8, maxRows: 12 }"
+            :autosize="{ minRows: 11.5, maxRows: 12 }"
             placeholder="请描述你的建议或问题，Ctrl/⌘ + Enter 可快速提交"
             @keydown="onKeydown"
           />
@@ -152,9 +153,9 @@ onMounted(() => {
                   <span class="muted">#{{ it.id }}</span>
                   <span class="muted">· {{ new Date(it.createdAt).toLocaleString() }}</span>
                   <span class="spacer"></span>
-                  <el-button text size="small" @click="toggleExpand(it.id)">{{ isExpanded(it.id) ? '收起' : '展开' }}</el-button>
+                  <el-button text type="danger" size="small" @click="removeItem(it.id)">删除</el-button>
                 </div>
-                <div class="sugg-card__content" :class="{ collapsed: !isExpanded(it.id) }">{{ it.content }}</div>
+                <div class="sugg-card__content">{{ it.content }}</div>
                 <div v-if="it.replies?.length" class="sugg-card__replies">
                   <div class="reply" v-for="r in it.replies" :key="r.id">
                     <div class="reply-meta">
