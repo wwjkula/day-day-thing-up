@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastId": 758
+    "lastId": 766
   },
   "items": [
     {
@@ -8893,6 +8893,90 @@
       "action": "suggestion_mark_read",
       "objectType": "suggestion",
       "objectId": 1
+    },
+    {
+      "id": 759,
+      "createdAt": "2025-10-10T02:38:36.136Z",
+      "actorUserId": 1,
+      "action": "suggestion_list_self",
+      "objectType": "suggestion",
+      "detail": {
+        "count": 1
+      }
+    },
+    {
+      "id": 760,
+      "createdAt": "2025-10-10T02:47:28.595Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-10",
+        "to": "2025-10-10",
+        "count": 0
+      }
+    },
+    {
+      "id": 761,
+      "createdAt": "2025-10-10T02:47:28.652Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-10"
+      }
+    },
+    {
+      "id": 762,
+      "createdAt": "2025-10-10T02:47:28.667Z",
+      "actorUserId": 1,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-06",
+        "end": "2025-10-12"
+      }
+    },
+    {
+      "id": 763,
+      "createdAt": "2025-10-10T02:47:30.174Z",
+      "actorUserId": 1,
+      "action": "suggestion_list_self",
+      "objectType": "suggestion",
+      "detail": {
+        "count": 1
+      }
+    },
+    {
+      "id": 764,
+      "createdAt": "2025-10-10T02:48:12.633Z",
+      "actorUserId": 1,
+      "action": "suggestion_list_self",
+      "objectType": "suggestion",
+      "detail": {
+        "count": 1
+      }
+    },
+    {
+      "id": 765,
+      "createdAt": "2025-10-10T02:48:19.523Z",
+      "actorUserId": 1,
+      "action": "suggestion_create",
+      "objectType": "suggestion",
+      "objectId": 2
+    },
+    {
+      "id": 766,
+      "createdAt": "2025-10-10T02:48:19.561Z",
+      "actorUserId": 1,
+      "action": "suggestion_list_self",
+      "objectType": "suggestion",
+      "detail": {
+        "count": 2
+      }
     }
   ]
 }
