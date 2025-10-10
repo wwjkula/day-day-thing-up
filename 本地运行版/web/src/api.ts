@@ -47,7 +47,7 @@ export async function postMissingWeeklyRemind(params: { from: string; to: string
     body: JSON.stringify({ userIds }),
   })
   const j = await res.json()
-  if (!res.ok || !j.ok) throw new Error(j.error || '发送提醒失�?)
+  if (!res.ok || !j.ok) throw new Error(j.error || '发送提醒失败')
   return j as MissingWeeklyRemindResponse
 }
 
@@ -82,7 +82,7 @@ export async function getDailyOverview(params: { date: string; scope: Visibility
   const qs = new URLSearchParams({ date: params.date, scope: params.scope } as any)
   const res = await fetch(withBase(`/api/reports/daily-overview?${qs}`), { headers: { ...authHeader() } })
   const j = await res.json()
-  if (!res.ok || !j.ok) throw new Error(j.error || '加载日视图失�?)
+  if (!res.ok || !j.ok) throw new Error(j.error || '加载日视图失败')
   return j as DailyOverviewResponse
 }
 
@@ -90,7 +90,7 @@ export async function getWeeklyOverview(params: { from: string; to: string; scop
   const qs = new URLSearchParams({ from: params.from, to: params.to, scope: params.scope } as any)
   const res = await fetch(withBase(`/api/reports/weekly-overview?${qs}`), { headers: { ...authHeader() } })
   const j = await res.json()
-  if (!res.ok || !j.ok) throw new Error(j.error || '加载周视图失�?)
+  if (!res.ok || !j.ok) throw new Error(j.error || '加载周视图失败')
   return j as WeeklyOverviewResponse
 }
 
