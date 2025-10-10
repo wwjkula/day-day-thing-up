@@ -18,52 +18,14 @@ const cpVisible = ref(false)
 const suggVisible = ref(false)
 const migrating = ref(false)
 
-const THEME_STORAGE_KEY = 'APP_THEME'
-const prefersDark =
-  typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)') : null
-
-let storedTheme: 'light' | 'dark' | null = null
-if (typeof window !== 'undefined') {
-  try {
-    const saved = localStorage.getItem(THEME_STORAGE_KEY)
-    if (saved === 'light' || saved === 'dark') {
-      storedTheme = saved
-    }
-  } catch {
-    storedTheme = null
-  }
-}
-
-const hasManualTheme = ref(Boolean(storedTheme))
-const theme = ref<'light' | 'dark'>(storedTheme ?? 'dark')
+// Force dark mode only
 
 function applyTheme(mode: 'light' | 'dark') {
   if (typeof document === 'undefined') return
   document.documentElement.classList.toggle('dark', mode === 'dark')
 }
 
-function toggleTheme() {
-  theme.value = theme.value === 'light' ? 'dark' : 'light'
-  hasManualTheme.value = true
-}
-
-if (prefersDark) {
-  prefersDark.addEventListener('change', (event) => {
-    if (hasManualTheme.value) return
-    theme.value = event.matches ? 'dark' : 'light'
-  })
-}
-
-watch(theme, (mode) => {
-  applyTheme(mode)
-  if (typeof window !== 'undefined') {
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, mode)
-    } catch {
-      /* ignore */
-    }
-  }
-})
+// No light mode; no toggles or listeners
 
 const userInitial = computed(() => {
   const label = (user.value?.name || user.value?.employeeNo || '用').trim()
@@ -136,7 +98,7 @@ function logout() {
 }
 
 onMounted(() => {
-  applyTheme(theme.value)
+  applyTheme('dark')
   refreshMe()
 })
 </script>
@@ -151,13 +113,7 @@ onMounted(() => {
         </div>
       </div>
       <div class="header-right">
-        <el-tooltip :content="theme === 'dark' ? '切换为浅色模式' : '切换为暗色模式'">
-          <el-button class="theme-toggle" text circle @click="toggleTheme">
-            <el-icon>
-              <component :is="theme === 'dark' ? Sunny : Moon" />
-            </el-icon>
-          </el-button>
-        </el-tooltip>
+        <!-- Theme toggle removed (dark-only) -->
         <div v-if="user" class="header-user">
           <div class="header-user__avatar">{{ userInitial }}</div>
           <div class="header-user__meta">
