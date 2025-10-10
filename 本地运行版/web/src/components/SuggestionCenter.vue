@@ -93,11 +93,21 @@ onMounted(() => {
   <el-dialog v-model="visible" width="820px" class="sugg-dialog">
     <template #header>
       <div class="dlg-header">
-        <div class="hdr-icon"><el-icon><ChatLineRound /></el-icon></div>
-        <div class="hdr-meta">
-          <div class="hdr-title">意见反馈</div>
-          <div class="hdr-sub">你的想法很重要 · 帮助我们做得更好</div>
+        <div class="hdr-left">
+          <div class="hdr-icon"><el-icon><ChatLineRound /></el-icon></div>
+          <div class="hdr-meta">
+            <div class="hdr-title">意见反馈</div>
+            <div class="hdr-sub">你的想法很重要 · 帮助我们做得更好</div>
+          </div>
         </div>
+        <div class="hdr-right">
+          <div class="segmented">
+            <button :class="{active: filter==='all'}" @click="filter='all'">全部</button>
+            <button :class="{active: filter==='unread'}" @click="filter='unread'">未读</button>
+            <button :class="{active: filter==='read'}" @click="filter='read'">已读</button>
+          </div>
+        </div>
+        <div class="hdr-topline"></div>
       </div>
     </template>
 
@@ -116,7 +126,8 @@ onMounted(() => {
           <div class="compose-toolbar">
             <div class="hint">每小时最多 5 条</div>
             <span class="spacer"></span>
-            <el-button type="primary" :loading="submitting" @click="submit">提交</el-button>
+            <el-button class="btn-ghost" @click="content = ''">清空</el-button>
+            <el-button class="btn-primary" :loading="submitting" @click="submit">提交</el-button>
           </div>
         </div>
       </section>
@@ -125,11 +136,6 @@ onMounted(() => {
       <section class="history">
         <div class="history-head">
           <div class="history-title">我的建议</div>
-          <el-radio-group v-model="filter" size="small">
-            <el-radio-button label="all">全部</el-radio-button>
-            <el-radio-button label="unread">未读</el-radio-button>
-            <el-radio-button label="read">已读</el-radio-button>
-          </el-radio-group>
         </div>
         <div class="list" v-loading="loading">
           <template v-if="loading">
@@ -137,7 +143,7 @@ onMounted(() => {
           </template>
           <template v-else>
             <el-empty v-if="filteredItems.length === 0" description="暂无提交记录" />
-            <div v-else class="cards">
+            <el-scrollbar v-else class="cards">
               <div v-for="it in filteredItems" :key="it.id" class="sugg-card" :class="{ unread: !it.readAt }">
                 <div class="sugg-card__head">
                   <el-tag :type="it.readAt ? 'success' : 'warning'" effect="plain" size="small">{{ it.readAt ? '已读' : '未读' }}</el-tag>
@@ -157,7 +163,7 @@ onMounted(() => {
                   </div>
                 </div>
               </div>
-            </div>
+            </el-scrollbar>
           </template>
         </div>
       </section>
@@ -170,14 +176,19 @@ onMounted(() => {
 .sugg-dialog :deep(.el-dialog__body) { padding: 0; }
 
 .dlg-header {
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  padding: 16px 18px;
+  padding: 14px 18px;
   background: linear-gradient(135deg, var(--el-color-primary), var(--el-color-primary-light-3));
   color: #fff;
 }
-.hdr-icon { width: 36px; height: 36px; display:flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.2); border-radius: 10px; }
+.hdr-left { display:flex; align-items:center; gap: 12px; }
+.hdr-right { display:flex; align-items:center; }
+.hdr-topline { position:absolute; left:0; right:0; top:0; height:1px; background: rgba(255,255,255,0.6); opacity: .35; }
+.hdr-icon { width: 36px; height: 36px; display:flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.22); border-radius: 10px; box-shadow: inset 0 1px 0 rgba(255,255,255,.45); }
 .hdr-meta { display:flex; flex-direction: column; }
 .hdr-title { font-weight: 700; }
 .hdr-sub { opacity: 0.9; font-size: 12px; }
@@ -191,11 +202,13 @@ onMounted(() => {
 }
 
 .compose .card {
-  border: 1px solid var(--app-border-color);
+  position: relative;
   border-radius: 16px;
   padding: 16px;
-  background: var(--app-surface-color);
-  box-shadow: var(--el-box-shadow-light);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 12px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+  backdrop-filter: blur(12px);
 }
 .compose-title { font-weight: 600; margin-bottom: 8px; color: var(--app-text-color); }
 .compose-toolbar { display:flex; align-items:center; margin-top: 10px; }
@@ -204,11 +217,13 @@ onMounted(() => {
 
 .history .history-head { display:flex; align-items:center; gap: 10px; margin-bottom: 8px; }
 .history-title { font-weight: 600; color: var(--app-text-color); }
-.list { border: 1px solid var(--app-border-color); border-radius: 16px; padding: 12px; background: var(--app-surface-color); box-shadow: var(--el-box-shadow-light); min-height: 160px; }
+.list { border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 12px; background: rgba(255,255,255,0.06); box-shadow: 0 12px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06); min-height: 160px; backdrop-filter: blur(12px); }
 
-.cards { display: flex; flex-direction: column; gap: 12px; }
-.sugg-card { border: 1px solid var(--app-border-color); border-radius: 12px; padding: 12px; background: var(--app-surface-color); box-shadow: var(--el-box-shadow-lighter); }
-.sugg-card.unread { border-color: rgba(245, 158, 11, 0.35); background: rgba(245, 158, 11, 0.08); }
+.cards { display: flex; flex-direction: column; gap: 12px; max-height: 420px; }
+.sugg-card { position:relative; border: 1px solid rgba(255,255,255,0.10); border-radius: 14px; padding: 12px; background: rgba(255,255,255,0.06); box-shadow: 0 10px 24px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.06); transition: transform .12s ease, box-shadow .12s ease; backdrop-filter: blur(10px); }
+.sugg-card:hover { transform: translateY(-1px) scale(1.005); box-shadow: 0 14px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06); }
+.sugg-card.unread { border-color: rgba(255, 196, 0, 0.25); background: rgba(255, 196, 0, 0.08); }
+.sugg-card::before { content: ''; position: absolute; left: 8px; top: 10px; bottom: 10px; width: 2px; border-radius: 2px; background: linear-gradient(180deg, var(--el-color-primary), var(--el-color-primary-light-3)); opacity: .9; }
 .sugg-card__head { display:flex; align-items:center; gap: 8px; margin-bottom: 6px; }
 .muted { color: var(--app-text-secondary); font-size: 12px; }
 .sugg-card__content { white-space: pre-wrap; line-height: 1.6; }
@@ -219,7 +234,27 @@ onMounted(() => {
 .reply-meta { display:flex; align-items:center; gap: 8px; margin-bottom: 4px; }
 .reply-content { white-space: pre-wrap; }
 
+/* Segmented control (header) */
+.segmented { display:inline-flex; align-items:center; padding: 4px; gap: 4px; background: rgba(255,255,255,0.14); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; box-shadow: inset 0 1px 0 rgba(255,255,255,.35); }
+.segmented button { appearance:none; border:none; background: transparent; color:#fff; padding: 6px 12px; border-radius: 999px; cursor: pointer; font-size: 12px; opacity: .9; transition: all .12s ease; }
+.segmented button:hover { opacity: 1; }
+.segmented button.active { background: linear-gradient(135deg, #5EA0FF, #5DE0FF); color: #0b1220; box-shadow: 0 6px 18px rgba(94,160,255,.35); }
+
+/* Neon primary & ghost button */
+.btn-primary { background: linear-gradient(135deg,#5EA0FF,#5DE0FF); color:#0b1220; border:none; box-shadow: 0 10px 24px rgba(94,160,255,.35), 0 0 0 2px rgba(94,160,255,.25) inset; }
+.btn-primary:hover { filter: brightness(1.02); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #fff; }
+.btn-ghost:hover { background: rgba(255,255,255,0.06); }
+
 @media (max-width: 960px) {
   .sugg-body { grid-template-columns: 1fr; }
+}
+
+/* Textarea neon focus */
+.sugg-body :deep(.el-textarea__inner) { border-radius: 12px; }
+.sugg-body :deep(.el-textarea.is-focus .el-textarea__inner),
+.sugg-body :deep(.el-textarea__inner:focus) {
+  box-shadow: inset 0 0 0 1px rgba(94,160,255,.65), 0 0 0 2px rgba(94,160,255,.2), 0 10px 26px rgba(94,160,255,.18);
 }
 </style>
