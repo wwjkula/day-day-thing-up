@@ -248,10 +248,15 @@ onMounted(() => {
 .reply-content { white-space: pre-wrap; }
 
 /* Segmented control (header) */
-.segmented { display:inline-flex; align-items:center; padding: 4px; gap: 4px; background: rgba(255,255,255,0.14); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; box-shadow: inset 0 1px 0 rgba(255,255,255,.35); }
-.segmented button { appearance:none; border:none; background: transparent; color:#fff; padding: 6px 12px; border-radius: 999px; cursor: pointer; font-size: 12px; opacity: .9; transition: all .12s ease; }
+.segmented { display:inline-flex; align-items:center; padding: 4px; gap: 4px; background: rgba(15,23,42,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(15,23,42,0.12); border-radius: 999px; box-shadow: inset 0 1px 0 rgba(255,255,255,.5); }
+.segmented button { appearance:none; border:none; background: transparent; color: var(--app-text-color); padding: 6px 12px; border-radius: 999px; cursor: pointer; font-size: 12px; opacity: .92; transition: all .12s ease; }
 .segmented button:hover { opacity: 1; }
 .segmented button.active { background: linear-gradient(135deg, #5EA0FF, #5DE0FF); color: #0b1220; box-shadow: 0 6px 18px rgba(94,160,255,.35); }
+
+/* Dark theme overrides for segmented */
+.dark .segmented { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.25); box-shadow: inset 0 1px 0 rgba(255,255,255,.35); }
+.dark .segmented button { color:#fff; }
+.dark .segmented button:hover { background: rgba(255,255,255,0.08); }
 
 /* Neon primary & ghost button */
 .btn-primary { background: linear-gradient(135deg,#5EA0FF,#5DE0FF); color:#0b1220; border:none; box-shadow: 0 10px 24px rgba(94,160,255,.35), 0 0 0 2px rgba(94,160,255,.25) inset; }
