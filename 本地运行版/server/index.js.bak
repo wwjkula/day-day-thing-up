@@ -19,7 +19,11 @@ import {
   replaceUsers,
   appendAuditLog,
   getOrgUnits,
-  saveOrgUnits   ,saveUserOrgMemberships,
+  saveOrgUnits,
+  getRoleGrants,
+  saveRoleGrants,
+  getRoles,
+  saveUserOrgMemberships,
   getUserOrgMemberships,
   getAuditLogs,
 } from './data/store.js'
@@ -547,6 +551,82 @@ app.get('/api/admin/users/:id/primary-org', async (req, res) => {
 })
 
 
+
+app.get('/api/admin/roles', async (req, res) => {
+  const roles = (await getRoles()).items.map((role) => ({
+    id: Number(role.id),
+    code: role.code,
+    name: role.name,
+  }))
+  res.json({ items: roles })
+})
+
+app.get('/api/admin/role-grants', async (req, res) => {
+  const grants = (await getRoleGrants()).items
+  const roles = await getRoles()
+  const roleMap = new Map(roles.items.map((r) => [Number(r.id), r]))
+  const users = await mapUsersById()
+  const items = grants.map((g) => ({
+    id: Number(g.id),
+    granteeUserId: Number(g.granteeUserId),
+    granteeName: users.get(Number(g.granteeUserId))?.name ?? null,
+    roleId: Number(g.roleId),
+    roleCode: roleMap.get(Number(g.roleId))?.code ?? '',
+    roleName: roleMap.get(Number(g.roleId))?.name ?? '',
+    domainOrgId: Number(g.domainOrgId),
+    scope: g.scope,
+    startDate: g.startDate,
+    endDate: g.endDate,
+  }))
+  res.json({ items })
+})
+
+app.post('/api/admin/role-grants', async (req, res) => {
+  const body = req.body || {}
+  const granteeUserId = Number(body.granteeUserId)
+  const domainOrgId = Number(body.domainOrgId)
+  const scope = normalizeScope(body.scope)
+  const startDate = body.startDate ? String(body.startDate) : toISODate(new Date())
+  const endDate = body.endDate ? String(body.endDate) : null
+  let roleId = body.roleId ? Number(body.roleId) : undefined
+  if (!roleId && body.roleCode) {
+    const roles = await getRoles()
+    const match = roles.items.find((r) => r.code === body.roleCode)
+    if (match) roleId = Number(match.id)
+  }
+  if (!Number.isInteger(granteeUserId) || !Number.isInteger(domainOrgId) || !roleId) {
+    return res.status(400).json({ error: 'invalid payload' })
+  }
+  const data = await getRoleGrants()
+  const now = new Date().toISOString()
+  const id = ++data.meta.lastId
+  data.items.push({
+    id,
+    granteeUserId,
+    roleId,
+    domainOrgId,
+    scope,
+    startDate,
+    endDate,
+    createdAt: now,
+    updatedAt: now,
+  })
+  await saveRoleGrants(data)
+  await recordAudit({ actorUserId: req.user.sub, action: 'admin_create_role_grant', objectType: 'role_grant', objectId: id })
+  res.status(201).json({ id })
+})
+
+app.delete('/api/admin/role-grants/:id', async (req, res) => {
+  const idNum = Number(req.params.id)
+  if (!Number.isFinite(idNum)) return res.status(400).json({ error: 'invalid id' })
+  const data = await getRoleGrants()
+  const before = data.items.length
+  data.items = data.items.filter((g) => Number(g.id) !== idNum)
+  if (data.items.length === before) return res.status(404).json({ error: 'not found' })
+  await saveRoleGrants(data)
+  await recordAudit({ actorUserId: req.user.sub, action: 'admin_delete_role_grant', objectType: 'role_grant', objectId: idNum })
+  res.json({ ok: true })
+})
 
 app.post('/api/admin/work-items/sample-data', async (req, res) => {
   const body = req.body || {}
