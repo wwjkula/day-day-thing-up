@@ -207,7 +207,12 @@ async function onSubmit() {
 .auth-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); }
 .point-icon { width: 22px; height: 22px; border-radius: 8px; background: linear-gradient(135deg, var(--brand-grad-start), var(--brand-grad-end)); box-shadow: 0 6px 16px rgba(94,160,255,.35); opacity: .92; }
 
-.auth-item :deep(.el-input__wrapper) { border-radius: 12px; transition: box-shadow .15s ease; }
+.auth-item :deep(.el-input__wrapper) {
+  border-radius: 12px;
+  transition: box-shadow .15s ease;
+  /* Always-on neon rim */
+  box-shadow: inset 0 0 0 1px rgba(94,160,255,.65), 0 0 0 2px rgba(94,160,255,.2), 0 10px 26px rgba(94,160,255,.18);
+}
 .auth-item :deep(.el-input__wrapper.is-focus),
 .auth-item :deep(.el-input__wrapper:hover) { box-shadow: inset 0 0 0 1px rgba(94,160,255,.65), 0 0 0 2px rgba(94,160,255,.2), 0 10px 26px rgba(94,160,255,.18); }
 .auth-item .el-button.btn-primary { padding: 12px 18px; border-radius: 12px; }
