@@ -187,29 +187,7 @@ export async function adminGetPrimaryOrg(userId: number): Promise<{ orgId: numbe
   return res.json()
 }
 
-export async function adminListManagerEdges(params: { managerId?: number; subordinateId?: number } = {}) {
-  const qs = new URLSearchParams(params as any)
-  const res = await fetch(withBase(`/api/admin/manager-edges?${qs}`), { headers: { ...authHeader() } })
-  return res.json()
-}
-
-export async function adminCreateManagerEdge(payload: any) {
-  const res = await fetch(withBase('/api/admin/manager-edges'), {
-    method: 'POST',
-    headers: { 'content-type': 'application/json', ...authHeader() },
-    body: JSON.stringify(payload),
-  })
-  return res.json()
-}
-
-export async function adminDeleteManagerEdge(payload: { managerId: number; subordinateId: number; startDate: string }) {
-  const res = await fetch(withBase('/api/admin/manager-edges'), {
-    method: 'DELETE',
-    headers: { 'content-type': 'application/json', ...authHeader() },
-    body: JSON.stringify(payload),
-  })
-  return res.json()
-}
+// (deprecated admin edge management APIs removed)
 
 export async function adminListRoleGrants() {
   const res = await fetch(withBase('/api/admin/role-grants'), { headers: { ...authHeader() } })

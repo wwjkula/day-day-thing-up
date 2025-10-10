@@ -4,7 +4,6 @@ import { readJson, writeJson, listFiles } from '../utils/file-store.js'
 
 const USERS_FILE = path.join(DATA_DIR, 'users.json')
 const ORGS_FILE = path.join(DATA_DIR, 'org_units.json')
-const MANAGER_EDGES_FILE = path.join(DATA_DIR, 'manager_edges.json')
 const ROLES_FILE = path.join(DATA_DIR, 'roles.json')
 const ROLE_GRANTS_FILE = path.join(DATA_DIR, 'role_grants.json')
 const USER_ORG_MEMBERSHIPS_FILE = path.join(DATA_DIR, 'user_org_memberships.json')
@@ -78,14 +77,6 @@ export async function getOrgUnits() {
 
 export async function saveOrgUnits(data) {
   await saveCollection(ORGS_FILE, data)
-}
-
-export async function getManagerEdges() {
-  return loadCollection(MANAGER_EDGES_FILE)
-}
-
-export async function saveManagerEdges(data) {
-  await saveCollection(MANAGER_EDGES_FILE, data)
 }
 
 export async function getRoles() {

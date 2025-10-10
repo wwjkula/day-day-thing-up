@@ -20,8 +20,6 @@ import {
   appendAuditLog,
   getOrgUnits,
   saveOrgUnits,
-  getManagerEdges,
-  saveManagerEdges,
   getRoleGrants,
   saveRoleGrants,
   getRoles,
@@ -552,66 +550,7 @@ app.get('/api/admin/users/:id/primary-org', async (req, res) => {
   res.json({ orgId: record ? Number(record.orgId) : null })
 })
 
-app.get('/api/admin/manager-edges', async (req, res) => {
-  const data = await getManagerEdges()
-  const managerId = req.query.managerId ? Number(req.query.managerId) : undefined
-  const subordinateId = req.query.subordinateId ? Number(req.query.subordinateId) : undefined
-  const users = await mapUsersById()
-  const items = data.items
-    .filter((edge) => (!managerId || Number(edge.managerId) === managerId) && (!subordinateId || Number(edge.subordinateId) === subordinateId))
-    .map((edge) => ({
-      managerId: Number(edge.managerId),
-      managerName: users.get(Number(edge.managerId))?.name ?? null,
-      subordinateId: Number(edge.subordinateId),
-      subordinateName: users.get(Number(edge.subordinateId))?.name ?? null,
-      startDate: edge.startDate,
-      endDate: edge.endDate,
-      priority: edge.priority ?? 100,
-    }))
-  res.json({ items })
-})
 
-app.post('/api/admin/manager-edges', async (req, res) => {
-  const body = req.body || {}
-  const managerId = Number(body.managerId)
-  const subordinateId = Number(body.subordinateId)
-  if (!Number.isInteger(managerId) || !Number.isInteger(subordinateId)) {
-    return res.status(400).json({ error: 'managerId and subordinateId required' })
-  }
-  const startDate = body.startDate ? String(body.startDate) : toISODate(new Date())
-  const endDate = body.endDate ? String(body.endDate) : null
-  const priority = body.priority != null ? Number(body.priority) : 100
-  const data = await getManagerEdges()
-  data.items.push({ managerId, subordinateId, startDate, endDate, priority })
-  data.meta.lastId = Math.max(data.meta.lastId || 0, data.items.length)
-  await saveManagerEdges(data)
-  await recordAudit({ actorUserId: req.user.sub, action: 'admin_create_manager_edge', objectType: 'manager_edge', detail: { managerId, subordinateId } })
-  res.status(201).json({ ok: true })
-})
-
-app.delete('/api/admin/manager-edges', async (req, res) => {
-  const body = req.body || {}
-  const managerId = Number(body.managerId)
-  const subordinateId = Number(body.subordinateId)
-  const startDate = body.startDate ? String(body.startDate) : null
-  if (!Number.isInteger(managerId) || !Number.isInteger(subordinateId) || !startDate) {
-    return res.status(400).json({ error: 'invalid payload' })
-  }
-  const data = await getManagerEdges()
-  const before = data.items.length
-  data.items = data.items.filter(
-    (edge) =>
-      !(
-        Number(edge.managerId) === managerId &&
-        Number(edge.subordinateId) === subordinateId &&
-        String(edge.startDate) === startDate
-      )
-  )
-  if (data.items.length === before) return res.status(404).json({ error: 'not found' })
-  await saveManagerEdges(data)
-  await recordAudit({ actorUserId: req.user.sub, action: 'admin_delete_manager_edge', objectType: 'manager_edge', detail: { managerId, subordinateId, startDate } })
-  res.json({ ok: true })
-})
 
 app.get('/api/admin/roles', async (req, res) => {
   const roles = (await getRoles()).items.map((role) => ({
