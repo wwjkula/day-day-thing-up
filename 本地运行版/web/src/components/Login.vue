@@ -58,7 +58,6 @@ async function onSubmit() {
             <span class="point-icon"></span>
             <el-input
               v-model="form.employeeNo"
-              placeholder="请输入账号/工号，例如 D0101"
               @keyup.enter.native="onSubmit"
             >
               <template #prefix>
@@ -72,7 +71,6 @@ async function onSubmit() {
               v-model="form.password"
               type="password"
               show-password
-              placeholder="请输入密码（未设置可留空）"
               @keyup.enter.native="onSubmit"
             >
               <template #prefix>
