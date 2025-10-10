@@ -45,7 +45,13 @@ async function onSubmit() {
     <section class="login-surface">
       <!-- Brand storytelling pane (left) -->
       <div class="brand-pane">
-        <h1 class="brand-title center">日事日清 · 周度汇总系统</h1>
+        <h1 class="brand-title">日事日清 · 周度汇总系统</h1>
+        <p class="brand-sub">专注当下，痕迹有据。轻松记录，提效每一天。</p>
+        <ul class="brand-points">
+          <li><span class="point-icon"></span><span>极速录入</span></li>
+          <li><span class="point-icon"></span><span>取数化洞察</span></li>
+          <li><span class="point-icon"></span><span>团队协同</span></li>
+        </ul>
       </div>
 
       <!-- Login glass card (right) -->
@@ -128,13 +134,10 @@ async function onSubmit() {
   gap: 20px;
   padding: 20px;
   border-radius: 24px;
-  /* Make the container less like a big card: keep blur only */
-  background: transparent;
-  border: none;
-  box-shadow: none;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.45);
   backdrop-filter: blur(calc(var(--glass-blur) + 6px));
-  align-items: center; /* vertical center both cols */
-  min-height: 72vh; /* ensure vertical space to center within */
 }
 
 .brand-pane {
@@ -143,9 +146,6 @@ async function onSubmit() {
   flex-direction: column;
   gap: 14px;
   color: #e8eefc;
-  justify-content: center; /* vertical center inside pane */
-  align-items: center; /* horizontal center inside pane */
-  text-align: center;
 }
 
 .brand-title {
@@ -156,8 +156,6 @@ async function onSubmit() {
   color: #f2f6ff;
 }
 
-.brand-title.center { text-align: center; }
-
 .brand-sub { opacity: .92; color: #d6def5; margin: 2px 0 6px; }
 
 .brand-points { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; max-width: 520px; }
@@ -167,7 +165,7 @@ async function onSubmit() {
 .login-card {
   position: relative;
   align-self: center;
-  width: var(--login-card-width, 360px);
+  width: 420px;
   max-width: 100%;
   padding: 18px 18px 16px;
   border-radius: 20px;
