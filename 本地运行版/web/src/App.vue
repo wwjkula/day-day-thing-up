@@ -35,7 +35,7 @@ if (typeof window !== 'undefined') {
 }
 
 const hasManualTheme = ref(Boolean(storedTheme))
-const theme = ref<'light' | 'dark'>(storedTheme ?? (prefersDark?.matches ? 'dark' : 'light'))
+const theme = ref<'light' | 'dark'>(storedTheme ?? 'dark')
 
 function applyTheme(mode: 'light' | 'dark') {
   if (typeof document === 'undefined') return

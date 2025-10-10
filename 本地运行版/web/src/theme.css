@@ -51,6 +51,13 @@
   --rope-color-1: #caa46a;
   --rope-color-2: #b38c58;
   --rope-shadow: rgba(15, 23, 42, 0.18);
+
+  /* Brand & Glass Neon additions */
+  --brand-grad-start: #5EA0FF;
+  --brand-grad-end: #5DE0FF;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(15, 23, 42, 0.12);
+  --glass-blur: 16px;
 }
 
 .dark {
@@ -91,6 +98,10 @@
   --note-shadow: 0 10px 26px rgba(0, 0, 0, 0.32), 0 2px 8px rgba(0, 0, 0, 0.22);
   --note-corner: #eadcad;
   --rope-shadow: rgba(0, 0, 0, 0.45);
+  
+  /* Glass tweaks for dark default */
+  --glass-bg: rgba(30, 41, 59, 0.5);
+  --glass-border: rgba(148, 163, 184, 0.22);
 }
 
 .dark body {
