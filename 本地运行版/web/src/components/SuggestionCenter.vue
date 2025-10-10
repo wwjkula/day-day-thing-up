@@ -79,6 +79,8 @@ watch(content, (v) => {
 
 watch(visible, (v) => {
   if (v) {
+    // Reset filter to 'all' every time dialog opens
+    filter.value = 'all'
     try { const d = localStorage.getItem(STORAGE_KEY); if (d) content.value = d } catch {}
     loadList()
   }
