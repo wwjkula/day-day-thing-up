@@ -107,22 +107,68 @@ async function onSubmit() {
   position: absolute;
   inset: -10% -6% -10% -6%;
   background:
-    radial-gradient(60% 80% at 20% 20%, rgba(96,165,250,0.18), transparent 60%),
-    radial-gradient(60% 80% at 80% 40%, rgba(94,224,255,0.18), transparent 60%),
-    radial-gradient(80% 80% at 50% 80%, rgba(168,85,247,0.16), transparent 60%),
-    linear-gradient(180deg, rgba(2,6,23,0.9), rgba(2,6,23,0.9));
-  filter: blur(12px);
+    radial-gradient(70% 90% at 15% 20%, rgba(96,165,250,0.35), transparent 60%),
+    radial-gradient(70% 90% at 85% 40%, rgba(94,224,255,0.32), transparent 60%),
+    radial-gradient(90% 90% at 50% 80%, rgba(168,85,247,0.30), transparent 60%),
+    linear-gradient(180deg, rgba(2,6,23,0.88), rgba(2,6,23,0.92));
+  filter: saturate(1.35) blur(16px) contrast(1.06);
   z-index: 0;
   overflow: hidden;
+  pointer-events: none;
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .aurora-layer { animation: aurora-move 16s ease-in-out infinite alternate; }
+  .aurora-layer::before { animation: aurora-rotate 28s linear infinite; }
+  .aurora-layer::after { animation: aurora-drift 20s ease-in-out infinite alternate; }
 }
 
 @keyframes aurora-move {
-  0% { transform: translate3d(-1%, -1%, 0) scale(1.02); }
-  100% { transform: translate3d(1%, 1%, 0) scale(1.04); }
+  0% { transform: translate3d(-2%, -1.5%, 0) scale(1.02); }
+  100% { transform: translate3d(2%, 1.5%, 0) scale(1.05); }
+}
+
+@keyframes aurora-rotate {
+  0% { transform: rotate(0turn) scale(1); }
+  100% { transform: rotate(1turn) scale(1); }
+}
+
+@keyframes aurora-drift {
+  0% { transform: translate3d(-2%, 0, 0); }
+  100% { transform: translate3d(2%, 0, 0); }
+}
+
+.aurora-layer::before,
+.aurora-layer::after { content: ""; position: absolute; inset: -20% -20%; pointer-events: none; }
+
+/* Vivid conic ribbon with radial mask */
+.aurora-layer::before {
+  background:
+    conic-gradient(from 0turn,
+      rgba(99,102,241,0.36),
+      rgba(56,189,248,0.38),
+      rgba(59,130,246,0.40),
+      rgba(167,139,250,0.36),
+      rgba(99,102,241,0.36));
+  filter: blur(22px) saturate(1.3);
+  mix-blend-mode: screen;
+  -webkit-mask: radial-gradient(60% 60% at 50% 50%, #000 40%, transparent 72%);
+          mask: radial-gradient(60% 60% at 50% 50%, #000 40%, transparent 72%);
+}
+
+/* Highlight glow and soft star specks */
+.aurora-layer::after {
+  background:
+    radial-gradient(1200px 800px at 70% 20%, rgba(255,255,255,0.14), transparent 60%),
+    radial-gradient(900px 700px at 30% 80%, rgba(255,255,255,0.10), transparent 60%),
+    radial-gradient(2px 2px at 20% 25%, rgba(255,255,255,0.18), transparent 60%),
+    radial-gradient(2px 2px at 35% 60%, rgba(255,255,255,0.18), transparent 60%),
+    radial-gradient(1.5px 1.5px at 62% 42%, rgba(255,255,255,0.16), transparent 60%),
+    radial-gradient(1.5px 1.5px at 78% 66%, rgba(255,255,255,0.13), transparent 60%);
+  filter: blur(12px) saturate(1.1);
+  mix-blend-mode: screen;
+  opacity: .9;
 }
 
 .login-surface {
