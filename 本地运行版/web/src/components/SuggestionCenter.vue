@@ -184,7 +184,14 @@ onMounted(() => {
   justify-content: space-between;
   gap: 12px;
   padding: 14px 18px;
-  background: linear-gradient(135deg, var(--el-color-primary), var(--el-color-primary-light-3));
+  /* Gradient fades to transparent and sits on top of dialog overlay color */
+  background: linear-gradient(
+      135deg,
+      var(--el-color-primary) 0%,
+      var(--el-color-primary-light-3) 60%,
+      rgba(93, 224, 255, 0) 100%
+    ),
+    var(--el-bg-color);
   color: #fff;
 }
 .hdr-left { display:flex; align-items:center; gap: 12px; }
