@@ -184,24 +184,6 @@ async function onSubmit() {
 .auth-item.actions .point-icon { display: none; }
 .auth-item.actions .el-button.btn-primary { width: 100%; height: 44px; border-radius: 12px; }
 
-/* Form-edge glow ring around the auth list */
-.auth-list { position: relative; border-radius: 18px; isolation: isolate; }
-.auth-list::before {
-  content: "";
-  position: absolute;
-  inset: -14px;
-  border-radius: inherit;
-  pointer-events: none;
-  background:
-    radial-gradient(140px 16px at 50% 0%, rgba(94,160,255,0.85) 0%, rgba(94,160,255,0.45) 32%, rgba(94,160,255,0.20) 62%, rgba(94,160,255,0.07) 78%, transparent 100%),
-    radial-gradient(140px 16px at 50% 100%, rgba(94,160,255,0.85) 0%, rgba(94,160,255,0.45) 32%, rgba(94,160,255,0.20) 62%, rgba(94,160,255,0.07) 78%, transparent 100%),
-    radial-gradient(16px 140px at 0% 50%, rgba(94,160,255,0.85) 0%, rgba(94,160,255,0.45) 32%, rgba(94,160,255,0.20) 62%, rgba(94,160,255,0.07) 78%, transparent 100%),
-    radial-gradient(16px 140px at 100% 50%, rgba(94,160,255,0.85) 0%, rgba(94,160,255,0.45) 32%, rgba(94,160,255,0.20) 62%, rgba(94,160,255,0.07) 78%, transparent 100%);
-  filter: blur(10px) saturate(1.15);
-  opacity: .95;
-  z-index: -1;
-}
-
 /* removed right login card styles */
 
 .btn-primary { background: linear-gradient(135deg,var(--brand-grad-start),var(--brand-grad-end)); color:#0b1220; border:none; box-shadow: 0 10px 24px rgba(94,160,255,.35), 0 0 0 2px rgba(94,160,255,.25) inset; }
