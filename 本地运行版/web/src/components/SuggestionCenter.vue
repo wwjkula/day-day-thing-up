@@ -189,11 +189,11 @@ onMounted(() => {
       90deg,
       var(--el-color-primary) 0%,
       var(--el-color-primary-light-3) 34%,
-      rgba(93, 224, 255, 0.28) 52%,
-      rgba(93, 224, 255, 0.18) 62%,
-      rgba(93, 224, 255, 0.10) 74%,
-      rgba(93, 224, 255, 0.04) 88%,
-      rgba(93, 224, 255, 0) 100%
+      rgb(147 197 253 / 0.28) 52%,
+      rgb(147 197 253 / 0.18) 62%,
+      rgb(147 197 253 / 0.10) 74%,
+      rgb(147 197 253 / 0.04) 88%,
+      transparent 100%
     ),
     var(--el-bg-color);
   color: #fff;
