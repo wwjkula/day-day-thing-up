@@ -28,3 +28,6 @@ coverage/
 # Others
 *.DS_Store
 Thumbs.db
+
+# Local ngrok tunnel token (do not commit)
+内网穿透token.json
