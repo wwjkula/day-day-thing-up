@@ -62,7 +62,27 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="构建完成后执行 docker push",
     )
+    parser.add_argument(
+        "--tar",
+        default=None,
+        help="构建完成后另存镜像为 tar（默认保存在项目根目录，文件名基于 --tag）",
+    )
+    parser.add_argument(
+        "--skip-tar",
+        action="store_true",
+        help="跳过保存 tar 文件",
+    )
     return parser.parse_args()
+
+
+def default_tar_name(tag: str) -> str:
+    """将镜像 tag 转为安全的 tar 文件名。"""
+    name = tag
+    for ch in ("/", ":", "@", "\\"):
+        name = name.replace(ch, "-")
+    if not name.endswith(".tar"):
+        name += ".tar"
+    return name
 
 
 def main() -> int:
@@ -89,6 +109,20 @@ def main() -> int:
 
     if args.push:
         run(["docker", "push", args.tag])
+
+    # 构建完成后默认保存 tar（除非显式跳过）
+    if not args.skip_tar:
+        tar_path = Path(args.tar) if args.tar else (ROOT / default_tar_name(args.tag))
+        try:
+            run(["docker", "save", args.tag, "-o", str(tar_path)])
+            try:
+                size = tar_path.stat().st_size
+                print(f"[INFO] 已保存镜像为 tar：{tar_path} (大小 {size/1024/1024:.1f} MB)")
+            except Exception:
+                print(f"[INFO] 已保存镜像为 tar：{tar_path}")
+        except subprocess.CalledProcessError:
+            print("[WARN] 保存镜像为 tar 失败（不影响镜像构建与推送）。可手动执行：")
+            print(f"       docker save {args.tag} -o {tar_path}")
 
     print("\n[INFO] 镜像构建完成。")
     if args.push:
