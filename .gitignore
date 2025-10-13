@@ -1,4 +1,4 @@
-﻿# Node/Monorepo
+# Node/Monorepo
 node_modules/
 .pnpm-store/
 dist/

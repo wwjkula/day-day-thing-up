@@ -28,6 +28,7 @@ import socket
 import subprocess
 import sys
 import time
+import json
 from pathlib import Path
 from typing import Optional
 
@@ -64,6 +65,15 @@ def run_ui(args: argparse.Namespace) -> int:
             if args.tunnel_token:
                 self.token.setText(str(args.tunnel_token))
             self.token.setEchoMode(QtWidgets.QLineEdit.Password)
+            # 若未从命令行预填，则尝试本地文件或环境变量
+            try:
+                _has = bool(self.token.text().strip())
+            except Exception:
+                _has = False
+            if not _has:
+                _prefill = load_local_ngrok_token() or os.environ.get("NGROK_AUTHTOKEN")
+                if _prefill:
+                    self.token.setText(str(_prefill))
 
             self.domain = QtWidgets.QLineEdit()
             self.domain.setPlaceholderText("ngrok 自定义域名")
@@ -229,6 +239,7 @@ def run_ui(args: argparse.Namespace) -> int:
 ROOT = Path(__file__).resolve().parent
 WEB_DIR = ROOT / "web"
 TOOLS: dict[str, str] = {}
+NGROK_TOKEN_FILE = ROOT / "内网穿透token.json"
 
 
 def ensure_tool(name: str) -> None:
@@ -253,6 +264,37 @@ def run(cmd: list[str], *, cwd: Path | None = None, check: bool = True) -> subpr
     full_cmd = resolve_cmd(cmd)
     print(f"\n==> {' '.join(full_cmd)} (cwd={cwd})")
     return subprocess.run(full_cmd, cwd=cwd, check=check)
+
+
+def load_local_ngrok_token() -> Optional[str]:
+    """Load ngrok token from local json/text file if present.
+
+    Supports either raw token text, or JSON with keys like
+    {"token": "..."} / {"authtoken": "..."} / {"NGROK_AUTHTOKEN": "..."}.
+    """
+    try:
+        if not NGROK_TOKEN_FILE.exists():
+            return None
+        content = NGROK_TOKEN_FILE.read_text(encoding="utf-8").strip()
+        if not content:
+            return None
+        # Try JSON first
+        try:
+            data = json.loads(content)
+            if isinstance(data, str):
+                return data.strip() or None
+            if isinstance(data, dict):
+                for key in ("token", "authtoken", "NGROK_AUTHTOKEN", "ngrok_authtoken"):
+                    val = data.get(key)
+                    if isinstance(val, str) and val.strip():
+                        return val.strip()
+                return None
+        except json.JSONDecodeError:
+            # Fallback: treat entire file as token text
+            line = content.splitlines()[0].strip()
+            return line or None
+    except Exception:
+        return None
 
 
 def maybe_install_server(force: bool) -> None:
@@ -578,9 +620,10 @@ def main() -> int:
     # CLI mode
     tunnel = (args.tunnel or "off").lower()
     if tunnel == "ngrok":
+        _effective_token = args.tunnel_token or load_local_ngrok_token() or os.environ.get("NGROK_AUTHTOKEN")
         return run_with_ngrok_cli(
             args.port,
-            token=args.tunnel_token,
+            token=_effective_token,
             domain=args.tunnel_domain,
             region=args.tunnel_region,
         )
