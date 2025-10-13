@@ -610,6 +610,13 @@ def main() -> int:
     maybe_install_web(args.force_install_web)
     maybe_build_web(args.force_build, args.skip_build)
 
+    # Default: 无参数启动时直接显示 PyQt5 界面
+    if len(sys.argv) <= 1:
+        if not _PYQT5_AVAILABLE:
+            print("[ERROR] PyQt5 未安装，无法使用 UI 模式。请先 pip install PyQt5。")
+            return 1
+        return run_ui(args)
+
     # UI mode
     if getattr(args, "ui", False):
         if not _PYQT5_AVAILABLE:
