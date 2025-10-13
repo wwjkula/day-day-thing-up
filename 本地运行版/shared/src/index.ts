@@ -4,7 +4,7 @@ export type VisibilityScope = 'self' | 'direct' | 'subtree';
 // Request DTOs
 export interface CreateWorkItemRequest {
   workDate: string; // YYYY-MM-DD
-  title: string; // <= 20 chars (Chinese characters counted separately at UI)
+  title: string; // length limited by server-side setting
   type?: WorkItemType;
   durationMinutes?: number;
   tags?: string[];
@@ -170,11 +170,11 @@ export interface WeeklyOverviewResponse {
 }
 
 // Validation helpers (pure functions, no runtime deps)
-export function validateWorkItemTitle(title: string): { valid: boolean; error?: string } {
+export function validateWorkItemTitle(title: string, maxLength: number = 40): { valid: boolean; error?: string } {
   if (!title || typeof title !== 'string') return { valid: false, error: 'title is required' };
   const trimmed = title.trim();
   if (!trimmed) return { valid: false, error: 'title cannot be empty' };
-  if ([...trimmed].length > 20) return { valid: false, error: 'title must be <= 20 characters' };
+  if ([...trimmed].length > maxLength) return { valid: false, error: `title must be <= ${maxLength} characters` };
   return { valid: true };
 }
 

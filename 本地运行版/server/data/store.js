@@ -12,6 +12,7 @@ const WORK_ITEMS_ROOT = path.join(DATA_DIR, 'work_items')
 const WORK_ITEMS_META = path.join(WORK_ITEMS_ROOT, 'meta.json')
 const WORK_ITEMS_USER_DIR = path.join(WORK_ITEMS_ROOT, 'user')
 const SUGGESTIONS_FILE = path.join(DATA_DIR, 'suggestions.json')
+const SETTINGS_FILE = path.join(DATA_DIR, 'settings.json')
 
 const defaultCollection = () => ({ meta: { lastId: 0 }, items: [] })
 
@@ -248,4 +249,22 @@ export async function addSuggestion(userId, content) {
 export async function getSuggestionById(id) {
   const data = await getSuggestions()
   return data.items.find((it) => Number(it.id) === Number(id)) || null
+}
+
+// --- Settings ---
+
+const defaultSettings = () => ({ titleMaxLength: 40 })
+
+export async function getSettings() {
+  const data = await readJson(SETTINGS_FILE, defaultSettings())
+  const n = Number(data.titleMaxLength)
+  if (!Number.isFinite(n) || n < 1) return defaultSettings()
+  return { titleMaxLength: n }
+}
+
+export async function saveSettings(payload) {
+  const n = Number(payload?.titleMaxLength)
+  const data = { titleMaxLength: Number.isFinite(n) && n >= 1 ? n : 40 }
+  await writeJson(SETTINGS_FILE, data)
+  return data
 }

@@ -26,6 +26,8 @@ import {
   replaceSuggestions,
   addSuggestion,
   getSuggestionById,
+  getSettings,
+  saveSettings,
 } from './data/store.js'
 import { isUserAdmin, listUsers, mapUsersById, listRoleGrantsForUser, getPrimaryOrgId, listOrgUnits } from './services/domain.js'
 import { normalizeScope, canRead, requireAdmin, parseRangeFromQuery } from './middlewares/permissions.js'
@@ -263,7 +265,8 @@ app.get('/subordinates', authenticate, async (req, res) => {
 })
 
 app.post('/api/work-items', authenticate, async (req, res) => {
-  const result = await createWorkItem(req.user.sub, req.body || {})
+  const settings = await getSettings().catch(() => ({ titleMaxLength: 40 }))
+  const result = await createWorkItem(req.user.sub, req.body || {}, { titleMaxLength: settings.titleMaxLength })
   if (!result.ok) return res.status(400).json({ error: result.error })
   return res.status(201).json({ id: result.record.id })
 })
@@ -272,7 +275,8 @@ app.post('/api/work-items', authenticate, async (req, res) => {
 app.patch('/api/work-items/:id', authenticate, async (req, res) => {
   const idNum = Number(req.params.id)
   if (!Number.isFinite(idNum)) return res.status(400).json({ error: 'invalid id' })
-  const result = await modifyWorkItem(req.user.sub, idNum, req.body || {})
+  const settings = await getSettings().catch(() => ({ titleMaxLength: 40 }))
+  const result = await modifyWorkItem(req.user.sub, idNum, req.body || {}, { titleMaxLength: settings.titleMaxLength })
   if (!result.ok) {
     if (result.error === 'not found') return res.status(404).json({ error: 'not found' })
     return res.status(400).json({ error: result.error || 'unable to update' })
@@ -732,6 +736,25 @@ app.delete('/api/admin/work-items', async (req, res) => {
 
 app.post('/api/admin/migrate/r2', async (req, res) => {
   res.status(400).json({ ok: false, error: 'Not supported in local mode' })
+})
+
+// --- Settings APIs ---
+// Public read (allowed without auth)
+app.get('/api/settings', async (req, res) => {
+  try {
+    const data = await getSettings()
+    res.json({ ok: true, settings: { titleMaxLength: Number(data.titleMaxLength) || 40 } })
+  } catch (err) {
+    res.json({ ok: true, settings: { titleMaxLength: 40 } })
+  }
+})
+
+// Admin update
+app.put('/api/admin/settings', authenticate, requireAdmin, async (req, res) => {
+  const n = Number(req.body?.titleMaxLength)
+  if (!Number.isInteger(n) || n < 1) return res.status(400).json({ ok: false, error: 'invalid titleMaxLength' })
+  const saved = await saveSettings({ titleMaxLength: n })
+  res.json({ ok: true, settings: saved })
 })
 
 app.get('/dev/token', async (req, res) => {

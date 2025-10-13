@@ -5,8 +5,9 @@ import UsersAdmin from './UsersAdmin.vue'
 import WorkItemsAdmin from './WorkItemsAdmin.vue'
 
 import SuggestionsAdmin from './SuggestionsAdmin.vue'
+import SystemSettings from './SystemSettings.vue'
 
-const tab = ref<'org'|'user'|'work'|'suggest'>('org')
+const tab = ref<'org'|'user'|'work'|'suggest'|'system'>('org')
 </script>
 
 <template>
@@ -23,6 +24,9 @@ const tab = ref<'org'|'user'|'work'|'suggest'>('org')
       </el-tab-pane>
       <el-tab-pane label="建议管理" name="suggest">
         <SuggestionsAdmin />
+      </el-tab-pane>
+      <el-tab-pane label="系统设置" name="system">
+        <SystemSettings />
       </el-tab-pane>
     </el-tabs>
   </div>

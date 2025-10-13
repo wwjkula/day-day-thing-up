@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { CreateWorkItemRequest } from '@drrq/shared/index'
 import { validateWorkItemTitle, validateWorkItemType, validateDateString } from '@drrq/shared/index'
-import { withBase, authHeader, listWorkItems } from '../api'
+import { withBase, authHeader, listWorkItems, getSettings } from '../api'
 
 const form = ref<CreateWorkItemRequest>({
   title: '',
@@ -14,6 +14,7 @@ const form = ref<CreateWorkItemRequest>({
 const submitting = ref(false)
 const missingLoading = ref(false)
 const missingDates = ref<Array<{ date: string; weekday: string }>>([])
+const titleMax = ref<number>(40)
 
 function toDateString(date: Date): string {
   const y = date.getFullYear()
@@ -71,7 +72,7 @@ async function loadMissing() {
 }
 
 async function submit() {
-  const titleCheck = validateWorkItemTitle(form.value.title)
+  const titleCheck = validateWorkItemTitle(form.value.title, titleMax.value)
   if (!titleCheck.valid) {
     ElMessage.error(titleCheck.error || '标题不合法')
     return
@@ -129,6 +130,12 @@ async function devGetToken() {
 
 onMounted(() => {
   loadMissing()
+  getSettings()
+    .then((resp) => {
+      const n = Number(resp?.settings?.titleMaxLength)
+      if (Number.isFinite(n) && n >= 1) titleMax.value = n
+    })
+    .catch(() => {})
 })
 </script>
 
@@ -145,7 +152,7 @@ onMounted(() => {
     </div>
     <el-form label-width="80px" class="quick-fill__form" @submit.prevent>
       <el-form-item label="标题">
-        <el-input v-model="form.title" maxlength="20" show-word-limit placeholder="20 字以内" />
+        <el-input v-model="form.title" :maxlength="titleMax" show-word-limit :placeholder="`${titleMax} 字以内`" />
       </el-form-item>
       <el-form-item label="日期">
         <el-date-picker v-model="form.workDate" type="date" value-format="YYYY-MM-DD" />

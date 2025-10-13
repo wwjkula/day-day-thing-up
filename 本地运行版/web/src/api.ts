@@ -22,6 +22,24 @@ export function authHeader(): Record<string, string> {
   return window.__AUTH__ ? { Authorization: `Bearer ${window.__AUTH__}` } : {}
 }
 
+// --- Settings ---
+export async function getSettings(): Promise<{ ok: true; settings: { titleMaxLength: number } }> {
+  const res = await fetch(withBase('/api/settings'))
+  const j = await res.json().catch(() => ({ ok: true, settings: { titleMaxLength: 40 } }))
+  if (!j || typeof j !== 'object') return { ok: true, settings: { titleMaxLength: 40 } }
+  const n = Number(j?.settings?.titleMaxLength)
+  return { ok: true, settings: { titleMaxLength: Number.isFinite(n) && n >= 1 ? n : 40 } }
+}
+
+export async function adminUpdateSettings(payload: { titleMaxLength: number }): Promise<{ ok: boolean; settings?: { titleMaxLength: number }; error?: string }> {
+  const res = await fetch(withBase('/api/admin/settings'), {
+    method: 'PUT',
+    headers: { 'content-type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload),
+  })
+  return res.json()
+}
+
 export async function getWeekly(params: { from: string; to: string; scope: VisibilityScope }) {
   const qs = new URLSearchParams(params as any)
   const res = await fetch(withBase(`/api/reports/weekly?${qs}`), { headers: { ...authHeader() } })

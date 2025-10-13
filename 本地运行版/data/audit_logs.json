@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastId": 49
+    "lastId": 60
   },
   "items": [
     {
@@ -533,6 +533,130 @@
       "objectType": "work_item",
       "detail": {
         "cleared": 93
+      }
+    },
+    {
+      "id": 50,
+      "createdAt": "2025-10-13T03:46:22.018Z",
+      "actorUserId": 1,
+      "action": "login",
+      "objectType": "user"
+    },
+    {
+      "id": 51,
+      "createdAt": "2025-10-13T03:46:23.207Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-13",
+        "to": "2025-10-19",
+        "count": 0
+      }
+    },
+    {
+      "id": 52,
+      "createdAt": "2025-10-13T03:46:23.444Z",
+      "actorUserId": 1,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-13",
+        "to": "2025-10-13",
+        "count": 0
+      }
+    },
+    {
+      "id": 53,
+      "createdAt": "2025-10-13T03:46:23.618Z",
+      "actorUserId": 1,
+      "action": "report_daily_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "date": "2025-10-13"
+      }
+    },
+    {
+      "id": 54,
+      "createdAt": "2025-10-13T04:03:32.576Z",
+      "actorUserId": 2,
+      "action": "login",
+      "objectType": "user"
+    },
+    {
+      "id": 55,
+      "createdAt": "2025-10-13T04:03:33.805Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-13",
+        "to": "2025-10-13",
+        "count": 0
+      }
+    },
+    {
+      "id": 56,
+      "createdAt": "2025-10-13T04:03:33.983Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-13",
+        "end": "2025-10-19"
+      }
+    },
+    {
+      "id": 57,
+      "createdAt": "2025-10-13T04:04:19.954Z",
+      "actorUserId": 2,
+      "action": "suggestion_list_self",
+      "objectType": "suggestion",
+      "detail": {
+        "count": 0
+      }
+    },
+    {
+      "id": 58,
+      "createdAt": "2025-10-13T04:58:20.049Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-13",
+        "to": "2025-10-19",
+        "count": 0
+      }
+    },
+    {
+      "id": 59,
+      "createdAt": "2025-10-13T04:58:20.374Z",
+      "actorUserId": 2,
+      "action": "list",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "self",
+        "from": "2025-10-13",
+        "to": "2025-10-13",
+        "count": 0
+      }
+    },
+    {
+      "id": 60,
+      "createdAt": "2025-10-13T04:58:20.386Z",
+      "actorUserId": 2,
+      "action": "report_weekly_overview",
+      "objectType": "work_item",
+      "detail": {
+        "scope": "direct",
+        "start": "2025-10-13",
+        "end": "2025-10-19"
       }
     }
   ]

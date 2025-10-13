@@ -6,11 +6,11 @@ import { parseISODate, toISODate } from '../utils/datetime.js'
 
 const allowedTypes = new Set(['done', 'progress', 'temp', 'assist', 'plan'])
 
-export function validateWorkItemInput(body) {
+export function validateWorkItemInput(body, titleMaxLength = 40) {
   const errors = []
   const title = typeof body.title === 'string' ? body.title.trim() : ''
   if (!title) errors.push('title is required')
-  if ([...title].length > 20) errors.push('title must be <= 20 characters')
+  if ([...title].length > Number(titleMaxLength)) errors.push(`title must be <= ${Number(titleMaxLength)} characters`)
 
   const workDate = typeof body.workDate === 'string' ? body.workDate : ''
   if (!/^\d{4}-\d{2}-\d{2}$/.test(workDate)) errors.push('workDate must be YYYY-MM-DD')
@@ -27,8 +27,9 @@ export function validateWorkItemInput(body) {
   return { valid: errors.length === 0, errors, title, workDate, type }
 }
 
-export async function createWorkItem(actorId, body) {
-  const { valid, errors, title, workDate, type } = validateWorkItemInput(body)
+export async function createWorkItem(actorId, body, opts = {}) {
+  const maxLen = Number(opts.titleMaxLength) || 40
+  const { valid, errors, title, workDate, type } = validateWorkItemInput(body, maxLen)
   if (!valid) {
     return { ok: false, error: errors[0] }
   }
@@ -63,14 +64,14 @@ export async function createWorkItem(actorId, body) {
   return { ok: true, record }
 }
 
-export function validateWorkItemPatch(body) {
+export function validateWorkItemPatch(body, titleMaxLength = 40) {
   const errors = []
   const patch = {}
 
   if (body.title !== undefined) {
     const title = typeof body.title === 'string' ? body.title.trim() : ''
     if (!title) errors.push('title is required')
-    else if ([...title].length > 20) errors.push('title must be <= 20 characters')
+    else if ([...title].length > Number(titleMaxLength)) errors.push(`title must be <= ${Number(titleMaxLength)} characters`)
     else patch.title = title
   }
 
@@ -122,8 +123,9 @@ export async function listWorkItems(actorId, scope, { from, to, limit = 50, offs
   return { items, total, limit, offset }
 }
 
-export async function modifyWorkItem(actorId, itemId, body) {
-  const { valid, errors, patch } = validateWorkItemPatch(body)
+export async function modifyWorkItem(actorId, itemId, body, opts = {}) {
+  const maxLen = Number(opts.titleMaxLength) || 40
+  const { valid, errors, patch } = validateWorkItemPatch(body, maxLen)
   if (!valid) return { ok: false, error: errors[0] }
 
   const actor = Number(actorId)

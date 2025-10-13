@@ -3,10 +3,11 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import type { ListWorkItemsResponse, WorkItemResponse, WorkItemType } from '@drrq/shared/index'
 import { validateWorkItemTitle, validateWorkItemType, validateDateString } from '@drrq/shared/index'
-import { withBase, authHeader, updateWorkItem, deleteWorkItem } from '../api'
+import { withBase, authHeader, updateWorkItem, deleteWorkItem, getSettings } from '../api'
 
 const items = ref<WorkItemResponse[]>([])
 const loading = ref(false)
+const titleMax = ref<number>(40)
 
 function todayISO(): string {
   return new Date().toISOString().slice(0, 10)
@@ -76,7 +77,7 @@ function openEdit(row: WorkItemResponse) {
 async function submitEdit() {
   if (!editForm.value.id) return
 
-  const titleCheck = validateWorkItemTitle(editForm.value.title)
+  const titleCheck = validateWorkItemTitle(editForm.value.title, titleMax.value)
   if (!titleCheck.valid) {
     ElMessage.error(titleCheck.error || '标题不合规')
     return
@@ -148,6 +149,12 @@ async function confirmDelete(row: WorkItemResponse) {
 
 onMounted(() => {
   load()
+  getSettings()
+    .then((resp) => {
+      const n = Number(resp?.settings?.titleMaxLength)
+      if (Number.isFinite(n) && n >= 1) titleMax.value = n
+    })
+    .catch(() => {})
 })
 
 watch(selectedDate, () => {
@@ -255,7 +262,7 @@ function tiltStyle(id: number) {
     <el-dialog v-model="editVisible" title="编辑记录" width="420px" @close="resetEditForm">
       <el-form label-width="100px">
         <el-form-item label="标题">
-          <el-input v-model="editForm.title" maxlength="20" show-word-limit />
+          <el-input v-model="editForm.title" :maxlength="titleMax" show-word-limit />
         </el-form-item>
         <el-form-item label="日期">
           <el-date-picker v-model="editForm.workDate" type="date" value-format="YYYY-MM-DD" />
