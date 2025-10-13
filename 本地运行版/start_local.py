@@ -29,7 +29,202 @@ import subprocess
 import sys
 import time
 from pathlib import Path
+from typing import Optional
 
+# Optional imports for UI will be resolved at runtime
+try:
+    from PyQt5 import QtWidgets  # type: ignore
+    _PYQT5_AVAILABLE = True
+except Exception:
+    _PYQT5_AVAILABLE = False
+
+
+def run_ui(args: argparse.Namespace) -> int:
+    """Launch a minimal PyQt5 UI to manage local/tunnel start."""
+    app = QtWidgets.QApplication(sys.argv)
+
+    class MainWindow(QtWidgets.QWidget):
+        def __init__(self):
+            super().__init__()
+            self.setWindowTitle("本地启动与内网穿透")
+            self.server_proc: Optional[subprocess.Popen] = None
+            self.ngrok_proc: Optional[subprocess.Popen] = None
+
+            # Widgets
+            self.mode = QtWidgets.QComboBox()
+            self.mode.addItems(["off", "ngrok"])
+            self.mode.setCurrentText((args.tunnel or "off").lower())
+
+            self.port = QtWidgets.QSpinBox()
+            self.port.setRange(1, 65535)
+            self.port.setValue(int(args.port))
+
+            self.token = QtWidgets.QLineEdit()
+            self.token.setPlaceholderText("NGROK_AUTHTOKEN（留空沿用已配置）")
+            if args.tunnel_token:
+                self.token.setText(str(args.tunnel_token))
+            self.token.setEchoMode(QtWidgets.QLineEdit.Password)
+
+            self.domain = QtWidgets.QLineEdit()
+            self.domain.setPlaceholderText("ngrok 自定义域名")
+            if args.tunnel_domain:
+                self.domain.setText(str(args.tunnel_domain))
+
+            self.region = QtWidgets.QLineEdit()
+            self.region.setPlaceholderText("ngrok 区域（留空默认）")
+            if args.tunnel_region:
+                self.region.setText(str(args.tunnel_region))
+
+            self.forceInstall = QtWidgets.QCheckBox("强制后端依赖安装 (--force-install)")
+            self.forceInstall.setChecked(bool(args.force_install))
+
+            self.forceInstallWeb = QtWidgets.QCheckBox("强制前端依赖安装 (--force-install-web)")
+            self.forceInstallWeb.setChecked(bool(args.force_install_web))
+
+            self.forceBuild = QtWidgets.QCheckBox("强制前端构建 (--force-build)")
+            self.forceBuild.setChecked(bool(args.force_build))
+
+            self.skipBuild = QtWidgets.QCheckBox("跳过前端构建 (--skip-build)")
+            self.skipBuild.setChecked(bool(args.skip_build))
+
+            self.startBtn = QtWidgets.QPushButton("启动")
+            self.stopBtn = QtWidgets.QPushButton("停止")
+            self.stopBtn.setEnabled(False)
+
+            self.localUrl = QtWidgets.QLineEdit()
+            self.localUrl.setReadOnly(True)
+            self.publicUrl = QtWidgets.QLineEdit()
+            self.publicUrl.setReadOnly(True)
+
+            self.openLocal = QtWidgets.QPushButton("打开本地")
+            self.openPublic = QtWidgets.QPushButton("打开公网")
+
+            self.log = QtWidgets.QPlainTextEdit()
+            self.log.setReadOnly(True)
+
+            # Layout
+            form = QtWidgets.QFormLayout()
+            form.addRow("模式 (off/ngrok)", self.mode)
+            form.addRow("端口", self.port)
+            form.addRow("Token", self.token)
+            form.addRow("域名", self.domain)
+            form.addRow("区域", self.region)
+            form.addRow(self.forceInstall)
+            form.addRow(self.forceInstallWeb)
+            form.addRow(self.forceBuild)
+            form.addRow(self.skipBuild)
+
+            btns = QtWidgets.QHBoxLayout()
+            btns.addWidget(self.startBtn)
+            btns.addWidget(self.stopBtn)
+
+            openBtns = QtWidgets.QHBoxLayout()
+            openBtns.addWidget(self.openLocal)
+            openBtns.addWidget(self.openPublic)
+
+            v = QtWidgets.QVBoxLayout(self)
+            v.addLayout(form)
+            v.addLayout(btns)
+            v.addWidget(QtWidgets.QLabel("本地地址 / 公网地址"))
+            v.addWidget(self.localUrl)
+            v.addWidget(self.publicUrl)
+            v.addLayout(openBtns)
+            v.addWidget(QtWidgets.QLabel("日志"))
+            v.addWidget(self.log)
+
+            # Signals
+            self.startBtn.clicked.connect(self.on_start)
+            self.stopBtn.clicked.connect(self.on_stop)
+            self.openLocal.clicked.connect(lambda: self.open_url(self.localUrl.text()))
+            self.openPublic.clicked.connect(lambda: self.open_url(self.publicUrl.text()))
+
+        def append_log(self, text: str) -> None:
+            self.log.appendPlainText(text)
+
+        def open_url(self, url: str) -> None:
+            if not url:
+                return
+            try:
+                if platform.system().lower() == "windows":
+                    os.startfile(url)  # type: ignore[attr-defined]
+                elif platform.system().lower() == "darwin":
+                    subprocess.run(["open", url], check=False)
+                else:
+                    subprocess.run(["xdg-open", url], check=False)
+            except Exception:
+                pass
+
+        def on_start(self) -> None:
+            self.append_log("开始启动...")
+            self.startBtn.setEnabled(False)
+            self.stopBtn.setEnabled(True)
+
+            # Prepare options
+            port = int(self.port.value())
+            mode = self.mode.currentText().lower()
+            token = self.token.text().strip() or None
+            domain = self.domain.text().strip() or None
+            region = self.region.text().strip() or None
+
+            # Install/build as requested
+            try:
+                maybe_install_server(self.forceInstall.isChecked())
+                maybe_install_web(self.forceInstallWeb.isChecked())
+                maybe_build_web(self.forceBuild.isChecked(), self.skipBuild.isChecked())
+            except subprocess.CalledProcessError as e:
+                self.append_log(f"依赖/构建失败: {e}")
+                self.startBtn.setEnabled(True)
+                self.stopBtn.setEnabled(False)
+                return
+
+            # Start server
+            try:
+                self.server_proc = start_server_background(port)
+                self.append_log(f"Node 服务已启动 (pid={self.server_proc.pid})，等待端口就绪...")
+            except Exception as e:
+                self.append_log(f"启动服务失败: {e}")
+                self.startBtn.setEnabled(True)
+                self.stopBtn.setEnabled(False)
+                return
+
+            if not wait_for_port(port, timeout=45):
+                self.append_log("端口未在预期时间内打开。")
+                return
+
+            local_url = f"http://localhost:{port}"
+            self.localUrl.setText(local_url)
+            self.append_log(f"本地地址: {local_url}")
+
+            # Start ngrok if needed
+            if mode == "ngrok":
+                try:
+                    ngrok_config_add_authtoken(token)
+                    self.ngrok_proc, public_url = start_ngrok_http(port, domain=domain, region=region)
+                    if domain:
+                        self.publicUrl.setText(public_url)
+                        self.append_log(f"公网地址: {public_url}")
+                    else:
+                        self.append_log("ngrok 将分配临时域名，请查看控制台窗口。")
+                except Exception as e:
+                    self.append_log(f"启动 ngrok 失败: {e}")
+
+        def on_stop(self) -> None:
+            terminate_process(self.ngrok_proc, name="ngrok")
+            terminate_process(self.server_proc, name="node server")
+            self.ngrok_proc = None
+            self.server_proc = None
+            self.append_log("已停止。")
+            self.startBtn.setEnabled(True)
+            self.stopBtn.setEnabled(False)
+
+        def closeEvent(self, event):  # noqa: N802
+            self.on_stop()
+            super().closeEvent(event)
+
+    win = MainWindow()
+    win.resize(720, 560)
+    win.show()
+    return app.exec_()
 
 ROOT = Path(__file__).resolve().parent
 WEB_DIR = ROOT / "web"
@@ -189,6 +384,119 @@ def start_server(port: int) -> int:
         return 0
 
 
+def start_server_background(port: int) -> subprocess.Popen:
+    """Start the Node server as a background process and return the Popen handle."""
+    ensure_port_available(port)
+    cmd = resolve_cmd(["npm", "start"])
+    env = os.environ.copy()
+    env.setdefault("PORT", str(port))
+    process = subprocess.Popen(cmd, cwd=ROOT, env=env)
+    return process
+
+
+def wait_for_port(port: int, host: str = "127.0.0.1", timeout: float = 30.0, interval: float = 0.5) -> bool:
+    """Wait until the TCP port is open (listening)."""
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.settimeout(interval)
+            try:
+                s.connect((host, port))
+                return True
+            except OSError:
+                pass
+        time.sleep(interval)
+    return False
+
+
+def ensure_ngrok_available() -> None:
+    ensure_tool("ngrok")
+
+
+def ngrok_config_add_authtoken(token: Optional[str]) -> None:
+    if token:
+        # Safe to run repeatedly; ngrok will update config
+        try:
+            run(["ngrok", "config", "add-authtoken", token], check=True)
+        except subprocess.CalledProcessError:
+            print("[WARN] Failed to configure ngrok authtoken — continuing.")
+
+
+def start_ngrok_http(port: int, domain: Optional[str] = None, region: Optional[str] = None) -> tuple[subprocess.Popen, str]:
+    """Start an ngrok http tunnel for the given port. Returns (process, public_url)."""
+    ensure_ngrok_available()
+    cmd = ["ngrok", "http"]
+    if region:
+        cmd.append(f"--region={region}")
+    if domain:
+        cmd.append(f"--domain={domain}")
+    cmd.append(str(port))
+    print("\n==> " + " ".join(cmd))
+    proc = subprocess.Popen(cmd, cwd=ROOT)
+    public_url = f"https://{domain}" if domain else "(ngrok URL will be assigned)"
+    return proc, public_url
+
+
+def terminate_process(proc: Optional[subprocess.Popen], *, name: str = "process") -> None:
+    if not proc:
+        return
+    if proc.poll() is not None:
+        return
+    system = platform.system().lower()
+    try:
+        if system == "windows":
+            subprocess.run(["taskkill", "/PID", str(proc.pid), "/F", "/T"], check=False,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        else:
+            proc.terminate()
+            try:
+                proc.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+    except Exception:
+        print(f"[WARN] Failed to terminate {name} (pid={getattr(proc, 'pid', '?')}).")
+
+
+def run_with_ngrok_cli(port: int, *, token: Optional[str], domain: Optional[str], region: Optional[str]) -> int:
+    """Start Node server and ngrok tunnel; keep running until either exits or interrupted."""
+    print("\n=== Starting local server with ngrok tunnel (Ctrl+C to stop) ===")
+    server_proc = None
+    ngrok_proc = None
+    try:
+        server_proc = start_server_background(port)
+        print(f"[INFO] Node server started (pid={server_proc.pid}), waiting for port {port}...")
+        ok = wait_for_port(port, timeout=45)
+        if not ok:
+            print(f"[ERROR] Server port {port} did not open in time.")
+            return 1
+
+        ngrok_config_add_authtoken(token)
+        ngrok_proc, public_url = start_ngrok_http(port, domain=domain, region=region)
+        print(f"[READY] Local:  http://localhost:{port}")
+        if domain:
+            print(f"[READY] Public: {public_url}")
+        else:
+            print("[INFO] ngrok public URL will be shown in ngrok console.")
+
+        # Wait for either process to exit
+        while True:
+            rc_server = server_proc.poll()
+            rc_ngrok = ngrok_proc.poll()
+            if rc_server is not None:
+                print(f"[INFO] Node server exited with code {rc_server}.")
+                return rc_server or 0
+            if rc_ngrok is not None:
+                print(f"[INFO] ngrok exited with code {rc_ngrok}.")
+                return rc_ngrok or 0
+            time.sleep(0.5)
+    except KeyboardInterrupt:
+        print("\nInterrupted by user.")
+        return 0
+    finally:
+        terminate_process(ngrok_proc, name="ngrok")
+        terminate_process(server_proc, name="node server")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Bootstrap the local Node runtime")
     parser.add_argument(
@@ -217,6 +525,36 @@ def parse_args() -> argparse.Namespace:
         default=int(os.environ.get("PORT", "8080")),
         help="启动服务使用的端口（默认 8080 或环境变量 PORT）",
     )
+    # Tunneling options
+    parser.add_argument(
+        "--tunnel",
+        choices=["off", "ngrok"],
+        default=os.environ.get("TUNNEL", "off"),
+        help="是否开启内网穿透：off | ngrok（默认 off）",
+    )
+    parser.add_argument(
+        "--tunnel-token",
+        default=os.environ.get("NGROK_AUTHTOKEN"),
+        help="ngrok authtoken（优先读环境变量 NGROK_AUTHTOKEN）",
+    )
+    parser.add_argument(
+        "--tunnel-domain",
+        default=os.environ.get(
+            "NGROK_DOMAIN",
+            "overidolatrously-uninterjected-moshe.ngrok-free.dev",
+        ),
+        help="ngrok 自定义域名（默认使用提供的 ngrok-free 域名）",
+    )
+    parser.add_argument(
+        "--tunnel-region",
+        default=os.environ.get("NGROK_REGION"),
+        help="ngrok 区域（留空与参考 start.py 一致）",
+    )
+    parser.add_argument(
+        "--ui",
+        action="store_true",
+        help="使用 PyQt5 图形界面启动和管理",
+    )
     return parser.parse_args()
 
 
@@ -230,7 +568,24 @@ def main() -> int:
     maybe_install_web(args.force_install_web)
     maybe_build_web(args.force_build, args.skip_build)
 
-    return start_server(args.port)
+    # UI mode
+    if getattr(args, "ui", False):
+        if not _PYQT5_AVAILABLE:
+            print("[ERROR] PyQt5 未安装，无法使用 --ui 模式。请先 pip install PyQt5。")
+            return 1
+        return run_ui(args)
+
+    # CLI mode
+    tunnel = (args.tunnel or "off").lower()
+    if tunnel == "ngrok":
+        return run_with_ngrok_cli(
+            args.port,
+            token=args.tunnel_token,
+            domain=args.tunnel_domain,
+            region=args.tunnel_region,
+        )
+    else:
+        return start_server(args.port)
 
 
 if __name__ == "__main__":

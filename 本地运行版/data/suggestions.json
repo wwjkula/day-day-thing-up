@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastId": 2
+    "lastId": 4
   },
   "items": [
     {
@@ -16,10 +16,17 @@
       "id": 2,
       "creatorUserId": 1,
       "content": "你呢",
-      "readAt": null,
+      "readAt": "2025-10-10T07:38:17.946Z",
       "createdAt": "2025-10-10T02:48:19.520Z",
-      "updatedAt": "2025-10-10T02:48:19.520Z",
-      "replies": []
+      "updatedAt": "2025-10-10T07:38:17.946Z",
+      "replies": [
+        {
+          "id": 1,
+          "authorUserId": 1,
+          "content": "更改",
+          "createdAt": "2025-10-10T07:38:17.946Z"
+        }
+      ]
     }
   ]
 }
